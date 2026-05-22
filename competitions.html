@@ -1930,22 +1930,20 @@ const archiveData = [
     },
     {
         id:34, type:'sprint', label:'Sprint Race', icon:'🏁', period:'2026-05',
-        name:'Sprint Race #2 — Vallelunga Classic', date:'May 14, 2026',
-        car:'BMW M235i Racing', track:'Vallelunga Classic',
-        note:'Lap time shown is each driver\'s fastest lap of the race; gap is the race time gap to the winner',
+        name:'Sprint Race #3 — Laguna Seca', date:'May 21, 2026',
+        car:'Tatuus FA01', track:'Laguna Seca',
+        note:'Finishing order only — lap times not recorded for this race',
         pending:false, results:[
-            {pos:1,  driver:'Jordan Farrell',     lap:'1:20.168', laps:28, gap:'LEADER'},
-            {pos:2,  driver:'Jeremy White',       lap:'1:20.188', laps:28, gap:'+0:02.256'},
-            {pos:3,  driver:'Jack Mitchell',      lap:'1:20.302', laps:28, gap:'+0:08.985'},
-            {pos:4,  driver:'John Scialdone',     lap:'1:20.568', laps:28, gap:'+0:17.051'},
-            {pos:5,  driver:'Jonas Acevedo',      lap:'1:20.305', laps:28, gap:'+0:24.603'},
-            {pos:6,  driver:'Alex Schulmann',     lap:'1:20.562', laps:28, gap:'+0:28.297'},
-            {pos:7,  driver:'Michael McNish',     lap:'1:20.663', laps:27, gap:'+1 Lap'},
-            {pos:8,  driver:'Otto Munoz',         lap:'1:20.289', laps:27, gap:'+1 Lap'},
-            {pos:9,  driver:'Snorce Z32',         lap:'1:21.375', laps:27, gap:'+1 Lap'},
-            {pos:10, driver:'Asher Lee',          lap:'1:22.061', laps:27, gap:'+1 Lap'},
-            {pos:11, driver:'Daniel Hamilton',    lap:'1:20.611', laps:17, gap:'+11 Laps'},
-            {pos:12, driver:'Donovan Dowdy',      lap:'1:22.375', laps:4,  gap:'+24 Laps'},
+            {pos:1,  driver:'Jack Mitchell',         lap:'', laps:null, gap:''},
+            {pos:2,  driver:'Victor Mendez',         lap:'', laps:null, gap:''},
+            {pos:3,  driver:'John Scialdone',        lap:'', laps:null, gap:''},
+            {pos:4,  driver:'Justin Torrente',       lap:'', laps:null, gap:''},
+            {pos:5,  driver:'Jordan Farrell',        lap:'', laps:null, gap:''},
+            {pos:6,  driver:'Jeremy White',          lap:'', laps:null, gap:''},
+            {pos:7,  driver:'Jonas Acevedo',         lap:'', laps:null, gap:''},
+            {pos:8,  driver:'Jobee Buenaventura',    lap:'', laps:null, gap:''},
+            {pos:9,  driver:'Snorce Z32',            lap:'', laps:null, gap:''},
+            {pos:10, driver:'Stephanie Egusquiza',   lap:'', laps:null, gap:''},
         ]
     },
     {
@@ -2782,7 +2780,8 @@ function openModal(id) {
     document.getElementById('modal-meta').textContent = ev.date + ' · ' + ev.car + ' · ' + ev.track;
 
     let countText = ev.note || (ev.results.length ? ev.results.length + ' drivers' : '');
-    if ((ev.type === 'sprint' || ev.type === 'championship') && ev.results.length) {
+    const hasLapData = ev.results.some(r => r.lap && r.lap !== '—');
+    if ((ev.type === 'sprint' || ev.type === 'championship') && ev.results.length && hasLapData) {
         countText = (countText ? countText + ' · ' : '') + 'Purple text = fastest lap of the race';
     }
     document.getElementById('modal-count').textContent = countText;
