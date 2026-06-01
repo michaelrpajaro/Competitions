@@ -352,10 +352,10 @@
 // ════════════════════════════════════════════════════════════════
 //  EVENT DISPLAY CONFIG
 // ════════════════════════════════════════════════════════════════
-const WEEKLY_IMAGE_URL   = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a1489e79e662b5f77951a00/1779730919952/Insta+Events+%2821%29.jpg";
-const WEEKLY_EVENT_NAME  = "Week 5 — Monza 1966 Road";
-const WEEKLY_CAR         = "Porsche 962C Longtail";
-const WEEKLY_TRACK       = "Monza 1966 Road";
+const WEEKLY_IMAGE_URL   = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a1dad42e813ce263f4ec93e/1780329795224/Insta+Events+%2822%29.jpg";
+const WEEKLY_EVENT_NAME  = "Week 1 — Red Bull Ring National";
+const WEEKLY_CAR         = "Lotus 2-Eleven GT4";
+const WEEKLY_TRACK       = "Red Bull Ring National";
 const MONTHLY_IMAGE_URL  = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/69f77d87a44f9a297932b53a/1777827208256/Insta+Events+%281%29.jpg";
 const MONTHLY_EVENT_NAME = "May Time Attack — Barcelona Moto";
 const MONTHLY_CAR        = "BMW Z4 GT3";
@@ -405,6 +405,7 @@ const NAME_ALIASES = {
     'victor m':               'Victor Mendez Polanco',
     'victor mendez-polanco':  'Victor Mendez Polanco',
     'blazier m':              'Victor Mendez Polanco',
+    'blazierr m':             'Victor Mendez Polanco',
     'jenn f32chick':          'JennBunnii F32chick',
     'm moueed haider mirza':  'Muhammad Moueed Haider Mirza',
 };
@@ -1909,6 +1910,47 @@ const archiveData = [
             {pos:36, driver:'Mike Brunache',         lap:'—',        laps:null, gap:'—'},
         ]
     },
+    // ── MAY WEEK 5 ──────────────────────────────────────────
+    {
+        id:37, type:'weekly', label:'Weekly Qualifier', icon:'\u{1F3CE}️', period:'2026-05',
+        name:'Week 5 — Monza 1966 Road', date:'May 25–31, 2026',
+        car:'Porsche 962C Longtail', track:'Monza 1966 Road',
+        pending:false, results:[
+            {pos:1,  driver:'Thomas McSorley',          lap:'1:16.694', laps:34, gap:'LEADER'},
+            {pos:2,  driver:'Dj Hamilton',              lap:'1:17.322', laps:25, gap:'+00.628'},
+            {pos:3,  driver:'Jose Santiago',            lap:'1:18.416', laps:8,  gap:'+01.722'},
+            {pos:4,  driver:'Shane Cook',               lap:'1:18.701', laps:31, gap:'+02.007'},
+            {pos:5,  driver:'Benny Jimenez',            lap:'1:18.745', laps:20, gap:'+02.051'},
+            {pos:6,  driver:'Jordan Farrell',           lap:'1:18.904', laps:5,  gap:'+02.210'},
+            {pos:7,  driver:'Nick Hernandez',           lap:'1:19.483', laps:5,  gap:'+02.789'},
+            {pos:8,  driver:'Sitay Huber',              lap:'1:20.189', laps:48, gap:'+03.495'},
+            {pos:9,  driver:'Blazierr M',               lap:'1:20.431', laps:15, gap:'+03.737'},
+            {pos:10, driver:'Chaseton Ennis',           lap:'1:20.761', laps:26, gap:'+04.067'},
+            {pos:11, driver:'Jose Corbo',               lap:'1:20.940', laps:23, gap:'+04.246'},
+            {pos:12, driver:'Aedan Mcpartlan',          lap:'1:21.095', laps:51, gap:'+04.401'},
+            {pos:13, driver:'M Moueed Haider Mirza',    lap:'1:21.207', laps:42, gap:'+04.513'},
+            {pos:14, driver:'Erich Deitsch',            lap:'1:22.220', laps:9,  gap:'+05.526'},
+            {pos:15, driver:'Felix Lin',                lap:'1:22.754', laps:4,  gap:'+06.060'},
+            {pos:16, driver:'Snorce Z32',               lap:'1:22.902', laps:7,  gap:'+06.208'},
+            {pos:17, driver:'Brandon Alonzo',           lap:'1:23.501', laps:6,  gap:'+06.807'},
+            {pos:18, driver:'Max Delacruz',             lap:'1:23.950', laps:11, gap:'+07.256'},
+            {pos:19, driver:'Jacob Kuehn',              lap:'1:24.223', laps:11, gap:'+07.529'},
+            {pos:20, driver:'Francisco Maio',           lap:'1:25.156', laps:10, gap:'+08.462'},
+            {pos:21, driver:'Kevin Quintero',           lap:'1:26.302', laps:11, gap:'+09.608'},
+            {pos:22, driver:'Adam Gellman',             lap:'1:26.357', laps:5,  gap:'+09.663'},
+            {pos:23, driver:'Nicky Taylor',             lap:'1:27.510', laps:4,  gap:'+10.816'},
+            {pos:24, driver:'Juan Buitrago',            lap:'1:28.369', laps:11, gap:'+11.675'},
+            {pos:25, driver:'Alejandro Bedoya',         lap:'1:28.607', laps:15, gap:'+11.913'},
+            {pos:26, driver:'Steven Rictafort',         lap:'1:29.068', laps:12, gap:'+12.374'},
+            {pos:27, driver:'Stacy Yonnone',            lap:'1:30.334', laps:13, gap:'+13.640'},
+            {pos:28, driver:'Karena Lin',               lap:'1:34.249', laps:3,  gap:'+17.555'},
+            {pos:29, driver:'Shaiyan Hossain',          lap:'1:34.258', laps:11, gap:'+17.564'},
+            {pos:30, driver:'William McSorley',         lap:'1:37.494', laps:25, gap:'+20.800'},
+            {pos:31, driver:'Dylan Phillip',            lap:'1:47.227', laps:5,  gap:'+30.533'},
+            {pos:32, driver:'Lucas Klein',              lap:'—',        laps:null, gap:'—'},
+            {pos:33, driver:'Andre Phillip',            lap:'—',        laps:null, gap:'—'},
+        ]
+    },
     {
         id:26, type:'sprint', label:'Sprint Race', icon:'🏁', period:'2026-04',
         name:'Sprint Race #3 — Monza 1966 Junior Course', date:'Apr 16, 2026',
@@ -2277,6 +2319,17 @@ const archiveData = [
             {pos:14, driver:'Michael McNish',            lap:'1:08.716', laps:9,  gap:'+17 Laps'},
         ]
     },
+
+    // ── JUNE 2026 ──────────────────────────────────────────
+    // June championship → Sunday Jul 5, 2026
+    // First weekly of June also serves as the May championship combo (revealed Mon Jun 1)
+    {
+        id:38, type:'weekly', label:'Weekly Qualifier', icon:'\u{1F3CE}️', period:'2026-06',
+        name:'Week 1 — Red Bull Ring National', date:'Jun 1–7, 2026',
+        car:'Lotus 2-Eleven GT4', track:'Red Bull Ring National',
+        note:'Also the May championship car/track (revealed Jun 1)',
+        pending:true, results:[]
+    },
 ];
 
 // ════════════════════════════════════════════════════════════════
@@ -2306,18 +2359,29 @@ function getChampionshipDate(period) {
     const [y, m] = period.split('-').map(Number);
     const nextMonth = m === 12 ? 1 : m + 1;
     const nextYear  = m === 12 ? y + 1 : y;
-    return getFirstSundayOfMonth(nextYear, nextMonth);
+    const d = getFirstSundayOfMonth(nextYear, nextMonth);
+    d.setHours(20, 0, 0, 0); // championship race at 8:00 PM
+    return d;
 }
 
-// Current period = the month the current week's END DATE (Sunday 11pm) falls in.
-// This ensures an event starting in April but ending in May counts toward May.
+// Current period = the month whose championship race is still upcoming.
+// Keeps the tracker pinned to month X until that championship Sunday at 8pm
+// has passed, then advances to month X+1.
+// Starts one month back from "now" because a month's championship happens in
+// the FOLLOWING calendar month (May championship = Jun 7), so when today is
+// early June we still want to show May until Jun 7 8pm passes.
 function getCurrentPeriod() {
     const now = new Date();
-    // Find this week's Sunday (end of weekly qualifier)
-    const day = now.getDay(); // 0=Sun
-    const sun = new Date(now);
-    sun.setDate(now.getDate() + (day === 0 ? 0 : 7 - day));
-    return sun.getFullYear() + '-' + String(sun.getMonth() + 1).padStart(2, '0');
+    let y = now.getFullYear();
+    let m = now.getMonth(); // start one month earlier (months are 0-indexed here -> equivalent to current month - 1, in 1-12 terms after +1)
+    if (m === 0) { m = 12; y--; }
+    for (let i = 0; i < 24; i++) {
+        const period = y + '-' + String(m).padStart(2, '0');
+        if (getChampionshipDate(period) >= now) return period;
+        m++;
+        if (m > 12) { m = 1; y++; }
+    }
+    return y + '-' + String(m).padStart(2, '0');
 }
 
 function getPeriodLabel(period) {
@@ -2326,7 +2390,9 @@ function getPeriodLabel(period) {
 }
 
 function fmtChampDate(d) {
-    return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    const date = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    return date + ' · ' + time;
 }
 
 // Parse an event's end date from its display string.
@@ -2452,9 +2518,18 @@ function renderChampionshipTracker() {
     document.getElementById('champ-header').innerHTML =
         `🏆 QUALIFIED DRIVERS — ${label} Championship` +
         `<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.82em;color:#888;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:7px;">` +
-        `Race Date: <span style="color:#EF4444;">${champStr}</span></div>`;
+        `Race Date: <span style="color:#EF4444;">${champStr}</span></div>` +
+        `<div id="champ-countdown" style="display:inline-flex;align-items:center;gap:8px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:7px;margin-top:10px;">⏱ <span id="champ-countdown-val">${countdown(champDate)}</span></div>`;
 
     document.getElementById('champ-combo').innerHTML = comboHtml;
+
+    // Live countdown to the championship race (updates every 30s).
+    if (!globalThis.__champCountdownInterval) {
+        globalThis.__champCountdownInterval = setInterval(() => {
+            const el = document.getElementById('champ-countdown-val');
+            if (el) el.textContent = countdown(getChampionshipDate(getCurrentPeriod()));
+        }, 30000);
+    }
 
     const list = document.getElementById('qualified-list');
     if (qualified.length === 0) {
