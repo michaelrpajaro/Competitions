@@ -326,6 +326,7 @@
 #archive-list::-webkit-scrollbar{width:4px;}
 #archive-list::-webkit-scrollbar-track{background:#111;}
 #archive-list::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
+.arch-badge-short{display:none;}
 
 @media(max-width:768px){
     div[style*="padding:130px 40px 90px"]{padding:60px 18px 40px!important;}
@@ -345,6 +346,32 @@
     div[style*="padding:36px 40px"] a{width:100%!important;text-align:center!important;}
     #race-portal{padding:40px 18px!important;}
     #stats-grid{grid-template-columns:1fr!important;}
+
+    /* ─ Championship tracker: single column on mobile so driver names always fit ─ */
+    #qualified-cols{column-count:1!important;}
+
+    /* ─ Event archive rows: compact, aligned, single-line metadata ─ */
+    .arch-event-row{padding:10px 14px!important;gap:10px!important;}
+    /* Fixed-width abbreviated badge ("WK","SR","MO","CH","EV") so every row's
+       title starts at the same x position. */
+    .arch-event-row .arch-badge{
+        min-width:34px!important;
+        max-width:34px!important;
+        padding:4px 0!important;
+        font-size:0.7em!important;
+        letter-spacing:1px!important;
+    }
+    .arch-event-row .arch-badge-full{display:none;}
+    .arch-event-row .arch-badge-short{display:inline;}
+    .arch-event-row .arch-title{font-size:0.82em!important;}
+    .arch-event-row .arch-meta{
+        white-space:nowrap!important;
+        overflow:hidden!important;
+        text-overflow:ellipsis!important;
+        font-size:0.62em!important;
+    }
+    /* The PENDING/“N drivers” chip is redundant with the row colour on a narrow screen */
+    .arch-event-row .arch-cta > span:first-child{display:none;}
 }
 </style>
 
@@ -2591,7 +2618,7 @@ function renderChampionshipTracker() {
 
     // Override the container's default grid so the multi-column layout works.
     list.style.display = 'block';
-    list.innerHTML = `<div style="column-count:2;column-gap:8px;">${
+    list.innerHTML = `<div id="qualified-cols" style="column-count:2;column-gap:8px;">${
         allEntries.map(q =>
             `<div style="break-inside:avoid;margin-bottom:6px;">${renderEntry(q)}</div>`
         ).join('')
@@ -2977,7 +3004,7 @@ function renderArchive(period) {
 
         html += `
             <div class="arch-event-row" onclick="openModal(${ev.id})" style="${champSep}">
-                <div style="
+                <div class="arch-badge" style="
                     background: ${getBadgeColor(ev.type)};
                     color: white;
                     font-family: 'Barlow Condensed', sans-serif;
@@ -2991,9 +3018,9 @@ function renderArchive(period) {
                     min-width: 88px;
                     text-align: center;
                     ${isChamp ? 'opacity:0.85;' : ''}
-                ">${ev.label}</div>
+                "><span class="arch-badge-full">${ev.label}</span><span class="arch-badge-short">${({weekly:'WK',monthly:'MO',sprint:'SR',championship:'CH',special:'EV'})[ev.type]||''}</span></div>
                 <div style="flex:1;min-width:0;">
-                    <div style="
+                    <div class="arch-title" style="
                         font-family: 'Barlow Condensed', sans-serif;
                         font-size: 0.9em;
                         font-weight: 800;
@@ -3003,11 +3030,11 @@ function renderArchive(period) {
                         overflow: hidden;
                         text-overflow: ellipsis;
                     ">${shortTitle(ev)}</div>
-                    <div style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:2px;">
+                    <div class="arch-meta" style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:2px;">
                         ${ev.car} · ${ev.track} · ${ev.date}${noteEl}
                     </div>
                 </div>
-                <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                <div class="arch-cta" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
                     ${pendingTag}
                     <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.68em;color:#EF4444;font-weight:800;">VIEW ›</span>
                 </div>
