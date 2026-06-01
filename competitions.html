@@ -327,6 +327,7 @@
 #archive-list::-webkit-scrollbar-track{background:#111;}
 #archive-list::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
 .arch-badge-short{display:none;}
+.qd-badge-short{display:none;}
 
 @media(max-width:768px){
     div[style*="padding:130px 40px 90px"]{padding:60px 18px 40px!important;}
@@ -347,8 +348,15 @@
     #race-portal{padding:40px 18px!important;}
     #stats-grid{grid-template-columns:1fr!important;}
 
-    /* ─ Championship tracker: single column on mobile so driver names always fit ─ */
-    #qualified-cols{column-count:1!important;}
+    /* ─ Championship tracker: dense 2-column grid + abbreviated badges so the
+       whole qualified-drivers list fits one mobile screen without scrolling ─ */
+    #qualified-cols{column-count:2!important;column-gap:6px!important;}
+    #qualified-cols > div{margin-bottom:4px!important;}
+    .qd-entry{padding:4px 7px!important;gap:6px!important;border-radius:6px!important;}
+    .qd-badge{font-size:0.5em!important;padding:2px 5px!important;letter-spacing:0.3px!important;border-radius:4px!important;}
+    .qd-badge-full{display:none;}
+    .qd-badge-short{display:inline;}
+    .qd-name{font-size:0.78em!important;}
 
     /* ─ Event archive rows: compact, aligned, single-line metadata ─ */
     .arch-event-row{padding:10px 14px!important;gap:10px!important;}
@@ -2592,22 +2600,25 @@ function renderChampionshipTracker() {
         const teamTag = team
             ? `<span style="background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.5em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:1px 5px;border-radius:3px;margin-left:5px;vertical-align:middle;">SIM1</span>`
             : '';
+        // Compact mobile form of the source badge (e.g. "WEEK 4 · P10" -> "W4·P10").
+        const sbFull  = q.sourceBadge;
+        const sbShort = sbFull
+            .replace(/^WEEK\s+(\d+)\s*·\s*P(\d+)$/i,   'W$1·P$2')
+            .replace(/^SPRINT\s+(\d+)\s*·\s*P(\d+)$/i, 'S$1·P$2')
+            .replace(/^MONTHLY\s*·\s*P(\d+)$/i,        'M·P$1');
+        const badgeInner = `<span class="qd-badge-full">${sbFull}</span><span class="qd-badge-short">${sbShort}</span>`;
         const badge = q.eventId
-            ? `<div onclick="openModal(${q.eventId})"
+            ? `<div class="qd-badge" onclick="openModal(${q.eventId})"
                     title="Click to view full results"
                     style="background:${q.badgeColor};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex-shrink:0;cursor:pointer;transition:filter 0.15s,transform 0.1s;user-select:none;white-space:nowrap;"
                     onmouseover="this.style.filter='brightness(1.25)';this.style.transform='scale(1.04)'"
                     onmouseout="this.style.filter='';this.style.transform=''"
                     onmousedown="this.style.transform='scale(0.97)'"
-                    onmouseup="this.style.transform='scale(1.04)'">
-                    ${q.sourceBadge}
-               </div>`
-            : `<div style="background:${q.badgeColor};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex-shrink:0;white-space:nowrap;">
-                    ${q.sourceBadge}
-               </div>`;
-        return `<div style="background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:10px;min-width:0;">
+                    onmouseup="this.style.transform='scale(1.04)'">${badgeInner}</div>`
+            : `<div class="qd-badge" style="background:${q.badgeColor};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex-shrink:0;white-space:nowrap;">${badgeInner}</div>`;
+        return `<div class="qd-entry" style="background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:10px;min-width:0;">
             ${badge}
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.92em;font-weight:800;color:white;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${q.driver}${teamTag}</div>
+            <div class="qd-name" style="font-family:'Barlow Condensed',sans-serif;font-size:0.92em;font-weight:800;color:white;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${q.driver}${teamTag}</div>
         </div>`;
     }
 
