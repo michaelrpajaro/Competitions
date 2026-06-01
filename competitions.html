@@ -2540,10 +2540,10 @@ function renderChampionshipTracker() {
         return;
     }
 
-    // Group qualified drivers into week sections so the display reads:
-    //   Left column:  W1 entries → Sprint 1 (if any) → W2 entries → Sprint 2 (if any)
-    //   Right column: W3 entries → Sprint 3 (if any) → W4 entries → Sprint 4 (if any) → W5 ...
-    //   Monthly row spans both columns at the bottom.
+    // Group qualified drivers into week sections so they read in event order
+    // (W1 → Sprint 1 → W2 → … → W5 → Monthly). The final layout uses a CSS
+    // multi-column container so the two columns auto-balance regardless of
+    // how many qualifiers each section contributes.
     const sections = { 1: [], 2: [], 3: [], 4: [], 5: [], monthly: [] };
     qualified.forEach(q => {
         const wk = q.sourceBadge.match(/^WEEK\s+(\d+)/);
@@ -2584,16 +2584,18 @@ function renderChampionshipTracker() {
         </div>`;
     }
 
-    const leftItems  = [...sections[1], ...sections[2]];
-    const rightItems = [...sections[3], ...sections[4], ...sections[5]];
-    const monthly    = sections.monthly;
+    const allEntries = [
+        ...sections[1], ...sections[2], ...sections[3],
+        ...sections[4], ...sections[5], ...sections.monthly
+    ];
 
-    list.innerHTML =
-        `<div style="display:flex;flex-direction:column;gap:6px;">${leftItems.map(renderEntry).join('')}</div>` +
-        `<div style="display:flex;flex-direction:column;gap:6px;">${rightItems.map(renderEntry).join('')}</div>` +
-        (monthly.length
-            ? `<div style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:6px;">${monthly.map(renderEntry).join('')}</div>`
-            : '');
+    // Override the container's default grid so the multi-column layout works.
+    list.style.display = 'block';
+    list.innerHTML = `<div style="column-count:2;column-gap:8px;">${
+        allEntries.map(q =>
+            `<div style="break-inside:avoid;margin-bottom:6px;">${renderEntry(q)}</div>`
+        ).join('')
+    }</div>`;
 }
 
 // ════════════════════════════════════════════════════════════════
