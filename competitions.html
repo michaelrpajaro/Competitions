@@ -387,14 +387,52 @@
 // ════════════════════════════════════════════════════════════════
 //  EVENT DISPLAY CONFIG
 // ════════════════════════════════════════════════════════════════
-const WEEKLY_IMAGE_URL   = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a3017d9bc0e15117cc2ee0a/1781536729181/Insta+Events+%2832%29.jpg";
-const WEEKLY_EVENT_NAME  = "Week 3 — Imola";
-const WEEKLY_CAR         = "Lamborghini Huracan ST";
-const WEEKLY_TRACK       = "Imola";
-const MONTHLY_IMAGE_URL  = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a1f8dd7dad95e446b78e326/1780452823772/Insta+Events+%2824%29.jpg";
-const MONTHLY_EVENT_NAME = "June Time Attack — Brands Hatch GP";
-const MONTHLY_CAR        = "Nissan GTR GT3";
-const MONTHLY_TRACK      = "Brands Hatch GP";
+// ════════════════════════════════════════════════════════════════
+//  WEEKLY QUALIFIER SCHEDULE
+//  Each entry's `start` is the Monday the week begins (YYYY-MM-DD).
+//  The live card automatically picks whichever entry has the latest
+//  start date that is on/before today. Future entries flip in
+//  automatically when their start date arrives — no other changes
+//  needed. Once a week ends, its results go into archiveData below.
+// ════════════════════════════════════════════════════════════════
+const WEEKLY_SCHEDULE = [
+    { start:'2026-06-15', name:'Week 3 — Imola',                car:'Lamborghini Huracan ST', track:'Imola',
+      image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a3017d9bc0e15117cc2ee0a/1781536729181/Insta+Events+%2832%29.jpg' },
+    // ↓ ADD FUTURE WEEKLIES HERE — example:
+    // { start:'2026-06-22', name:'Week 4 — TBD',                  car:'TBD', track:'TBD',
+    //   image:'https://...' },
+];
+
+// ════════════════════════════════════════════════════════════════
+//  MONTHLY CHALLENGE SCHEDULE
+//  Same idea — `start` is the first day of the month (YYYY-MM-01).
+// ════════════════════════════════════════════════════════════════
+const MONTHLY_SCHEDULE = [
+    { start:'2026-06-01', name:'June Time Attack — Brands Hatch GP', car:'Nissan GTR GT3', track:'Brands Hatch GP',
+      image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a1f8dd7dad95e446b78e326/1780452823772/Insta+Events+%2824%29.jpg' },
+    // ↓ ADD FUTURE MONTHLIES HERE
+];
+
+// Picks the active entry from a schedule (latest start ≤ today).
+function pickActiveSchedule(schedule) {
+    const t = new Date();
+    const today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
+    const active = schedule.filter(e => e.start <= today).pop();
+    return active || schedule[0] || { image:'', name:'', car:'', track:'' };
+}
+
+const __activeWeekly  = pickActiveSchedule(WEEKLY_SCHEDULE);
+const __activeMonthly = pickActiveSchedule(MONTHLY_SCHEDULE);
+
+const WEEKLY_IMAGE_URL   = __activeWeekly.image;
+const WEEKLY_EVENT_NAME  = __activeWeekly.name;
+const WEEKLY_CAR         = __activeWeekly.car;
+const WEEKLY_TRACK       = __activeWeekly.track;
+const MONTHLY_IMAGE_URL  = __activeMonthly.image;
+const MONTHLY_EVENT_NAME = __activeMonthly.name;
+const MONTHLY_CAR        = __activeMonthly.car;
+const MONTHLY_TRACK      = __activeMonthly.track;
+
 const SPRINT_IMAGE_URL   = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/69f4c1b64362a00309517d2e/1777648054733/photo_5161281553185836080_y.jpg";
 const LAST_RACE_YOUTUBE  = "https://www.youtube.com/playlist?list=PLzDnHFj7PgvzveDJDXxCviv31kL5cr59a";
 const LAST_RACE_TITLE    = "Thursday Sprint Recap";
