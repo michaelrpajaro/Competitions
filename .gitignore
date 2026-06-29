@@ -3,3 +3,6 @@ package.json
 package-lock.json
 competitors.xlsx
 *.xlsx
+competitors_square_import.csv
+competitors_square_review.csv
+build.js
