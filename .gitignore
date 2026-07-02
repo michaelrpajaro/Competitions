@@ -7,4 +7,7 @@ competitors_square_import.csv
 competitors_square_review.csv
 customers_square_import_all.csv
 customers_all_with_race_flag.csv
+customers_sheet_all.csv
+customers_sheet_competitors.csv
 build.js
+run.js
