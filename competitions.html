@@ -398,8 +398,10 @@
 const WEEKLY_SCHEDULE = [
     { start:'2026-06-15', name:'Week 3 — Imola',                car:'Lamborghini Huracan ST', track:'Imola',
       image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a3017d9bc0e15117cc2ee0a/1781536729181/Insta+Events+%2832%29.jpg' },
-    { start:'2026-06-29', name:'Week 5 — Silverstone GP',       car:'Porsche 911 GT3 R', track:'Silverstone GP',
+    { start:'2026-06-29', name:'Week 1 — Silverstone GP',       car:'Porsche 911 GT3 R', track:'Silverstone GP',
       image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a486406fd876d612ded269f/1783129094297/Insta+Events+%287%29.jpg' },
+    { start:'2026-07-06', name:'Week 2 — Nürburgring Sprint',   car:'Ferrari P4/5 Competizione', track:'Nürburgring Sprint',
+      image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a4bd139354dd1631aa2ef9e/1783353657534/Insta+Events+%2838%29.jpg' },
     // ↓ ADD FUTURE WEEKLIES HERE — example:
     // { start:'2026-06-22', name:'Week 4 — TBD',                  car:'TBD', track:'TBD',
     //   image:'https://...' },
@@ -2541,6 +2543,46 @@ const archiveData = [
             {pos:4, driver:'Jonas Acevedo',          lap:'0:52.328', laps:22, gap:'+1 Lap'},
             {pos:5, driver:'Shane Cook',             lap:'0:52.392', laps:22, gap:'+1 Lap'},
             {pos:6, driver:'Snorce Z32',             lap:'0:51.786', laps:22, gap:'+1 Lap'},
+        ]
+    },
+
+    // ── JULY 2026 ──────────────────────────────────────────
+    // July championship → Sunday Aug 2, 2026
+    {
+        id:42, type:'weekly', label:'Weekly Qualifier', icon:'\u{1F3CE}️', period:'2026-07',
+        name:'Week 1 — Silverstone GP', date:'Jun 29 – Jul 5, 2026',
+        car:'Porsche 911 GT3 R', track:'Silverstone GP',
+        note:'Also the June championship car/track (revealed Jun 29)',
+        pending:false, results:[
+            {pos:1,  driver:'Dj Hamilton',              lap:'2:02.326', laps:124, gap:'LEADER'},
+            {pos:2,  driver:'Victor Mendez',            lap:'2:03.130', laps:51,  gap:'+00.804'},
+            {pos:3,  driver:'Shane Cook',               lap:'2:03.505', laps:128, gap:'+01.179'},
+            {pos:4,  driver:'Jordan Farrell',           lap:'2:03.553', laps:41,  gap:'+01.227'},
+            {pos:5,  driver:'Nick Hernandez',           lap:'2:03.572', laps:28,  gap:'+01.246'},
+            {pos:6,  driver:'Peter Zamora',             lap:'2:03.637', laps:39,  gap:'+01.311'},
+            {pos:7,  driver:'Jonas Acevedo',            lap:'2:03.908', laps:45,  gap:'+01.582'},
+            {pos:8,  driver:'Chaseton Ennis',           lap:'2:04.855', laps:14,  gap:'+02.529'},
+            {pos:9,  driver:'Justin Torrente',          lap:'2:04.856', laps:20,  gap:'+02.530'},
+            {pos:10, driver:'Vahey Mouradian',          lap:'2:05.057', laps:31,  gap:'+02.731'},
+            {pos:11, driver:'John Scialdone',           lap:'2:05.185', laps:10,  gap:'+02.859'},
+            {pos:12, driver:'Eli Shamis',               lap:'2:05.447', laps:20,  gap:'+03.121'},
+            {pos:13, driver:'Aedan Mcpartlan',          lap:'2:06.940', laps:43,  gap:'+04.614'},
+            {pos:14, driver:'Soham Panigrahi',          lap:'2:09.035', laps:65,  gap:'+06.709'},
+            {pos:15, driver:'Sitay Huber',              lap:'2:09.718', laps:8,   gap:'+07.392'},
+            {pos:16, driver:'OZONE JUNKIE',             lap:'2:10.772', laps:65,  gap:'+08.446'},
+            {pos:17, driver:'Matthew Nelson',           lap:'2:11.291', laps:19,  gap:'+08.965'},
+            {pos:18, driver:'Ricardo Santiago',         lap:'2:11.742', laps:3,   gap:'+09.416'},
+            {pos:19, driver:'Najanni Duffus',           lap:'2:13.860', laps:5,   gap:'+11.534'},
+            {pos:20, driver:'Andres Bello',             lap:'2:15.424', laps:30,  gap:'+13.098'},
+            {pos:21, driver:'Roman Ruades',             lap:'2:17.032', laps:9,   gap:'+14.706'},
+            {pos:22, driver:'Hermieray H',              lap:'2:27.411', laps:9,   gap:'+25.085'},
+            {pos:23, driver:'Tyler Blackman',           lap:'2:29.092', laps:20,  gap:'+26.766'},
+            {pos:24, driver:'Luis Caraballo',           lap:'2:29.145', laps:4,   gap:'+26.819'},
+            {pos:25, driver:'Nick Lopez',               lap:'2:32.363', laps:4,   gap:'+30.037'},
+            {pos:26, driver:'Rico Biez',                lap:'—',        laps:null, gap:'—'},
+            {pos:27, driver:'Jett Brockhouse',          lap:'—',        laps:null, gap:'—'},
+            {pos:28, driver:'Brian Bodner',             lap:'—',        laps:null, gap:'—'},
+            {pos:29, driver:'Colin McNeil',             lap:'—',        laps:null, gap:'—'},
         ]
     },
 ];
