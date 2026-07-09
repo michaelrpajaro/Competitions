@@ -2,15 +2,53 @@
   <div class="f1">COMPETITIONS</div>
   <div class="f2">SIM1Racing × Spirit Works Garage × Burnout Events</div>
   <div class="footer-links">
-    <a href="#sec-qualifiers" class="btn btn-sm btn-outline">QUALIFIERS</a>
-    <a href="#sec-leagues" class="btn btn-sm btn-outline">LEAGUES</a>
-    <a href="#sec-giveaways" class="btn btn-sm btn-outline">GIVEAWAYS</a>
-    <a href="#sec-endurance" class="btn btn-sm btn-outline">ENDURANCE RACE</a>
-    <a href="#sec-trackday" class="btn btn-sm btn-outline">TRACK DAY</a>
-    <a href="#sec-customleagues" class="btn btn-sm btn-outline">CUSTOM LEAGUES</a>
+    <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" class="btn btn-sm btn-outline">QUALIFIERS</a>
+    <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" class="btn btn-sm btn-outline">LEAGUES</a>
+    <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" class="btn btn-sm btn-outline">GIVEAWAYS</a>
+    <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" class="btn btn-sm btn-outline">ENDURANCE RACE</a>
+    <a href="#sec-trackday" onclick="goToSection(event,'sec-trackday')" class="btn btn-sm btn-outline">TRACK DAY</a>
+    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" class="btn btn-sm btn-outline">CUSTOM LEAGUES</a>
     <a href="https://www.instagram.com/sim1racing/" target="_blank" rel="noopener" class="btn btn-sm btn-outline">@SIM1RACING ↗</a>
   </div>
 </footer>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   TOP-LEVEL SECTION ROUTER
+   Only one of these views is visible at a time: the home landing
+   view, or one of the six competition sections. This must run last
+   (after every section has been added to the DOM) since it needs
+   to find and toggle all of them on load.
+   ════════════════════════════════════════════════════════════════ */
+const SECTION_IDS = ['home','sec-qualifiers','sec-leagues','sec-giveaways','sec-endurance','sec-trackday','sec-customleagues'];
+
+function showSectionById(id){
+  if(!SECTION_IDS.includes(id)) id = 'home';
+  const targetEl = id === 'home' ? document.getElementById('view-home') : document.getElementById(id);
+  if(!targetEl) return;
+  SECTION_IDS.forEach(sid => {
+    const el = sid === 'home' ? document.getElementById('view-home') : document.getElementById(sid);
+    if(el) el.classList.toggle('active-view', sid === id);
+  });
+  document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('active-nav', a.dataset.nav === id));
+  document.querySelectorAll('[data-jump]').forEach(a => a.classList.toggle('active-jump', a.dataset.jump === id));
+  window.scrollTo(0, 0);
+}
+function goToSection(e, id){
+  if(e) e.preventDefault();
+  showSectionById(id);
+  history.pushState({ section: id }, '', '#' + id);
+}
+function initRouter(){
+  const rawHash = (location.hash || '').replace(/^#/, '');
+  // A link straight into a specific giveaway (#g/<slug>) should land on
+  // the Giveaways section and let that section's own router take it from there.
+  if(rawHash.startsWith('g/')){ showSectionById('sec-giveaways'); return; }
+  showSectionById(SECTION_IDS.includes(rawHash) ? rawHash : 'home');
+}
+window.addEventListener('popstate', () => showSectionById((location.hash||'').replace(/^#/,'') || 'home'));
+initRouter();
+</script>
 
 </body>
 </html>
