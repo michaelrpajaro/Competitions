@@ -1,0 +1,360 @@
+<!-- ════════════════════════════════════════════════════════════════
+  SECTION: QUALIFIERS — Weekly/Monthly/Sprint ladder + Championship
+  + Race Portal (driver lookup, archive, stats). Wrapped in
+  #sec-qualifiers so its own mobile CSS (which targets generic
+  h1/h2/div[style*="..."] selectors) cannot affect any other
+  section on this page.
+════════════════════════════════════════════════════════════════ -->
+<div id="sec-qualifiers">
+<!-- ── HERO ── -->
+<div style="padding:130px 40px 90px;background:#000;text-align:center;position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+<div style="position:relative;z-index:1;">
+<div style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:14px;margin-bottom:20px;">Race. Qualify. Dominate.</div>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:5.5em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 24px;line-height:1;">QUALIFIERS</h1>
+<p style="font-family:'Barlow',sans-serif;font-size:1.3em;line-height:1.7;color:#b0b0b0;max-width:780px;margin:0 auto 36px;">Prove your pace. Earn your spot. Weekly Qualifiers, Monthly Challenges, and Thursday Sprint Races &#x2014; every event is a shot at the championship and a chance to join the team.</p>
+<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+<a href="#current-events" style="background:#EF4444;color:white;padding:14px 36px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">VIEW CURRENT EVENTS</a>
+<a href="#race-portal" style="background:transparent;color:white;padding:14px 36px;border:2px solid #333;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">LOOK UP YOUR RESULTS</a>
+</div>
+</div>
+</div>
+
+<!-- ── PATH TO THE CHAMPIONSHIP ── -->
+<div style="padding:60px 40px;background:#0a0a0a;">
+<div style="max-width:1100px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:36px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">THE PATH</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0;">How the Competition Works</h2>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:24px 20px;text-align:center;">
+<div style="font-size:1.8em;margin-bottom:10px;">&#x1F3CE;&#xFE0F;</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">Weekly Qualifier</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#888;line-height:1.55;">Post your fastest lap. Runs Monday&#x2013;Sunday. <strong style="color:#ccc;">Top 3 earn a championship invite.</strong></div>
+</div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:24px 20px;text-align:center;">
+<div style="font-size:1.8em;margin-bottom:10px;">&#x23F1;&#xFE0F;</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:#60a5fa;margin-bottom:8px;">Monthly Challenge</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#888;line-height:1.55;">Month-long time attack open to all. <strong style="color:#ccc;">Top 3 earn a championship invite.</strong></div>
+</div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:24px 20px;text-align:center;">
+<div style="font-size:1.8em;margin-bottom:10px;">&#x1F3C1;</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:#22c55e;margin-bottom:8px;">Thursday Sprint</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#888;line-height:1.55;">Live race every Thursday 8PM. <strong style="color:#ccc;">1 invite per race &#x2014; goes to the highest podium finisher not already qualified.</strong></div>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;justify-content:center;padding:14px 0 12px;">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+<div style="width:1px;height:18px;background:linear-gradient(to bottom,#2a2a2a,#EF4444);"></div>
+<div style="color:#EF4444;font-size:1.2em;line-height:1;">&#x25BC;</div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+<div style="background:linear-gradient(135deg,#1a0000,#2a0808);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:24px;text-align:center;">
+<div style="font-size:1.8em;margin-bottom:10px;">&#x1F3C6;</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Monthly Championship Race</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#b0b0b0;line-height:1.6;">Qualified drivers only. Held end of every month. 10 min practice &#x2192; 20 min qualifying &#x2192; 30 min race. Only the best earn their way here.</div>
+</div>
+<div style="background:linear-gradient(135deg,#0d0d0d,#1a1a1a);border:1px solid #333;border-radius:12px;padding:24px;text-align:center;">
+<div style="font-size:1.8em;margin-bottom:10px;">&#x2B50;</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:10px;">Join the SIM1Racing Team</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#b0b0b0;line-height:1.6;"><strong style="color:#EF4444;">Win the championship</strong> and outpace our SIM1 team drivers to earn your invite &#x2014; free 24/7 access, unlimited sim time, and national &amp; international competition.</div>
+</div>
+</div>
+<p style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#555;text-align:center;margin:14px 0 0;">* Championship qualification resets each month. <strong style="color:#888;">Weekly &amp; monthly:</strong> 3 invites per event &#x2014; awarded to the highest 3 finishers who aren't staff and aren't already qualified (later positions can bump up). <strong style="color:#888;">Sprint:</strong> 1 invite per race, awarded to the highest podium (top 3) finisher who isn't staff and isn't already qualified; if all three are ineligible, no spot is given that week. <strong style="color:#888;">Special events:</strong> one-day events with their own prizes &#x2014; they do not contribute to championship qualification.</p>
+</div>
+</div>
+
+<!-- ── CURRENT EVENTS ── -->
+<div id="current-events" style="padding:80px 40px;background:#000;">
+<div style="max-width:1200px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:48px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">HAPPENING NOW</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Current Challenges</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto;" id="current-challenges-grid"></div>
+</div>
+</div>
+
+<!-- ── THURSDAY SPRINT RACE ── -->
+<div style="padding:80px 40px;background:#0a0a0a;">
+<div style="max-width:1200px;margin:0 auto;">
+<div style="display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start;">
+<div>
+<div id="sprint-graphic" style="aspect-ratio:4/5;border-radius:14px;overflow:hidden;position:relative;border:1px solid #2a2a2a;">
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/69fd50e9294d8f22a2076e4e/1778209001402/Apr+Wk2+Sprint+%281%29.jpg" alt="Thursday Sprint Race" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;position:absolute;inset:0;">
+</div>
+</div>
+<div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#22c55e;margin-bottom:12px;">EVERY THURSDAY</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:3em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 8px;line-height:1;">THURSDAY SPRINT RACE</h2>
+<div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#888;margin-bottom:24px;">Every Thursday &#xB7; 8:00 PM &#x2013; 9:00 PM</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;">
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:16px;text-align:center;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;color:#22c55e;line-height:1;margin-bottom:4px;">$60</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#666;text-transform:uppercase;letter-spacing:1px;">Entry Fee</div>
+</div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:16px;text-align:center;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;color:#22c55e;line-height:1;margin-bottom:4px;">FREE</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.68em;color:#666;text-transform:uppercase;letter-spacing:0.5px;">Gold Members + SIM1 Team Drivers</div>
+</div>
+</div>
+<p style="font-family:'Barlow',sans-serif;font-size:1em;line-height:1.7;color:#b0b0b0;margin-bottom:24px;">Every Thursday night, the car and track are revealed at 7:55PM. No preparation advantage &#x2014; just raw pace. Race wheel-to-wheel in a pure sprint format. The highest podium finisher who isn't already qualified earns a championship invite &#x2014; one per race.</p>
+<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-transform:uppercase;color:white;margin:0 0 12px;">SCHEDULE:</h3>
+<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
+<div style="display:flex;align-items:center;gap:14px;background:#111;border-radius:8px;padding:11px 16px;border-left:3px solid #22c55e;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;color:#22c55e;text-transform:uppercase;min-width:58px;">7:55 PM</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#ccc;">Car &amp; track revealed &#x2014; prepare yourselves</div>
+</div>
+<div style="display:flex;align-items:center;gap:14px;background:#111;border-radius:8px;padding:11px 16px;border-left:3px solid #22c55e;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;color:#22c55e;text-transform:uppercase;min-width:58px;">8:00 PM</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#ccc;">20-minute practice session begins</div>
+</div>
+<div style="display:flex;align-items:center;gap:14px;background:#111;border-radius:8px;padding:11px 16px;border-left:3px solid #22c55e;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;color:#22c55e;text-transform:uppercase;min-width:58px;">8:20 PM</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#ccc;">20-minute qualifying &#x2014; sets the race grid</div>
+</div>
+<div style="display:flex;align-items:center;gap:14px;background:#111;border-radius:8px;padding:11px 16px;border-left:3px solid #EF4444;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;color:#EF4444;text-transform:uppercase;min-width:58px;">8:40 PM</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#ccc;">20-minute race &#x2014; highest unqualified podium finisher earns invite</div>
+</div>
+</div>
+<div style="background:linear-gradient(135deg,#0a0a1a,#111);border:1px solid rgba(99,102,241,0.3);border-radius:12px;padding:20px 22px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+<div style="font-size:1.3em;">&#x1F4FA;</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#818cf8;">WATCH LIVE</div>
+</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;text-transform:uppercase;color:white;margin-bottom:8px;">Every Race is Streamed Live</div>
+<p style="font-family:'Barlow',sans-serif;font-size:0.83em;color:#888;line-height:1.6;margin:0 0 14px;">We go live every Thursday at 8PM on YouTube. Watch in real time, follow your drivers, and catch every overtake from multiple simulator angles.</p>
+<a href="https://www.youtube.com/playlist?list=PLzDnHFj7Pgvw550ik7YpkiMp6JnpYcn6D" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#EF4444;color:white;padding:10px 20px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">&#x25B6; WATCH PREVIOUS SPRINT RACES</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ── CHAMPIONSHIP RACE TRACKER ── -->
+<div style="padding:80px 40px;background:#000;">
+<div style="max-width:1200px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:52px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">END OF MONTH</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 16px;">Championship Race</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:1em;color:#888;max-width:700px;margin:0 auto;">Held at the end of every month. Only invited drivers may participate. Spots are earned by competing in events throughout the month.</p>
+</div>
+<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start;">
+<div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;text-transform:uppercase;color:white;letter-spacing:2px;margin-bottom:16px;line-height:1.4;" id="champ-header">&#x1F3C6; QUALIFIED DRIVERS</div>
+<div id="champ-combo"></div>
+<div id="qualified-list" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
+</div>
+<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:30px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:14px;">RACE FORMAT</div>
+<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 20px;">Championship Night</h3>
+<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+<div style="display:flex;gap:14px;align-items:flex-start;"><div style="background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;padding:4px 10px;border-radius:6px;text-transform:uppercase;white-space:nowrap;margin-top:1px;">10 MIN</div><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;text-transform:uppercase;">Practice</div><div style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#666;margin-top:2px;">Learn the track, dial in your setup</div></div></div>
+<div style="display:flex;gap:14px;align-items:flex-start;"><div style="background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;padding:4px 10px;border-radius:6px;text-transform:uppercase;white-space:nowrap;margin-top:1px;">20 MIN</div><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;text-transform:uppercase;">Split Qualifying</div><div style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#666;margin-top:2px;">Two groups, 10 min each. Sets the race grid.</div></div></div>
+<div style="display:flex;gap:14px;align-items:flex-start;"><div style="background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;padding:4px 10px;border-radius:6px;text-transform:uppercase;white-space:nowrap;margin-top:1px;">30 MIN</div><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;text-transform:uppercase;">Race</div><div style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#666;margin-top:2px;">Full championship race. Winner earns a team invite.</div></div></div>
+</div>
+<div style="background:linear-gradient(135deg,#1a0000,#2a0808);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:16px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">&#x1F3C6; The Prize</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#ccc;line-height:1.6;">Win the championship race <em>and</em> outpace our SIM1 team drivers to earn a team invite &#x2014; free 24/7 access, unlimited sim time, and national &amp; international competition.</div>
+</div>
+<div style="background:#0d0d0d;border:1px solid #1a1a1a;border-radius:10px;padding:14px 16px;margin-top:12px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;text-transform:uppercase;color:#555;margin-bottom:5px;letter-spacing:1px;">&#x1F4C5; CAR &amp; TRACK REVEAL</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#666;line-height:1.55;">The championship car and track are announced on <strong style="color:#888;">Monday of championship week</strong> and always match that week's weekly qualifier combo &#x2014; so qualifying and the race use the exact same setup.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ── SIM1RACING TEAM ── -->
+<div style="padding:80px 40px;background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);">
+<div style="max-width:1200px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:52px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">THE ULTIMATE GOAL</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 16px;">The SIM1Racing Team</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:1em;color:#888;max-width:700px;margin:0 auto;">Team drivers get free 24/7 access, unlimited sim time, and represent SIM1Racing in nationwide and international competitions. Beat them in the championship and join them.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:40px;">
+<div style="background:#1a1a1a;border:2px solid #2a2a2a;border-radius:14px;overflow:hidden;position:relative;">
+<div style="position:absolute;top:12px;left:12px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:10px;z-index:2;">&#x1F3C1; SIM1 TEAM DRIVER</div>
+<div style="aspect-ratio:4/5;background:linear-gradient(160deg,#1a0000,#2a0808,#1a1a1a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(239,68,68,0.15),transparent 60%);"></div>
+<div style="position:relative;text-align:center;">
+<div style="width:64px;height:64px;border-radius:50%;background:#2a2a2a;border:2px solid #EF4444;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.6em;">&#x1F464;</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#555;">Driver photo placeholder</div>
+</div>
+</div>
+<div style="padding:16px 20px;">
+<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Jordan Farrell</h3>
+</div>
+</div>
+
+<div style="background:#1a1a1a;border:2px solid #2a2a2a;border-radius:14px;overflow:hidden;position:relative;">
+<div style="position:absolute;top:12px;left:12px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:10px;z-index:2;">&#x1F3C1; SIM1 TEAM DRIVER</div>
+<div style="aspect-ratio:4/5;background:linear-gradient(160deg,#1a0000,#2a0808,#1a1a1a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(239,68,68,0.15),transparent 60%);"></div>
+<div style="position:relative;text-align:center;">
+<div style="width:64px;height:64px;border-radius:50%;background:#2a2a2a;border:2px solid #EF4444;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.6em;">&#x1F464;</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#555;">Driver photo placeholder</div>
+</div>
+</div>
+<div style="padding:16px 20px;">
+<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Jeremy White</h3>
+</div>
+</div>
+
+<div style="background:#111;border:2px dashed #2a2a2a;border-radius:14px;overflow:hidden;position:relative;">
+<div style="position:absolute;top:12px;left:12px;background:rgba(239,68,68,0.18);color:#EF4444;border:1px solid rgba(239,68,68,0.3);font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:10px;z-index:2;">&#x1F3C1; OPEN SPOT</div>
+<div style="aspect-ratio:4/5;background:linear-gradient(160deg,#0a0a0a,#141414,#0a0a0a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(239,68,68,0.07),transparent 65%);"></div>
+<div style="position:relative;text-align:center;padding:20px;">
+<div style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.04);border:2px dashed #333;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:1.6em;filter:blur(2px);opacity:0.4;">&#x1F464;</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#555;line-height:1.6;max-width:160px;margin:0 auto;">Win the championship &amp; outpace our drivers to claim your spot on the team.</div>
+</div>
+</div>
+<div style="padding:16px 20px;">
+<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:#444;margin:0;letter-spacing:1px;">Driver TBD</h3>
+</div>
+</div>
+
+</div>
+<div style="background:linear-gradient(135deg,#1a0000,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:14px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;">
+<div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">&#x25B6; YOUTUBE SERIES</div><h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.8em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 8px;">Follow the Team's Journey</h3><p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#888;margin:0;max-width:520px;line-height:1.6;">Watch the SIM1Racing team in action &#x2014; race prep, competition footage, driver development, and the full story of what it takes to race at the top.</p></div>
+<a href="https://youtube.com/playlist?list=PLzDnHFj7Pgvxw4PLyuasKFh3J4HCsZA7h&si=6kqMY1YWFqXBhEp6" target="_blank" style="background:#EF4444;color:white;padding:14px 32px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;flex-shrink:0;">WATCH THE SERIES</a>
+</div>
+</div>
+</div>
+
+<!-- ── COACHING CTA ── -->
+<div style="padding:80px 40px;background:#000;">
+<div style="max-width:1100px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:36px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">GET AN EDGE</div><h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Train to Compete</h2></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:36px;position:relative;overflow:hidden;"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#EF4444;"></div><div style="font-size:2em;margin-bottom:14px;">&#x1F465;</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">LEVEL UP FASTER</div><h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;">Group Classes</h3><p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#888;line-height:1.65;margin:0 0 20px;">From braking points to racecraft &#x2014; our Monday group sessions give you the technical foundation to compete at the top.</p><a href="/group-classes" style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#EF4444;text-decoration:none;">VIEW CLASSES &#x2192;</a></div>
+<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:36px;position:relative;overflow:hidden;"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#EF4444;"></div><div style="font-size:2em;margin-bottom:14px;">&#x1F3AF;</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">ONE-ON-ONE</div><h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;">Private Coaching</h3><p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#888;line-height:1.65;margin:0 0 20px;">Work directly with a SIM1 coach to attack specific weaknesses. Personalized feedback and data analysis around your goals.</p><a href="https://www.sim1racing.com/private-coaching" style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#EF4444;text-decoration:none;">GET MORE INFO &#x2192;</a></div>
+</div>
+</div>
+</div>
+
+<!-- ── RACE PORTAL ── -->
+<div id="race-portal" style="padding:80px 40px;background:#0a0a0a;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:40px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">RESULTS &amp; HISTORY</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.5em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;">Race Portal</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#666;margin:0;">Look up your results, explore top stats, or browse past events.</p>
+</div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;">
+<div style="display:flex;border-bottom:1px solid #2a2a2a;">
+<button onclick="portalTab('lookup')" id="ptab-lookup" class="portal-tab active-ptab" style="flex:1;padding:15px 10px;background:#1a1a1a;border:none;border-bottom:2px solid #EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F50D; Driver Lookup</button>
+<button onclick="portalTab('archive')" id="ptab-archive" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4CB; Event Archive</button>
+<button onclick="portalTab('stats')" id="ptab-stats" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4C8; Top Stats</button>
+</div>
+
+<div id="panel-lookup" style="padding:26px;">
+<div style="display:flex;gap:10px;margin-bottom:20px;">
+<input id="driver-search" type="text" placeholder="Enter driver name..." style="flex:1;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:white;font-family:'Barlow',sans-serif;font-size:0.95em;outline:none;" oninput="searchDriver()" onkeydown="if(event.key==='Enter')searchDriver()">
+<button onclick="searchDriver()" style="background:#EF4444;color:white;border:none;border-radius:8px;padding:13px 22px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">SEARCH</button>
+</div>
+<div id="driver-results"></div>
+<div id="lookup-hint" style="text-align:center;padding:24px 0;color:#333;font-family:'Barlow',sans-serif;font-size:0.86em;">Type a name above to search past event results.</div>
+</div>
+
+<div id="panel-archive" style="display:none;">
+<div style="padding:14px 22px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:12px;">
+<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#555;white-space:nowrap;">&#x1F4CB; VIEW MONTH:</span>
+<select id="archive-month-select"
+onchange="renderArchive(this.value)"
+style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:700;padding:7px 12px;cursor:pointer;outline:none;flex:1;max-width:260px;letter-spacing:0.5px;">
+</select>
+</div>
+<div id="archive-list" style="max-height:520px;overflow-y:auto;"></div>
+</div>
+
+<div id="panel-stats" style="display:none;padding:26px;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" id="stats-grid"></div>
+</div>
+</div>
+
+<div id="lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:20px;" onclick="closeModal(event)">
+<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;" onclick="event.stopPropagation()">
+<div style="padding:20px 26px;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#1a1a1a;z-index:1;">
+<div>
+<div id="modal-badge" style="display:inline-block;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:7px;margin-bottom:6px;"></div>
+<h3 id="modal-title" style="font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:900;text-transform:uppercase;color:white;margin:0;"></h3>
+<div id="modal-meta" style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#666;margin-top:3px;"></div>
+<div id="modal-count" style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:2px;"></div>
+</div>
+<button onclick="document.getElementById('lb-modal').style.display='none'" style="background:#2a2a2a;border:none;color:#888;width:32px;height:32px;border-radius:50%;font-size:1em;cursor:pointer;flex-shrink:0;">&#x2715;</button>
+</div>
+<div style="padding:16px 26px;">
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="border-bottom:1px solid #2a2a2a;">
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 0;width:38px;">POS</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 10px;">DRIVER</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;display:none;" id="modal-qual-th">QUAL</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">BEST LAP</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;" id="modal-laps-th">LAPS</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">GAP</th>
+</tr></thead>
+<tbody id="modal-tbody"></tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<style>
+#sec-qualifiers{position:relative;}
+@keyframes qBlink{0%,100%{opacity:1}50%{opacity:0.3}}
+#sec-qualifiers #driver-search:focus{border-color:#EF4444!important;box-shadow:0 0 0 2px rgba(239,68,68,0.15);}
+#sec-qualifiers .arch-event-row{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid #141414;cursor:pointer;transition:background 0.15s;}
+#sec-qualifiers .arch-event-row:hover{background:#161616;}
+#sec-qualifiers .arch-event-row:last-child{border-bottom:none;}
+#sec-qualifiers #archive-list::-webkit-scrollbar{width:4px;}
+#sec-qualifiers #archive-list::-webkit-scrollbar-track{background:#111;}
+#sec-qualifiers #archive-list::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
+#sec-qualifiers .arch-badge-short{display:none;}
+#sec-qualifiers .qd-badge-short{display:none;}
+@media(max-width:768px){
+#sec-qualifiers div[style*="padding:130px 40px 90px"]{padding:60px 18px 40px!important;}
+#sec-qualifiers div[style*="padding:130px 40px 90px"] h1{font-size:2.8em!important;}
+#sec-qualifiers div[style*="padding:130px 40px 90px"] p{font-size:0.9em!important;}
+#sec-qualifiers div[style*="padding:130px 40px 90px"] div[style*="display:flex;gap:14px"]{flex-direction:column!important;}
+#sec-qualifiers div[style*="padding:60px 40px;background:#0a0a0a"]{padding:28px 18px!important;}
+#sec-qualifiers div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;gap:10px!important;}
+#sec-qualifiers div[style*="padding:80px 40px;background:#000"],#sec-qualifiers div[style*="padding:80px 40px;background:#0a0a0a"],#sec-qualifiers div[style*="padding:80px 40px;background:linear-gradient"]{padding:40px 18px!important;}
+#sec-qualifiers div[style*="grid-template-columns:1fr 1fr"],#sec-qualifiers div[style*="grid-template-columns:1fr 1.15fr"],#sec-qualifiers div[style*="grid-template-columns:1fr 1.2fr"],#sec-qualifiers div[style*="grid-template-columns:1.2fr 1fr"],#sec-qualifiers div[style*="grid-template-columns:repeat(2,1fr)"]{grid-template-columns:1fr!important;gap:16px!important;}
+#sec-qualifiers div[style*="grid-template-columns:1.2fr 1fr;gap:40px"]{grid-template-columns:1fr!important;}
+#sec-qualifiers h2[style*="font-size:2.8em"]{font-size:1.8em!important;}
+#sec-qualifiers h2[style*="font-size:2.5em"]{font-size:1.6em!important;}
+#sec-qualifiers h2[style*="font-size:2.2em"]{font-size:1.5em!important;}
+#sec-qualifiers h3[style*="font-size:2em"]{font-size:1.4em!important;}
+#sec-qualifiers div[style*="padding:36px 40px"]{padding:22px 18px!important;flex-direction:column!important;}
+#sec-qualifiers div[style*="padding:36px 40px"] a{width:100%!important;text-align:center!important;}
+#sec-qualifiers #race-portal{padding:40px 18px!important;}
+#sec-qualifiers #stats-grid{grid-template-columns:1fr!important;}
+#sec-qualifiers #qualified-cols{column-count:2!important;column-gap:6px!important;}
+#sec-qualifiers #qualified-cols > div{margin-bottom:4px!important;}
+#sec-qualifiers .qd-entry{padding:4px 7px!important;gap:6px!important;border-radius:6px!important;}
+#sec-qualifiers .qd-badge{font-size:0.5em!important;padding:2px 5px!important;letter-spacing:0.3px!important;border-radius:4px!important;}
+#sec-qualifiers .qd-badge-full{display:none;}
+#sec-qualifiers .qd-badge-short{display:inline;}
+#sec-qualifiers .qd-name{font-size:0.78em!important;}
+#sec-qualifiers .arch-event-row{padding:10px 14px!important;gap:10px!important;}
+#sec-qualifiers .arch-event-row .arch-badge{min-width:34px!important;max-width:34px!important;padding:4px 0!important;font-size:0.7em!important;letter-spacing:1px!important;}
+#sec-qualifiers .arch-event-row .arch-badge-full{display:none;}
+#sec-qualifiers .arch-event-row .arch-badge-short{display:inline;}
+#sec-qualifiers .arch-event-row .arch-title{font-size:0.82em!important;}
+#sec-qualifiers .arch-event-row .arch-meta{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:0.62em!important;}
+#sec-qualifiers .arch-event-row .arch-cta > span:first-child{display:none;}
+}
+</style>
+</div><!-- /#sec-qualifiers -->

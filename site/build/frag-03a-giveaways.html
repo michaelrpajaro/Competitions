@@ -1,0 +1,248 @@
+<!-- ════════════════════════════════════════════════════════════════
+  SECTION: CAR GIVEAWAYS (Spirit Works Garage × SIM1Racing)
+  Own top <nav> removed (page now has one global nav). Internal
+  hash-router (#g/<slug>) and tab logic kept intact. Its own
+  normalizeName/nameKey/isStaff/isSIM1Team helpers and SIM1_TEAM/
+  STAFF_LIST/NAME_ALIASES constants are NOT redeclared here — they
+  reuse the canonical copies defined in the Qualifiers section's
+  script (identical roster/logic), since re-declaring the same
+  `const` twice in one page would throw a script-breaking error.
+════════════════════════════════════════════════════════════════ -->
+<div id="sec-giveaways">
+<div id="view-landing">
+<header class="hero" style="padding-top:64px;">
+<div class="hero-glow"></div>
+<div class="hero-inner" style="max-width:1200px;display:grid;grid-template-columns:1.05fr 1fr;gap:54px;align-items:center;text-align:left;">
+<div>
+<span class="badge">Spirit Works Garage × SIM1Racing</span>
+<h1 style="font-size:4.2em;">STAY TUNED FOR<br><span class="accent">THE NEXT GIVEAWAY</span></h1>
+<p style="text-align:left;">Spirit Works Garage and SIM1Racing run car giveaways where finishing in the points across four weeks of sim racing earns you <strong style="color:#ddd;">entries</strong> toward winning a real car. The next one is in the works — check the archive below for past results, and follow on Instagram to be the first to hear what's coming.</p>
+<div class="hero-cta">
+<a href="#gv-archive" onclick="navTo(event,'archive')" class="btn">SEE PAST GIVEAWAYS</a>
+<a href="https://www.instagram.com/spiritworks.garage/" target="_blank" rel="noopener" class="btn btn-outline">FOLLOW @SPIRITWORKS.GARAGE ↗</a>
+</div>
+<div class="hero-stats" style="margin-left:0;">
+<div class="hero-stat"><div class="v">4</div><div class="l">Weeks / Giveaway</div></div>
+<div class="hero-stat"><div class="v">15+</div><div class="l">Winners / Week</div></div>
+<div class="hero-stat"><div class="v">10K</div><div class="l">Top Entries / Week</div></div>
+</div>
+</div>
+<div style="background:linear-gradient(150deg,#150505,#1a1a1a 60%,#0a0a0a);border:1px solid rgba(239,68,68,0.28);border-radius:16px;padding:40px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:280px;">
+<div style="display:inline-block;background:var(--red);color:#fff;font-family:var(--cond);font-size:0.7em;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;border-radius:12px;margin-bottom:18px;">NEXT UP</div>
+<div style="font-size:3em;margin-bottom:10px;">🚗</div>
+<div style="font-family:var(--body);font-size:1.6em;font-weight:800;color:#fff;margin-bottom:8px;">Car TBA</div>
+<div style="font-family:var(--body);font-size:0.92em;color:#999;line-height:1.55;max-width:280px;">Announcement coming soon. Follow on Instagram to be the first to know.</div>
+</div>
+</div>
+</header>
+
+<section class="section" id="gv-how" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow">THE FORMAT</div>
+<h2 class="h2">How Each Giveaway Works</h2>
+<p class="lead" style="max-width:760px;margin:14px auto 0;">Every giveaway runs the same way — the rules and prize ladder don't change, just the car. Four weeks, a fresh sim track each week, top finishers earn entries.</p>
+</div>
+<div class="week-grid" id="week-cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;"></div>
+<div class="note" style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:22px 24px;margin-top:26px;">
+<div class="nt-t" style="font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;">⚡ Repeat Winners — Why Some Weeks Pay More Than 15</div>
+<p style="font-family:var(--body);font-size:0.9em;color:#b0b0b0;line-height:1.7;margin:0;">Every week, <strong style="color:#fff;">15 unique winners</strong> fill the 15 prize slots at full value. But you can win in more than one week — and repeat wins don't take a slot from a first-timer, they pay <em>on top</em>. So a week can pay more than 15 people.</p>
+<p style="font-family:var(--body);font-size:0.9em;color:#b0b0b0;line-height:1.7;margin-top:12px;"><strong style="color:#fff;">Example —</strong> in Week 2 the fastest driver already won in Week 1. They collect <code style="color:var(--red);font-weight:700;">50% of 1st place = 5,000</code>. The 15 prize slots then go to the next 15 first-time winners, so the Week-2 runner-up (a first-timer) takes the full <code style="color:var(--red);font-weight:700;">10,000</code> first-place prize. That week pays <strong style="color:#fff;">16 people</strong>.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="gv-prizes" style="background:var(--bg);">
+<div class="wrap-md">
+<div class="center" style="margin-bottom:36px;">
+<div class="eyebrow">ENTRIES ON THE LINE</div>
+<h2 class="h2">Weekly Prize Ladder</h2>
+<p class="lead" style="max-width:640px;margin:14px auto 0;">Finish in the top 15 each week to earn entries. Prizes are awarded in <strong style="color:#ccc;">entries</strong> — the giveaway's currency.</p>
+</div>
+<div class="ladder" id="ladder" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;"></div>
+<div style="margin-top:40px;">
+<div class="eyebrow center">WIN MORE THAN ONCE</div>
+<h3 class="h2 center" style="font-size:1.7em;">Repeat-Winner Multipliers</h3>
+<div class="rules" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;">
+<div class="rule" style="background:var(--card2);border:1px solid rgba(34,197,94,0.3);border-radius:11px;padding:20px;">
+<div class="pct" style="font-family:var(--cond);font-size:2em;font-weight:900;line-height:1;color:var(--green);">100%</div>
+<div class="nm" style="font-family:var(--cond);font-size:0.95em;font-weight:800;text-transform:uppercase;color:#fff;margin:8px 0 6px;">1st Win</div>
+<div class="ds" style="font-family:var(--body);font-size:0.8em;color:#888;line-height:1.55;">Your first time winning pays the <strong style="color:#ccc;">full prize</strong> for your slot. First-time winners fill all 15 slots.</div>
+</div>
+<div class="rule" style="background:var(--card2);border:1px solid rgba(251,191,36,0.3);border-radius:11px;padding:20px;">
+<div class="pct" style="font-family:var(--cond);font-size:2em;font-weight:900;line-height:1;color:var(--gold);">50%</div>
+<div class="nm" style="font-family:var(--cond);font-size:0.95em;font-weight:800;text-transform:uppercase;color:#fff;margin:8px 0 6px;">2nd Win</div>
+<div class="ds" style="font-family:var(--body);font-size:0.8em;color:#888;line-height:1.55;">Win a second week and you collect <strong style="color:#ccc;">half</strong> the prize for <strong style="color:#ccc;">the position you finished</strong> — paid on top of the 15 slots.</div>
+</div>
+<div class="rule" style="background:var(--card2);border:1px solid rgba(239,68,68,0.3);border-radius:11px;padding:20px;">
+<div class="pct" style="font-family:var(--cond);font-size:2em;font-weight:900;line-height:1;color:var(--red);">25%</div>
+<div class="nm" style="font-family:var(--cond);font-size:0.95em;font-weight:800;text-transform:uppercase;color:#fff;margin:8px 0 6px;">3rd &amp; 4th Win</div>
+<div class="ds" style="font-family:var(--body);font-size:0.8em;color:#888;line-height:1.55;">Your third and fourth wins each pay <strong style="color:#ccc;">a quarter</strong> of the prize for <strong style="color:#ccc;">the position you finished</strong> that week.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="gv-archive" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:36px;">
+<div class="eyebrow">PAST GIVEAWAYS</div>
+<h2 class="h2">Archive</h2>
+<p class="lead" style="max-width:680px;margin:14px auto 0;">Every giveaway is logged here — open one to view the car, the weekly results, the standings, and look up how many entries any driver earned.</p>
+</div>
+<div class="archive-grid" id="archive-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;"></div>
+</div>
+</section>
+</div><!-- /#view-landing -->
+
+<div id="view-giveaway" style="display:none;">
+<header class="hero" style="padding-top:64px;">
+<div class="hero-glow"></div>
+<div class="hero-inner" style="max-width:1200px;display:grid;grid-template-columns:1.05fr 1fr;gap:54px;align-items:center;text-align:left;">
+<div>
+<a href="#top" onclick="navHome(event)" class="back-link" style="display:inline-block;font-family:var(--body);font-size:0.86em;color:#888;text-decoration:none;font-weight:600;margin-bottom:14px;">← All Giveaways</a>
+<span class="badge" id="gv-partner">Spirit Works Garage × SIM1Racing</span>
+<h1 id="gv-title" style="font-size:4.2em;">Subaru BRZ<br><span class="accent">Giveaway</span></h1>
+<p id="gv-sub" style="text-align:left;">Loading…</p>
+<div class="hero-cta">
+<a href="#gv-tracker" class="btn">VIEW THE TRACKER</a>
+<a href="" id="gv-rules" target="_blank" rel="noopener" class="btn btn-outline">OFFICIAL RULES ↗</a>
+</div>
+<div class="hero-stats" style="margin-left:0;">
+<div class="hero-stat"><div class="v" id="gv-stat-weeks">4</div><div class="l">Weeks</div></div>
+<div class="hero-stat"><div class="v" id="gv-stat-winners">–</div><div class="l">Unique Winners</div></div>
+<div class="hero-stat"><div class="v" id="gv-stat-entries">–</div><div class="l">Entries Awarded</div></div>
+</div>
+</div>
+<div class="car-photo" id="car-photo" style="aspect-ratio:16/11;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(150deg,#160606,#1a1a1a 60%,#0a0a0a);position:relative;"></div>
+</div>
+</header>
+
+<section class="section" id="gv-build" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow" id="build-eyebrow">BY SPIRIT WORKS GARAGE</div>
+<h2 class="h2">The Build</h2>
+<p class="lead" id="build-lead" style="max-width:720px;margin:14px auto 0;">This isn't a stock car. Spirit Works Garage transformed it into something special — and one of you is taking it home.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1.1fr;gap:46px;align-items:start;">
+<div class="car-photo" id="build-photo" style="aspect-ratio:4/3;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(150deg,#160606,#1a1a1a 60%,#0a0a0a);position:relative;"></div>
+<div>
+<div class="build-head" id="build-head"></div>
+<p class="build-facts" id="build-facts" style="font-family:var(--body);font-size:0.86em;color:#999;line-height:1.65;margin:0 0 18px;"></p>
+<div class="mod-card" style="background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:18px 22px;">
+<div class="mod-h" style="font-family:var(--cond);font-size:0.9em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:11px;border-bottom:1px solid var(--border);padding-bottom:9px;">Build Highlights</div>
+<ul class="mod-ul" id="build-highlights" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;"></ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="gv-tracker" style="background:var(--bg);">
+<div class="wrap">
+<div class="center" style="margin-bottom:36px;">
+<div class="eyebrow">FINAL STANDINGS</div>
+<h2 class="h2">Entry Tracker</h2>
+<p class="lead" style="max-width:720px;margin:14px auto 0;">Per-week payouts, running entry totals, and a driver lookup so anyone can see how many entries they earned.</p>
+</div>
+<div class="tracker-wrap" style="background:var(--card2);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+<div class="tabbar" style="display:flex;border-bottom:1px solid var(--border);flex-wrap:wrap;">
+<button class="tab active" data-tab="standings" onclick="setTab('standings')" style="flex:1;min-width:130px;padding:16px 10px;background:var(--card);color:#fff;border:none;border-bottom:2px solid var(--red);font-family:var(--body);font-size:0.95em;font-weight:700;cursor:pointer;">🏆 Standings</button>
+<button class="tab" data-tab="weeks" onclick="setTab('weeks')" style="flex:1;min-width:130px;padding:16px 10px;background:transparent;color:#888;border:none;border-bottom:2px solid transparent;font-family:var(--body);font-size:0.95em;font-weight:700;cursor:pointer;">📋 Weekly Results</button>
+<button class="tab" data-tab="lookup" onclick="setTab('lookup')" style="flex:1;min-width:130px;padding:16px 10px;background:transparent;color:#888;border:none;border-bottom:2px solid transparent;font-family:var(--body);font-size:0.95em;font-weight:700;cursor:pointer;">🔍 Driver Lookup</button>
+</div>
+<div class="panel active" id="gv-panel-standings" style="padding:26px;display:block;"><div id="standings-out"></div></div>
+<div class="panel" id="gv-panel-weeks" style="padding:26px;display:none;"><div id="weeks-out"></div></div>
+<div class="panel" id="gv-panel-lookup" style="padding:26px;display:none;">
+<div class="lookup-bar" style="display:flex;gap:10px;margin-bottom:22px;">
+<input id="lookup-input" type="text" placeholder="Enter your driver name…" oninput="renderLookup()" style="flex:1;background:#000;border:1px solid var(--border);border-radius:8px;padding:13px 16px;color:#fff;font-family:var(--body);font-size:0.95em;outline:none;">
+<button class="btn btn-sm" onclick="renderLookup()">SEARCH</button>
+</div>
+<div id="lookup-out"></div>
+</div>
+</div>
+</div>
+</section>
+</div><!-- /#view-giveaway -->
+</div><!-- /#sec-giveaways -->
+
+<style>
+#sec-giveaways .week-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:26px 24px;position:relative;overflow:hidden;}
+#sec-giveaways .week-card .bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);}
+#sec-giveaways .week-card .wk{font-family:var(--cond);font-size:0.95em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+#sec-giveaways .week-card .dt{font-family:var(--body);font-size:1.3em;font-weight:800;color:#fff;margin:9px 0 4px;line-height:1.15;}
+#sec-giveaways .week-card .trk{font-family:var(--body);font-size:1.05em;font-weight:700;color:#ddd;margin-top:14px;}
+#sec-giveaways .ladder .pz{background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:12px 10px;text-align:center;}
+#sec-giveaways .ladder .pz .pos{font-family:var(--cond);font-size:0.78em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#666;}
+#sec-giveaways .ladder .pz .ent{font-family:var(--cond);font-size:1.35em;font-weight:900;color:#fff;line-height:1.1;margin-top:3px;}
+#sec-giveaways .ladder .pz .u{font-family:var(--body);font-size:0.6em;color:#555;text-transform:uppercase;letter-spacing:1px;}
+#sec-giveaways .ladder .pz.g1{border-color:rgba(251,191,36,0.5);background:linear-gradient(150deg,#1a1405,var(--card2));}
+#sec-giveaways .ladder .pz.g1 .ent,#sec-giveaways .ladder .pz.g1 .pos{color:var(--gold);}
+#sec-giveaways .ladder .pz.g2{border-color:rgba(209,213,219,0.35);}
+#sec-giveaways .ladder .pz.g2 .ent{color:var(--silver);}
+#sec-giveaways .ladder .pz.g3{border-color:rgba(205,127,50,0.4);}
+#sec-giveaways .ladder .pz.g3 .ent{color:var(--bronze);}
+#sec-giveaways .tab.active{background:var(--card);color:#fff;border-bottom-color:var(--red)!important;}
+#sec-giveaways .wk-result{background:var(--card3);border:1px solid var(--border2);border-radius:12px;overflow:hidden;margin-bottom:16px;}
+#sec-giveaways .wk-result .rh{padding:14px 20px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+#sec-giveaways .wk-result .rh .lbl{font-family:var(--cond);font-size:0.82em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--red);padding:4px 11px;border-radius:6px;}
+#sec-giveaways .wk-result .rh .ti{font-family:var(--body);font-size:1.2em;font-weight:800;color:#fff;}
+#sec-giveaways .wk-result .rh .sub{font-family:var(--body);font-size:0.88em;color:#888;}
+#sec-giveaways .wk-result .rh .stat{margin-left:auto;font-family:var(--body);font-size:0.86em;color:#999;text-align:right;line-height:1.5;}
+#sec-giveaways .wk-result .rh .stat b{font-family:var(--body);color:var(--red);font-size:1.2em;font-weight:800;}
+#sec-giveaways table{width:100%;border-collapse:collapse;}
+#sec-giveaways thead th{font-family:var(--body);font-size:0.76em;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;color:#888;text-align:left;padding:11px 0;border-bottom:1px solid var(--border);}
+#sec-giveaways tbody td{padding:11px 0;border-bottom:1px solid var(--border2);font-family:var(--body);font-size:0.94em;color:#ccc;vertical-align:middle;}
+#sec-giveaways .tbl-pad{padding:6px 20px 14px;}
+#sec-giveaways .tbl-scroll{overflow-x:auto;}
+#sec-giveaways .tbl-scroll table{min-width:560px;}
+#sec-giveaways .col-r{text-align:right;} #sec-giveaways .col-c{text-align:center;} #sec-giveaways .col-pos{width:48px;}
+#sec-giveaways td.lap{font-family:var(--body);font-weight:700;color:#e5e5e5;} #sec-giveaways td.mut,#sec-giveaways .mut{color:#666;}
+#sec-giveaways .exc{font-family:var(--body);font-size:0.78em;font-weight:700;letter-spacing:0.2px;text-transform:uppercase;color:#888;}
+#sec-giveaways .full-toggle{display:block;width:100%;margin:10px 0 2px;background:var(--card2);border:1px solid var(--border);border-radius:8px;color:#bbb;font-family:var(--body);font-size:0.86em;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;padding:13px;cursor:pointer;}
+#sec-giveaways .full-toggle:hover{background:#161616;color:#fff;}
+#sec-giveaways .full-table tr.norow{opacity:0.42;} #sec-giveaways .full-table tr.winrow{background:rgba(239,68,68,0.06);}
+#sec-giveaways .drv{font-family:var(--body);font-size:1em;font-weight:700;color:#fff;}
+#sec-giveaways .tier{font-family:var(--cond);font-weight:900;color:#555;} #sec-giveaways .tier.top{color:var(--red);}
+#sec-giveaways .win-badge{display:inline-block;font-family:var(--body);font-size:0.78em;font-weight:700;letter-spacing:0.2px;padding:2px 9px;border-radius:5px;white-space:nowrap;}
+#sec-giveaways .ent{font-family:var(--body);font-size:1.05em;font-weight:800;color:#fff;}
+#sec-giveaways .ent .base{font-family:var(--body);font-size:0.66em;color:#555;font-weight:400;margin-left:5px;}
+#sec-giveaways .detail{font-family:var(--body);font-size:0.78em;color:#888;margin-top:2px;line-height:1.35;}
+#sec-giveaways .tag-sim1{background:var(--red);color:#fff;font-family:var(--cond);font-size:0.5em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:1px 5px;border-radius:3px;margin-left:6px;vertical-align:middle;}
+#sec-giveaways .standings .row{display:flex;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid var(--border2);} #sec-giveaways .standings .row:last-child{border-bottom:none;}
+#sec-giveaways .standings .pos{width:36px;text-align:center;font-family:var(--cond);font-size:1.2em;font-weight:900;color:#666;flex-shrink:0;}
+#sec-giveaways .standings .nm{flex:1;min-width:0;font-family:var(--body);font-size:1.02em;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#sec-giveaways .standings .wks{display:flex;gap:5px;flex-shrink:0;}
+#sec-giveaways .standings .wbox{font-family:var(--body);font-size:0.74em;font-weight:700;min-width:48px;text-align:center;padding:5px 7px;border-radius:5px;background:#000;border:1px solid var(--border2);color:#666;}
+#sec-giveaways .standings .wbox.has{color:#fff;border-color:var(--border3);}
+#sec-giveaways .standings .tot{font-family:var(--body);font-size:1.2em;font-weight:800;color:var(--red);flex-shrink:0;min-width:88px;text-align:right;}
+#sec-giveaways .standings .row.top1{background:linear-gradient(90deg,rgba(251,191,36,0.07),transparent);} #sec-giveaways .standings .row.top1 .pos{color:var(--gold);}
+#sec-giveaways .empty-state{text-align:center;padding:40px 20px;border:1px dashed var(--border);border-radius:12px;}
+#sec-giveaways .empty-state .e1{font-family:var(--cond);font-size:1.1em;font-weight:800;text-transform:uppercase;color:#555;}
+#sec-giveaways .empty-state .e2{font-family:var(--body);font-size:0.85em;color:#444;margin-top:6px;}
+#sec-giveaways .driver-card{background:var(--card3);border:1px solid var(--border2);border-radius:12px;padding:22px;}
+#sec-giveaways .driver-card .dn{font-family:var(--body);font-size:1.5em;font-weight:800;color:#fff;}
+#sec-giveaways .driver-card .grand{font-family:var(--cond);font-size:2.6em;font-weight:900;color:var(--red);line-height:1;}
+#sec-giveaways .driver-card .grand-l{font-family:var(--body);font-size:0.76em;color:#888;text-transform:uppercase;letter-spacing:0.8px;}
+#sec-giveaways .arch-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;}
+#sec-giveaways .arch-card:hover{border-color:var(--red);transform:translateY(-2px);}
+#sec-giveaways .arch-photo{aspect-ratio:16/10;background:#000;position:relative;overflow:hidden;} #sec-giveaways .arch-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+#sec-giveaways .arch-status{position:absolute;top:10px;left:10px;font-family:var(--body);font-size:0.7em;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:3px 9px;border-radius:5px;}
+#sec-giveaways .arch-status.done{background:rgba(0,0,0,0.7);color:#bbb;border:1px solid #333;}
+#sec-giveaways .arch-status.live{background:var(--red);color:#fff;animation:gvBlink 1.4s ease-in-out infinite;}
+#sec-giveaways .arch-status.soon{background:rgba(96,165,250,0.18);color:var(--blue);border:1px solid rgba(96,165,250,0.4);}
+@keyframes gvBlink{0%,100%{opacity:1}50%{opacity:0.5}}
+#sec-giveaways .arch-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:5px;flex:1;}
+#sec-giveaways .arch-eyebrow{font-family:var(--cond);font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+#sec-giveaways .arch-t{font-family:var(--cond);font-size:1.55em;font-weight:900;text-transform:uppercase;color:#fff;line-height:1.05;}
+#sec-giveaways .arch-s{font-family:var(--body);font-size:0.88em;color:#aaa;}
+#sec-giveaways .arch-meta{font-family:var(--body);font-size:0.78em;color:#666;margin-top:2px;}
+#sec-giveaways .arch-stats{display:flex;gap:14px;font-family:var(--body);font-size:0.8em;color:#888;margin-top:10px;padding-top:10px;border-top:1px solid var(--border2);flex-wrap:wrap;}
+#sec-giveaways .arch-stats b{color:#fff;font-weight:700;}
+#sec-giveaways .arch-cta{font-family:var(--body);font-size:0.84em;font-weight:700;color:var(--red);margin-top:auto;padding-top:12px;letter-spacing:0.3px;}
+#sec-giveaways .rpt{display:inline-block;font-family:var(--cond);font-size:0.55em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#888;background:#000;border:1px solid var(--border);border-radius:4px;padding:1px 6px;margin-left:7px;vertical-align:middle;}
+@media(max-width:900px){ #sec-giveaways .hero-inner{grid-template-columns:1fr!important;} #sec-giveaways [style*="grid-template-columns:1fr 1.1fr"]{grid-template-columns:1fr!important;} #sec-giveaways .week-grid{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .ladder{grid-template-columns:repeat(3,1fr)!important;} #sec-giveaways .rules{grid-template-columns:1fr!important;} }
+@media(max-width:600px){ #sec-giveaways .week-grid{grid-template-columns:1fr!important;} #sec-giveaways .ladder{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .standings .wks{display:none!important;} #sec-giveaways .tbl-pad{padding:4px 8px 12px!important;} }
+</style>

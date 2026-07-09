@@ -1,0 +1,125 @@
+<script>
+/* ════════════════════════════════════════════════════════════════
+   QUALIFIERS SECTION SCRIPT
+   NOTE: normalizeName / nameKey / isStaff / isSIM1Team and the
+   SIM1_TEAM / STAFF_LIST / NAME_ALIASES constants defined here are
+   shared, canonical copies used by BOTH this section and the Car
+   Giveaways section further down the page (their logic and roster
+   are identical, so this page keeps one definition instead of two).
+   ════════════════════════════════════════════════════════════════ */
+
+const WEEKLY_SCHEDULE = [
+  { start:'2026-06-15', name:'Week 3 — Imola', car:'Lamborghini Huracan ST', track:'Imola',
+    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a3017d9bc0e15117cc2ee0a/1781536729181/Insta+Events+%2832%29.jpg' },
+  { start:'2026-06-29', name:'Week 1 — Silverstone GP', car:'Porsche 911 GT3 R', track:'Silverstone GP',
+    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a486406fd876d612ded269f/1783129094297/Insta+Events+%287%29.jpg' },
+  { start:'2026-07-06', name:'Week 2 — Nürburgring Sprint', car:'Ferrari P4/5 Competizione', track:'Nürburgring Sprint',
+    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a4bd139354dd1631aa2ef9e/1783353657534/Insta+Events+%2838%29.jpg' },
+];
+
+const MONTHLY_SCHEDULE = [
+  { start:'2026-06-01', name:'June Time Attack — Brands Hatch GP', car:'Nissan GTR GT3', track:'Brands Hatch GP',
+    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a1f8dd7dad95e446b78e326/1780452823772/Insta+Events+%2824%29.jpg' },
+  { start:'2026-07-01', name:'July Time Attack — Monza GP', car:'McLaren P1 GTR', track:'Monza GP',
+    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a486484cb800060fa56a668/1783129220833/Insta+Events+%288%29.jpg' },
+];
+
+function pickActiveSchedule(schedule) {
+  const t = new Date();
+  const today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
+  const active = schedule.filter(e => e.start <= today).pop();
+  return active || schedule[0] || { image:'', name:'', car:'', track:'' };
+}
+const __activeWeekly = pickActiveSchedule(WEEKLY_SCHEDULE);
+const __activeMonthly = pickActiveSchedule(MONTHLY_SCHEDULE);
+const WEEKLY_IMAGE_URL = __activeWeekly.image;
+const WEEKLY_EVENT_NAME = __activeWeekly.name;
+const WEEKLY_CAR = __activeWeekly.car;
+const WEEKLY_TRACK = __activeWeekly.track;
+const MONTHLY_IMAGE_URL = __activeMonthly.image;
+const MONTHLY_EVENT_NAME = __activeMonthly.name;
+const MONTHLY_CAR = __activeMonthly.car;
+const MONTHLY_TRACK = __activeMonthly.track;
+const SPRINT_IMAGE_URL = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/69f4c1b64362a00309517d2e/1777648054733/photo_5161281553185836080_y.jpg";
+const LAST_RACE_YOUTUBE = "https://www.youtube.com/playlist?list=PLzDnHFj7PgvzveDJDXxCviv31kL5cr59a";
+const LAST_RACE_TITLE = "Thursday Sprint Recap";
+
+const SIM1_TEAM = ['Jordan Farrell', 'Jeremy White'];
+const STAFF_LIST = [
+  'nicholas hernandez', 'nick hernandez', 'nick h', 'elias', 'michael pajaro', 'xavier ramos', 'sitay huber',
+  'karena lin', 'felix lin', 'jose santiago', 'benny jimenez', 'ryan chang'
+];
+const NAME_ALIASES = {
+  'nick': 'Nicholas Hernandez', 'nick hernandez': 'Nicholas Hernandez', 'nicholas h': 'Nicholas Hernandez',
+  'mike pajaro': 'Michael Pajaro', 'sitay': 'Sitay Huber', 'xavier': 'Xavier Ramos', 'felix': 'Felix Lin',
+  'karena': 'Karena Lin', 'jose': 'Jose Santiago', 'benny': 'Benny Jimenez',
+  'victor mendez': 'Victor Mendez Polanco', 'victor mendez p': 'Victor Mendez Polanco',
+  'victor mendez polanco': 'Victor Mendez Polanco', 'victor m': 'Victor Mendez Polanco',
+  'victor mendez-polanco': 'Victor Mendez Polanco', 'blazier m': 'Victor Mendez Polanco',
+  'blazierr m': 'Victor Mendez Polanco', 'jenn f32chick': 'JennBunnii F32chick',
+  'm moueed haider mirza': 'Muhammad Moueed Haider Mirza',
+};
+const FAKE_DRIVERS = [
+  'Marcus Rivera','Tyler Chen','Aiden Park','Jake Torres','Dev Patel','Lena Kim','Chris Wade',
+  'Sofia Ramirez','Sam Okafor','Ryan Mitchell','Alex Kowalski','Maya Singh','Carlos Vega',
+  'Priya Nair','Omar Hassan','Emma Brooks','Lucas Ferreira','Zoe Patterson','Nathan Wells',
+  'Isabella Cruz','Jack Morrison','Olivia Zhang','Daniel Kim','Aria Patel','Ethan Ross',
+  'Hannah Lee','Noah Garcia','Chloe Martin','Caleb Johnson','Sophie Williams','Owen Taylor',
+  'Mia Anderson','Liam Brown','Mason Wilson','Ava Thomas','Elijah Jackson','Charlotte Reed',
+  'James Harris','Amelia Thompson','Benjamin Martinez','Emily Robinson','Lucas Clark',
+  'Abigail Rodriguez','Henry Lewis','Emily Walker','Alexander Hall','Sophia Allen',
+  'Michael Young','Evelyn Torres','William Moore','Harper Scott','Dylan Lee','Grace Kim',
+  'Carter White','Lily Brown','Brandon Singh','Natalie Park','Connor Davis','Zara Ahmed',
+  'Austin Bell','Kennedy Reyes','Parker Jones','Jordan Mills','Sawyer Nguyen','Peyton Cruz',
+  'Quinn Fisher','Riley Coleman','Avery Brooks','Morgan Hayes','Cameron Walsh','Rowan Burke',
+  'Skylar Reed','Taylor Moss','Drew Santos','Sage Hoffman','Blake Russo','Logan Pierce',
+  'Hunter Walsh','Finley Drake','Remy Castillo','Cruz Mendoza','Soren Blackwell','Axel Fontaine',
+  'Kai Thornton','Nolan Steele','Reid Calloway','Beckett Ward','Emerson Cole','Holden Nash',
+  'Paxton Gray','Lennox Cross','Decker Holt','Ronan Blake','Callum Frost','Jace Mercer',
+  'Tanner Wolf','Sterling Knox','Crew Holt','Dash Wren','Colt Rivers','Zane Ashby'
+];
+
+function normalizeName(raw) {
+  if (!raw) return '';
+  const trimmed = raw.trim();
+  const lower = trimmed.toLowerCase();
+  if (NAME_ALIASES[lower]) return NAME_ALIASES[lower];
+  return trimmed.replace(/\b\w/g, c => c.toUpperCase()).replace(/\B\w/g, c => c.toLowerCase());
+}
+function nameKey(name) { return normalizeName(name).toLowerCase(); }
+function isStaff(name) {
+  const k = nameKey(name);
+  return STAFF_LIST.some(s => k === s || k.startsWith(s + ' ') || k.endsWith(' ' + s) || k === s.split(' ')[0]);
+}
+function isSIM1Team(name) {
+  const k = nameKey(name);
+  return SIM1_TEAM.some(t => nameKey(t) === k);
+}
+
+function formatLap(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  const sf = s.toFixed(3);
+  return m + ':' + (s < 10 ? '0' + sf : sf);
+}
+function generateResults(totalCount, notable, baseLapSec, increment, baseLaps) {
+  const notableMap = {};
+  notable.forEach(n => { notableMap[n.pos] = normalizeName(n.driver); });
+  const usedDrivers = new Set(notable.map(n => nameKey(n.driver)));
+  const pool = FAKE_DRIVERS.filter(d => !usedDrivers.has(nameKey(d)));
+  let fi = 0;
+  const results = [];
+  for (let i = 1; i <= totalCount; i++) {
+    const v = ((i * 17 + 3) % 20) * 0.004;
+    const lapSec = baseLapSec + (i - 1) * increment + v;
+    const gap = i === 1 ? 'LEADER' : '+' + (lapSec - baseLapSec).toFixed(3);
+    const laps = Math.max(4, (baseLaps || 14) - Math.floor((i - 1) / Math.max(1, Math.ceil(totalCount / 4))));
+    const driver = notableMap[i] || normalizeName(pool[fi++ % pool.length]);
+    results.push({ pos: i, driver, lap: formatLap(lapSec), laps, gap });
+  }
+  return results;
+}
+function getBadgeColor(type) {
+  return { weekly: '#EF4444', monthly: '#1d4ed8', sprint: '#166534', championship: '#92400e', special: '#7c3aed' }[type] || '#555';
+}
+</script>

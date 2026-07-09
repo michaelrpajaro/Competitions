@@ -1,0 +1,41 @@
+<!-- ── RESULTS MODAL (shared by Audi + AACC cards) ── -->
+<div id="resultsModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);backdrop-filter:blur(4px);padding:20px;overflow-y:auto;" onclick="if(event.target===this)closeResultsModal()">
+<div style="max-width:860px;margin:40px auto;background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;position:relative;">
+<div id="resultsModalContent" style="padding:0;"></div>
+</div>
+</div>
+
+<style>
+#sec-leagues{position:relative;}
+@keyframes s1pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+#s1-audi-standings > div[style*="display:grid"]{padding-left:0!important;padding-right:0!important;grid-template-columns:48px 1fr 54px 54px 54px 54px 54px 68px!important;}
+#s1-audi-standings > div[style*="display:grid"] > div{padding:13px 14px;border-right:1px solid #1e1e1e;white-space:nowrap;}
+#s1-audi-standings > div[style*="display:grid"] > div:last-child{border-right:none;padding-right:20px;}
+#s1-audi-standings > div[style*="display:grid"] > div:first-child{padding-left:20px;}
+#s1-aacc-standings > div[style*="display:grid"]{padding-left:0!important;padding-right:0!important;grid-template-columns:48px 1fr 56px 56px 56px 56px 56px 72px!important;}
+#s1-aacc-standings > div[style*="display:grid"] > div{padding:13px 12px;border-right:1px solid #1e1e1e;white-space:nowrap;}
+#s1-aacc-standings > div[style*="display:grid"] > div:last-child{border-right:none;padding-right:20px;}
+#s1-aacc-standings > div[style*="display:grid"] > div:first-child{padding-left:20px;}
+@media(max-width:768px){
+#sec-leagues div[style*="padding:120px 40px 70px"],#sec-leagues div[style*="padding:70px 40px"],#sec-leagues div[style*="padding:60px 40px"],#sec-leagues div[style*="padding:80px 40px"]{padding-left:18px!important;padding-right:18px!important;}
+#sec-leagues div[style*="padding:120px 40px 70px"]{padding-top:36px!important;padding-bottom:36px!important;}
+#sec-leagues div[style*="padding:70px 40px"]{padding-top:32px!important;padding-bottom:32px!important;}
+#sec-leagues div[style*="padding:60px 40px"]{padding-top:24px!important;padding-bottom:24px!important;}
+#sec-leagues h1{font-size:2.6em!important;}
+#sec-leagues h2{font-size:1.6em!important;}
+#sec-leagues div[style*="grid-template-columns:1.15fr 0.85fr"],#sec-leagues div[style*="grid-template-columns:1fr 1.3fr"],#sec-leagues div[style*="grid-template-columns:1.55fr 1fr"],#sec-leagues div[style*="grid-template-columns:1.4fr 1fr"],#sec-leagues div[style*="grid-template-columns:0.5fr 1fr"]{grid-template-columns:1fr!important;gap:16px!important;}
+#sec-leagues div[style*="grid-template-columns:0.5fr 1fr"] > img:first-child{display:none!important;}
+#sec-leagues div[style*="grid-template-columns:repeat(4,1fr)"],#sec-leagues div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;}
+#sec-leagues div[style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:repeat(3,1fr)!important;gap:10px!important;}
+#sec-leagues #s1-audi-standings,#sec-leagues #s1-aacc-standings{overflow-x:auto!important;}
+#sec-leagues #s1-audi-standings > div[style*="display:grid"]{grid-template-columns:36px minmax(80px,1fr) 38px 38px 38px 38px 38px 50px!important;font-size:0.82em!important;}
+#sec-leagues #s1-aacc-standings > div[style*="display:grid"]{grid-template-columns:36px minmax(90px,1fr) 40px 40px 40px 40px 40px 52px!important;font-size:0.78em!important;}
+#sec-leagues #currentLeagueName{font-size:1.3em!important;}
+#sec-leagues div[style*="padding:36px 40px"]{padding:22px 18px!important;flex-direction:column!important;text-align:center;}
+}
+@media(max-width:600px){
+#resultsModal{padding:0!important;align-items:flex-start!important;}
+#resultsModal > div{max-width:100%!important;margin:0!important;min-height:100dvh;border-radius:0!important;border-left:none!important;border-right:none!important;}
+}
+</style>
+</div><!-- /#sec-leagues -->

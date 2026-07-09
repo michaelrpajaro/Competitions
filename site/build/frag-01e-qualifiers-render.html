@@ -1,0 +1,564 @@
+function getFirstSundayOfMonth(year, month1) {
+  const d = new Date(year, month1 - 1, 1);
+  const dow = d.getDay();
+  d.setDate(1 + (dow === 0 ? 0 : 7 - dow));
+  return d;
+}
+function getChampionshipDate(period) {
+  const [y, m] = period.split('-').map(Number);
+  const nextMonth = m === 12 ? 1 : m + 1;
+  const nextYear = m === 12 ? y + 1 : y;
+  const d = getFirstSundayOfMonth(nextYear, nextMonth);
+  d.setHours(20, 0, 0, 0);
+  return d;
+}
+function getCurrentPeriod() {
+  const now = new Date();
+  let y = now.getFullYear();
+  let m = now.getMonth();
+  if (m === 0) { m = 12; y--; }
+  for (let i = 0; i < 24; i++) {
+    const period = y + '-' + String(m).padStart(2, '0');
+    if (getChampionshipDate(period) >= now) return period;
+    m++; if (m > 12) { m = 1; y++; }
+  }
+  return y + '-' + String(m).padStart(2, '0');
+}
+function getPeriodLabel(period) {
+  const [y, m] = period.split('-');
+  return new Date(+y, +m - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+}
+function fmtChampDate(d) {
+  const date = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  return date + ' · ' + time;
+}
+function parseEventEndDate(ev) {
+  const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  const s = ev.date.replace(/[–—]/g, '-');
+  const yearMatch = s.match(/(\d{4})$/);
+  if (!yearMatch) return new Date(0);
+  const year = +yearMatch[1];
+  const beforeYear = s.slice(0, yearMatch.index).replace(/,\s*$/, '').trim();
+  const parts = beforeYear.split('-').map(p => p.trim());
+  const lastPart = parts[parts.length - 1];
+  const tokens = lastPart.split(/\s+/);
+  let monthStr, dayStr;
+  if (tokens.length === 1) { monthStr = parts[0].split(/\s+/)[0]; dayStr = tokens[0]; }
+  else { monthStr = tokens[0]; dayStr = tokens[1]; }
+  const monthIdx = months.indexOf(monthStr.slice(0, 3).toLowerCase());
+  return new Date(year, monthIdx, +dayStr);
+}
+function buildQualifiedList(period) {
+  const events = archiveData.filter(e => e.period === period && e.type !== 'championship' && e.type !== 'special');
+  const qualified = [];
+  const qualifiedKeys = new Set();
+  function tryAdd(driver, source, sourceBadge, badgeColor, eventId, pos) {
+    const k = nameKey(driver);
+    if (isStaff(driver)) return false;
+    if (qualifiedKeys.has(k)) return false;
+    qualifiedKeys.add(k);
+    qualified.push({ driver: normalizeName(driver), source, sourceBadge, badgeColor, eventId, pos });
+    return true;
+  }
+  function processEvent(ev) {
+    const color = ev.type === 'sprint' ? '#166634' : ev.type === 'weekly' ? '#EF4444' : '#1d4ed8';
+    function getBadge(pos) {
+      if (ev.type === 'sprint') { const spMatch = ev.name.match(/Sprint Race\s*#(\d+)/i); const spNum = spMatch ? spMatch[1] : '?'; return `SPRINT ${spNum} · P${pos}`; }
+      if (ev.type === 'monthly') return `MONTHLY · P${pos}`;
+      const wkMatch = ev.name.match(/Week\s*(\d+)/i); const wkNum = wkMatch ? wkMatch[1] : '?';
+      return `WEEK ${wkNum} · P${pos}`;
+    }
+    if (ev.type === 'sprint') {
+      for (const r of ev.results) {
+        if (r.pos > 3) break;
+        if (r.lap === '—') continue;
+        if (tryAdd(r.driver, ev.name, getBadge(r.pos), color, ev.id, r.pos)) break;
+      }
+    } else {
+      let added = 0;
+      for (const r of ev.results) {
+        if (added >= 3) break;
+        if (r.lap === '—') continue;
+        if (tryAdd(r.driver, ev.name, getBadge(r.pos), color, ev.id, r.pos)) added++;
+      }
+    }
+  }
+  events.slice().sort((a, b) => parseEventEndDate(a) - parseEventEndDate(b)).forEach(processEvent);
+  return qualified;
+}
+function getChampionshipCombo(champPeriod) {
+  const [y, m] = champPeriod.split('-').map(Number);
+  const nextMonth = m === 12 ? 1 : m + 1;
+  const nextYear = m === 12 ? y + 1 : y;
+  const nextPeriod = nextYear + '-' + String(nextMonth).padStart(2, '0');
+  const nextWeeklies = archiveData.filter(e => e.type === 'weekly' && e.period === nextPeriod);
+  return nextWeeklies.length ? { car: nextWeeklies[0].car, track: nextWeeklies[0].track } : null;
+}
+function renderChampionshipTracker() {
+  const period = getCurrentPeriod();
+  const label = getPeriodLabel(period);
+  const champDate = getChampionshipDate(period);
+  const champStr = fmtChampDate(champDate);
+  const qualified = buildQualifiedList(period);
+  const combo = getChampionshipCombo(period);
+  const mondayReveal = new Date(champDate);
+  mondayReveal.setDate(champDate.getDate() - 6);
+  const mondayStr = mondayReveal.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+  let comboHtml = '';
+  if (combo) {
+    comboHtml = `<div style="background:#1a1a1a;border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:flex-start;gap:12px;">
+      <div style="font-size:1.3em;flex-shrink:0;">🚗</div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">CHAMPIONSHIP CAR &amp; TRACK</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:3px;">${combo.car} · ${combo.track}</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#666;">Revealed ${mondayStr} — same combo as that week's weekly qualifier</div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('champ-header').innerHTML = `🏆 QUALIFIED DRIVERS — ${label} Championship` +
+    `<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.82em;color:#888;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:7px;">` +
+    `Race Date: <span style="color:#EF4444;">${champStr}</span></div>` +
+    `<div id="champ-countdown" style="display:inline-flex;align-items:center;gap:8px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:7px;margin-top:10px;">⏱ <span id="champ-countdown-val">${countdown(champDate)}</span></div>`;
+  document.getElementById('champ-combo').innerHTML = comboHtml;
+  if (!globalThis.__champCountdownInterval) {
+    globalThis.__champCountdownInterval = setInterval(() => {
+      const el = document.getElementById('champ-countdown-val');
+      if (el) el.textContent = countdown(getChampionshipDate(getCurrentPeriod()));
+    }, 30000);
+  }
+  const list = document.getElementById('qualified-list');
+  if (qualified.length === 0) {
+    list.innerHTML = `<div style="grid-column:1/-1;background:#0d0d0d;border:1px dashed #2a2a2a;border-radius:10px;padding:22px 18px;text-align:center;opacity:0.7;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-transform:uppercase;color:#444;margin-bottom:6px;">No drivers qualified yet</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#333;">Spots open — compete in any event this month to earn your invite.</div>
+    </div>`;
+    return;
+  }
+  const sections = { 1: [], 2: [], 3: [], 4: [], 5: [], monthly: [] };
+  qualified.forEach(q => {
+    const wk = q.sourceBadge.match(/^WEEK\s+(\d+)/);
+    const sp = q.sourceBadge.match(/^SPRINT\s+(\d+)/);
+    if (wk && sections[wk[1]]) sections[wk[1]].push(q);
+    else if (sp && sections[sp[1]]) sections[sp[1]].push(q);
+    else if (q.sourceBadge.startsWith('MONTHLY')) sections.monthly.push(q);
+  });
+  [1, 2, 3, 4, 5].forEach(n => {
+    sections[n].sort((a, b) => (a.sourceBadge.startsWith('WEEK') ? 0 : 1) - (b.sourceBadge.startsWith('WEEK') ? 0 : 1));
+  });
+  function renderEntry(q) {
+    const team = isSIM1Team(q.driver);
+    const teamTag = team ? `<span style="background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.5em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:1px 5px;border-radius:3px;margin-left:5px;vertical-align:middle;">SIM1</span>` : '';
+    const sbFull = q.sourceBadge;
+    const sbShort = sbFull
+      .replace(/^WEEK\s+(\d+)\s*·\s*P(\d+)$/i, 'W$1·P$2')
+      .replace(/^SPRINT\s+(\d+)\s*·\s*P(\d+)$/i, 'S$1·P$2')
+      .replace(/^MONTHLY\s*·\s*P(\d+)$/i, 'M·P$1');
+    const badgeInner = `<span class="qd-badge-full">${sbFull}</span><span class="qd-badge-short">${sbShort}</span>`;
+    const badge = q.eventId
+      ? `<div class="qd-badge" onclick="openModal(${q.eventId})" title="Click to view full results" style="background:${q.badgeColor};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex-shrink:0;cursor:pointer;transition:filter 0.15s,transform 0.1s;user-select:none;white-space:nowrap;" onmouseover="this.style.filter='brightness(1.25)';this.style.transform='scale(1.04)'" onmouseout="this.style.filter='';this.style.transform=''" onmousedown="this.style.transform='scale(0.97)'" onmouseup="this.style.transform='scale(1.04)'">${badgeInner}</div>`
+      : `<div class="qd-badge" style="background:${q.badgeColor};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex-shrink:0;white-space:nowrap;">${badgeInner}</div>`;
+    return `<div class="qd-entry" style="background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:10px;min-width:0;">
+      ${badge}
+      <div class="qd-name" style="font-family:'Barlow Condensed',sans-serif;font-size:0.92em;font-weight:800;color:white;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${q.driver}${teamTag}</div>
+    </div>`;
+  }
+  const allEntries = [...sections[1], ...sections[2], ...sections[3], ...sections[4], ...sections[5], ...sections.monthly];
+  list.style.display = 'block';
+  list.innerHTML = `<div id="qualified-cols" style="column-count:2;column-gap:8px;">${
+    allEntries.map(q => `<div style="break-inside:avoid;margin-bottom:6px;">${renderEntry(q)}</div>`).join('')
+  }</div>`;
+}
+
+function getWeekWindow(now) {
+  const d = new Date(now);
+  const day = d.getDay();
+  const toMon = day === 0 ? -6 : (1 - day);
+  const mon = new Date(d); mon.setDate(d.getDate() + toMon); mon.setHours(11, 0, 0, 0);
+  const sun = new Date(mon); sun.setDate(mon.getDate() + 6); sun.setHours(23, 0, 0, 0);
+  return { start: mon, end: sun };
+}
+function getMonthWindow(now) {
+  return { start: new Date(now.getFullYear(), now.getMonth(), 1, 11, 0, 0, 0), end: new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 0, 0, 0) };
+}
+function fmtDate(d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+function countdown(target) {
+  const diff = target - new Date();
+  if (diff <= 0) return 'Ended';
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  if (d > 0) return d + 'd ' + h + 'h remaining';
+  if (h > 0) return h + 'h ' + m + 'm remaining';
+  return m + 'm remaining';
+}
+function renderCurrentEvents() {
+  const now = new Date();
+  const ww = getWeekWindow(now);
+  const mw = getMonthWindow(now);
+  function card(typeLabel, imgUrl, name, car, track, startDate, endDate, accentColor, badgeColor, icon, cdId) {
+    const tl = countdown(endDate);
+    const ended = tl === 'Ended';
+    const imgHtml = imgUrl ? `<img src="${imgUrl}" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;">` :
+      `<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;">
+        <div style="font-size:3em;margin-bottom:14px;">${icon}</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:${accentColor};margin-bottom:8px;">${typeLabel.toUpperCase()}</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">${name || 'GRAPHIC COMING SOON'}</div>
+        ${!imgUrl ? '<div style="font-family:\'Barlow\',sans-serif;font-size:0.72em;color:#444;margin-top:10px;">Paste image URL in admin config ↑</div>' : ''}
+      </div>`;
+    const statusBadge = ended
+      ? `<div style="background:#222;color:#555;font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:10px;">ENDED</div>`
+      : `<div style="background:${badgeColor};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:10px;">ACTIVE</div>`;
+    return `<div style="background:#1a1a1a;border:2px solid #2a2a2a;border-radius:14px;overflow:hidden;">
+      <div style="aspect-ratio:4/5;border-bottom:1px solid #2a2a2a;overflow:hidden;">${imgHtml}</div>
+      <div style="padding:16px 18px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+          ${statusBadge}
+          <div style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#555;" id="${cdId}">${ended ? 'View results below' : tl}</div>
+        </div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 4px;">${typeLabel}</h3>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#444;margin-bottom:8px;">${fmtDate(startDate)} – ${fmtDate(endDate)} · ${car}</div>
+        <p style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#888;line-height:1.6;margin:0 0 10px;">${typeLabel === 'Weekly Qualifier' ? 'Set your fastest lap. Top 3 earn a championship invite.' : 'Post your fastest lap any time this month. Top 3 earn a championship invite.'}</p>
+        <div style="background:#111;border-radius:8px;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.77em;color:#555;">Leaderboard visible after conclusion of event.</div>
+      </div></div>`;
+  }
+  document.getElementById('current-challenges-grid').innerHTML =
+    card('Weekly Qualifier', WEEKLY_IMAGE_URL, WEEKLY_EVENT_NAME, WEEKLY_CAR, WEEKLY_TRACK, ww.start, ww.end, '#EF4444', '#EF4444', '\u{1F3CE}️', 'cd-weekly') +
+    card('Monthly Challenge', MONTHLY_IMAGE_URL, MONTHLY_EVENT_NAME, MONTHLY_CAR, MONTHLY_TRACK, mw.start, mw.end, '#60a5fa', '#1d4ed8', '⏱️', 'cd-monthly');
+  setInterval(() => {
+    const n = new Date();
+    const we = document.getElementById('cd-weekly');
+    const me = document.getElementById('cd-monthly');
+    if (we) we.textContent = countdown(getWeekWindow(n).end);
+    if (me) me.textContent = countdown(getMonthWindow(n).end);
+  }, 30000);
+}
+
+function extractYTId(url) {
+  if (!url) return null;
+  const patterns = [/youtube\.com\/watch\?v=([^&]+)/, /youtu\.be\/([^?]+)/, /youtube\.com\/embed\/([^?]+)/];
+  for (const p of patterns) { const m = url.match(p); if (m) return m[1]; }
+  return null;
+}
+function renderYTPreview() {
+  const c = document.getElementById('yt-preview-container');
+  if (!c) return;
+  const vid = extractYTId(LAST_RACE_YOUTUBE);
+  if (vid) {
+    c.innerHTML = `<a href="${LAST_RACE_YOUTUBE}" target="_blank" style="display:block;position:relative;overflow:hidden;text-decoration:none;">
+      <img src="https://img.youtube.com/vi/${vid}/maxresdefault.jpg" alt="Last Race" style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;"><div style="width:48px;height:48px;background:#EF4444;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3em;">▶</div></div>
+    </a>
+    <div style="padding:12px 16px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;text-transform:uppercase;color:white;">${LAST_RACE_TITLE}</div><div style="font-family:'Barlow',sans-serif;font-size:0.72em;color:#555;margin-top:3px;">Watch on YouTube →</div></div>`;
+  } else if (LAST_RACE_YOUTUBE) {
+    c.innerHTML = `<a href="${LAST_RACE_YOUTUBE}" target="_blank" style="display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;">
+      <div style="width:40px;height:40px;background:#EF4444;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1em;flex-shrink:0;">▶</div>
+      <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.88em;font-weight:800;text-transform:uppercase;color:white;">${LAST_RACE_TITLE}</div><div style="font-family:'Barlow',sans-serif;font-size:0.72em;color:#555;margin-top:2px;">Watch on YouTube</div></div></a>`;
+  } else {
+    c.innerHTML = `<div style="padding:20px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.8em;color:#333;">Paste YouTube URL in admin config to show replay.</div>`;
+  }
+}
+
+function buildAllStats() {
+  const map = {};
+  archiveData.forEach(ev => {
+    if (ev.pending || !ev.results.length) return;
+    ev.results.forEach(r => {
+      const k = nameKey(r.driver);
+      const canonical = normalizeName(r.driver);
+      if (!map[k]) map[k] = { name: canonical, gold: 0, silver: 0, bronze: 0, events: new Set(), totalLaps: 0, appearances: [] };
+      map[k].events.add(ev.id);
+      map[k].appearances.push({ event: ev, result: r });
+      if (r.lap === '—') return;
+      if (r.pos === 1) map[k].gold++;
+      else if (r.pos === 2) map[k].silver++;
+      else if (r.pos === 3) map[k].bronze++;
+      map[k].totalLaps += (r.laps || 0);
+    });
+  });
+  Object.values(map).forEach(d => { d.eventCount = d.events.size; });
+  return map;
+}
+const ALL_STATS = buildAllStats();
+function getDriverStats(name) { const k = nameKey(name); return ALL_STATS[k] || null; }
+
+function portalTab(tab) {
+  ['lookup', 'stats', 'archive'].forEach(t => {
+    const panel = document.getElementById('panel-' + t);
+    const btn = document.getElementById('ptab-' + t);
+    if (!panel || !btn) return;
+    const active = t === tab;
+    panel.style.display = active ? 'block' : 'none';
+    btn.style.background = active ? '#1a1a1a' : 'transparent';
+    btn.style.color = active ? 'white' : '#666';
+    btn.style.borderBottom = active ? '2px solid #EF4444' : '2px solid transparent';
+  });
+  if (tab === 'stats') renderTopStats();
+  if (tab === 'archive') populateMonthDropdown();
+  if (tab === 'lookup') document.getElementById('lookup-hint').style.display = document.getElementById('driver-results').innerHTML === '' ? 'block' : 'none';
+}
+
+function renderTopStats() {
+  const drivers = Object.values(ALL_STATS).filter(d => !isStaff(d.name));
+  const N = 5;
+  function miniBoard(title, emoji, sorted, valueFn, labelFn) {
+    const top = sorted.slice(0, N);
+    const rows = top.map((d, i) => {
+      const icons = ['🥇','🥈','🥉'];
+      const posEl = i < 3 ? `<span style="font-size:1.1em;">${icons[i]}</span>` : `<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#555;">${i+1}</span>`;
+      const isTeam = isSIM1Team(d.name);
+      const teamTag = isTeam ? `<span style="background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.5em;font-weight:800;padding:1px 5px;border-radius:3px;margin-left:5px;vertical-align:middle;">SIM1</span>` : '';
+      return `<div style="display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid #141414;">
+        <div style="width:26px;text-align:center;flex-shrink:0;">${posEl}</div>
+        <div style="flex:1;font-family:'Barlow Condensed',sans-serif;font-size:0.88em;font-weight:800;text-transform:uppercase;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${d.name}${teamTag}</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:900;color:#EF4444;flex-shrink:0;">${valueFn(d)}<span style="font-family:'Barlow',sans-serif;font-size:0.6em;color:#555;margin-left:3px;">${labelFn(d)}</span></div>
+      </div>`;
+    }).join('');
+    return `<div style="background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;overflow:hidden;">
+      <div style="padding:12px 16px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:1.1em;">${emoji}</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">${title}</span>
+      </div>
+      ${rows}
+    </div>`;
+  }
+  const byGold = [...drivers].sort((a,b) => b.gold - a.gold || b.gold+b.silver+b.bronze - a.gold-a.silver-a.bronze);
+  const byPodiums = [...drivers].sort((a,b) => (b.gold+b.silver+b.bronze) - (a.gold+a.silver+a.bronze));
+  const byEvents = [...drivers].sort((a,b) => b.eventCount - a.eventCount);
+  const byLaps = [...drivers].sort((a,b) => b.totalLaps - a.totalLaps);
+  document.getElementById('stats-grid').innerHTML =
+    miniBoard('Most Wins', '🥇', byGold, d => d.gold, () => 'wins') +
+    miniBoard('Most Podiums', '🏆', byPodiums, d => d.gold+d.silver+d.bronze, () => 'podiums') +
+    miniBoard('Most Events', '📊', byEvents, d => d.eventCount, () => 'events') +
+    miniBoard('Most Total Laps', '🔁', byLaps, d => d.totalLaps, () => 'laps');
+}
+
+function searchDriver() {
+  const query = document.getElementById('driver-search').value.trim().toLowerCase();
+  const container = document.getElementById('driver-results');
+  const hint = document.getElementById('lookup-hint');
+  if (!query || query.length < 2) { container.innerHTML = ''; hint.style.display = 'block'; return; }
+  hint.style.display = 'none';
+  const matched = new Set();
+  Object.entries(ALL_STATS).forEach(([k, d]) => { if (k.includes(query) || d.name.toLowerCase().includes(query)) matched.add(d.name); });
+  if (!matched.size) {
+    container.innerHTML = `<div style="background:#0d0d0d;border:1px solid #1a1a1a;border-radius:9px;padding:18px;font-family:'Barlow',sans-serif;font-size:0.86em;color:#555;text-align:center;">No results for "<strong style="color:#888">${query}</strong>"</div>`;
+    return;
+  }
+  let html = '';
+  matched.forEach(driverName => {
+    const stats = ALL_STATS[nameKey(driverName)];
+    if (!stats) return;
+    const isTeam = isSIM1Team(driverName);
+    const teamBadge = isTeam ? `<div style="display:inline-flex;align-items:center;gap:4px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.58em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:8px;">🏁 SIM1 TEAM</div>` : '';
+    const mp = [];
+    if (stats.gold > 0) mp.push(`<span style="font-size:0.82em;color:#fbbf24;">🥇 ${stats.gold}</span>`);
+    if (stats.silver > 0) mp.push(`<span style="font-size:0.82em;color:#d1d5db;">🥈 ${stats.silver}</span>`);
+    if (stats.bronze > 0) mp.push(`<span style="font-size:0.82em;color:#cd7f32;">🥉 ${stats.bronze}</span>`);
+    const byPeriod = {};
+    stats.appearances.forEach(a => { (byPeriod[a.event.period] = byPeriod[a.event.period] || []).push(a); });
+    const sortedPeriods = Object.keys(byPeriod).sort().reverse();
+    const appearancesHtml = sortedPeriods.map((period, pi) => {
+      const [y, m] = period.split('-').map(Number);
+      const monthLabel = new Date(y, m - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      const eventsHtml = byPeriod[period].map(({ event: ev, result: r }) => {
+        const posColor = r.pos === 1 ? '#fbbf24' : r.pos === 2 ? '#d1d5db' : r.pos === 3 ? '#cd7f32' : r.pos <= 10 ? '#EF4444' : '#991b1b';
+        const evPrefix = ev.name.split('—')[0].trim();
+        const evTitle = (ev.car && ev.track) ? `${evPrefix} — ${ev.car} at ${ev.track}` : ev.name;
+        return `<div onclick="openModal(${ev.id})" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:7px;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#111'" onmouseout="this.style.background='transparent'">
+          <div style="background:${getBadgeColor(ev.type)};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.58em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap;">${ev.label}</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;color:white;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${evTitle}</div>
+            <div style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:1px;">${ev.date}</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;color:${posColor};">P${r.pos}</div>
+            <div style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;">${r.lap}</div>
+          </div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;color:#EF4444;font-weight:800;">→</div>
+        </div>`;
+      }).join('');
+      return `<div style="display:flex;align-items:center;gap:10px;padding:${pi===0?'4':'18'}px 10px 8px;">
+        <div style="height:2px;flex:0 0 18px;background:#EF4444;"></div>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:white;">${monthLabel}</span>
+        <span style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#555;">${byPeriod[period].length} event${byPeriod[period].length===1?'':'s'}</span>
+        <div style="flex:1;height:1px;background:#1a1a1a;"></div>
+      </div>${eventsHtml}`;
+    }).join('');
+    html += `<div style="background:#0d0d0d;border:1px solid #1a1a1a;border-radius:10px;overflow:hidden;margin-bottom:10px;">
+      <div style="padding:16px 18px;border-bottom:1px solid #141414;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:900;text-transform:uppercase;color:white;">${driverName}</div>${teamBadge}
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <div style="background:#111;border:1px solid #1a1a1a;border-radius:7px;padding:6px 12px;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:900;color:white;line-height:1;">${stats.eventCount}</div>
+            <div style="font-family:'Barlow',sans-serif;font-size:0.62em;color:#555;text-transform:uppercase;letter-spacing:1px;">Events</div>
+          </div>
+          ${mp.length ? `<div style="display:flex;gap:10px;font-family:'Barlow',sans-serif;">${mp.join('')}</div>` : `<span style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#333;">No podiums yet</span>`}
+        </div>
+      </div>
+      <div style="padding:4px 10px 10px;">
+        ${appearancesHtml}
+      </div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+document.getElementById('driver-search').addEventListener('keydown', e => { if (e.key === 'Enter') searchDriver(); });
+
+function populateMonthDropdown() {
+  const sel = document.getElementById('archive-month-select');
+  if (!sel) return;
+  const periods = [...new Set(archiveData.map(e => e.period))].sort().reverse();
+  sel.innerHTML = periods.map(period => {
+    const [y, m] = period.split('-').map(Number);
+    const label = new Date(y, m - 1, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    return `<option value="${period}">${label}</option>`;
+  }).join('');
+  if (periods.length) renderArchive(periods[0]);
+}
+function renderArchive(period) {
+  const list = document.getElementById('archive-list');
+  const sel = document.getElementById('archive-month-select');
+  if (sel && period && sel.value !== period) sel.value = period;
+  const activePeriod = period || (sel && sel.value);
+  if (!activePeriod) {
+    list.innerHTML = `<div style="padding:28px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#333;">No events yet.</div>`;
+    return;
+  }
+  function shortTitle(ev) {
+    if (ev.type === 'sprint') { const m = ev.name.match(/#(\d+)/); return m ? `Week ${m[1]}` : ev.name.split(' — ')[0]; }
+    return ev.name.split(' — ')[0];
+  }
+  const typeOrder = { weekly: 0, sprint: 1, monthly: 2, special: 3, championship: 4 };
+  function weekNum(ev) { const m = ev.name.match(/Week\s*(\d+)/i); return m ? parseInt(m[1]) : 999; }
+  const ordered = [...archiveData.filter(e => e.period === activePeriod)]
+    .sort((a, b) => { const tDiff = typeOrder[a.type] - typeOrder[b.type]; if (tDiff !== 0) return tDiff; if (a.type === 'weekly') return weekNum(a) - weekNum(b); return 0; });
+  const regular = ordered.filter(e => e.type !== 'championship');
+  if (!ordered.length) {
+    list.innerHTML = `<div style="padding:28px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#333;">No events found for this month.</div>`;
+    return;
+  }
+  let html = '';
+  ordered.forEach((ev, idx) => {
+    const isChamp = ev.type === 'championship';
+    const hasPending = ev.pending || !ev.results.length;
+    const pendingTag = hasPending
+      ? `<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#555;border:1px solid #2a2a2a;border-radius:4px;padding:2px 6px;flex-shrink:0;">PENDING</span>`
+      : `<span style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;">${ev.results.length} drivers</span>`;
+    const noteEl = ev.note ? `<span style="font-family:'Barlow',sans-serif;font-size:0.68em;color:#444;font-style:italic;"> · ${ev.note}</span>` : '';
+    const champSep = isChamp && regular.length > 0 ? 'border-top: 1px dashed #2a2a2a;' : '';
+    html += `
+      <div class="arch-event-row" onclick="openModal(${ev.id})" style="${champSep}">
+        <div class="arch-badge" style="
+          background: ${getBadgeColor(ev.type)};
+          color: white;
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 0.6em;
+          font-weight: 800;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          padding: 3px 8px;
+          border-radius: 5px;
+          white-space: nowrap;
+          min-width: 88px;
+          text-align: center;
+          ${isChamp ? 'opacity:0.85;' : ''}
+        "><span class="arch-badge-full">${ev.label}</span><span class="arch-badge-short">${({weekly:'WK',monthly:'MO',sprint:'SR',championship:'CH',special:'EV'})[ev.type]||''}</span></div>
+        <div style="flex:1;min-width:0;">
+          <div class="arch-title" style="
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.9em;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: ${isChamp ? '#d4a017' : 'white'};
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          ">${shortTitle(ev)}</div>
+          <div class="arch-meta" style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:2px;">
+            ${ev.car} · ${ev.track} · ${ev.date}${noteEl}
+          </div>
+        </div>
+        <div class="arch-cta" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          ${pendingTag}
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.68em;color:#EF4444;font-weight:800;">VIEW ›</span>
+        </div>
+      </div>`;
+  });
+  list.innerHTML = html;
+}
+function filterArchive() { renderArchive(); }
+
+function openModal(id) {
+  const ev = archiveData.find(e => e.id === id);
+  if (!ev) return;
+  document.getElementById('modal-badge').textContent = ev.label;
+  document.getElementById('modal-badge').style.background = getBadgeColor(ev.type);
+  document.getElementById('modal-title').textContent = ev.name;
+  document.getElementById('modal-meta').textContent = ev.date + ' · ' + ev.car + ' · ' + ev.track;
+  let countText = ev.note || (ev.results.length ? ev.results.length + ' drivers' : '');
+  const hasLapData = ev.results.some(r => r.lap && r.lap !== '—');
+  if ((ev.type === 'sprint' || ev.type === 'championship') && ev.results.length && hasLapData) {
+    countText = (countText ? countText + ' · ' : '') + 'Purple text = fastest lap of the race';
+  }
+  document.getElementById('modal-count').textContent = countText;
+  if (!ev.results.length || ev.pending) {
+    document.getElementById('modal-tbody').innerHTML = `
+      <tr><td colspan="5" style="padding:40px 0;text-align:center;">
+        <div style="font-size:2em;margin-bottom:12px;">⏳</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-transform:uppercase;color:#555;margin-bottom:6px;">Results Pending</div>
+        <div style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#444;">Leaderboard will be posted here once results are uploaded.</div>
+      </td></tr>`;
+  } else {
+    const showLaps = ev.hasLaps !== false;
+    const lapsHeader = document.getElementById('modal-laps-th');
+    if (lapsHeader) lapsHeader.style.display = showLaps ? '' : 'none';
+    const qualHeader = document.getElementById('modal-qual-th');
+    const showQual = Array.isArray(ev.qualifying) && ev.qualifying.length > 0;
+    if (qualHeader) qualHeader.style.display = showQual ? '' : 'none';
+    const qualByDriver = {};
+    if (showQual) ev.qualifying.forEach(q => { qualByDriver[nameKey(q.driver)] = q.pos; });
+    let fastestIdx = -1;
+    if (ev.type === 'sprint' || ev.type === 'championship') {
+      const lapToSec = lap => { if (lap === '—') return Infinity; const [m, s] = lap.split(':'); return (+m) * 60 + parseFloat(s); };
+      let minSec = Infinity;
+      ev.results.forEach((r, i) => { const sec = lapToSec(r.lap); if (sec < minSec) { minSec = sec; fastestIdx = i; } });
+    }
+    document.getElementById('modal-tbody').innerHTML = ev.results.map((r, i) => {
+      const noLap = r.lap === '—';
+      const isTeam = isSIM1Team(r.driver);
+      const badge = isTeam ? `<span style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.5em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:1px 5px;border-radius:4px;margin-left:5px;vertical-align:middle;">SIM1</span>` : '';
+      const pi = r.pos===1?'🥇':r.pos===2?'🥈':r.pos===3?'🥉':r.pos;
+      const dimStyle = noLap ? 'opacity:0.35;' : '';
+      const isFastest = i === fastestIdx;
+      const lapColor = isFastest ? '#a855f7' : '#ccc';
+      const lapCell = noLap ? `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:#333;text-align:right;font-style:italic;">No valid lap</td>` : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${lapColor};text-align:right;font-weight:700;">${r.lap}</td>`;
+      const lapsCell = showLaps ? `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:#666;text-align:right;">${r.laps !== null ? r.laps : '—'}</td>` : '';
+      const gapCell = noLap ? '' : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${r.gap==='LEADER'?'#EF4444':'#555'};text-align:right;font-weight:${r.gap==='LEADER'?'700':'400'};">${r.gap}</td>`;
+      let qualCell = '';
+      if (showQual) {
+        const qp = qualByDriver[nameKey(r.driver)];
+        const qualColor = qp === 1 ? '#fbbf24' : qp <= 3 ? '#EF4444' : '#666';
+        const qualLabel = qp === 1 ? 'POLE' : (qp ? 'P' + qp : '—');
+        qualCell = `<td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:0.82em;color:${qualColor};text-align:right;font-weight:${qp===1?'900':'700'};letter-spacing:0.5px;">${qualLabel}</td>`;
+      }
+      return `<tr style="border-bottom:1px solid #141414;${dimStyle}">
+        <td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:${r.pos<=3&&!noLap?'1.05em':'0.9em'};font-weight:900;color:${r.pos<=3&&!noLap?'#EF4444':'#555'};">${pi}</td>
+        <td style="padding:9px 10px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;color:${noLap?'#444':'white'};text-transform:uppercase;">${normalizeName(r.driver)}${badge}</td>
+        ${qualCell}${lapCell}${lapsCell}${gapCell}
+      </tr>`;
+    }).join('');
+  }
+  document.getElementById('lb-modal').style.display = 'flex';
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('lb-modal')) document.getElementById('lb-modal').style.display = 'none';
+}
+
+/* INIT — qualifiers section */
+renderCurrentEvents();
+renderChampionshipTracker();
+renderYTPreview();
+</script>

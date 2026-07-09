@@ -1,0 +1,169 @@
+<script>
+/* ── Build an "in progress / completed" carousel slide for any
+     FEATURED_LEAGUES season that has started but isn't Audi/AACC.
+     No results data exists for these yet, so it renders an
+     empty-state — swap in a real standings table here once a
+     season has raced its first week. ── */
+function buildDynamicLeagueSlide(league) {
+  const status = getLeagueStatus(league);
+  const id = 'lg-dyn-' + league.slug;
+  const weeksHtml = league.weeks.map(w => leagueWeekCardHtml(league, w)).join('');
+  const statusBadge = status === 'in-progress'
+    ? `<span style="width:8px;height:8px;background:white;border-radius:50%;display:inline-block;animation:s1pulse 1.5s infinite;"></span> Season In Progress`
+    : `Season Complete`;
+  const div = document.createElement('div');
+  div.id = id;
+  div.style.cssText = 'padding:70px 40px;background:linear-gradient(to bottom,#0a0a0a,#000);border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;display:none;';
+  div.innerHTML = `<div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:12px;margin-bottom:14px;">${statusBadge}</div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.4em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 8px;line-height:1;">${league.name}</h2>
+      <p style="font-family:'Barlow',sans-serif;font-size:1em;color:#999;margin:0;">${league.car} &middot; 4 weeks &middot; Mondays at 7:45 PM</p>
+    </div>
+    <div style="margin-bottom:24px;">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">${weeksHtml}</div>
+    </div>
+    <div style="background:#0d0d0d;border:1px dashed #2a2a2a;border-radius:14px;padding:40px 24px;text-align:center;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;text-transform:uppercase;color:#555;margin-bottom:8px;">Standings coming after Week 1</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#444;">Check back after the first Monday night — results will be posted here.</div>
+    </div>
+  </div>`;
+  return div;
+}
+
+(function initLeagueRotation(){
+  renderFeaturedLeague(pickFeaturedLeague());
+
+  // Insert any in-progress/completed featured leagues into the carousel,
+  // right after the AACC slide.
+  const aaccEl = document.getElementById('aacc-season');
+  const dynSlides = activeFeaturedLeagues().map(l => {
+    const slide = buildDynamicLeagueSlide(l);
+    aaccEl.insertAdjacentElement('afterend', slide);
+    return { id: slide.id, name: l.name };
+  });
+
+  const baseSlides = [
+    { id: 'current-season', name: 'Inaugural League · Audi TT Cup' },
+    { id: 'aacc-season', name: 'Custom League · All American Corvette Club' },
+    ...dynSlides,
+  ];
+
+  let current = 0;
+  function show(idx) {
+    baseSlides.forEach((s, i) => {
+      const el = document.getElementById(s.id);
+      if (el) el.style.display = (i === idx) ? '' : 'none';
+    });
+    const nameEl = document.getElementById('currentLeagueName');
+    if (nameEl) nameEl.textContent = baseSlides[idx].name;
+    const dotsWrap = document.getElementById('league-dots');
+    if (dotsWrap) {
+      dotsWrap.innerHTML = baseSlides.map((_, j) =>
+        `<span onclick="window.goToLeague(${j})" style="width:10px;height:10px;border-radius:50%;background:${j===idx?'#EF4444':'#444'};cursor:pointer;transition:background 0.2s;"></span>`
+      ).join('');
+    }
+    current = idx;
+  }
+  window.goToLeague = function(idx) { if (idx < 0 || idx >= baseSlides.length) return; show(idx); };
+  window.switchLeague = function(dir) { show((current + dir + baseSlides.length) % baseSlides.length); };
+  show(0);
+})();
+
+/* ── Audi TT Cup schedule status + next-race countdown ── */
+(function(){
+  var schedule = [
+    {week:1, name:'Red Bull Ring GP', date:new Date(2026,5,1, 19,45)},
+    {week:2, name:'Brands Hatch GP', date:new Date(2026,5,8, 19,45)},
+    {week:3, name:'Laguna Seca', date:new Date(2026,5,15,19,45)},
+    {week:4, name:'Barcelona (Moto)', date:new Date(2026,5,22,19,45)},
+    {week:5, name:'Spa', date:new Date(2026,5,29,19,45)}
+  ];
+  var now = new Date();
+  var nextIdx = -1;
+  for(var i=0;i<schedule.length;i++){ if(schedule[i].date > now){ nextIdx = i; break; } }
+  var next = nextIdx >= 0 ? schedule[nextIdx] : null;
+  var nameEl = document.getElementById('nextRaceName');
+  var dateEl = document.getElementById('nextRaceDate');
+  var cdEl = document.getElementById('raceCountdown');
+  var cdLabEl = document.getElementById('raceCountdownLabel');
+  if(nameEl){
+    if(next){
+      nameEl.textContent = 'Week ' + next.week + ' — ' + next.name;
+      var opts = {weekday:'long', month:'long', day:'numeric'};
+      dateEl.textContent = next.date.toLocaleDateString('en-US', opts) + ' · 7:45 PM';
+      var sameDay = (next.date.getFullYear() === now.getFullYear() && next.date.getMonth() === now.getMonth() && next.date.getDate() === now.getDate());
+      if(sameDay){ cdEl.textContent = 'TODAY'; cdEl.style.fontSize = '2em'; cdLabEl.textContent = 'Race Night'; }
+      else { var days = Math.ceil((next.date - now) / 86400000); cdEl.textContent = days; cdLabEl.textContent = days === 1 ? 'Day Away' : 'Days Away'; }
+    } else {
+      var banner = document.getElementById('nextRaceBanner');
+      if(banner){ banner.innerHTML = '<div style="text-align:center;width:100%;">' +
+        '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">Season Complete</div>' +
+        '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.7em;font-weight:900;text-transform:uppercase;color:white;">Audi TT Cup — Final Standings Below</div>' +
+        '</div>'; }
+    }
+  }
+  for(var j=0;j<schedule.length;j++){
+    var card = document.getElementById('audi-card-' + schedule[j].week);
+    if(!card) continue;
+    var badge = card.querySelector('[data-status-badge]');
+    if(!badge) continue;
+    if(nextIdx === -1 || j < nextIdx){
+      badge.style.display = 'inline-block'; badge.style.background = 'rgba(20,20,20,0.85)'; badge.style.color = '#999'; badge.style.border = '1px solid #333'; badge.innerHTML = '&#10003; Completed';
+      card.style.opacity = '0.55'; card.style.cursor = 'pointer';
+      card.onclick = (function(wk){ return function(){ openResultsModal('audi', wk); }; })(schedule[j].week);
+    } else if(j === nextIdx){
+      badge.style.display = 'inline-block'; badge.style.background = '#EF4444'; badge.style.color = 'white'; badge.style.border = '1px solid #EF4444'; badge.innerHTML = 'Up Next';
+      card.style.borderColor = 'rgba(239,68,68,0.6)'; card.style.boxShadow = '0 0 0 2px rgba(239,68,68,0.25)';
+    }
+  }
+})();
+
+/* ── AACC league schedule status + next-race countdown ── */
+(function(){
+  var schedule = [
+    {week:1, name:'Mazda MX5 Cup — Brands Hatch Indy', dateLabel:'Tuesday, June 16', date:new Date(2026,5,16,19,0)},
+    {week:2, name:'Week 2 race', dateLabel:'Tuesday, June 23', date:new Date(2026,5,23,19,0)},
+    {week:3, name:'Week 3 race', dateLabel:'Tuesday, June 30', date:new Date(2026,5,30,19,0)},
+    {week:4, name:'Week 4 race', dateLabel:'Tuesday, July 7', date:new Date(2026,6,7, 19,0)},
+    {week:5, name:'Week 5 race — Finale', dateLabel:'Tuesday, July 14', date:new Date(2026,6,14,19,0)}
+  ];
+  var now = new Date();
+  var nextIdx = -1;
+  for(var i=0;i<schedule.length;i++){ if(schedule[i].date > now){ nextIdx = i; break; } }
+  var next = nextIdx >= 0 ? schedule[nextIdx] : null;
+  var nameEl = document.getElementById('aaccNextRaceName');
+  var dateEl = document.getElementById('aaccNextRaceDate');
+  var cdEl = document.getElementById('aaccRaceCountdown');
+  var cdLabEl = document.getElementById('aaccRaceCountdownLabel');
+  if(nameEl){
+    if(next){
+      nameEl.textContent = 'Week ' + next.week + ' Race Night';
+      dateEl.textContent = next.dateLabel + ' · 7:00 PM';
+      var sameDay = (next.date.getFullYear() === now.getFullYear() && next.date.getMonth() === now.getMonth() && next.date.getDate() === now.getDate());
+      if(sameDay){ cdEl.textContent = 'TODAY'; cdEl.style.fontSize = '2em'; cdLabEl.textContent = 'Race Night'; }
+      else { var days = Math.ceil((next.date - now) / 86400000); cdEl.textContent = days; cdLabEl.textContent = days === 1 ? 'Day Away' : 'Days Away'; }
+    } else {
+      var banner = document.getElementById('aaccNextRaceBanner');
+      if(banner){ banner.innerHTML = '<div style="text-align:center;width:100%;">' +
+        '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">Season Complete</div>' +
+        '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.7em;font-weight:900;text-transform:uppercase;color:white;">AACC League — Final Standings Below</div>' +
+        '</div>'; }
+    }
+  }
+  for(var j=0;j<schedule.length;j++){
+    var card = document.getElementById('aacc-card-' + schedule[j].week);
+    if(!card) continue;
+    var badge = card.querySelector('[data-status-badge]');
+    if(!badge) continue;
+    if(nextIdx === -1 || j < nextIdx){
+      badge.style.display = 'inline-block'; badge.style.background = 'rgba(20,20,20,0.85)'; badge.style.color = '#999'; badge.style.border = '1px solid #333'; badge.innerHTML = '&#10003; Completed';
+      card.style.opacity = '0.55'; card.style.cursor = 'pointer';
+      card.onclick = (function(wk){ return function(){ openResultsModal('aacc', wk); }; })(schedule[j].week);
+    } else if(j === nextIdx){
+      badge.style.display = 'inline-block'; badge.style.background = '#EF4444'; badge.style.color = 'white'; badge.style.border = '1px solid #EF4444'; badge.innerHTML = 'Up Next';
+      card.style.borderColor = 'rgba(239,68,68,0.6)'; card.style.boxShadow = '0 0 0 2px rgba(239,68,68,0.25)';
+    }
+  }
+})();
+</script>
