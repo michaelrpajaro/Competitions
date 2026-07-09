@@ -1,0 +1,56 @@
+<!-- ══════════════════════════════════════════════
+  SHARED SITE NAV — paste this at the very top of each
+  of your 6 existing competition page code blocks
+  (Car Giveaways, Custom Leagues, Endurance Race,
+  Active Leagues, Qualifiers, Track Day) so every page
+  shares the same way back to the Competitions hub and
+  across to its siblings.
+
+  It reuses the exact same class names/colors already used
+  on the Car Giveaways and Track Day pages, so it will not
+  visually clash with any of them. If a page already defines
+  a <nav class="nav"> of its own, replace that block with
+  this one instead of stacking two navs.
+══════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+.site-nav{position:sticky;top:0;z-index:600;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);border-bottom:1px solid #2a2a2a;font-family:'Barlow',sans-serif;}
+.site-nav-inner{max-width:1200px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.site-nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1em;text-transform:uppercase;letter-spacing:1px;color:#fff;display:flex;align-items:center;gap:9px;text-decoration:none;}
+.site-nav-brand .dot{width:9px;height:9px;border-radius:50%;background:#EF4444;box-shadow:0 0 12px #EF4444;}
+.site-nav-links{display:flex;gap:8px;flex-wrap:wrap;}
+.site-nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.78em;text-transform:uppercase;letter-spacing:1.5px;color:#888;text-decoration:none;padding:6px 12px;border-radius:6px;transition:color .15s,background .15s;}
+.site-nav-links a:hover{color:#fff;background:#111;}
+.site-nav-links a.here{color:#fff;background:#1a1a1a;}
+.site-nav-links a.cta{background:#EF4444;color:#fff;}
+@media(max-width:600px){.site-nav-links{display:none;}.site-nav-inner{padding:12px 18px;}}
+</style>
+
+<nav class="site-nav"><div class="site-nav-inner">
+  <a href="/competitions" class="site-nav-brand"><span class="dot"></span> COMPETITIONS</a>
+  <div class="site-nav-links">
+    <a href="/qualifiers">Qualifiers</a>
+    <a href="/leagues">Leagues</a>
+    <a href="/car-giveaways">Giveaways</a>
+    <a href="/endurance-race">Endurance</a>
+    <a href="/track-day">Track Day</a>
+    <a href="/custom-leagues" class="cta">Host a League ↗</a>
+  </div>
+</div></nav>
+
+<!--
+  USAGE NOTES
+  - Give the current page's own link the class "here" instead
+    of leaving it plain, e.g. on qualifiers.html:
+      <a href="/qualifiers" class="here">Qualifiers</a>
+  - Update the six href values above to match your real URLs
+    once each page is published (they're placeholders here:
+    /qualifiers, /leagues, /car-giveaways, /endurance-race,
+    /track-day, /custom-leagues).
+  - This block intentionally has no JS — it's pure nav, so it
+    can't collide with any page's existing scripts or element
+    IDs (openModal, setTab, clTab, portalTab, etc. all stay
+    exactly as they are on each page).
+-->
