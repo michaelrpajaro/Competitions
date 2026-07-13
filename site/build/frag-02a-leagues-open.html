@@ -17,6 +17,25 @@
   </div>
 </div>
 
+<div style="max-width:1200px;margin:24px auto 0;padding:0 40px;">
+  <div style="display:flex;gap:4px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:5px;width:fit-content;">
+    <button onclick="lgModeTab('monthly')" id="lg-mode-tab-monthly" style="background:var(--red);color:#fff;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Monthly Leagues</button>
+    <button onclick="lgModeTab('custom')" id="lg-mode-tab-custom" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Host Your Own</button>
+  </div>
+</div>
+
+<div id="lg-mode-monthly">
+
+<div style="max-width:1100px;margin:28px auto 0;padding:0 40px;">
+  <div style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Want Your Own Private Season?</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#b0b0b0;">Pick your car, your tracks, and your schedule — we'll run a custom league just for your group.</div>
+    </div>
+    <button onclick="lgModeTab('custom')" class="btn btn-sm">Host Your Own League →</button>
+  </div>
+</div>
+
 <!-- FEATURED (UPCOMING) LEAGUE — fully rendered by JS from FEATURED_LEAGUES -->
 <div id="lg-featured"></div>
 

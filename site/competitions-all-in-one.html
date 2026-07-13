@@ -46,8 +46,8 @@ img{max-width:100%;}
      #view-home and each #sec-* are toggled by goToSection() in the
      footer script; CSS just establishes the default hidden state so
      there's no flash-of-everything before JS runs. ── */
-#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-customleagues,#sec-viewresults{display:none;}
-#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-customleagues.active-view,#sec-viewresults.active-view{display:block;}
+#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-team,#sec-viewresults{display:none;}
+#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-team.active-view,#sec-viewresults.active-view{display:block;}
 
 /* ── SHARED LAYOUT PRIMITIVES ── */
 .section{padding:80px 40px;}
@@ -158,12 +158,12 @@ img{max-width:100%;}
 <nav class="nav"><div class="nav-inner">
   <a href="#home" class="nav-brand" onclick="goToSection(event,'home')"><span class="dot"></span> COMPETITIONS</a>
   <div class="nav-links">
-    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-nav="sec-customleagues" class="cta">Custom Leagues ↗</a>
     <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-nav="sec-endurance">Endurance Race</a>
     <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" data-nav="sec-giveaways">Giveaways</a>
     <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-nav="sec-leagues">Leagues</a>
     <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-nav="sec-qualifiers">Qualifiers</a>
-    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" data-nav="sec-viewresults">View Your Results</a>
+    <a href="#sec-team" onclick="goToSection(event,'sec-team')" data-nav="sec-team">SIM1Racing Team</a>
+    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" data-nav="sec-viewresults">View Laps/Results</a>
   </div>
 </div></nav>
 
@@ -183,7 +183,7 @@ img{max-width:100%;}
   <div class="hero-inner">
     <span class="badge">SIM1RACING</span>
     <h1>EVERY WAY TO<br><span class="accent">COMPETE</span></h1>
-    <p>SIM1Racing runs competitions on two tracks at once. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, race a one-off endurance event, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
+    <p>At SIM1 you can always just come in and drive <b style="color:#fff;">any car on any track</b> — or you can put that pace to the test in one of the competitions below. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, race a one-off endurance event, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="v">6</div><div class="l">Ways to Compete</div></div>
       <div class="hero-stat"><div class="v">Weekly</div><div class="l">New Events Posted</div></div>
@@ -200,15 +200,6 @@ img{max-width:100%;}
       <p class="lead" style="max-width:680px;margin:14px auto 0;">Casual, drop-in racing and season-long commitments, side by side — everything below is free to enter unless noted.</p>
     </div>
     <div class="prog-grid">
-      <button class="prog-card" onclick="goToSection(event,'sec-customleagues')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">BOOK IT · SERVICE · COMMITMENT</div>
-          <div class="prog-title">Custom Leagues</div>
-          <div class="prog-sub">Not a competition — a service. Pick your car, your tracks, your schedule, and we run the season for you.</div>
-          <div class="prog-facts"><span>From <b>$200</b>/driver</span></div>
-          <div class="prog-cta">VIEW PACKAGES →</div>
-        </div>
-      </button>
       <button class="prog-card" onclick="goToSection(event,'sec-endurance')">
         <div class="prog-body">
           <div class="prog-eyebrow">MONTHLY EVENT · CASUAL</div>
@@ -231,8 +222,8 @@ img{max-width:100%;}
         <div class="prog-body">
           <div class="prog-eyebrow">SEASONS · PAID · COMMITMENT</div>
           <div class="prog-title">Leagues</div>
-          <div class="prog-sub">A new Monthly League every month, plus Audi TT Cup and AACC — multi-week championship seasons with their own standings and prize pool.</div>
-          <div class="prog-facts"><span>Auto-updates as seasons start</span></div>
+          <div class="prog-sub">A new Monthly League every month, plus Audi TT Cup and AACC — or host a fully custom season for your own group.</div>
+          <div class="prog-facts"><span>Auto-updates as seasons start</span><span>+ Host Your Own</span></div>
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
@@ -245,12 +236,21 @@ img{max-width:100%;}
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
+      <button class="prog-card" onclick="goToSection(event,'sec-team')">
+        <div class="prog-body">
+          <div class="prog-eyebrow">MEET THE DRIVERS</div>
+          <div class="prog-title">SIM1Racing Team</div>
+          <div class="prog-sub">Our current team drivers, how they earned their spot, and what they race.</div>
+          <div class="prog-facts"><span>4 Team Drivers</span></div>
+          <div class="prog-cta">MEET THE TEAM →</div>
+        </div>
+      </button>
       <button class="prog-card" onclick="goToSection(event,'sec-viewresults')">
         <div class="prog-body">
           <div class="prog-eyebrow">YOUR STATS</div>
-          <div class="prog-title">View Your Results</div>
-          <div class="prog-sub">Look up your name to see qualifier results, lap times, badges, and the full event archive.</div>
-          <div class="prog-facts"><span>Search by driver name</span></div>
+          <div class="prog-title">View Laps/Results</div>
+          <div class="prog-sub">Look up your name to see qualifier results and lap times, or browse standings for any league.</div>
+          <div class="prog-facts"><span>Individual + League Results</span></div>
           <div class="prog-cta">LOOK UP →</div>
         </div>
       </button>
@@ -298,7 +298,7 @@ img{max-width:100%;}
       <div class="track-card">
         <div class="tk-ico">🏆</div>
         <div class="tk-t">Leagues</div>
-        <div class="tk-d">Separate, paid multi-week seasons with their own standings and prize pools — parallel to the free ladder above.</div>
+        <div class="tk-d">Paid multi-week seasons with their own standings and prize pools — or book a fully custom season for your own group.</div>
       </div>
       <div class="track-card">
         <div class="tk-ico">🚗</div>
@@ -306,9 +306,9 @@ img{max-width:100%;}
         <div class="tk-d">Real-world prizes layered on top of racing — a car giveaway, a monthly endurance race, and a free track day.</div>
       </div>
       <div class="track-card">
-        <div class="tk-ico">🛠️</div>
-        <div class="tk-t">Custom Leagues</div>
-        <div class="tk-d">Not a competition you enter — a service you book. Bring your own group and we run the season for you.</div>
+        <div class="tk-ico">🏁</div>
+        <div class="tk-t">SIM1Racing Team</div>
+        <div class="tk-d">Our roster of team drivers — free 24/7 access and a seat in national &amp; international competition.</div>
       </div>
     </div>
   </div>
@@ -493,61 +493,16 @@ img{max-width:100%;}
 </div>
 </div>
 
-<!-- ── SIM1RACING TEAM ── -->
-<div style="padding:80px 40px;background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);">
-<div style="max-width:1200px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:52px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">THE ULTIMATE GOAL</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 16px;">The SIM1Racing Team</h2>
-<p style="font-family:'Barlow',sans-serif;font-size:1em;color:#888;max-width:700px;margin:0 auto;">Team drivers get free 24/7 access, unlimited sim time, and represent SIM1Racing in nationwide and international competitions. Beat them in the championship and join them.</p>
+<!-- ── SIM1RACING TEAM (teaser — full roster lives in its own section) ── -->
+<div style="padding:70px 40px;background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="background:linear-gradient(135deg,#1a0000,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:14px;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;">
+<div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">THE ULTIMATE GOAL</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 10px;">Join the SIM1Racing Team</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:0.92em;color:#b0b0b0;margin:0;max-width:560px;line-height:1.6;">Team drivers get free 24/7 access, unlimited sim time, and represent SIM1Racing in national &amp; international competition. Win the monthly championship and outpace our team drivers to earn your spot. Meet the current team, their cars, and how they got there.</p>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:40px;">
-<div style="background:#1a1a1a;border:2px solid #2a2a2a;border-radius:14px;overflow:hidden;position:relative;">
-<div style="position:absolute;top:12px;left:12px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:10px;z-index:2;">&#x1F3C1; SIM1 TEAM DRIVER</div>
-<div style="aspect-ratio:4/5;background:linear-gradient(160deg,#1a0000,#2a0808,#1a1a1a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(239,68,68,0.15),transparent 60%);"></div>
-<div style="position:relative;text-align:center;">
-<div style="width:64px;height:64px;border-radius:50%;background:#2a2a2a;border:2px solid #EF4444;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.6em;">&#x1F464;</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#555;">Driver photo placeholder</div>
-</div>
-</div>
-<div style="padding:16px 20px;">
-<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Jordan Farrell</h3>
-</div>
-</div>
-
-<div style="background:#1a1a1a;border:2px solid #2a2a2a;border-radius:14px;overflow:hidden;position:relative;">
-<div style="position:absolute;top:12px;left:12px;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:10px;z-index:2;">&#x1F3C1; SIM1 TEAM DRIVER</div>
-<div style="aspect-ratio:4/5;background:linear-gradient(160deg,#1a0000,#2a0808,#1a1a1a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(239,68,68,0.15),transparent 60%);"></div>
-<div style="position:relative;text-align:center;">
-<div style="width:64px;height:64px;border-radius:50%;background:#2a2a2a;border:2px solid #EF4444;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.6em;">&#x1F464;</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#555;">Driver photo placeholder</div>
-</div>
-</div>
-<div style="padding:16px 20px;">
-<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Jeremy White</h3>
-</div>
-</div>
-
-<div style="background:#111;border:2px dashed #2a2a2a;border-radius:14px;overflow:hidden;position:relative;">
-<div style="position:absolute;top:12px;left:12px;background:rgba(239,68,68,0.18);color:#EF4444;border:1px solid rgba(239,68,68,0.3);font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:10px;z-index:2;">&#x1F3C1; OPEN SPOT</div>
-<div style="aspect-ratio:4/5;background:linear-gradient(160deg,#0a0a0a,#141414,#0a0a0a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(239,68,68,0.07),transparent 65%);"></div>
-<div style="position:relative;text-align:center;padding:20px;">
-<div style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.04);border:2px dashed #333;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:1.6em;filter:blur(2px);opacity:0.4;">&#x1F464;</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#555;line-height:1.6;max-width:160px;margin:0 auto;">Win the championship &amp; outpace our drivers to claim your spot on the team.</div>
-</div>
-</div>
-<div style="padding:16px 20px;">
-<h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;text-transform:uppercase;color:#444;margin:0;letter-spacing:1px;">Driver TBD</h3>
-</div>
-</div>
-
-</div>
-<div style="background:linear-gradient(135deg,#1a0000,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:14px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;">
-<div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">&#x25B6; YOUTUBE SERIES</div><h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.8em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 8px;">Follow the Team's Journey</h3><p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#888;margin:0;max-width:520px;line-height:1.6;">Watch the SIM1Racing team in action &#x2014; race prep, competition footage, driver development, and the full story of what it takes to race at the top.</p></div>
-<a href="https://youtube.com/playlist?list=PLzDnHFj7Pgvxw4PLyuasKFh3J4HCsZA7h&si=6kqMY1YWFqXBhEp6" target="_blank" style="background:#EF4444;color:white;padding:14px 32px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;flex-shrink:0;">WATCH THE SERIES</a>
+<a onclick="goToSection(event,'sec-team')" href="#sec-team" style="background:#EF4444;color:white;padding:14px 32px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;flex-shrink:0;">MEET THE TEAM &#x2192;</a>
 </div>
 </div>
 </div>
@@ -638,7 +593,7 @@ const SPRINT_IMAGE_URL = "https://static1.squarespace.com/static/675f613ae652273
 const LAST_RACE_YOUTUBE = "https://www.youtube.com/playlist?list=PLzDnHFj7PgvzveDJDXxCviv31kL5cr59a";
 const LAST_RACE_TITLE = "Thursday Sprint Recap";
 
-const SIM1_TEAM = ['Jordan Farrell', 'Jeremy White'];
+const SIM1_TEAM = ['Jordan Farrell', 'Jack Mitchell', 'Jonas Acevedo', 'DJ Hamilton'];
 const STAFF_LIST = [
   'nicholas hernandez', 'nick hernandez', 'nick h', 'elias', 'michael pajaro', 'xavier ramos', 'sitay huber',
   'karena lin', 'felix lin', 'jose santiago', 'benny jimenez', 'ryan chang'
@@ -1923,10 +1878,11 @@ renderChampionshipTracker();
 renderYTPreview();
 </script>
 <!-- ════════════════════════════════════════════════════════════════
-  SECTION: VIEW YOUR RESULTS — driver lookup, event archive, and top
-  stats. Wrapped in #sec-viewresults so its own mobile CSS (which
-  targets generic div[style*="..."] selectors) cannot affect any
-  other section on this page.
+  SECTION: VIEW LAPS/RESULTS — driver lookup, event archive, and top
+  stats (Individual mode), plus league standings and per-week result
+  lookups (League mode). Wrapped in #sec-viewresults so its own mobile
+  CSS (which targets generic div[style*="..."] selectors) cannot leak
+  into any other section on this page.
 ════════════════════════════════════════════════════════════════ -->
 <div id="sec-viewresults">
 <a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
@@ -1934,11 +1890,16 @@ renderYTPreview();
 <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.12) 0%,transparent 70%);pointer-events:none;"></div>
 <div style="position:relative;z-index:1;">
 <div style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:14px;margin-bottom:20px;">Results &amp; History</div>
-<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:3.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 18px;line-height:1;">VIEW YOUR RESULTS</h1>
-<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;max-width:700px;margin:0 auto;">Look up your qualifier results, browse the full event archive, or check the all-time top stats.</p>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:3.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 18px;line-height:1;">VIEW LAPS/RESULTS</h1>
+<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;max-width:700px;margin:0 auto 28px;">Look up your own qualifier results and lap times, or browse the standings for any league.</p>
+<div style="display:flex;gap:4px;background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:5px;width:fit-content;margin:0 auto;">
+<button onclick="vrModeTab('individual')" id="vr-mode-tab-individual" style="background:#EF4444;color:white;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Individual Results</button>
+<button onclick="vrModeTab('league')" id="vr-mode-tab-league" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">League Results</button>
+</div>
 </div>
 </div>
 
+<div id="vr-mode-individual">
 <div id="race-portal" style="padding:60px 40px 100px;background:#0a0a0a;">
 <div style="max-width:1000px;margin:0 auto;">
 <div style="background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;">
@@ -2001,6 +1962,18 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 </div>
 </div>
 </div>
+</div><!-- /#vr-mode-individual -->
+
+<div id="vr-mode-league" style="display:none;padding:60px 40px 100px;background:#0a0a0a;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:26px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">PICK A LEAGUE</div>
+<p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#888;margin:0;">Championship standings and week-by-week race results for every league that has posted results.</p>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:26px;" id="vr-league-tabs"></div>
+<div id="vr-league-content"></div>
+</div>
+</div>
 
 <style>
 #sec-viewresults{position:relative;}
@@ -2018,6 +1991,7 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 #sec-viewresults div[style*="padding:100px 40px 20px"] h1{font-size:2.4em!important;}
 #sec-viewresults div[style*="padding:60px 40px 100px"]{padding:30px 18px 60px!important;}
 #sec-viewresults #stats-grid{grid-template-columns:1fr!important;}
+#sec-viewresults #vr-league-tabs button{padding:9px 16px!important;font-size:0.85em!important;}
 #sec-viewresults .arch-event-row{padding:10px 14px!important;gap:10px!important;}
 #sec-viewresults .arch-event-row .arch-badge{min-width:34px!important;max-width:34px!important;padding:4px 0!important;font-size:0.7em!important;letter-spacing:1px!important;}
 #sec-viewresults .arch-event-row .arch-badge-full{display:none;}
@@ -2044,6 +2018,25 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
     <div class="eyebrow">LEAGUES</div>
     <h2 class="h2">Multi-Week Championship Seasons</h2>
     <p class="lead" style="max-width:680px;margin:14px auto 0;">Every month brings a brand-new <strong style="color:#ccc;">Monthly League</strong> — a different car and a fresh set of four circuits each time, always four Monday nights, always the same prize format. A new season is always either open for signup or already underway. This section updates itself automatically — the moment a season starts, it moves down into "Active Leagues" and the next one takes its place above.</p>
+  </div>
+</div>
+
+<div style="max-width:1200px;margin:24px auto 0;padding:0 40px;">
+  <div style="display:flex;gap:4px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:5px;width:fit-content;">
+    <button onclick="lgModeTab('monthly')" id="lg-mode-tab-monthly" style="background:var(--red);color:#fff;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Monthly Leagues</button>
+    <button onclick="lgModeTab('custom')" id="lg-mode-tab-custom" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Host Your Own</button>
+  </div>
+</div>
+
+<div id="lg-mode-monthly">
+
+<div style="max-width:1100px;margin:28px auto 0;padding:0 40px;">
+  <div style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Want Your Own Private Season?</div>
+      <div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#b0b0b0;">Pick your car, your tracks, and your schedule — we'll run a custom league just for your group.</div>
+    </div>
+    <button onclick="lgModeTab('custom')" class="btn btn-sm">Host Your Own League →</button>
   </div>
 </div>
 
@@ -2295,12 +2288,243 @@ Weekly columns sum race finish, pole bonus (+1), fastest-lap bonus (+1). <strong
 
 </div>
 </div>
-<!-- ── RESULTS MODAL (shared by Audi + AACC cards) ── -->
-<div id="resultsModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);backdrop-filter:blur(4px);padding:20px;overflow-y:auto;" onclick="if(event.target===this)closeResultsModal()">
-<div style="max-width:860px;margin:40px auto;background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;position:relative;">
-<div id="resultsModalContent" style="padding:0;"></div>
+</div><!-- /#lg-mode-monthly -->
+
+<!-- ════════════════════════════════════════════════════════════════
+  HOST YOUR OWN — merged Custom Leagues content (a service, not a
+  competition). Kept as a second mode inside Leagues instead of its
+  own top-level section.
+════════════════════════════════════════════════════════════════ -->
+<div id="lg-mode-custom" style="display:none;width:100%;position:relative;overflow-x:hidden;">
+
+<div id="cl-hero" style="padding:70px 40px 60px;background:#000;position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.16) 0%,transparent 70%);pointer-events:none;"></div>
+<div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:50px;align-items:center;">
+<div id="cl-hero-copy">
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:4.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;line-height:0.95;">Build Your Own<br>SIM1 League</h1>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25em;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#EF4444;margin-bottom:22px;">Your Car · Your Tracks · Your Schedule</div>
+<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.75;color:#b0b0b0;margin:0 0 32px;max-width:520px;">Host a fully custom racing league at SIM1Racing. Pick the car, choose the circuits, set the date and time — we handle everything else. Perfect for friend groups, office leagues, and club events.</p>
+<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="background:#EF4444;color:white;padding:16px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request Your League</a>
+<a href="#cl-pricing" style="color:#ccc;font-family:'Barlow Condensed',sans-serif;font-size:0.92em;font-weight:700;text-transform:uppercase;letter-spacing:1px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px;">See Pricing &darr;</a>
 </div>
 </div>
+<div id="cl-hero-graphic" style="position:relative;display:flex;flex-direction:column;gap:12px;">
+<div style="position:absolute;inset:-12px;background:radial-gradient(circle at 50% 40%,rgba(239,68,68,0.3) 0%,transparent 70%);filter:blur(22px);pointer-events:none;"></div>
+<div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;background:#111;">
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2ae232e7711c6af7bac703/1781195314688/Untitled+design+%289%29.jpg" alt="Custom League at SIM1Racing" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
+<div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;background:#111;">
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2ae24617577f0a94179184/1781195335325/Untitled+design+%2810%29.jpg" alt="SIM1Racing race night" style="width:100%;height:100%;object-fit:cover;display:block;">
+</div>
+</div>
+</div>
+</div>
+
+<div style="background:#0a0a0a;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:28px 40px;">
+<div style="max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center;">
+<div><div style="font-size:1.5em;margin-bottom:8px;">📅</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">You Choose The Date</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Any night, any time slot</div></div>
+<div><div style="font-size:1.5em;margin-bottom:8px;">🏎️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">Pick Your Car</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Dozens of makes &amp; classes</div></div>
+<div><div style="font-size:1.5em;margin-bottom:8px;">🗺️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">Select Your Circuits</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Iconic tracks worldwide</div></div>
+<div><div style="font-size:1.5em;margin-bottom:8px;">⏱️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">1-Hour Race Nights</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Practice, qualifying &amp; racing — your split</div></div>
+</div>
+</div>
+
+<div style="padding:56px 40px;background:#000;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:44px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Simple Process</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0;">How It Works</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;">
+<div style="position:absolute;top:44px;left:calc(12.5% + 9px);right:calc(12.5% + 9px);height:2px;background:linear-gradient(90deg,#EF4444,rgba(239,68,68,0.2));pointer-events:none;"></div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">1</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">Submit a Request</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Fill out our quick league request form with your preferred dates, car, and track wishlist.</div></div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">2</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">We Confirm &amp; Quote</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Our team reviews availability, confirms your build, and sends a final quote within 48 hours.</div></div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">3</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">Book &amp; Lock It In</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Pay the deposit to hold your dates. We'll handle the schedule, scoring, and event pages.</div></div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">4</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">Race &amp; Win</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Show up, strap in, and compete. We run the broadcast, scoring, and trophy ceremony.</div></div>
+</div>
+</div>
+</div>
+
+<div id="cl-pricing" style="padding:56px 40px;background:#0a0a0a;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:36px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Season Packages</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 14px;">Choose Your Season Length</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:1em;color:#888;margin:0;max-width:560px;margin-left:auto;margin-right:auto;">All packages include race management, qualifying, championship standings, and full event support from our staff.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;">
+<div style="background:linear-gradient(155deg,#111,#0a0a0a);border:1px solid #2a2a2a;border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:10px;">Sprint Season</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;line-height:1;margin-bottom:4px;">4 Weeks</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.86em;color:#888;margin-bottom:26px;">4 circuits · 1 or 2 races each night</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Price Per Driver</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:3em;font-weight:900;color:white;line-height:1;margin-bottom:22px;">$200</div>
+<ul style="list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:9px;flex:1;">
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 4 race nights</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 1 or 2 races per night</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Your choice of car &amp; tracks</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Championship standings</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Set your own day &amp; time</li>
+</ul>
+<div style="background:linear-gradient(135deg,rgba(255,193,7,0.08),rgba(255,193,7,0.04));border:1px solid rgba(255,193,7,0.35);border-radius:10px;padding:14px 16px;margin-bottom:18px;">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.76em;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#FFC107;">⭐ Add a Gold Membership</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.08em;font-weight:900;color:#FFC107;white-space:nowrap;">$300</div></div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#bbb;line-height:1.5;">Upgrade your 4-week league entry to a full Gold Membership — includes the league <em>plus</em> unlimited sim racing access beyond your designated league nights.</div>
+</div>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:block;text-align:center;background:transparent;color:white;padding:14px;border-radius:8px;border:1px solid #EF4444;font-family:'Barlow Condensed',sans-serif;font-size:1.02em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request This Package</a>
+</div>
+
+<div style="background:linear-gradient(155deg,#1a0000,#260808);border:2px solid #EF4444;border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;position:relative;box-shadow:0 0 0 4px rgba(239,68,68,0.12);">
+<div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 18px;border-radius:20px;white-space:nowrap;">Most Popular</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Championship Season</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;line-height:1;margin-bottom:4px;">5 Weeks</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.86em;color:#888;margin-bottom:26px;">5 circuits · 1 or 2 races each night</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Price Per Driver</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:3em;font-weight:900;color:white;line-height:1;margin-bottom:22px;">$250</div>
+<ul style="list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:9px;flex:1;">
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 5 race nights</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 1 or 2 races per night</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Your choice of car &amp; tracks</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Championship standings</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Set your own day &amp; time</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Custom trophy ceremony</li>
+</ul>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:block;text-align:center;background:#EF4444;color:white;padding:14px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.02em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request This Package</a>
+</div>
+
+<div style="background:linear-gradient(155deg,#111,#0a0a0a);border:1px solid #2a2a2a;border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:10px;">Grand Tour Season</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;line-height:1;margin-bottom:4px;">6 Weeks</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.86em;color:#888;margin-bottom:26px;">6 circuits · 1 or 2 races each night</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Price Per Driver</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:3em;font-weight:900;color:white;line-height:1;margin-bottom:22px;">$300</div>
+<ul style="list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:9px;flex:1;">
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 6 race nights</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 1 or 2 races per night</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Your choice of car &amp; tracks</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Championship standings</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Set your own day &amp; time</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Custom trophy ceremony</li>
+<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Optional mid-season break</li>
+</ul>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:block;text-align:center;background:transparent;color:white;padding:14px;border-radius:8px;border:1px solid #EF4444;font-family:'Barlow Condensed',sans-serif;font-size:1.02em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request This Package</a>
+</div>
+</div>
+<div style="text-align:center;margin-top:22px;">
+<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#666;margin:0;">Prices are per driver for the full season. Have questions? <a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="color:#EF4444;text-decoration:none;">Reach out</a> and we'll help you choose the right package.</p>
+</div>
+</div>
+</div>
+
+<div style="padding:56px 40px;background:#000;">
+<div style="max-width:900px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:36px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">What To Expect</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.1em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 14px;">Race Night Format</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:0.98em;color:#999;margin:0 auto;max-width:600px;">Every race night is <strong style="color:#fff;">1 hour</strong>. That hour is yours to divide however you want — you choose how much time goes to practice, qualifying, and racing, and whether you run 1 race or 2. Just tell us in the request form and we'll build the night around your preferences.</p>
+</div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:26px 28px;margin-bottom:20px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:16px;text-align:center;">Your Hour — Example Split</div>
+<div style="display:flex;border-radius:8px;overflow:hidden;height:44px;margin-bottom:16px;">
+<div style="flex:2;background:#1a2a1a;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#4ade80;letter-spacing:1px;border-right:2px solid #0d0d0d;">Practice</div>
+<div style="flex:1.5;background:#1a1a2a;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#818cf8;letter-spacing:1px;border-right:2px solid #0d0d0d;">Qualifying</div>
+<div style="flex:2.5;background:#2a1a1a;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#EF4444;letter-spacing:1px;border-right:2px solid #0d0d0d;">Race 1</div>
+<div style="flex:2;background:#3a1010;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#f87171;letter-spacing:1px;">Race 2</div>
+</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+<div style="display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;font-size:0.82em;color:#999;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4ade80;flex-shrink:0;"></span>Practice — your choice of minutes</div>
+<div style="display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;font-size:0.82em;color:#999;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#818cf8;flex-shrink:0;"></span>Qualifying — your choice of minutes</div>
+<div style="display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;font-size:0.82em;color:#999;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#EF4444;flex-shrink:0;"></span>Race(s) — fills the remainder</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;overflow:hidden;">
+<div style="background:#111;padding:14px 18px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:8px;"><span style="background:rgba(239,68,68,0.18);color:#EF4444;font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Option A</span><span style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;text-transform:uppercase;color:white;">Single Race Night</span></div>
+<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Practice</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
+<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Qualifying</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
+<div style="display:grid;grid-template-columns:110px 1fr;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Race</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Remaining time — one longer race</div></div>
+</div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;overflow:hidden;">
+<div style="background:#111;padding:14px 18px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:8px;"><span style="background:rgba(239,68,68,0.18);color:#EF4444;font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Option B</span><span style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;text-transform:uppercase;color:white;">Two Race Night</span></div>
+<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Practice</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
+<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Qualifying</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
+<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Race 1</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
+<div style="display:grid;grid-template-columns:110px 1fr;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Race 2</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Remaining time — reverse grid</div></div>
+</div>
+</div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;padding:16px 22px;display:flex;gap:12px;align-items:flex-start;">
+<div style="font-size:1.2em;line-height:1;flex-shrink:0;">📋</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#999;line-height:1.6;">When you fill out the request form, simply tell us how you'd like to divide the hour — how many minutes for practice, qualifying, and each race. The only rule: it all has to add up to 60 minutes.</div>
+</div>
+</div>
+</div>
+
+<div id="cl-browser" style="padding:56px 40px;background:#0a0a0a;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:36px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Build Your Lineup</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;">Available Cars &amp; Tracks</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:0.98em;color:#888;margin:0 auto;max-width:540px;">Browse what's available for your custom league. Click a tab to explore — then mention your picks in the request form.</p>
+</div>
+<div style="display:flex;gap:4px;background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:5px;margin-bottom:26px;width:fit-content;margin-left:auto;margin-right:auto;">
+<button onclick="clTab('cars')" id="cl-tab-cars" style="background:#EF4444;color:white;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Cars</button>
+<button onclick="clTab('tracks')" id="cl-tab-tracks" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Tracks</button>
+</div>
+
+<div id="cl-panel-cars">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">GT3</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Audi R8 GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">BMW Z4 GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Chevrolet Corvette C7R GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lamborghini Huracán GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lotus Evora GTC</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">McLaren 650S GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">McLaren MP4-12C GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mercedes SLS AMG GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mercedes-AMG GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Nissan GT-R NISMO GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Porsche 911 GT3</li></ul></div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">GT4 &amp; Cup</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Audi TT Cup</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">BMW M235i Racing</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lotus 2-Eleven</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Maserati GranTurismo MC GT4</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mazda MX-5 Cup</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Porsche Cayman GT4</li></ul></div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Open Wheel &amp; Prototype</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Tatuus Formula 4</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lotus Exos Formula 1</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Praga R1</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mazda 787B</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Audi R18 e-tron</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Porsche 919 Hybrid</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Toyota TS040 Hybrid</li></ul></div>
+</div>
+<div style="text-align:center;margin-top:18px;"><p style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#666;margin:0;">This is just a selection of what's available — we have many more cars in our library. Ask us and we'll let you know what else we can offer.</p></div>
+</div>
+
+<div id="cl-panel-tracks" style="display:none;">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Europe — A to M</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Barcelona GP &amp; Moto</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Black Cat County — Standard, Long &amp; Short</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Brands Hatch GP &amp; Indy</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Highlands — Standard, Long &amp; Short</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Imola</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Magione</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Monza</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Monza 1966 — Full Course, Junior &amp; Road Course</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mugello</li></ul></div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Europe — N to Z</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Nordschleife</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Nürburgring GP &amp; Sprint</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Red Bull Ring GP &amp; National</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Silverstone GP, International &amp; National</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Silverstone 1967</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Spa-Francorchamps</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Vallelunga GP, Classic &amp; Club</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Zandvoort</li></ul></div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Americas</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Laguna Seca</li></ul></div>
+</div>
+<div style="text-align:center;margin-top:18px;"><p style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#666;margin:0;">New tracks added regularly. If you have a specific circuit in mind, just ask.</p></div>
+</div>
+</div>
+</div>
+
+<div style="padding:56px 40px;background:#000;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:36px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Perfect For</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Who Runs Custom Leagues</h2>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:30px 24px;text-align:center;"><div style="font-size:2.2em;margin-bottom:14px;">👥</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:10px;">Friend Groups</div><p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#888;line-height:1.6;margin:0;">Turn your squad's group chat into a real championship. Pick your favourite cars and circuits and settle it on the sim.</p></div>
+<div style="background:linear-gradient(135deg,#1a0000,#1e0606);border:1px solid rgba(239,68,68,0.3);border-radius:14px;padding:30px 24px;text-align:center;"><div style="font-size:2.2em;margin-bottom:14px;">🏢</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:10px;">Corporate &amp; Team Events</div><p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#aaa;line-height:1.6;margin:0;">A multi-week league is an unforgettable team-building experience. We handle logistics — you show up and race.</p></div>
+<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:30px 24px;text-align:center;"><div style="font-size:2.2em;margin-bottom:14px;">🏁</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:10px;">Clubs &amp; Communities</div><p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#888;line-height:1.6;margin:0;">Car clubs, motorsport organisations, and online communities looking for an IRL sim racing experience with real stakes.</p></div>
+</div>
+</div>
+</div>
+
+<div id="cl-request" style="padding:70px 40px;background:#0a0a0a;position:relative;overflow:hidden;border-top:1px solid #1a1a1a;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(239,68,68,0.14) 0%,transparent 70%);pointer-events:none;"></div>
+<div style="position:relative;z-index:1;max-width:760px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:40px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Get Started</div>
+<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 16px;line-height:1;">Ready To Build Your League?</h2>
+<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;margin:0;">Fill out the request form below and our team will reach out within 48 hours to confirm availability and put together your custom quote.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;">
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:18px 16px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">Response Time</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.35em;font-weight:900;color:white;line-height:1;">Within 48 hrs</div></div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:18px 16px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">Min. Field Size</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.35em;font-weight:900;color:white;line-height:1;">6 Drivers</div></div>
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:18px 16px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">No Obligation</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.35em;font-weight:900;color:white;line-height:1;">Free Quote</div></div>
+</div>
+<div style="text-align:center;">
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:inline-block;background:#EF4444;color:white;padding:18px 56px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;box-shadow:0 8px 32px rgba(239,68,68,0.3);">Submit League Request</a>
+<div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#666;margin-top:14px;">Have questions first? Email us at <a href="mailto:info@sim1racing.com" style="color:#EF4444;text-decoration:none;">info@sim1racing.com</a></div>
+</div>
+</div>
+</div>
+</div><!-- /#lg-mode-custom -->
 
 <style>
 #sec-leagues{position:relative;}
@@ -2334,8 +2558,50 @@ Weekly columns sum race finish, pole bonus (+1), fastest-lap bonus (+1). <strong
 #resultsModal{padding:0!important;align-items:flex-start!important;}
 #resultsModal > div{max-width:100%!important;margin:0!important;min-height:100dvh;border-radius:0!important;border-left:none!important;border-right:none!important;}
 }
+
+/* ── HOST YOUR OWN (merged Custom Leagues) mobile overrides ── */
+@media(max-width:768px){
+#lg-mode-custom #cl-hero-graphic{order:-1;}
+#lg-mode-custom #cl-hero-copy{order:0;}
+#lg-mode-custom div[style*="grid-template-columns:1.15fr 0.85fr"],#lg-mode-custom div[style*="grid-template-columns:repeat(3,1fr)"],#lg-mode-custom div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}
+#lg-mode-custom div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+#lg-mode-custom div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+#lg-mode-custom div[style*="grid-template-columns:110px 1fr"]{grid-template-columns:90px 1fr!important;}
+}
 </style>
+
+<script>
+function clTab(tab) {
+  var panels = ['cars','tracks'];
+  panels.forEach(function(p){
+    document.getElementById('cl-panel-' + p).style.display = (p === tab) ? 'block' : 'none';
+    var btn = document.getElementById('cl-tab-' + p);
+    if(p === tab){ btn.style.background = '#EF4444'; btn.style.color = 'white'; }
+    else { btn.style.background = 'transparent'; btn.style.color = '#888'; }
+  });
+}
+/* Monthly Leagues / Host Your Own mode toggle — Custom Leagues is merged
+   into this section as a second mode rather than its own top-level section. */
+function lgModeTab(mode){
+  const modes = ['monthly','custom'];
+  modes.forEach(m => {
+    document.getElementById('lg-mode-' + m).style.display = (m === mode) ? '' : 'none';
+    const btn = document.getElementById('lg-mode-tab-' + m);
+    if(m === mode){ btn.style.background = 'var(--red)'; btn.style.color = '#fff'; }
+    else { btn.style.background = 'transparent'; btn.style.color = '#888'; }
+  });
+  window.scrollTo(0, document.getElementById('sec-leagues').offsetTop - 60);
+}
+</script>
 </div><!-- /#sec-leagues -->
+
+<!-- ── RESULTS MODAL (shared by Audi + AACC cards; lives outside
+     #sec-leagues so it can also be opened from View Laps/Results) ── -->
+<div id="resultsModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);backdrop-filter:blur(4px);padding:20px;overflow-y:auto;" onclick="if(event.target===this)closeResultsModal()">
+<div style="max-width:860px;margin:40px auto;background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;position:relative;">
+<div id="resultsModalContent" style="padding:0;"></div>
+</div>
+</div>
 <script>
 /* ════════════════════════════════════════════════════════════════
    LEAGUES — AUTOMATIC SEASON ROTATION
@@ -3376,6 +3642,81 @@ renderStandingsTable('aacc', 'aacc-standings-rows');
     renderStandingsTable(l.slug, 'lg-dyn-rows-' + l.slug);
   });
 })();
+
+/* ════════════════════════════════════════════════════════════════
+   VIEW LAPS/RESULTS — "League Results" mode
+   Individual/League toggle lives in the View Laps/Results section
+   (frag-01f); this builds the league picker + reuses the same
+   renderStandingsTable()/openResultsModal() the Leagues page uses,
+   just rendered into a different container.
+   ════════════════════════════════════════════════════════════════ */
+function leagueDisplayName(key){
+  const feat = FEATURED_LEAGUES.find(l => l.slug === key);
+  if(feat) return feat.name;
+  if(key === 'audi') return 'Audi TT Cup';
+  if(key === 'aacc') return 'AACC';
+  return key;
+}
+function vrLeagueWeeksHtml(leagueKey){
+  const results = window.S1_RESULTS && window.S1_RESULTS[leagueKey];
+  if(!results) return '';
+  return Object.keys(results).map(Number).sort((a,b)=>a-b).map(w => {
+    const wd = results[w];
+    const hasResults = !!(wd.practice || wd.quali || wd.race1 || wd.race2);
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('${leagueKey}',${w})" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'">
+      <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk ${w}${wd.date ? ' &middot; ' + wd.date : ''}</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">${wd.track || 'TBA'}</div></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">${hasResults ? 'View Results &rsaquo;' : 'Pending'}</div>
+    </div>`;
+  }).join('');
+}
+function renderVrLeague(leagueKey){
+  document.querySelectorAll('#vr-league-tabs button').forEach(b => {
+    const active = b.dataset.league === leagueKey;
+    b.style.background = active ? 'var(--red)' : 'transparent';
+    b.style.color = active ? '#fff' : '#888';
+  });
+  const rowsId = 'vr-standings-rows-' + leagueKey;
+  const weeksHtml = vrLeagueWeeksHtml(leagueKey);
+  document.getElementById('vr-league-content').innerHTML = `
+    <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;margin-bottom:24px;">
+      <div style="background:#111;padding:18px 22px;border-bottom:1px solid #1a1a1a;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">${leagueDisplayName(leagueKey)} &middot; Standings</div>
+      </div>
+      <div id="${rowsId}"></div>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
+      <div style="background:#111;padding:14px 22px;border-bottom:1px solid #1a1a1a;font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#888;">Race Results by Week</div>
+      ${weeksHtml || `<div style="padding:30px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#555;">No weeks posted yet.</div>`}
+    </div>`;
+  renderStandingsTable(leagueKey, rowsId);
+}
+function initVrLeagueTabs(){
+  Object.keys(LEAGUE_STANDINGS).forEach(mergeComputedWeeks);
+  const keys = Object.keys(LEAGUE_STANDINGS).filter(k => LEAGUE_STANDINGS[k].drivers.length > 0);
+  const tabsEl = document.getElementById('vr-league-tabs');
+  const contentEl = document.getElementById('vr-league-content');
+  if(!tabsEl || !contentEl) return; // View Laps/Results section not on this build
+  if(!keys.length){
+    tabsEl.innerHTML = '';
+    contentEl.innerHTML = `<div style="padding:40px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.9em;color:#555;">No league results posted yet.</div>`;
+    return;
+  }
+  tabsEl.innerHTML = keys.map((k,i) => `<button data-league="${k}" onclick="renderVrLeague('${k}')" style="background:${i===0?'var(--red)':'transparent'};color:${i===0?'#fff':'#888'};border:1px solid var(--border);padding:10px 20px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.9em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">${leagueDisplayName(k)}</button>`).join('');
+  renderVrLeague(keys[0]);
+}
+initVrLeagueTabs();
+
+/* Individual Results / League Results mode toggle for View Laps/Results. */
+function vrModeTab(mode){
+  const modes = ['individual','league'];
+  modes.forEach(m => {
+    document.getElementById('vr-mode-' + m).style.display = (m === mode) ? '' : 'none';
+    const btn = document.getElementById('vr-mode-tab-' + m);
+    if(m === mode){ btn.style.background = '#EF4444'; btn.style.color = '#fff'; }
+    else { btn.style.background = 'transparent'; btn.style.color = '#888'; }
+  });
+  window.scrollTo(0, document.getElementById('sec-viewresults').offsetTop - 60);
+}
 </script>
 <!-- ════════════════════════════════════════════════════════════════
   SECTION: CAR GIVEAWAYS (Spirit Works Garage × SIM1Racing)
@@ -4329,277 +4670,125 @@ route();
 </style>
 </div><!-- /#sec-endurance -->
 <!-- ════════════════════════════════════════════════════════════════
-  SECTION: CUSTOM LEAGUES (Build Your Own SIM1 League) — a service,
-  not a competition; kept last before the footer.
+  SECTION: SIM1RACING TEAM — vision, current roster, team photo spot,
+  and the team's YouTube playlist. Wrapped in #sec-team so its own
+  mobile CSS can't leak into any other section on this page.
 ════════════════════════════════════════════════════════════════ -->
-<div id="sec-customleagues" style="width:100%;position:relative;overflow-x:hidden;">
+<div id="sec-team" style="width:100%;position:relative;overflow-x:hidden;">
 <a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
 
-<div id="cl-hero" style="padding:70px 40px 60px;background:#000;position:relative;overflow:hidden;">
-<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.16) 0%,transparent 70%);pointer-events:none;"></div>
-<div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:50px;align-items:center;">
-<div id="cl-hero-copy">
-<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:4.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;line-height:0.95;">Build Your Own<br>SIM1 League</h1>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25em;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#EF4444;margin-bottom:22px;">Your Car · Your Tracks · Your Schedule</div>
-<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.75;color:#b0b0b0;margin:0 0 32px;max-width:520px;">Host a fully custom racing league at SIM1Racing. Pick the car, choose the circuits, set the date and time — we handle everything else. Perfect for friend groups, office leagues, and club events.</p>
-<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="background:#EF4444;color:white;padding:16px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request Your League</a>
-<a href="#cl-pricing" style="color:#ccc;font-family:'Barlow Condensed',sans-serif;font-size:0.92em;font-weight:700;text-transform:uppercase;letter-spacing:1px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px;">See Pricing &darr;</a>
-</div>
-</div>
-<div id="cl-hero-graphic" style="position:relative;display:flex;flex-direction:column;gap:12px;">
-<div style="position:absolute;inset:-12px;background:radial-gradient(circle at 50% 40%,rgba(239,68,68,0.3) 0%,transparent 70%);filter:blur(22px);pointer-events:none;"></div>
-<div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;background:#111;">
-<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2ae232e7711c6af7bac703/1781195314688/Untitled+design+%289%29.jpg" alt="Custom League at SIM1Racing" style="width:100%;height:100%;object-fit:cover;display:block;">
-</div>
-<div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid #2a2a2a;background:#111;">
-<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2ae24617577f0a94179184/1781195335325/Untitled+design+%2810%29.jpg" alt="SIM1Racing race night" style="width:100%;height:100%;object-fit:cover;display:block;">
-</div>
-</div>
-</div>
-</div>
+<header class="hero" style="padding-top:64px;">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <span class="badge">THE ULTIMATE GOAL</span>
+    <h1>SIM1RACING<br><span class="accent">TEAM</span></h1>
+    <p>Team drivers get free 24/7 access, unlimited sim time, and represent SIM1Racing in national &amp; international competition. There's one way in: win the Monthly Championship and outpace our current team drivers to earn your spot.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="v">4</div><div class="l">Team Drivers</div></div>
+      <div class="hero-stat"><div class="v">24/7</div><div class="l">Free Sim Access</div></div>
+      <div class="hero-stat"><div class="v">Earned</div><div class="l">Not Bought — Won</div></div>
+    </div>
+  </div>
+</header>
 
-<div style="background:#0a0a0a;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:28px 40px;">
-<div style="max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center;">
-<div><div style="font-size:1.5em;margin-bottom:8px;">📅</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">You Choose The Date</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Any night, any time slot</div></div>
-<div><div style="font-size:1.5em;margin-bottom:8px;">🏎️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">Pick Your Car</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Dozens of makes &amp; classes</div></div>
-<div><div style="font-size:1.5em;margin-bottom:8px;">🗺️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">Select Your Circuits</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Iconic tracks worldwide</div></div>
-<div><div style="font-size:1.5em;margin-bottom:8px;">⏱️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">1-Hour Race Nights</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Practice, qualifying &amp; racing — your split</div></div>
-</div>
-</div>
+<section class="section" id="team-roster" style="background:var(--bg2);">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:36px;">
+      <div class="eyebrow">CURRENT ROSTER</div>
+      <h2 class="h2">Meet the Team</h2>
+      <p class="lead" style="max-width:640px;margin:14px auto 0;">Every driver here earned their seat by winning the Monthly Championship and beating the team on track.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — Jordan Farrell</span></div>
+        <div class="team-body">
+          <div class="team-name">Jordan Farrell</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — Jack Mitchell</span></div>
+        <div class="team-body">
+          <div class="team-name">Jack Mitchell</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — Jonas Acevedo</span></div>
+        <div class="team-body">
+          <div class="team-name">Jonas Acevedo</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — DJ Hamilton</span></div>
+        <div class="team-body">
+          <div class="team-name">DJ Hamilton</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div style="padding:56px 40px;background:#000;">
-<div style="max-width:1000px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:44px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Simple Process</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0;">How It Works</h2>
-</div>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;">
-<div style="position:absolute;top:44px;left:calc(12.5% + 9px);right:calc(12.5% + 9px);height:2px;background:linear-gradient(90deg,#EF4444,rgba(239,68,68,0.2));pointer-events:none;"></div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">1</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">Submit a Request</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Fill out our quick league request form with your preferred dates, car, and track wishlist.</div></div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">2</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">We Confirm &amp; Quote</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Our team reviews availability, confirms your build, and sends a final quote within 48 hours.</div></div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">3</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">Book &amp; Lock It In</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Pay the deposit to hold your dates. We'll handle the schedule, scoring, and event pages.</div></div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:28px 20px;text-align:center;position:relative;"><div style="width:52px;height:52px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">4</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:8px;line-height:1.1;">Race &amp; Win</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;line-height:1.55;">Show up, strap in, and compete. We run the broadcast, scoring, and trophy ceremony.</div></div>
-</div>
-</div>
-</div>
+<section class="section" id="team-photo" style="background:var(--bg);">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:30px;">
+      <div class="eyebrow">THE TEAM</div>
+      <h2 class="h2">Together at SIM1</h2>
+    </div>
+    <div class="photo-spot" style="min-height:280px;"><span>📷 Team photo — all 4 drivers together at the sim lab</span></div>
+  </div>
+</section>
 
-<div id="cl-pricing" style="padding:56px 40px;background:#0a0a0a;">
-<div style="max-width:1000px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:36px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Season Packages</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 14px;">Choose Your Season Length</h2>
-<p style="font-family:'Barlow',sans-serif;font-size:1em;color:#888;margin:0;max-width:560px;margin-left:auto;margin-right:auto;">All packages include race management, qualifying, championship standings, and full event support from our staff.</p>
-</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;">
-<div style="background:linear-gradient(155deg,#111,#0a0a0a);border:1px solid #2a2a2a;border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:10px;">Sprint Season</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;line-height:1;margin-bottom:4px;">4 Weeks</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.86em;color:#888;margin-bottom:26px;">4 circuits · 1 or 2 races each night</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Price Per Driver</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:3em;font-weight:900;color:white;line-height:1;margin-bottom:22px;">$200</div>
-<ul style="list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:9px;flex:1;">
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 4 race nights</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 1 or 2 races per night</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Your choice of car &amp; tracks</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Championship standings</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Set your own day &amp; time</li>
-</ul>
-<div style="background:linear-gradient(135deg,rgba(255,193,7,0.08),rgba(255,193,7,0.04));border:1px solid rgba(255,193,7,0.35);border-radius:10px;padding:14px 16px;margin-bottom:18px;">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.76em;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#FFC107;">⭐ Add a Gold Membership</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.08em;font-weight:900;color:#FFC107;white-space:nowrap;">$300</div></div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#bbb;line-height:1.5;">Upgrade your 4-week league entry to a full Gold Membership — includes the league <em>plus</em> unlimited sim racing access beyond your designated league nights.</div>
-</div>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:block;text-align:center;background:transparent;color:white;padding:14px;border-radius:8px;border:1px solid #EF4444;font-family:'Barlow Condensed',sans-serif;font-size:1.02em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request This Package</a>
-</div>
-
-<div style="background:linear-gradient(155deg,#1a0000,#260808);border:2px solid #EF4444;border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;position:relative;box-shadow:0 0 0 4px rgba(239,68,68,0.12);">
-<div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 18px;border-radius:20px;white-space:nowrap;">Most Popular</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Championship Season</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;line-height:1;margin-bottom:4px;">5 Weeks</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.86em;color:#888;margin-bottom:26px;">5 circuits · 1 or 2 races each night</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Price Per Driver</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:3em;font-weight:900;color:white;line-height:1;margin-bottom:22px;">$250</div>
-<ul style="list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:9px;flex:1;">
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 5 race nights</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 1 or 2 races per night</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Your choice of car &amp; tracks</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Championship standings</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Set your own day &amp; time</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Custom trophy ceremony</li>
-</ul>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:block;text-align:center;background:#EF4444;color:white;padding:14px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.02em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request This Package</a>
-</div>
-
-<div style="background:linear-gradient(155deg,#111,#0a0a0a);border:1px solid #2a2a2a;border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:10px;">Grand Tour Season</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;line-height:1;margin-bottom:4px;">6 Weeks</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.86em;color:#888;margin-bottom:26px;">6 circuits · 1 or 2 races each night</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Price Per Driver</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:3em;font-weight:900;color:white;line-height:1;margin-bottom:22px;">$300</div>
-<ul style="list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:9px;flex:1;">
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 6 race nights</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> 1 or 2 races per night</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Your choice of car &amp; tracks</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Championship standings</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Set your own day &amp; time</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Custom trophy ceremony</li>
-<li style="display:flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.88em;color:#bbb;"><span style="color:#EF4444;font-size:1.05em;line-height:1;">✓</span> Optional mid-season break</li>
-</ul>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:block;text-align:center;background:transparent;color:white;padding:14px;border-radius:8px;border:1px solid #EF4444;font-family:'Barlow Condensed',sans-serif;font-size:1.02em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Request This Package</a>
-</div>
-</div>
-<div style="text-align:center;margin-top:22px;">
-<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#666;margin:0;">Prices are per driver for the full season. Have questions? <a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="color:#EF4444;text-decoration:none;">Reach out</a> and we'll help you choose the right package.</p>
-</div>
-</div>
-</div>
-
-<div style="padding:56px 40px;background:#000;">
-<div style="max-width:900px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:36px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">What To Expect</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.1em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 14px;">Race Night Format</h2>
-<p style="font-family:'Barlow',sans-serif;font-size:0.98em;color:#999;margin:0 auto;max-width:600px;">Every race night is <strong style="color:#fff;">1 hour</strong>. That hour is yours to divide however you want — you choose how much time goes to practice, qualifying, and racing, and whether you run 1 race or 2. Just tell us in the request form and we'll build the night around your preferences.</p>
-</div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:26px 28px;margin-bottom:20px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:16px;text-align:center;">Your Hour — Example Split</div>
-<div style="display:flex;border-radius:8px;overflow:hidden;height:44px;margin-bottom:16px;">
-<div style="flex:2;background:#1a2a1a;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#4ade80;letter-spacing:1px;border-right:2px solid #0d0d0d;">Practice</div>
-<div style="flex:1.5;background:#1a1a2a;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#818cf8;letter-spacing:1px;border-right:2px solid #0d0d0d;">Qualifying</div>
-<div style="flex:2.5;background:#2a1a1a;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#EF4444;letter-spacing:1px;border-right:2px solid #0d0d0d;">Race 1</div>
-<div style="flex:2;background:#3a1010;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;text-transform:uppercase;color:#f87171;letter-spacing:1px;">Race 2</div>
-</div>
-<div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-<div style="display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;font-size:0.82em;color:#999;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4ade80;flex-shrink:0;"></span>Practice — your choice of minutes</div>
-<div style="display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;font-size:0.82em;color:#999;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#818cf8;flex-shrink:0;"></span>Qualifying — your choice of minutes</div>
-<div style="display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;font-size:0.82em;color:#999;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#EF4444;flex-shrink:0;"></span>Race(s) — fills the remainder</div>
-</div>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;overflow:hidden;">
-<div style="background:#111;padding:14px 18px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:8px;"><span style="background:rgba(239,68,68,0.18);color:#EF4444;font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Option A</span><span style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;text-transform:uppercase;color:white;">Single Race Night</span></div>
-<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Practice</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
-<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Qualifying</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
-<div style="display:grid;grid-template-columns:110px 1fr;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Race</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Remaining time — one longer race</div></div>
-</div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;overflow:hidden;">
-<div style="background:#111;padding:14px 18px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:8px;"><span style="background:rgba(239,68,68,0.18);color:#EF4444;font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;">Option B</span><span style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;text-transform:uppercase;color:white;">Two Race Night</span></div>
-<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Practice</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
-<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Qualifying</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
-<div style="display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid #141414;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Race 1</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Your choice of time</div></div>
-<div style="display:grid;grid-template-columns:110px 1fr;"><div style="background:#1a1a1a;padding:12px 14px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#EF4444;text-transform:uppercase;">Race 2</div><div style="padding:12px 14px;font-family:'Barlow',sans-serif;font-size:0.85em;color:#aaa;">Remaining time — reverse grid</div></div>
-</div>
-</div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:12px;padding:16px 22px;display:flex;gap:12px;align-items:flex-start;">
-<div style="font-size:1.2em;line-height:1;flex-shrink:0;">📋</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#999;line-height:1.6;">When you fill out the request form, simply tell us how you'd like to divide the hour — how many minutes for practice, qualifying, and each race. The only rule: it all has to add up to 60 minutes.</div>
-</div>
-</div>
-</div>
-
-<div id="cl-browser" style="padding:56px 40px;background:#0a0a0a;">
-<div style="max-width:1000px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:36px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Build Your Lineup</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;">Available Cars &amp; Tracks</h2>
-<p style="font-family:'Barlow',sans-serif;font-size:0.98em;color:#888;margin:0 auto;max-width:540px;">Browse what's available for your custom league. Click a tab to explore — then mention your picks in the request form.</p>
-</div>
-<div style="display:flex;gap:4px;background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:5px;margin-bottom:26px;width:fit-content;margin-left:auto;margin-right:auto;">
-<button onclick="clTab('cars')" id="cl-tab-cars" style="background:#EF4444;color:white;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Cars</button>
-<button onclick="clTab('tracks')" id="cl-tab-tracks" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Tracks</button>
-</div>
-
-<div id="cl-panel-cars">
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">GT3</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Audi R8 GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">BMW Z4 GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Chevrolet Corvette C7R GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lamborghini Huracán GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lotus Evora GTC</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">McLaren 650S GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">McLaren MP4-12C GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mercedes SLS AMG GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mercedes-AMG GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Nissan GT-R NISMO GT3</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Porsche 911 GT3</li></ul></div>
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">GT4 &amp; Cup</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Audi TT Cup</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">BMW M235i Racing</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lotus 2-Eleven</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Maserati GranTurismo MC GT4</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mazda MX-5 Cup</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Porsche Cayman GT4</li></ul></div>
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Open Wheel &amp; Prototype</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Tatuus Formula 4</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Lotus Exos Formula 1</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Praga R1</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mazda 787B</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Audi R18 e-tron</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Porsche 919 Hybrid</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Toyota TS040 Hybrid</li></ul></div>
-</div>
-<div style="text-align:center;margin-top:18px;"><p style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#666;margin:0;">This is just a selection of what's available — we have many more cars in our library. Ask us and we'll let you know what else we can offer.</p></div>
-</div>
-
-<div id="cl-panel-tracks" style="display:none;">
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Europe — A to M</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Barcelona GP &amp; Moto</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Black Cat County — Standard, Long &amp; Short</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Brands Hatch GP &amp; Indy</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Highlands — Standard, Long &amp; Short</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Imola</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Magione</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Monza</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Monza 1966 — Full Course, Junior &amp; Road Course</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Mugello</li></ul></div>
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Europe — N to Z</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Nordschleife</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Nürburgring GP &amp; Sprint</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Red Bull Ring GP &amp; National</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Silverstone GP, International &amp; National</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Silverstone 1967</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Spa-Francorchamps</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Vallelunga GP, Classic &amp; Club</li><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Zandvoort</li></ul></div>
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:20px 18px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><div style="width:8px;height:8px;background:#EF4444;border-radius:50%;flex-shrink:0;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;">Americas</div></div><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;"><li style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;">Laguna Seca</li></ul></div>
-</div>
-<div style="text-align:center;margin-top:18px;"><p style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#666;margin:0;">New tracks added regularly. If you have a specific circuit in mind, just ask.</p></div>
-</div>
-</div>
-</div>
-
-<div style="padding:56px 40px;background:#000;">
-<div style="max-width:1000px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:36px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Perfect For</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.2em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Who Runs Custom Leagues</h2>
-</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:30px 24px;text-align:center;"><div style="font-size:2.2em;margin-bottom:14px;">👥</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:10px;">Friend Groups</div><p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#888;line-height:1.6;margin:0;">Turn your squad's group chat into a real championship. Pick your favourite cars and circuits and settle it on the sim.</p></div>
-<div style="background:linear-gradient(135deg,#1a0000,#1e0606);border:1px solid rgba(239,68,68,0.3);border-radius:14px;padding:30px 24px;text-align:center;"><div style="font-size:2.2em;margin-bottom:14px;">🏢</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:10px;">Corporate &amp; Team Events</div><p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#aaa;line-height:1.6;margin:0;">A multi-week league is an unforgettable team-building experience. We handle logistics — you show up and race.</p></div>
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;padding:30px 24px;text-align:center;"><div style="font-size:2.2em;margin-bottom:14px;">🏁</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15em;font-weight:900;text-transform:uppercase;color:white;margin-bottom:10px;">Clubs &amp; Communities</div><p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#888;line-height:1.6;margin:0;">Car clubs, motorsport organisations, and online communities looking for an IRL sim racing experience with real stakes.</p></div>
-</div>
-</div>
-</div>
-
-<div id="cl-request" style="padding:70px 40px;background:#0a0a0a;position:relative;overflow:hidden;border-top:1px solid #1a1a1a;">
-<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(239,68,68,0.14) 0%,transparent 70%);pointer-events:none;"></div>
-<div style="position:relative;z-index:1;max-width:760px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:40px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">Get Started</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 16px;line-height:1;">Ready To Build Your League?</h2>
-<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;margin:0;">Fill out the request form below and our team will reach out within 48 hours to confirm availability and put together your custom quote.</p>
-</div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;">
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:18px 16px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">Response Time</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.35em;font-weight:900;color:white;line-height:1;">Within 48 hrs</div></div>
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:18px 16px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">Min. Field Size</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.35em;font-weight:900;color:white;line-height:1;">6 Drivers</div></div>
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:18px 16px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">No Obligation</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.35em;font-weight:900;color:white;line-height:1;">Free Quote</div></div>
-</div>
-<div style="text-align:center;">
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScdhCxJb5Ho8Q1Th4YVtyAWvroll8zDYES2hSu0Knu87894lQ/viewform?usp=dialog" target="_blank" rel="noopener" style="display:inline-block;background:#EF4444;color:white;padding:18px 56px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;box-shadow:0 8px 32px rgba(239,68,68,0.3);">Submit League Request</a>
-<div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#666;margin-top:14px;">Have questions first? Email us at <a href="mailto:info@sim1racing.com" style="color:#EF4444;text-decoration:none;">info@sim1racing.com</a></div>
-</div>
-</div>
-</div>
+<section class="section" id="team-youtube" style="background:var(--bg2);">
+  <div class="wrap-md">
+    <div style="background:linear-gradient(135deg,#1a0000,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:14px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;">
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px;">▶ YOUTUBE SERIES</div>
+        <div style="font-family:var(--cond);font-size:1.6em;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:8px;line-height:1.1;">Follow the Team's Journey</div>
+        <p style="font-family:var(--body);font-size:0.9em;color:#999;margin:0;max-width:480px;line-height:1.6;">Race prep, competition footage, driver development, and the full story of what it takes to race at the top for SIM1Racing.</p>
+      </div>
+      <a href="https://youtube.com/playlist?list=PLzDnHFj7Pgvxw4PLyuasKFh3J4HCsZA7h&si=6kqMY1YWFqXBhEp6" target="_blank" rel="noopener" class="btn" style="white-space:nowrap;flex-shrink:0;">WATCH THE SERIES ↗</a>
+    </div>
+  </div>
+</section>
 
 <style>
-#sec-customleagues{position:relative;}
-@media(max-width:768px){
-#sec-customleagues h1{font-size:3em!important;}
-#sec-customleagues h2{font-size:1.8em!important;}
-#sec-customleagues div[style*="padding:70px 40px 60px"]{padding:36px 22px!important;}
-#sec-customleagues #cl-hero-graphic{order:-1;}
-#sec-customleagues #cl-hero-copy{order:0;}
-#sec-customleagues div[style*="grid-template-columns:1.15fr 0.85fr"],#sec-customleagues div[style*="grid-template-columns:repeat(3,1fr)"],#sec-customleagues div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr!important;}
-#sec-customleagues div[style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
-#sec-customleagues div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
-#sec-customleagues div[style*="grid-template-columns:110px 1fr"]{grid-template-columns:90px 1fr!important;}
+#sec-team{position:relative;}
+#sec-team .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+#sec-team .team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+#sec-team .team-photo{aspect-ratio:4/5;background:linear-gradient(160deg,#1a0000,#2a0808,#1a1a1a);display:flex;align-items:center;justify-content:center;text-align:center;color:#555;font-family:var(--cond);font-size:0.8em;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:16px;}
+#sec-team .team-photo span{max-width:150px;line-height:1.5;}
+#sec-team .team-body{padding:18px 18px 20px;}
+#sec-team .team-name{font-family:var(--cond);font-size:1.25em;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:10px;}
+#sec-team .team-fact{display:flex;flex-direction:column;gap:1px;margin-bottom:8px;}
+#sec-team .team-fact:last-child{margin-bottom:0;}
+#sec-team .team-fact-l{font-family:var(--cond);font-size:0.62em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);}
+#sec-team .team-fact-v{font-family:var(--body);font-size:0.82em;color:#999;line-height:1.4;}
+@media(max-width:900px){
+#sec-team .team-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+#sec-team .team-grid{grid-template-columns:1fr;}
+#sec-team .hero h1{font-size:2.6em;}
 }
 </style>
-</div><!-- /#sec-customleagues -->
-
-<script>
-function clTab(tab) {
-  var panels = ['cars','tracks'];
-  panels.forEach(function(p){
-    document.getElementById('cl-panel-' + p).style.display = (p === tab) ? 'block' : 'none';
-    var btn = document.getElementById('cl-tab-' + p);
-    if(p === tab){ btn.style.background = '#EF4444'; btn.style.color = 'white'; }
-    else { btn.style.background = 'transparent'; btn.style.color = '#888'; }
-  });
-}
-</script>
+</div><!-- /#sec-team -->
 <footer class="footer">
   <div class="f1">COMPETITIONS</div>
-  <div class="f2">SIM1Racing × Spirit Works Garage × Burnout Events</div>
+  <div class="f2">SIM1Racing</div>
   <div class="footer-links">
-    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" class="btn btn-sm btn-outline">CUSTOM LEAGUES</a>
     <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" class="btn btn-sm btn-outline">ENDURANCE RACE</a>
     <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" class="btn btn-sm btn-outline">GIVEAWAYS</a>
     <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" class="btn btn-sm btn-outline">LEAGUES</a>
     <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" class="btn btn-sm btn-outline">QUALIFIERS</a>
-    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" class="btn btn-sm btn-outline">VIEW YOUR RESULTS</a>
+    <a href="#sec-team" onclick="goToSection(event,'sec-team')" class="btn btn-sm btn-outline">SIM1RACING TEAM</a>
+    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" class="btn btn-sm btn-outline">VIEW LAPS/RESULTS</a>
     <a href="https://www.instagram.com/sim1racing/" target="_blank" rel="noopener" class="btn btn-sm btn-outline">@SIM1RACING ↗</a>
   </div>
 </footer>
@@ -4612,7 +4801,7 @@ function clTab(tab) {
    (after every section has been added to the DOM) since it needs
    to find and toggle all of them on load.
    ════════════════════════════════════════════════════════════════ */
-const SECTION_IDS = ['home','sec-qualifiers','sec-leagues','sec-giveaways','sec-endurance','sec-customleagues','sec-viewresults'];
+const SECTION_IDS = ['home','sec-qualifiers','sec-leagues','sec-giveaways','sec-endurance','sec-team','sec-viewresults'];
 
 function showSectionById(id){
   if(!SECTION_IDS.includes(id)) id = 'home';

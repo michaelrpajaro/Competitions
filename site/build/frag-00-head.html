@@ -46,8 +46,8 @@ img{max-width:100%;}
      #view-home and each #sec-* are toggled by goToSection() in the
      footer script; CSS just establishes the default hidden state so
      there's no flash-of-everything before JS runs. ── */
-#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-customleagues,#sec-viewresults{display:none;}
-#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-customleagues.active-view,#sec-viewresults.active-view{display:block;}
+#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-team,#sec-viewresults{display:none;}
+#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-team.active-view,#sec-viewresults.active-view{display:block;}
 
 /* ── SHARED LAYOUT PRIMITIVES ── */
 .section{padding:80px 40px;}
@@ -158,12 +158,12 @@ img{max-width:100%;}
 <nav class="nav"><div class="nav-inner">
   <a href="#home" class="nav-brand" onclick="goToSection(event,'home')"><span class="dot"></span> COMPETITIONS</a>
   <div class="nav-links">
-    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-nav="sec-customleagues" class="cta">Custom Leagues ↗</a>
     <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-nav="sec-endurance">Endurance Race</a>
     <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" data-nav="sec-giveaways">Giveaways</a>
     <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-nav="sec-leagues">Leagues</a>
     <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-nav="sec-qualifiers">Qualifiers</a>
-    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" data-nav="sec-viewresults">View Your Results</a>
+    <a href="#sec-team" onclick="goToSection(event,'sec-team')" data-nav="sec-team">SIM1Racing Team</a>
+    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" data-nav="sec-viewresults">View Laps/Results</a>
   </div>
 </div></nav>
 
@@ -183,7 +183,7 @@ img{max-width:100%;}
   <div class="hero-inner">
     <span class="badge">SIM1RACING</span>
     <h1>EVERY WAY TO<br><span class="accent">COMPETE</span></h1>
-    <p>SIM1Racing runs competitions on two tracks at once. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, race a one-off endurance event, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
+    <p>At SIM1 you can always just come in and drive <b style="color:#fff;">any car on any track</b> — or you can put that pace to the test in one of the competitions below. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, race a one-off endurance event, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="v">6</div><div class="l">Ways to Compete</div></div>
       <div class="hero-stat"><div class="v">Weekly</div><div class="l">New Events Posted</div></div>
@@ -200,15 +200,6 @@ img{max-width:100%;}
       <p class="lead" style="max-width:680px;margin:14px auto 0;">Casual, drop-in racing and season-long commitments, side by side — everything below is free to enter unless noted.</p>
     </div>
     <div class="prog-grid">
-      <button class="prog-card" onclick="goToSection(event,'sec-customleagues')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">BOOK IT · SERVICE · COMMITMENT</div>
-          <div class="prog-title">Custom Leagues</div>
-          <div class="prog-sub">Not a competition — a service. Pick your car, your tracks, your schedule, and we run the season for you.</div>
-          <div class="prog-facts"><span>From <b>$200</b>/driver</span></div>
-          <div class="prog-cta">VIEW PACKAGES →</div>
-        </div>
-      </button>
       <button class="prog-card" onclick="goToSection(event,'sec-endurance')">
         <div class="prog-body">
           <div class="prog-eyebrow">MONTHLY EVENT · CASUAL</div>
@@ -231,8 +222,8 @@ img{max-width:100%;}
         <div class="prog-body">
           <div class="prog-eyebrow">SEASONS · PAID · COMMITMENT</div>
           <div class="prog-title">Leagues</div>
-          <div class="prog-sub">A new Monthly League every month, plus Audi TT Cup and AACC — multi-week championship seasons with their own standings and prize pool.</div>
-          <div class="prog-facts"><span>Auto-updates as seasons start</span></div>
+          <div class="prog-sub">A new Monthly League every month, plus Audi TT Cup and AACC — or host a fully custom season for your own group.</div>
+          <div class="prog-facts"><span>Auto-updates as seasons start</span><span>+ Host Your Own</span></div>
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
@@ -245,12 +236,21 @@ img{max-width:100%;}
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
+      <button class="prog-card" onclick="goToSection(event,'sec-team')">
+        <div class="prog-body">
+          <div class="prog-eyebrow">MEET THE DRIVERS</div>
+          <div class="prog-title">SIM1Racing Team</div>
+          <div class="prog-sub">Our current team drivers, how they earned their spot, and what they race.</div>
+          <div class="prog-facts"><span>4 Team Drivers</span></div>
+          <div class="prog-cta">MEET THE TEAM →</div>
+        </div>
+      </button>
       <button class="prog-card" onclick="goToSection(event,'sec-viewresults')">
         <div class="prog-body">
           <div class="prog-eyebrow">YOUR STATS</div>
-          <div class="prog-title">View Your Results</div>
-          <div class="prog-sub">Look up your name to see qualifier results, lap times, badges, and the full event archive.</div>
-          <div class="prog-facts"><span>Search by driver name</span></div>
+          <div class="prog-title">View Laps/Results</div>
+          <div class="prog-sub">Look up your name to see qualifier results and lap times, or browse standings for any league.</div>
+          <div class="prog-facts"><span>Individual + League Results</span></div>
           <div class="prog-cta">LOOK UP →</div>
         </div>
       </button>
@@ -298,7 +298,7 @@ img{max-width:100%;}
       <div class="track-card">
         <div class="tk-ico">🏆</div>
         <div class="tk-t">Leagues</div>
-        <div class="tk-d">Separate, paid multi-week seasons with their own standings and prize pools — parallel to the free ladder above.</div>
+        <div class="tk-d">Paid multi-week seasons with their own standings and prize pools — or book a fully custom season for your own group.</div>
       </div>
       <div class="track-card">
         <div class="tk-ico">🚗</div>
@@ -306,9 +306,9 @@ img{max-width:100%;}
         <div class="tk-d">Real-world prizes layered on top of racing — a car giveaway, a monthly endurance race, and a free track day.</div>
       </div>
       <div class="track-card">
-        <div class="tk-ico">🛠️</div>
-        <div class="tk-t">Custom Leagues</div>
-        <div class="tk-d">Not a competition you enter — a service you book. Bring your own group and we run the season for you.</div>
+        <div class="tk-ico">🏁</div>
+        <div class="tk-t">SIM1Racing Team</div>
+        <div class="tk-d">Our roster of team drivers — free 24/7 access and a seat in national &amp; international competition.</div>
       </div>
     </div>
   </div>

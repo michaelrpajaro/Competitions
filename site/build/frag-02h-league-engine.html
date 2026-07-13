@@ -183,4 +183,79 @@ renderStandingsTable('aacc', 'aacc-standings-rows');
     renderStandingsTable(l.slug, 'lg-dyn-rows-' + l.slug);
   });
 })();
+
+/* ════════════════════════════════════════════════════════════════
+   VIEW LAPS/RESULTS — "League Results" mode
+   Individual/League toggle lives in the View Laps/Results section
+   (frag-01f); this builds the league picker + reuses the same
+   renderStandingsTable()/openResultsModal() the Leagues page uses,
+   just rendered into a different container.
+   ════════════════════════════════════════════════════════════════ */
+function leagueDisplayName(key){
+  const feat = FEATURED_LEAGUES.find(l => l.slug === key);
+  if(feat) return feat.name;
+  if(key === 'audi') return 'Audi TT Cup';
+  if(key === 'aacc') return 'AACC';
+  return key;
+}
+function vrLeagueWeeksHtml(leagueKey){
+  const results = window.S1_RESULTS && window.S1_RESULTS[leagueKey];
+  if(!results) return '';
+  return Object.keys(results).map(Number).sort((a,b)=>a-b).map(w => {
+    const wd = results[w];
+    const hasResults = !!(wd.practice || wd.quali || wd.race1 || wd.race2);
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('${leagueKey}',${w})" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'">
+      <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk ${w}${wd.date ? ' &middot; ' + wd.date : ''}</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">${wd.track || 'TBA'}</div></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">${hasResults ? 'View Results &rsaquo;' : 'Pending'}</div>
+    </div>`;
+  }).join('');
+}
+function renderVrLeague(leagueKey){
+  document.querySelectorAll('#vr-league-tabs button').forEach(b => {
+    const active = b.dataset.league === leagueKey;
+    b.style.background = active ? 'var(--red)' : 'transparent';
+    b.style.color = active ? '#fff' : '#888';
+  });
+  const rowsId = 'vr-standings-rows-' + leagueKey;
+  const weeksHtml = vrLeagueWeeksHtml(leagueKey);
+  document.getElementById('vr-league-content').innerHTML = `
+    <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;margin-bottom:24px;">
+      <div style="background:#111;padding:18px 22px;border-bottom:1px solid #1a1a1a;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">${leagueDisplayName(leagueKey)} &middot; Standings</div>
+      </div>
+      <div id="${rowsId}"></div>
+    </div>
+    <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
+      <div style="background:#111;padding:14px 22px;border-bottom:1px solid #1a1a1a;font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#888;">Race Results by Week</div>
+      ${weeksHtml || `<div style="padding:30px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#555;">No weeks posted yet.</div>`}
+    </div>`;
+  renderStandingsTable(leagueKey, rowsId);
+}
+function initVrLeagueTabs(){
+  Object.keys(LEAGUE_STANDINGS).forEach(mergeComputedWeeks);
+  const keys = Object.keys(LEAGUE_STANDINGS).filter(k => LEAGUE_STANDINGS[k].drivers.length > 0);
+  const tabsEl = document.getElementById('vr-league-tabs');
+  const contentEl = document.getElementById('vr-league-content');
+  if(!tabsEl || !contentEl) return; // View Laps/Results section not on this build
+  if(!keys.length){
+    tabsEl.innerHTML = '';
+    contentEl.innerHTML = `<div style="padding:40px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.9em;color:#555;">No league results posted yet.</div>`;
+    return;
+  }
+  tabsEl.innerHTML = keys.map((k,i) => `<button data-league="${k}" onclick="renderVrLeague('${k}')" style="background:${i===0?'var(--red)':'transparent'};color:${i===0?'#fff':'#888'};border:1px solid var(--border);padding:10px 20px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.9em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">${leagueDisplayName(k)}</button>`).join('');
+  renderVrLeague(keys[0]);
+}
+initVrLeagueTabs();
+
+/* Individual Results / League Results mode toggle for View Laps/Results. */
+function vrModeTab(mode){
+  const modes = ['individual','league'];
+  modes.forEach(m => {
+    document.getElementById('vr-mode-' + m).style.display = (m === mode) ? '' : 'none';
+    const btn = document.getElementById('vr-mode-tab-' + m);
+    if(m === mode){ btn.style.background = '#EF4444'; btn.style.color = '#fff'; }
+    else { btn.style.background = 'transparent'; btn.style.color = '#888'; }
+  });
+  window.scrollTo(0, document.getElementById('sec-viewresults').offsetTop - 60);
+}
 </script>

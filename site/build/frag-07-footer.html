@@ -1,13 +1,13 @@
 <footer class="footer">
   <div class="f1">COMPETITIONS</div>
-  <div class="f2">SIM1Racing × Spirit Works Garage × Burnout Events</div>
+  <div class="f2">SIM1Racing</div>
   <div class="footer-links">
-    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" class="btn btn-sm btn-outline">CUSTOM LEAGUES</a>
     <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" class="btn btn-sm btn-outline">ENDURANCE RACE</a>
     <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" class="btn btn-sm btn-outline">GIVEAWAYS</a>
     <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" class="btn btn-sm btn-outline">LEAGUES</a>
     <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" class="btn btn-sm btn-outline">QUALIFIERS</a>
-    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" class="btn btn-sm btn-outline">VIEW YOUR RESULTS</a>
+    <a href="#sec-team" onclick="goToSection(event,'sec-team')" class="btn btn-sm btn-outline">SIM1RACING TEAM</a>
+    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" class="btn btn-sm btn-outline">VIEW LAPS/RESULTS</a>
     <a href="https://www.instagram.com/sim1racing/" target="_blank" rel="noopener" class="btn btn-sm btn-outline">@SIM1RACING ↗</a>
   </div>
 </footer>
@@ -20,7 +20,7 @@
    (after every section has been added to the DOM) since it needs
    to find and toggle all of them on load.
    ════════════════════════════════════════════════════════════════ */
-const SECTION_IDS = ['home','sec-qualifiers','sec-leagues','sec-giveaways','sec-endurance','sec-customleagues','sec-viewresults'];
+const SECTION_IDS = ['home','sec-qualifiers','sec-leagues','sec-giveaways','sec-endurance','sec-team','sec-viewresults'];
 
 function showSectionById(id){
   if(!SECTION_IDS.includes(id)) id = 'home';

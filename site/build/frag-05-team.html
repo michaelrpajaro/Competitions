@@ -1,0 +1,110 @@
+<!-- ════════════════════════════════════════════════════════════════
+  SECTION: SIM1RACING TEAM — vision, current roster, team photo spot,
+  and the team's YouTube playlist. Wrapped in #sec-team so its own
+  mobile CSS can't leak into any other section on this page.
+════════════════════════════════════════════════════════════════ -->
+<div id="sec-team" style="width:100%;position:relative;overflow-x:hidden;">
+<a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
+
+<header class="hero" style="padding-top:64px;">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <span class="badge">THE ULTIMATE GOAL</span>
+    <h1>SIM1RACING<br><span class="accent">TEAM</span></h1>
+    <p>Team drivers get free 24/7 access, unlimited sim time, and represent SIM1Racing in national &amp; international competition. There's one way in: win the Monthly Championship and outpace our current team drivers to earn your spot.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="v">4</div><div class="l">Team Drivers</div></div>
+      <div class="hero-stat"><div class="v">24/7</div><div class="l">Free Sim Access</div></div>
+      <div class="hero-stat"><div class="v">Earned</div><div class="l">Not Bought — Won</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="team-roster" style="background:var(--bg2);">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:36px;">
+      <div class="eyebrow">CURRENT ROSTER</div>
+      <h2 class="h2">Meet the Team</h2>
+      <p class="lead" style="max-width:640px;margin:14px auto 0;">Every driver here earned their seat by winning the Monthly Championship and beating the team on track.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — Jordan Farrell</span></div>
+        <div class="team-body">
+          <div class="team-name">Jordan Farrell</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — Jack Mitchell</span></div>
+        <div class="team-body">
+          <div class="team-name">Jack Mitchell</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — Jonas Acevedo</span></div>
+        <div class="team-body">
+          <div class="team-name">Jonas Acevedo</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo"><span>📷 Driver photo — DJ Hamilton</span></div>
+        <div class="team-body">
+          <div class="team-name">DJ Hamilton</div>
+          <div class="team-fact"><span class="team-fact-l">Specialty Car</span><span class="team-fact-v">[TBD — confirm car]</span></div>
+          <div class="team-fact"><span class="team-fact-l">How They Joined</span><span class="team-fact-v">[TBD — confirm which win earned the spot]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="team-photo" style="background:var(--bg);">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:30px;">
+      <div class="eyebrow">THE TEAM</div>
+      <h2 class="h2">Together at SIM1</h2>
+    </div>
+    <div class="photo-spot" style="min-height:280px;"><span>📷 Team photo — all 4 drivers together at the sim lab</span></div>
+  </div>
+</section>
+
+<section class="section" id="team-youtube" style="background:var(--bg2);">
+  <div class="wrap-md">
+    <div style="background:linear-gradient(135deg,#1a0000,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:14px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;">
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px;">▶ YOUTUBE SERIES</div>
+        <div style="font-family:var(--cond);font-size:1.6em;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:8px;line-height:1.1;">Follow the Team's Journey</div>
+        <p style="font-family:var(--body);font-size:0.9em;color:#999;margin:0;max-width:480px;line-height:1.6;">Race prep, competition footage, driver development, and the full story of what it takes to race at the top for SIM1Racing.</p>
+      </div>
+      <a href="https://youtube.com/playlist?list=PLzDnHFj7Pgvxw4PLyuasKFh3J4HCsZA7h&si=6kqMY1YWFqXBhEp6" target="_blank" rel="noopener" class="btn" style="white-space:nowrap;flex-shrink:0;">WATCH THE SERIES ↗</a>
+    </div>
+  </div>
+</section>
+
+<style>
+#sec-team{position:relative;}
+#sec-team .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+#sec-team .team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+#sec-team .team-photo{aspect-ratio:4/5;background:linear-gradient(160deg,#1a0000,#2a0808,#1a1a1a);display:flex;align-items:center;justify-content:center;text-align:center;color:#555;font-family:var(--cond);font-size:0.8em;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:16px;}
+#sec-team .team-photo span{max-width:150px;line-height:1.5;}
+#sec-team .team-body{padding:18px 18px 20px;}
+#sec-team .team-name{font-family:var(--cond);font-size:1.25em;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:10px;}
+#sec-team .team-fact{display:flex;flex-direction:column;gap:1px;margin-bottom:8px;}
+#sec-team .team-fact:last-child{margin-bottom:0;}
+#sec-team .team-fact-l{font-family:var(--cond);font-size:0.62em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);}
+#sec-team .team-fact-v{font-family:var(--body);font-size:0.82em;color:#999;line-height:1.4;}
+@media(max-width:900px){
+#sec-team .team-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+#sec-team .team-grid{grid-template-columns:1fr;}
+#sec-team .hero h1{font-size:2.6em;}
+}
+</style>
+</div><!-- /#sec-team -->

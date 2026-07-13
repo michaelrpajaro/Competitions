@@ -1,8 +1,9 @@
 <!-- ════════════════════════════════════════════════════════════════
-  SECTION: VIEW YOUR RESULTS — driver lookup, event archive, and top
-  stats. Wrapped in #sec-viewresults so its own mobile CSS (which
-  targets generic div[style*="..."] selectors) cannot affect any
-  other section on this page.
+  SECTION: VIEW LAPS/RESULTS — driver lookup, event archive, and top
+  stats (Individual mode), plus league standings and per-week result
+  lookups (League mode). Wrapped in #sec-viewresults so its own mobile
+  CSS (which targets generic div[style*="..."] selectors) cannot leak
+  into any other section on this page.
 ════════════════════════════════════════════════════════════════ -->
 <div id="sec-viewresults">
 <a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
@@ -10,11 +11,16 @@
 <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.12) 0%,transparent 70%);pointer-events:none;"></div>
 <div style="position:relative;z-index:1;">
 <div style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:14px;margin-bottom:20px;">Results &amp; History</div>
-<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:3.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 18px;line-height:1;">VIEW YOUR RESULTS</h1>
-<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;max-width:700px;margin:0 auto;">Look up your qualifier results, browse the full event archive, or check the all-time top stats.</p>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:3.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 18px;line-height:1;">VIEW LAPS/RESULTS</h1>
+<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;max-width:700px;margin:0 auto 28px;">Look up your own qualifier results and lap times, or browse the standings for any league.</p>
+<div style="display:flex;gap:4px;background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:5px;width:fit-content;margin:0 auto;">
+<button onclick="vrModeTab('individual')" id="vr-mode-tab-individual" style="background:#EF4444;color:white;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Individual Results</button>
+<button onclick="vrModeTab('league')" id="vr-mode-tab-league" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">League Results</button>
+</div>
 </div>
 </div>
 
+<div id="vr-mode-individual">
 <div id="race-portal" style="padding:60px 40px 100px;background:#0a0a0a;">
 <div style="max-width:1000px;margin:0 auto;">
 <div style="background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;">
@@ -77,6 +83,18 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 </div>
 </div>
 </div>
+</div><!-- /#vr-mode-individual -->
+
+<div id="vr-mode-league" style="display:none;padding:60px 40px 100px;background:#0a0a0a;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="text-align:center;margin-bottom:26px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">PICK A LEAGUE</div>
+<p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#888;margin:0;">Championship standings and week-by-week race results for every league that has posted results.</p>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:26px;" id="vr-league-tabs"></div>
+<div id="vr-league-content"></div>
+</div>
+</div>
 
 <style>
 #sec-viewresults{position:relative;}
@@ -94,6 +112,7 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 #sec-viewresults div[style*="padding:100px 40px 20px"] h1{font-size:2.4em!important;}
 #sec-viewresults div[style*="padding:60px 40px 100px"]{padding:30px 18px 60px!important;}
 #sec-viewresults #stats-grid{grid-template-columns:1fr!important;}
+#sec-viewresults #vr-league-tabs button{padding:9px 16px!important;font-size:0.85em!important;}
 #sec-viewresults .arch-event-row{padding:10px 14px!important;gap:10px!important;}
 #sec-viewresults .arch-event-row .arch-badge{min-width:34px!important;max-width:34px!important;padding:4px 0!important;font-size:0.7em!important;letter-spacing:1px!important;}
 #sec-viewresults .arch-event-row .arch-badge-full{display:none;}
