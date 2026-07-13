@@ -579,13 +579,30 @@ img{max-width:100%;}
    are identical, so this page keeps one definition instead of two).
    ════════════════════════════════════════════════════════════════ */
 
+/* Weekly Qualifier == that week's "Car of the Week", shared with the
+   Thursday Sprint Race. Rotates automatically every Sunday at 11:00 PM
+   Eastern (encoded below as explicit -04:00/-05:00 ISO timestamps so the
+   switchover lands on the same real-world instant for every visitor,
+   regardless of their own timezone) — see pickActiveSchedule() below.
+   Add new weeks to the end of this list; image:null shows a graceful
+   "graphic coming soon" placeholder until a real image URL is supplied. */
 const WEEKLY_SCHEDULE = [
-  { start:'2026-06-15', name:'Week 3 — Imola', car:'Lamborghini Huracan ST', track:'Imola',
-    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a3017d9bc0e15117cc2ee0a/1781536729181/Insta+Events+%2832%29.jpg' },
-  { start:'2026-06-29', name:'Week 1 — Silverstone GP', car:'Porsche 911 GT3 R', track:'Silverstone GP',
-    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a486406fd876d612ded269f/1783129094297/Insta+Events+%287%29.jpg' },
-  { start:'2026-07-06', name:'Week 2 — Nürburgring Sprint', car:'Ferrari P4/5 Competizione', track:'Nürburgring Sprint',
-    image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a4bd139354dd1631aa2ef9e/1783353657534/Insta+Events+%2838%29.jpg' },
+  { start:'2026-07-12T23:00:00-04:00', name:'Lamborghini Aventador SV — Red Bull Ring GP', car:'Lamborghini Aventador SV', track:'Red Bull Ring GP', image:null },
+  { start:'2026-07-19T23:00:00-04:00', name:'KTM X-Bow R — Brands Hatch GP', car:'KTM X-Bow R', track:'Brands Hatch GP', image:null },
+  { start:'2026-07-26T23:00:00-04:00', name:'Audi TT RS (VLN) — Zandvoort', car:'Audi TT RS (VLN)', track:'Zandvoort', image:null },
+  { start:'2026-08-02T23:00:00-04:00', name:'Pagani Zonda R — Monza', car:'Pagani Zonda R', track:'Monza', image:null },
+  { start:'2026-08-09T23:00:00-04:00', name:'BMW M2 Racing — Vallelunga Classic', car:'BMW M2 Racing', track:'Vallelunga Classic', image:null },
+  { start:'2026-08-16T23:00:00-04:00', name:"Porsche 919 '16 — Silverstone International", car:"Porsche 919 '16", track:'Silverstone International', image:null },
+  { start:'2026-08-23T23:00:00-04:00', name:'Porsche 911 R — Laguna Seca', car:'Porsche 911 R', track:'Laguna Seca', image:null },
+  { start:'2026-08-30T23:00:00-04:00', name:'BMW Z4 GT3 — Spa', car:'BMW Z4 GT3', track:'Spa', image:null },
+  { start:'2026-09-06T23:00:00-04:00', name:'McLaren F1 GTR — Mugello', car:'McLaren F1 GTR', track:'Mugello', image:null },
+  { start:'2026-09-13T23:00:00-04:00', name:'Lamborghini Gallardo SL — Brands Hatch Indy', car:'Lamborghini Gallardo SL', track:'Brands Hatch Indy', image:null },
+  { start:'2026-09-20T23:00:00-04:00', name:'Mazda MX-5 Cup — Silverstone National', car:'Mazda MX-5 Cup', track:'Silverstone National', image:null },
+  { start:'2026-09-27T23:00:00-04:00', name:'Praga R1 — Barcelona GP', car:'Praga R1', track:'Barcelona GP', image:null },
+  { start:'2026-10-04T23:00:00-04:00', name:'Nissan Skyline GT-R R34 — Red Bull Ring National', car:'Nissan Skyline GT-R R34', track:'Red Bull Ring National', image:null },
+  { start:'2026-10-11T23:00:00-04:00', name:'Lotus 72D — Monza 1966 Road', car:'Lotus 72D', track:'Monza 1966 Road', image:null },
+  { start:'2026-10-18T23:00:00-04:00', name:'Chevrolet Corvette C7.R GT3 — Laguna Seca', car:'Chevrolet Corvette C7.R GT3', track:'Laguna Seca', image:null },
+  { start:'2026-10-25T23:00:00-04:00', name:'Mercedes SLS AMG GT3 — Nürburgring Sprint', car:'Mercedes SLS AMG GT3', track:'Nürburgring Sprint', image:null },
 ];
 
 const MONTHLY_SCHEDULE = [
@@ -596,9 +613,12 @@ const MONTHLY_SCHEDULE = [
 ];
 
 function pickActiveSchedule(schedule) {
-  const t = new Date();
-  const today = t.getFullYear() + '-' + String(t.getMonth() + 1).padStart(2, '0') + '-' + String(t.getDate()).padStart(2, '0');
-  const active = schedule.filter(e => e.start <= today).pop();
+  // Compares actual instants (not date strings), so an entry whose
+  // start includes a UTC offset (e.g. Sunday 11pm Eastern) flips over
+  // at the same real-world moment for every visitor, no matter what
+  // timezone their own device is set to.
+  const now = Date.now();
+  const active = schedule.filter(e => new Date(e.start).getTime() <= now).pop();
   return active || schedule[0] || { image:'', name:'', car:'', track:'' };
 }
 const __activeWeekly = pickActiveSchedule(WEEKLY_SCHEDULE);
