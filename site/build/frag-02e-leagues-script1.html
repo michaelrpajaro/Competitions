@@ -29,9 +29,9 @@ const FEATURED_LEAGUES = [
   },
   {
     slug: 'august-league',
-    name: 'August SIM1 League', // ⚠ placeholder name — rename once you have one
-    car: 'Car TBA',             // ⚠ not specified — swap in the real car
-    heroImage: null,
+    name: 'August Monthly League',
+    car: 'Audi R8 LMS Ultra GT3',
+    heroImage: 'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a553d844c295a4bb50dc575/1783971204688/Inaugural+League+%281%29.jpg',
     start: new Date(2026, 7, 3, 19, 45), // Monday, Aug 3 2026, 7:45 PM
     weeks: [
       { n:1, dateLabel:'Aug 3',  track:'Silverstone International', image:null },
@@ -39,9 +39,10 @@ const FEATURED_LEAGUES = [
       { n:3, dateLabel:'Aug 17', track:'Barcelona GP',               image:null },
       { n:4, dateLabel:'Aug 24', track:'Imola',                      image:null, finale:true },
     ],
-    priceNonMember: '$200', // ⚠ assumed same as previous season — confirm
+    priceNonMember: '$200',
     signupUrl: 'https://app.acuityscheduling.com/catalog.php?owner=34519846&action=addCart&clear=1&id=2225180', // ⚠ reused placeholder link — swap for the real signup link
   },
+  // ↓ Every month gets a new Monthly League entry here (same shape) — new car, new 4-week track rotation.
   // ↓ ADD THE NEXT SEASON HERE (same shape) once it's announced.
 ];
 
@@ -108,9 +109,10 @@ function renderFeaturedLeague(league) {
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.14) 0%,transparent 70%);pointer-events:none;"></div>
     <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:50px;align-items:center;">
       <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#EF4444;font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:12px;margin-bottom:16px;">Monthly League</div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:3.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 10px;line-height:0.95;">${league.name}</h3>
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.2em;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#EF4444;margin-bottom:22px;">${league.car} &middot; 4 Weeks &middot; Starts ${startLabel}</div>
-        <p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;margin:0 0 26px;max-width:520px;">Four weeks. Four new circuits. Every Monday night, take the wheel of the ${league.car} and chase points toward the championship — with a prize pool that grows as more drivers join the field.</p>
+        <p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;margin:0 0 26px;max-width:520px;">A brand-new Monthly League, every month — a fresh car and a fresh set of four circuits each time. Every Monday night for four weeks, take the wheel of the ${league.car} and chase points toward the championship — with a prize pool that grows as more drivers join the field.</p>
         <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
           <a href="${league.signupUrl}" style="background:#EF4444;color:white;padding:15px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Sign Up Now</a>
           <a href="#lg-schedule" style="color:#ccc;font-family:'Barlow Condensed',sans-serif;font-size:0.9em;font-weight:700;text-transform:uppercase;letter-spacing:1px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px;">View Schedule &darr;</a>

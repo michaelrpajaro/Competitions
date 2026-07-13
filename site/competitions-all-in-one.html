@@ -40,22 +40,14 @@ img{max-width:100%;}
 .nav-links a{font-family:var(--cond);font-weight:800;font-size:0.76em;text-transform:uppercase;letter-spacing:1.2px;color:#888;text-decoration:none;padding:6px 11px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;}
 .nav-links a:hover{color:#fff;background:var(--card2);}
 .nav-links a.cta{background:var(--red);color:#fff;}
-.nav-links a.active-nav,.jumpbar-inner a.active-jump{color:#fff;background:#1a1a1a;border-color:var(--border3);}
+.nav-links a.active-nav{color:#fff;background:#1a1a1a;border-color:var(--border3);}
 
 /* ── SECTION VISIBILITY — only one "view" is shown at a time.
      #view-home and each #sec-* are toggled by goToSection() in the
      footer script; CSS just establishes the default hidden state so
      there's no flash-of-everything before JS runs. ── */
-#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-trackday,#sec-customleagues{display:none;}
-#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-trackday.active-view,#sec-customleagues.active-view{display:block;}
-
-/* ── QUICK-JUMP PILL BAR (sticky, mobile-first horizontal scroll) ── */
-.jumpbar{position:sticky;top:53px;z-index:590;background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border2);}
-.jumpbar-inner{max-width:1300px;margin:0 auto;display:flex;gap:8px;padding:10px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.jumpbar-inner::-webkit-scrollbar{display:none;}
-.jumpbar-inner a{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-size:0.78em;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:#ccc;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:8px 15px;text-decoration:none;transition:background .15s,border-color .15s;}
-.jumpbar-inner a:hover{background:#161616;border-color:var(--border3);}
-.jumpbar-inner a.jb-cta{background:var(--red);border-color:var(--red);color:#fff;}
+#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-customleagues,#sec-viewresults{display:none;}
+#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-customleagues.active-view,#sec-viewresults.active-view{display:block;}
 
 /* ── SHARED LAYOUT PRIMITIVES ── */
 .section{padding:80px 40px;}
@@ -124,6 +116,11 @@ img{max-width:100%;}
 .prog-facts b{color:#fff;font-weight:700;}
 .prog-cta{font-family:var(--body);font-size:0.85em;font-weight:700;color:var(--red);margin-top:2px;}
 
+/* ── PHOTO SPOT (placeholder frame for real photography) ── */
+.photo-spot{background:var(--card2);border:1px dashed var(--border3);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;color:#666;font-family:var(--cond);font-size:0.85em;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:20px;min-height:160px;}
+.photo-spot span{max-width:220px;line-height:1.5;}
+.photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+
 /* ── BACK-TO-HOME LINK (top of every section) ── */
 .back-home{display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#888;text-decoration:none;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:9px 16px;margin:18px 0 0 40px;transition:color .15s,background .15s;cursor:pointer;}
 .back-home:hover{color:#fff;background:#161616;}
@@ -145,11 +142,11 @@ img{max-width:100%;}
   .hero{padding:32px 16px 30px;}
   .nav-inner{padding:11px 16px;}
   .nav-links{display:none;}
-  .jumpbar{top:47px;}
   .h2{font-size:1.8em;}
   .hero h1{font-size:2.3em;}
   .hero-stats{grid-template-columns:repeat(3,1fr);gap:8px;}
   .hero-stat .v{font-size:1.15em;}
+  .photo-row{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -161,22 +158,14 @@ img{max-width:100%;}
 <nav class="nav"><div class="nav-inner">
   <a href="#home" class="nav-brand" onclick="goToSection(event,'home')"><span class="dot"></span> COMPETITIONS</a>
   <div class="nav-links">
-    <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-nav="sec-qualifiers">Qualifiers</a>
-    <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-nav="sec-leagues">Leagues</a>
+    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-nav="sec-customleagues" class="cta">Custom Leagues ↗</a>
+    <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-nav="sec-endurance">Endurance Race</a>
     <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" data-nav="sec-giveaways">Giveaways</a>
-    <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-nav="sec-endurance">Endurance</a>
-    <a href="#sec-trackday" onclick="goToSection(event,'sec-trackday')" data-nav="sec-trackday">Track Day</a>
-    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-nav="sec-customleagues" class="cta">Host a League ↗</a>
+    <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-nav="sec-leagues">Leagues</a>
+    <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-nav="sec-qualifiers">Qualifiers</a>
+    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" data-nav="sec-viewresults">View Your Results</a>
   </div>
 </div></nav>
-<div class="jumpbar"><div class="jumpbar-inner">
-  <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-jump="sec-qualifiers">🏎️ Qualifiers</a>
-  <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-jump="sec-leagues">🏆 Leagues</a>
-  <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" data-jump="sec-giveaways">🚗 Giveaways</a>
-  <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-jump="sec-endurance">🕑 Endurance</a>
-  <a href="#sec-trackday" onclick="goToSection(event,'sec-trackday')" data-jump="sec-trackday">🎟️ Track Day</a>
-  <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-jump="sec-customleagues" class="jb-cta">🛠️ Host a League</a>
-</div></div>
 
 <a id="top"></a>
 
@@ -194,7 +183,7 @@ img{max-width:100%;}
   <div class="hero-inner">
     <span class="badge">SIM1RACING</span>
     <h1>EVERY WAY TO<br><span class="accent">COMPETE</span></h1>
-    <p>From a free weekly qualifier to a real car in your driveway — every competitive program SIM1Racing runs. Pick a card below to jump in.</p>
+    <p>SIM1Racing runs competitions on two tracks at once. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, race a one-off endurance event, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="v">6</div><div class="l">Ways to Compete</div></div>
       <div class="hero-stat"><div class="v">Weekly</div><div class="l">New Events Posted</div></div>
@@ -208,62 +197,69 @@ img{max-width:100%;}
     <div class="center" style="margin-bottom:34px;">
       <div class="eyebrow">PICK ONE</div>
       <h2 class="h2">Every Way to Compete</h2>
+      <p class="lead" style="max-width:680px;margin:14px auto 0;">Casual, drop-in racing and season-long commitments, side by side — everything below is free to enter unless noted.</p>
     </div>
     <div class="prog-grid">
-      <button class="prog-card" onclick="goToSection(event,'sec-qualifiers')">
+      <button class="prog-card" onclick="goToSection(event,'sec-customleagues')">
         <div class="prog-body">
-          <div class="prog-eyebrow">ALWAYS OPEN · FREE</div>
-          <div class="prog-title">Qualifiers</div>
-          <div class="prog-sub">Weekly/Monthly Qualifiers, Thursday Sprint Races, and the Monthly Championship — the free ladder to a spot on the SIM1Racing team.</div>
-          <div class="prog-facts"><span><b>3</b> ways to earn an invite</span><span>Runs continuously</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-leagues')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">SEASONS · PAID</div>
-          <div class="prog-title">Leagues</div>
-          <div class="prog-sub">Multi-week championship seasons with their own standings and prize pool — Audi TT Cup, AACC, and whichever season is next up.</div>
-          <div class="prog-facts"><span>Auto-updates as seasons start</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-giveaways')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">REAL-WORLD PRIZE</div>
-          <div class="prog-title">Car Giveaways</div>
-          <div class="prog-sub">Spirit Works Garage × SIM1Racing. Four weeks, top-15 finishers earn entries, one driver wins the car.</div>
-          <div class="prog-facts"><span><b>10,000</b> top entries/week</span></div>
-          <div class="prog-cta">ENTER →</div>
+          <div class="prog-eyebrow">BOOK IT · SERVICE · COMMITMENT</div>
+          <div class="prog-title">Custom Leagues</div>
+          <div class="prog-sub">Not a competition — a service. Pick your car, your tracks, your schedule, and we run the season for you.</div>
+          <div class="prog-facts"><span>From <b>$200</b>/driver</span></div>
+          <div class="prog-cta">VIEW PACKAGES →</div>
         </div>
       </button>
       <button class="prog-card" onclick="goToSection(event,'sec-endurance')">
         <div class="prog-body">
-          <div class="prog-eyebrow">MONTHLY EVENT</div>
+          <div class="prog-eyebrow">MONTHLY EVENT · CASUAL</div>
           <div class="prog-title">Endurance Race</div>
           <div class="prog-sub">2 Hours at Spa in the BMW Z4 GT3 — solo or with a co-driver, free for Gold Members.</div>
           <div class="prog-facts"><span>King of the Hill format</span></div>
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-trackday')">
+      <button class="prog-card" onclick="goToSection(event,'sec-giveaways')">
         <div class="prog-body">
-          <div class="prog-eyebrow">REAL-WORLD PRIZE</div>
-          <div class="prog-title">Win a Free Track Day</div>
-          <div class="prog-sub">SIM1Racing × Burnout Events. Top two finishers win a real HPDE day at Lime Rock Park.</div>
-          <div class="prog-facts"><span><b>$1,400</b> total prize value</span></div>
+          <div class="prog-eyebrow">REAL-WORLD PRIZE · CASUAL</div>
+          <div class="prog-title">Giveaways</div>
+          <div class="prog-sub">Spirit Works Garage × SIM1Racing car giveaway, plus the free Track Day giveaway with Burnout Events — both live in one place.</div>
+          <div class="prog-facts"><span><b>10,000</b> top entries/week</span><span>Car + Track Day</span></div>
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-customleagues')">
+      <button class="prog-card" onclick="goToSection(event,'sec-leagues')">
         <div class="prog-body">
-          <div class="prog-eyebrow">BOOK IT · SERVICE</div>
-          <div class="prog-title">Host Your Own League</div>
-          <div class="prog-sub">Not a competition — a service. Pick your car, your tracks, your schedule, and we run the season for you.</div>
-          <div class="prog-facts"><span>From <b>$200</b>/driver</span></div>
-          <div class="prog-cta">VIEW PACKAGES →</div>
+          <div class="prog-eyebrow">SEASONS · PAID · COMMITMENT</div>
+          <div class="prog-title">Leagues</div>
+          <div class="prog-sub">A new Monthly League every month, plus Audi TT Cup and AACC — multi-week championship seasons with their own standings and prize pool.</div>
+          <div class="prog-facts"><span>Auto-updates as seasons start</span></div>
+          <div class="prog-cta">ENTER →</div>
         </div>
       </button>
+      <button class="prog-card" onclick="goToSection(event,'sec-qualifiers')">
+        <div class="prog-body">
+          <div class="prog-eyebrow">ALWAYS OPEN · FREE · CASUAL</div>
+          <div class="prog-title">Qualifiers</div>
+          <div class="prog-sub">Weekly/Monthly Qualifiers, Thursday Sprint Races, and the Monthly Championship — the free ladder to a spot on the SIM1Racing team.</div>
+          <div class="prog-facts"><span><b>3</b> ways to earn an invite</span><span>Runs continuously</span></div>
+          <div class="prog-cta">ENTER →</div>
+        </div>
+      </button>
+      <button class="prog-card" onclick="goToSection(event,'sec-viewresults')">
+        <div class="prog-body">
+          <div class="prog-eyebrow">YOUR STATS</div>
+          <div class="prog-title">View Your Results</div>
+          <div class="prog-sub">Look up your name to see qualifier results, lap times, badges, and the full event archive.</div>
+          <div class="prog-facts"><span>Search by driver name</span></div>
+          <div class="prog-cta">LOOK UP →</div>
+        </div>
+      </button>
+    </div>
+
+    <div class="photo-row">
+      <div class="photo-spot"><span>📷 Photo — race night at the sim lab</span></div>
+      <div class="photo-spot"><span>📷 Photo — a giveaway or track day winner</span></div>
+      <div class="photo-spot"><span>📷 Photo — the SIM1Racing team in action</span></div>
     </div>
   </div>
 </section>
@@ -335,7 +331,7 @@ img{max-width:100%;}
 <p style="font-family:'Barlow',sans-serif;font-size:1.3em;line-height:1.7;color:#b0b0b0;max-width:780px;margin:0 auto 36px;">Prove your pace. Earn your spot. Weekly Qualifiers, Monthly Challenges, and Thursday Sprint Races &#x2014; every event is a shot at the championship and a chance to join the team.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
 <a href="#current-events" style="background:#EF4444;color:white;padding:14px 36px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">VIEW CURRENT EVENTS</a>
-<a href="#race-portal" style="background:transparent;color:white;padding:14px 36px;border:2px solid #333;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">LOOK UP YOUR RESULTS</a>
+<a onclick="goToSection(event,'sec-viewresults')" href="#sec-viewresults" style="background:transparent;color:white;padding:14px 36px;border:2px solid #333;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">LOOK UP YOUR RESULTS</a>
 </div>
 </div>
 </div>
@@ -395,6 +391,11 @@ img{max-width:100%;}
 <div style="text-align:center;margin-bottom:48px;">
 <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">HAPPENING NOW</div>
 <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.8em;font-weight:900;text-transform:uppercase;color:white;margin:0;">Current Challenges</h2>
+</div>
+<div style="max-width:860px;margin:0 auto 28px;background:linear-gradient(135deg,#1a1206,#111);border:1px solid rgba(212,160,23,0.35);border-radius:12px;padding:18px 22px;display:flex;gap:14px;align-items:flex-start;">
+<div style="font-size:1.3em;line-height:1;">&#x1F3C5;</div>
+<div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#d4a017;margin-bottom:4px;">ONE PRIZE PER MONTH POLICY</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#b0b0b0;line-height:1.6;">Each driver can win <strong style="color:#fff;">one qualifier prize per calendar month</strong>. Once you've won, you're no longer eligible for another qualifier prize that month &#x2014; but you're still welcome and encouraged to keep competing, chase championship qualification, and go for the win again next month.</div></div>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto;" id="current-challenges-grid"></div>
 </div>
@@ -562,86 +563,8 @@ img{max-width:100%;}
 </div>
 </div>
 
-<!-- ── RACE PORTAL ── -->
-<div id="race-portal" style="padding:80px 40px;background:#0a0a0a;">
-<div style="max-width:1000px;margin:0 auto;">
-<div style="text-align:center;margin-bottom:40px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:10px;">RESULTS &amp; HISTORY</div>
-<h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.5em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 12px;">Race Portal</h2>
-<p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#666;margin:0;">Look up your results, explore top stats, or browse past events.</p>
-</div>
-<div style="background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;">
-<div style="display:flex;border-bottom:1px solid #2a2a2a;">
-<button onclick="portalTab('lookup')" id="ptab-lookup" class="portal-tab active-ptab" style="flex:1;padding:15px 10px;background:#1a1a1a;border:none;border-bottom:2px solid #EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F50D; Driver Lookup</button>
-<button onclick="portalTab('archive')" id="ptab-archive" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4CB; Event Archive</button>
-<button onclick="portalTab('stats')" id="ptab-stats" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4C8; Top Stats</button>
-</div>
-
-<div id="panel-lookup" style="padding:26px;">
-<div style="display:flex;gap:10px;margin-bottom:20px;">
-<input id="driver-search" type="text" placeholder="Enter driver name..." style="flex:1;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:white;font-family:'Barlow',sans-serif;font-size:0.95em;outline:none;" oninput="searchDriver()" onkeydown="if(event.key==='Enter')searchDriver()">
-<button onclick="searchDriver()" style="background:#EF4444;color:white;border:none;border-radius:8px;padding:13px 22px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">SEARCH</button>
-</div>
-<div id="driver-results"></div>
-<div id="lookup-hint" style="text-align:center;padding:24px 0;color:#333;font-family:'Barlow',sans-serif;font-size:0.86em;">Type a name above to search past event results.</div>
-</div>
-
-<div id="panel-archive" style="display:none;">
-<div style="padding:14px 22px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:12px;">
-<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#555;white-space:nowrap;">&#x1F4CB; VIEW MONTH:</span>
-<select id="archive-month-select"
-onchange="renderArchive(this.value)"
-style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:700;padding:7px 12px;cursor:pointer;outline:none;flex:1;max-width:260px;letter-spacing:0.5px;">
-</select>
-</div>
-<div id="archive-list" style="max-height:520px;overflow-y:auto;"></div>
-</div>
-
-<div id="panel-stats" style="display:none;padding:26px;">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" id="stats-grid"></div>
-</div>
-</div>
-
-<div id="lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:20px;" onclick="closeModal(event)">
-<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;" onclick="event.stopPropagation()">
-<div style="padding:20px 26px;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#1a1a1a;z-index:1;">
-<div>
-<div id="modal-badge" style="display:inline-block;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:7px;margin-bottom:6px;"></div>
-<h3 id="modal-title" style="font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:900;text-transform:uppercase;color:white;margin:0;"></h3>
-<div id="modal-meta" style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#666;margin-top:3px;"></div>
-<div id="modal-count" style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:2px;"></div>
-</div>
-<button onclick="document.getElementById('lb-modal').style.display='none'" style="background:#2a2a2a;border:none;color:#888;width:32px;height:32px;border-radius:50%;font-size:1em;cursor:pointer;flex-shrink:0;">&#x2715;</button>
-</div>
-<div style="padding:16px 26px;">
-<table style="width:100%;border-collapse:collapse;">
-<thead><tr style="border-bottom:1px solid #2a2a2a;">
-<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 0;width:38px;">POS</th>
-<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 10px;">DRIVER</th>
-<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;display:none;" id="modal-qual-th">QUAL</th>
-<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">BEST LAP</th>
-<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;" id="modal-laps-th">LAPS</th>
-<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">GAP</th>
-</tr></thead>
-<tbody id="modal-tbody"></tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-
 <style>
 #sec-qualifiers{position:relative;}
-@keyframes qBlink{0%,100%{opacity:1}50%{opacity:0.3}}
-#sec-qualifiers #driver-search:focus{border-color:#EF4444!important;box-shadow:0 0 0 2px rgba(239,68,68,0.15);}
-#sec-qualifiers .arch-event-row{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid #141414;cursor:pointer;transition:background 0.15s;}
-#sec-qualifiers .arch-event-row:hover{background:#161616;}
-#sec-qualifiers .arch-event-row:last-child{border-bottom:none;}
-#sec-qualifiers #archive-list::-webkit-scrollbar{width:4px;}
-#sec-qualifiers #archive-list::-webkit-scrollbar-track{background:#111;}
-#sec-qualifiers #archive-list::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
-#sec-qualifiers .arch-badge-short{display:none;}
 #sec-qualifiers .qd-badge-short{display:none;}
 @media(max-width:768px){
 #sec-qualifiers div[style*="padding:130px 40px 90px"]{padding:60px 18px 40px!important;}
@@ -659,8 +582,6 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 #sec-qualifiers h3[style*="font-size:2em"]{font-size:1.4em!important;}
 #sec-qualifiers div[style*="padding:36px 40px"]{padding:22px 18px!important;flex-direction:column!important;}
 #sec-qualifiers div[style*="padding:36px 40px"] a{width:100%!important;text-align:center!important;}
-#sec-qualifiers #race-portal{padding:40px 18px!important;}
-#sec-qualifiers #stats-grid{grid-template-columns:1fr!important;}
 #sec-qualifiers #qualified-cols{column-count:2!important;column-gap:6px!important;}
 #sec-qualifiers #qualified-cols > div{margin-bottom:4px!important;}
 #sec-qualifiers .qd-entry{padding:4px 7px!important;gap:6px!important;border-radius:6px!important;}
@@ -668,13 +589,6 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 #sec-qualifiers .qd-badge-full{display:none;}
 #sec-qualifiers .qd-badge-short{display:inline;}
 #sec-qualifiers .qd-name{font-size:0.78em!important;}
-#sec-qualifiers .arch-event-row{padding:10px 14px!important;gap:10px!important;}
-#sec-qualifiers .arch-event-row .arch-badge{min-width:34px!important;max-width:34px!important;padding:4px 0!important;font-size:0.7em!important;letter-spacing:1px!important;}
-#sec-qualifiers .arch-event-row .arch-badge-full{display:none;}
-#sec-qualifiers .arch-event-row .arch-badge-short{display:inline;}
-#sec-qualifiers .arch-event-row .arch-title{font-size:0.82em!important;}
-#sec-qualifiers .arch-event-row .arch-meta{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:0.62em!important;}
-#sec-qualifiers .arch-event-row .arch-cta > span:first-child{display:none;}
 }
 </style>
 </div><!-- /#sec-qualifiers -->
@@ -1852,7 +1766,6 @@ function searchDriver() {
   });
   container.innerHTML = html;
 }
-document.getElementById('driver-search').addEventListener('keydown', e => { if (e.key === 'Enter') searchDriver(); });
 
 function populateMonthDropdown() {
   const sel = document.getElementById('archive-month-select');
@@ -2010,6 +1923,112 @@ renderChampionshipTracker();
 renderYTPreview();
 </script>
 <!-- ════════════════════════════════════════════════════════════════
+  SECTION: VIEW YOUR RESULTS — driver lookup, event archive, and top
+  stats. Wrapped in #sec-viewresults so its own mobile CSS (which
+  targets generic div[style*="..."] selectors) cannot affect any
+  other section on this page.
+════════════════════════════════════════════════════════════════ -->
+<div id="sec-viewresults">
+<a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
+<div style="padding:100px 40px 20px;background:#000;text-align:center;position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+<div style="position:relative;z-index:1;">
+<div style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:14px;margin-bottom:20px;">Results &amp; History</div>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:3.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 18px;line-height:1;">VIEW YOUR RESULTS</h1>
+<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;max-width:700px;margin:0 auto;">Look up your qualifier results, browse the full event archive, or check the all-time top stats.</p>
+</div>
+</div>
+
+<div id="race-portal" style="padding:60px 40px 100px;background:#0a0a0a;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;">
+<div style="display:flex;border-bottom:1px solid #2a2a2a;">
+<button onclick="portalTab('lookup')" id="ptab-lookup" class="portal-tab active-ptab" style="flex:1;padding:15px 10px;background:#1a1a1a;border:none;border-bottom:2px solid #EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F50D; Driver Lookup</button>
+<button onclick="portalTab('archive')" id="ptab-archive" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4CB; Event Archive</button>
+<button onclick="portalTab('stats')" id="ptab-stats" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4C8; Top Stats</button>
+</div>
+
+<div id="panel-lookup" style="padding:26px;">
+<div style="display:flex;gap:10px;margin-bottom:20px;">
+<input id="driver-search" type="text" placeholder="Enter driver name..." style="flex:1;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:white;font-family:'Barlow',sans-serif;font-size:0.95em;outline:none;" oninput="searchDriver()" onkeydown="if(event.key==='Enter')searchDriver()">
+<button onclick="searchDriver()" style="background:#EF4444;color:white;border:none;border-radius:8px;padding:13px 22px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">SEARCH</button>
+</div>
+<div id="driver-results"></div>
+<div id="lookup-hint" style="text-align:center;padding:24px 0;color:#333;font-family:'Barlow',sans-serif;font-size:0.86em;">Type a name above to search past event results.</div>
+</div>
+
+<div id="panel-archive" style="display:none;">
+<div style="padding:14px 22px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:12px;">
+<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#555;white-space:nowrap;">&#x1F4CB; VIEW MONTH:</span>
+<select id="archive-month-select"
+onchange="renderArchive(this.value)"
+style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:700;padding:7px 12px;cursor:pointer;outline:none;flex:1;max-width:260px;letter-spacing:0.5px;">
+</select>
+</div>
+<div id="archive-list" style="max-height:520px;overflow-y:auto;"></div>
+</div>
+
+<div id="panel-stats" style="display:none;padding:26px;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" id="stats-grid"></div>
+</div>
+</div>
+
+<div id="lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:20px;" onclick="closeModal(event)">
+<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;" onclick="event.stopPropagation()">
+<div style="padding:20px 26px;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#1a1a1a;z-index:1;">
+<div>
+<div id="modal-badge" style="display:inline-block;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:7px;margin-bottom:6px;"></div>
+<h3 id="modal-title" style="font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:900;text-transform:uppercase;color:white;margin:0;"></h3>
+<div id="modal-meta" style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#666;margin-top:3px;"></div>
+<div id="modal-count" style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:2px;"></div>
+</div>
+<button onclick="document.getElementById('lb-modal').style.display='none'" style="background:#2a2a2a;border:none;color:#888;width:32px;height:32px;border-radius:50%;font-size:1em;cursor:pointer;flex-shrink:0;">&#x2715;</button>
+</div>
+<div style="padding:16px 26px;">
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="border-bottom:1px solid #2a2a2a;">
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 0;width:38px;">POS</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 10px;">DRIVER</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;display:none;" id="modal-qual-th">QUAL</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">BEST LAP</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;" id="modal-laps-th">LAPS</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">GAP</th>
+</tr></thead>
+<tbody id="modal-tbody"></tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<style>
+#sec-viewresults{position:relative;}
+@keyframes qBlink{0%,100%{opacity:1}50%{opacity:0.3}}
+#sec-viewresults #driver-search:focus{border-color:#EF4444!important;box-shadow:0 0 0 2px rgba(239,68,68,0.15);}
+#sec-viewresults .arch-event-row{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid #141414;cursor:pointer;transition:background 0.15s;}
+#sec-viewresults .arch-event-row:hover{background:#161616;}
+#sec-viewresults .arch-event-row:last-child{border-bottom:none;}
+#sec-viewresults #archive-list::-webkit-scrollbar{width:4px;}
+#sec-viewresults #archive-list::-webkit-scrollbar-track{background:#111;}
+#sec-viewresults #archive-list::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
+#sec-viewresults .arch-badge-short{display:none;}
+@media(max-width:768px){
+#sec-viewresults div[style*="padding:100px 40px 20px"]{padding:50px 18px 16px!important;}
+#sec-viewresults div[style*="padding:100px 40px 20px"] h1{font-size:2.4em!important;}
+#sec-viewresults div[style*="padding:60px 40px 100px"]{padding:30px 18px 60px!important;}
+#sec-viewresults #stats-grid{grid-template-columns:1fr!important;}
+#sec-viewresults .arch-event-row{padding:10px 14px!important;gap:10px!important;}
+#sec-viewresults .arch-event-row .arch-badge{min-width:34px!important;max-width:34px!important;padding:4px 0!important;font-size:0.7em!important;letter-spacing:1px!important;}
+#sec-viewresults .arch-event-row .arch-badge-full{display:none;}
+#sec-viewresults .arch-event-row .arch-badge-short{display:inline;}
+#sec-viewresults .arch-event-row .arch-title{font-size:0.82em!important;}
+#sec-viewresults .arch-event-row .arch-meta{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:0.62em!important;}
+#sec-viewresults .arch-event-row .arch-cta > span:first-child{display:none;}
+}
+</style>
+</div><!-- /#sec-viewresults -->
+<!-- ════════════════════════════════════════════════════════════════
   SECTION: LEAGUES — auto-rotating "next season" signup promo
   + the Active Leagues carousel (Audi TT Cup, AACC, and any league
   whose season has started). Everything about WHICH league is
@@ -2024,7 +2043,7 @@ renderYTPreview();
   <div class="wrap-md center">
     <div class="eyebrow">LEAGUES</div>
     <h2 class="h2">Multi-Week Championship Seasons</h2>
-    <p class="lead" style="max-width:640px;margin:14px auto 0;">A new season is always either open for signup or already underway. This section updates itself automatically — the moment a season starts, it moves down into "Active Leagues" and the next one takes its place above.</p>
+    <p class="lead" style="max-width:680px;margin:14px auto 0;">Every month brings a brand-new <strong style="color:#ccc;">Monthly League</strong> — a different car and a fresh set of four circuits each time, always four Monday nights, always the same prize format. A new season is always either open for signup or already underway. This section updates itself automatically — the moment a season starts, it moves down into "Active Leagues" and the next one takes its place above.</p>
   </div>
 </div>
 
@@ -2348,9 +2367,9 @@ const FEATURED_LEAGUES = [
   },
   {
     slug: 'august-league',
-    name: 'August SIM1 League', // ⚠ placeholder name — rename once you have one
-    car: 'Car TBA',             // ⚠ not specified — swap in the real car
-    heroImage: null,
+    name: 'August Monthly League',
+    car: 'Audi R8 LMS Ultra GT3',
+    heroImage: 'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a553d844c295a4bb50dc575/1783971204688/Inaugural+League+%281%29.jpg',
     start: new Date(2026, 7, 3, 19, 45), // Monday, Aug 3 2026, 7:45 PM
     weeks: [
       { n:1, dateLabel:'Aug 3',  track:'Silverstone International', image:null },
@@ -2358,9 +2377,10 @@ const FEATURED_LEAGUES = [
       { n:3, dateLabel:'Aug 17', track:'Barcelona GP',               image:null },
       { n:4, dateLabel:'Aug 24', track:'Imola',                      image:null, finale:true },
     ],
-    priceNonMember: '$200', // ⚠ assumed same as previous season — confirm
+    priceNonMember: '$200',
     signupUrl: 'https://app.acuityscheduling.com/catalog.php?owner=34519846&action=addCart&clear=1&id=2225180', // ⚠ reused placeholder link — swap for the real signup link
   },
+  // ↓ Every month gets a new Monthly League entry here (same shape) — new car, new 4-week track rotation.
   // ↓ ADD THE NEXT SEASON HERE (same shape) once it's announced.
 ];
 
@@ -2427,9 +2447,10 @@ function renderFeaturedLeague(league) {
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.14) 0%,transparent 70%);pointer-events:none;"></div>
     <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.15fr 0.85fr;gap:50px;align-items:center;">
       <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#EF4444;font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:12px;margin-bottom:16px;">Monthly League</div>
         <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:3.2em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 10px;line-height:0.95;">${league.name}</h3>
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.2em;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#EF4444;margin-bottom:22px;">${league.car} &middot; 4 Weeks &middot; Starts ${startLabel}</div>
-        <p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;margin:0 0 26px;max-width:520px;">Four weeks. Four new circuits. Every Monday night, take the wheel of the ${league.car} and chase points toward the championship — with a prize pool that grows as more drivers join the field.</p>
+        <p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;margin:0 0 26px;max-width:520px;">A brand-new Monthly League, every month — a fresh car and a fresh set of four circuits each time. Every Monday night for four weeks, take the wheel of the ${league.car} and chase points toward the championship — with a prize pool that grows as more drivers join the field.</p>
         <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
           <a href="${league.signupUrl}" style="background:#EF4444;color:white;padding:15px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Sign Up Now</a>
           <a href="#lg-schedule" style="color:#ccc;font-family:'Barlow Condensed',sans-serif;font-size:0.9em;font-weight:700;text-transform:uppercase;letter-spacing:1px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:2px;">View Schedule &darr;</a>
@@ -3368,6 +3389,15 @@ renderStandingsTable('aacc', 'aacc-standings-rows');
 ════════════════════════════════════════════════════════════════ -->
 <div id="sec-giveaways">
 <a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
+
+<div style="max-width:1200px;margin:24px auto 0;padding:0 40px;">
+<div style="display:flex;gap:4px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:5px;width:fit-content;">
+<button onclick="gvModeTab('car')" id="gv-mode-tab-car" style="background:var(--red);color:#fff;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Car Giveaway</button>
+<button onclick="gvModeTab('trackday')" id="gv-mode-tab-trackday" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Track Day</button>
+</div>
+</div>
+
+<div id="gv-mode-car">
 <div id="view-landing">
 <header class="hero" style="padding-top:64px;">
 <div class="hero-glow"></div>
@@ -3525,6 +3555,139 @@ renderStandingsTable('aacc', 'aacc-standings-rows');
 </div>
 </section>
 </div><!-- /#view-giveaway -->
+</div><!-- /#gv-mode-car -->
+
+<div id="gv-mode-trackday" style="display:none;">
+<header class="hero" style="padding-top:44px;">
+<div class="hero-glow"></div>
+<div class="hero-inner" style="max-width:1200px;display:grid;grid-template-columns:1.05fr 1fr;gap:54px;align-items:center;text-align:left;">
+<div>
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2afecdfe6a136c3d3ca82b/1781202638137/color+wo+bg.png" alt="Burnout Events" style="height:120px;object-fit:contain;display:block;margin-bottom:14px;">
+<h1 style="font-size:4em;">WIN A FREE<br><span class="accent">TRACK DAY</span></h1>
+<p style="text-align:left;">Finish at the top of our sim-racing competition and win a real track day at Lime Rock Park, CT on June 19–20. Two winners, two prizes — first place takes a full two-day pass, second place scores a single-day ticket.</p>
+<div class="hero-cta">
+<a href="https://www.sim1racing.com/daily-rates" target="_blank" rel="noopener" class="btn">BOOK YOUR SESSION ↗</a>
+<a href="#td-how" class="btn btn-outline">HOW IT WORKS</a>
+</div>
+<div class="hero-stats" style="margin-left:0;">
+<div class="hero-stat"><div class="v">3</div><div class="l">Week Competition</div></div>
+<div class="hero-stat"><div class="v">2</div><div class="l">Winners</div></div>
+<div class="hero-stat"><div class="v">$1,400</div><div class="l">Total Prize Value</div></div>
+</div>
+</div>
+<div class="event-graphic-wrap">
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2affe90c49360e99fd2f53/1781202921898/Insta+Events+%2831%29.jpg" alt="Burnout Events — Lime Rock Park June 19–20">
+<span class="live-badge">COMPETITION LIVE</span>
+</div>
+</div>
+</header>
+
+<section class="section" id="td-how" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:44px;">
+<div class="eyebrow">THE FORMAT</div>
+<h2 class="h2">How It Works</h2>
+<p class="lead" style="max-width:680px;margin:14px auto 0;">One track, three weeks to set your best lap. Jump on the SIM1Racing server any time the competition is open, post a clean time, and the top two when it closes win a real track day — for free.</p>
+</div>
+<div class="step-grid">
+<div class="step-card"><div class="bar"></div><div class="num">01</div><div class="step-t">Join the Competition</div><div class="step-d">Come into SIM1, head to the multiplayer section, and join the competition. To compete, purchase any daily rate and you're in — with as many laps as you want for the day. Gold members can drive unlimited laps for a chance at winning.</div></div>
+<div class="step-card"><div class="bar"></div><div class="num">02</div><div class="step-t">Keep Improving</div><div class="step-d">The same track stays open for three weeks. Come back as many times as you want to chase a faster time — only your quickest clean lap counts toward the standings.</div></div>
+<div class="step-card"><div class="bar"></div><div class="num">03</div><div class="step-t">Top Two Win</div><div class="step-d">When the window closes, 1st place takes the two-day weekend pass ($900 value) and 2nd place wins a single-day ticket ($500 value) to Lime Rock Park June 19–20.</div></div>
+</div>
+<div class="note" style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:22px 24px;margin-top:28px;">
+<div class="nt-t" style="font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;">📌 Important — Event Date</div>
+<p style="font-family:var(--body);font-size:0.9em;color:#b0b0b0;line-height:1.7;margin:0;">The track day is <strong style="color:#fff;">June 19–20, 2026</strong> at Lime Rock Park, CT. Winners must be able to attend. The prize is a ticket — all other costs (travel, lodging, optional car rental) are the winner's responsibility. Prizes are non-transferable and have no cash value.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="td-prizes" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow">WHAT YOU WIN</div>
+<h2 class="h2">The Prizes</h2>
+<p class="lead" style="max-width:640px;margin:14px auto 0;">Two winners, two real-world track day prizes courtesy of <a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">Burnout Events</a>.</p>
+</div>
+<div class="prize-grid">
+<div class="prize-card gold"><div class="place">🥇 1st Place</div><span class="medal">🏆</span><div class="prize-name">Two-Day Weekend Pass</div><div class="prize-val">$900</div><div class="prize-sub">Full access to both days — June 19 &amp; 20 — at Lime Rock Park. Redeemable at any future Burnout Events track day if you can't make the June date.</div></div>
+<div class="prize-card silver"><div class="place">🥈 2nd Place</div><span class="medal">🎟️</span><div class="prize-name">Single-Day Ticket</div><div class="prize-val">$500</div><div class="prize-sub">One full day on track at Lime Rock Park. Redeemable at any future Burnout Events HPDE if you can't make the June date.</div></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="td-event" style="background:var(--bg);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow">THE REAL-WORLD EVENT</div>
+<h2 class="h2">Lime Rock Park<br>Track Day</h2>
+<p class="lead" style="max-width:680px;margin:14px auto 0;">A High Performance Driving Education (HPDE) event run by Burnout Events. All novice drivers are assigned an experienced instructor. You don't need to be a racing driver — this is a learning environment open to everyone.</p>
+</div>
+<div class="details-grid">
+<div class="detail-block">
+<div class="db-t">Event Info</div>
+<div class="info-row"><div class="ico">📅</div><div><div class="ir-l">Date</div><div class="ir-v">June 19–20, 2026</div></div></div>
+<div class="info-row"><div class="ico">📍</div><div><div class="ir-l">Location</div><div class="ir-v">Lime Rock Park, Lakeville, CT</div></div></div>
+<div class="info-row"><div class="ico">🎓</div><div><div class="ir-l">Format</div><div class="ir-v">High Performance Driving Education (HPDE) — novices paired with an experienced in-car instructor</div></div></div>
+<div class="info-row"><div class="ico">🎟️</div><div><div class="ir-l">Ticket Price (public)</div><div class="ir-v">$500 single day · $900 weekend</div></div></div>
+<div class="info-row"><div class="ico">🌐</div><div><div class="ir-l">Organiser</div><div class="ir-v"><a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener">burnoutmotorsport.com ↗</a></div></div></div>
+<div class="info-row"><div class="ico">🔗</div><div><div class="ir-l">Register / Book</div><div class="ir-v"><a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener">msreg.com/burnout-limerock ↗</a></div></div></div>
+</div>
+<div>
+<div class="discount-banner">
+<div class="dc-left">
+<div class="dc-label">Exclusive Discount</div>
+<div class="dc-t">20% Off for<br>SIM1Racing Community</div>
+<div class="dc-s">Enter code <strong style="color:#fff;">SIM1</strong> at checkout on <a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">msreg.com/burnout-limerock</a>. Single-day drops to <strong style="color:#ddd;">$400</strong> · weekend drops to <strong style="color:#ddd;">$360/day</strong>.</div>
+</div>
+</div>
+<div class="detail-block" style="margin-top:16px;">
+<div class="db-t">Track Day Essentials</div>
+<div class="info-row"><div class="ico">🪖</div><div><div class="ir-l">Helmet</div><div class="ir-v">SA-rated helmet required. Rentals available at the venue.</div></div></div>
+<div class="info-row"><div class="ico">🚗</div><div><div class="ir-l">Your Car</div><div class="ir-v">Bring your own road car or rent one — see rental options below.</div></div></div>
+<div class="info-row"><div class="ico">🛡️</div><div><div class="ir-l">Track Insurance</div><div class="ir-v">Strongly recommended. Must be purchased within 24 hrs of going on track.</div></div></div>
+<div class="info-row"><div class="ico">📋</div><div><div class="ir-l">Run Groups</div><div class="ir-v">Novice, intermediate, and advanced groups. All skill levels welcome.</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="td-rentals" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow">DON'T HAVE A TRACK CAR?</div>
+<h2 class="h2">Car Rentals Available</h2>
+<p class="lead" style="max-width:700px;margin:14px auto 0;">Track-prepped rentals are available through <strong style="color:#ddd;">Indian Summer Racing</strong> — a local provider. All rentals include transport to and from the track, tires, fuel, and on-site crew. You still need to register and pay for the track day separately (or use your prize ticket!).</p>
+</div>
+<div class="rental-grid">
+<div class="rental-card featured"><div class="rc-name">2020 Mazda MX-5 Miata</div><div class="rc-spec">Manual · Coilovers · Track pads &amp; tires · Alex's personal car</div><div class="rc-price">$2,000</div><div class="rc-price-l">Includes track day ticket</div></div>
+<div class="rental-card"><div class="rc-name">2009 VW Golf</div><div class="rc-spec">Automatic · Stock</div><div class="rc-price">$1,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2009 VW Golf</div><div class="rc-spec">Automatic · Track prep</div><div class="rc-price">$1,250</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2001 BMW 330i</div><div class="rc-spec">5-speed manual · Track prep</div><div class="rc-price">$1,500</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2013 Mini Cooper</div><div class="rc-spec">Manual · Full race prep · 2 available</div><div class="rc-price">$1,500</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2003 Mercedes CLK 500</div><div class="rc-spec">Automatic</div><div class="rc-price">$2,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">1997 Porsche Boxster</div><div class="rc-spec">5-speed manual · Track prep</div><div class="rc-price">$2,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+</div>
+<div class="rental-note">
+<p><strong style="color:#ddd;">Rental includes:</strong> Transport to and from the track, tires, fuel, and an on-site crew to maintain the vehicle during the day. Burnout Events earns no commission on rentals — these are independent of the ticket price.</p>
+<p style="margin-top:8px;"><strong style="color:#ddd;">Important:</strong> Each renter must sign a contract prior to the event outlining liability for mechanical or physical damage incurred on track. Track insurance is strongly recommended and must be purchased within 24 hours of going on track.</p>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="wrap">
+<div class="eyebrow center">YOUR TICKET TO THE TRACK</div>
+<h2 class="h2 center">WIN IT OR<br><span style="color:var(--red);">BOOK IT YOURSELF</span></h2>
+<p class="lead center">Top the sim-racing standings and your ticket is on us. Or skip the wait — use code <strong style="color:#fff;">SIM1</strong> at checkout for 20% off and register directly for the event.</p>
+<div class="cta-btns">
+<a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener" class="btn">REGISTER FOR THE EVENT ↗</a>
+<a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener" class="btn btn-outline">BURNOUT MOTORSPORT ↗</a>
+</div>
+<div style="margin-top:24px;font-family:var(--cond);font-size:1.2em;font-weight:800;letter-spacing:3px;color:#555;">USE CODE <span style="color:var(--red);">SIM1</span> FOR 20% OFF</div>
+</div>
+</section>
+</div><!-- /#gv-mode-trackday -->
 </div><!-- /#sec-giveaways -->
 
 <style>
@@ -3604,6 +3767,74 @@ renderStandingsTable('aacc', 'aacc-standings-rows');
 #sec-giveaways .rpt{display:inline-block;font-family:var(--cond);font-size:0.55em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#888;background:#000;border:1px solid var(--border);border-radius:4px;padding:1px 6px;margin-left:7px;vertical-align:middle;}
 @media(max-width:900px){ #sec-giveaways .hero-inner{grid-template-columns:1fr!important;} #sec-giveaways [style*="grid-template-columns:1fr 1.1fr"]{grid-template-columns:1fr!important;} #sec-giveaways .week-grid{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .ladder{grid-template-columns:repeat(3,1fr)!important;} #sec-giveaways .rules{grid-template-columns:1fr!important;} }
 @media(max-width:600px){ #sec-giveaways .week-grid{grid-template-columns:1fr!important;} #sec-giveaways .ladder{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .standings .wks{display:none!important;} #sec-giveaways .tbl-pad{padding:4px 8px 12px!important;} }
+
+/* ── TRACK DAY MODE (merged sub-view, scoped so it can't affect the Car Giveaway mode) ── */
+#gv-mode-trackday{position:relative;}
+#gv-mode-trackday .event-graphic-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#0a0a0a;}
+#gv-mode-trackday .event-graphic-wrap img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;}
+#gv-mode-trackday .live-badge{position:absolute;top:14px;left:14px;background:var(--red);color:#fff;font-family:var(--cond);font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:10px;animation:tdBlink 1.4s ease-in-out infinite;}
+@keyframes tdBlink{0%,100%{opacity:1}50%{opacity:0.6}}
+#gv-mode-trackday .prize-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+#gv-mode-trackday .prize-card{border-radius:14px;padding:30px 26px;position:relative;overflow:hidden;}
+#gv-mode-trackday .prize-card.gold{background:linear-gradient(150deg,#1a1405,#111 60%);border:1px solid rgba(251,191,36,0.45);}
+#gv-mode-trackday .prize-card.silver{background:linear-gradient(150deg,#0f0f12,#111 60%);border:1px solid rgba(209,213,219,0.3);}
+#gv-mode-trackday .prize-card .place{font-family:var(--cond);font-size:0.8em;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+#gv-mode-trackday .prize-card.gold .place{color:var(--gold);} #gv-mode-trackday .prize-card.silver .place{color:var(--silver);}
+#gv-mode-trackday .prize-card .medal{font-size:2.4em;margin-bottom:10px;display:block;}
+#gv-mode-trackday .prize-card .prize-name{font-family:var(--cond);font-size:1.7em;font-weight:900;text-transform:uppercase;line-height:1.05;color:#fff;margin-bottom:8px;}
+#gv-mode-trackday .prize-card .prize-val{font-family:var(--cond);font-size:3em;font-weight:900;line-height:1;}
+#gv-mode-trackday .prize-card.gold .prize-val{color:var(--gold);} #gv-mode-trackday .prize-card.silver .prize-val{color:var(--silver);}
+#gv-mode-trackday .prize-card .prize-sub{font-family:var(--body);font-size:0.82em;color:#888;margin-top:6px;line-height:1.5;}
+#gv-mode-trackday .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+#gv-mode-trackday .step-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:26px 24px;position:relative;overflow:hidden;}
+#gv-mode-trackday .step-card .bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);}
+#gv-mode-trackday .step-card .num{font-family:var(--cond);font-size:2.2em;font-weight:900;color:var(--red);line-height:1;margin-bottom:12px;}
+#gv-mode-trackday .step-card .step-t{font-family:var(--cond);font-size:1.1em;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:8px;}
+#gv-mode-trackday .step-card .step-d{font-family:var(--body);font-size:0.88em;color:#888;line-height:1.6;}
+#gv-mode-trackday .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+#gv-mode-trackday .detail-block{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:28px;}
+#gv-mode-trackday .detail-block .db-t{font-family:var(--cond);font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+#gv-mode-trackday .info-row{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--border2);align-items:flex-start;}
+#gv-mode-trackday .info-row:last-child{border-bottom:none;}
+#gv-mode-trackday .info-row .ico{font-size:1.15em;flex-shrink:0;margin-top:1px;}
+#gv-mode-trackday .info-row .ir-l{font-family:var(--body);font-size:0.78em;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;}
+#gv-mode-trackday .info-row .ir-v{font-family:var(--body);font-size:0.95em;font-weight:700;color:#ddd;line-height:1.35;}
+#gv-mode-trackday .info-row .ir-v a{color:var(--red);text-decoration:none;}
+#gv-mode-trackday .discount-banner{background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:14px;padding:28px 32px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+#gv-mode-trackday .discount-banner .dc-label{font-family:var(--cond);font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+#gv-mode-trackday .discount-banner .dc-t{font-family:var(--cond);font-size:1.6em;font-weight:900;text-transform:uppercase;color:#fff;line-height:1.1;}
+#gv-mode-trackday .discount-banner .dc-s{font-family:var(--body);font-size:0.88em;color:#999;margin-top:6px;line-height:1.55;}
+#gv-mode-trackday .rental-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+#gv-mode-trackday .rental-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+#gv-mode-trackday .rental-card .rc-name{font-family:var(--cond);font-size:1em;font-weight:800;text-transform:uppercase;color:#fff;line-height:1.1;margin-bottom:6px;}
+#gv-mode-trackday .rental-card .rc-spec{font-family:var(--body);font-size:0.78em;color:#888;line-height:1.4;margin-bottom:10px;}
+#gv-mode-trackday .rental-card .rc-price{font-family:var(--cond);font-size:1.5em;font-weight:900;color:var(--red);}
+#gv-mode-trackday .rental-card .rc-price-l{font-family:var(--body);font-size:0.7em;color:#666;text-transform:uppercase;letter-spacing:0.5px;}
+#gv-mode-trackday .rental-card.featured{border-color:rgba(239,68,68,0.4);background:linear-gradient(150deg,#160606,#111 60%);}
+#gv-mode-trackday .rental-note{background:var(--card3);border:1px solid var(--border2);border-radius:10px;padding:16px 20px;margin-top:14px;}
+#gv-mode-trackday .rental-note p{font-family:var(--body);font-size:0.84em;color:#888;line-height:1.65;margin:0;}
+#gv-mode-trackday .cta-section{background:linear-gradient(135deg,#0d0000,#0a0a0a 50%,#0a0000);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 40px;text-align:center;}
+#gv-mode-trackday .cta-section .h2{font-size:3em;margin-bottom:16px;}
+#gv-mode-trackday .cta-section .lead{max-width:620px;margin:0 auto 32px;}
+#gv-mode-trackday .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+@media(max-width:900px){
+#gv-mode-trackday .hero-inner{grid-template-columns:1fr!important;}
+#gv-mode-trackday .step-grid{grid-template-columns:1fr 1fr!important;}
+#gv-mode-trackday .details-grid{grid-template-columns:1fr!important;}
+#gv-mode-trackday .rental-grid{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:600px){
+#gv-mode-trackday .hero{padding:28px 18px 48px!important;}
+#gv-mode-trackday .event-graphic-wrap img{max-height:72vw;object-fit:cover;}
+#gv-mode-trackday .step-grid{grid-template-columns:1fr!important;gap:10px!important;}
+#gv-mode-trackday .prize-grid{grid-template-columns:1fr!important;gap:12px!important;}
+#gv-mode-trackday .rental-grid{grid-template-columns:1fr!important;gap:10px!important;}
+#gv-mode-trackday .discount-banner{flex-direction:column;text-align:center;gap:14px;padding:20px 18px!important;}
+#gv-mode-trackday .cta-btns{flex-direction:column;align-items:stretch;gap:10px;}
+#gv-mode-trackday .cta-btns .btn{text-align:center;padding:14px 18px;}
+#gv-mode-trackday .cta-section .h2{font-size:1.85em!important;}
+#gv-mode-trackday .cta-section{padding:56px 18px!important;}
+}
 </style>
 <script>
 /* ════════════════════════════════════════════════════════════════
@@ -3968,6 +4199,19 @@ window.addEventListener('hashchange', function(){
   if(!location.hash || /^#g\//.test(location.hash)) route();
 });
 
+/* Car Giveaway / Track Day mode toggle — Track Day is merged into this
+   section as a second sub-view rather than its own top-level section. */
+function gvModeTab(mode){
+  const modes = ['car','trackday'];
+  modes.forEach(m => {
+    document.getElementById('gv-mode-' + m).style.display = (m === mode) ? '' : 'none';
+    const btn = document.getElementById('gv-mode-tab-' + m);
+    if(m === mode){ btn.style.background = 'var(--red)'; btn.style.color = '#fff'; }
+    else { btn.style.background = 'transparent'; btn.style.color = '#888'; }
+  });
+  window.scrollTo(0, document.getElementById('sec-giveaways').offsetTop - 60);
+}
+
 /* INIT — giveaways section */
 renderWeekCards();
 renderLadder();
@@ -3985,7 +4229,7 @@ route();
 <div id="end-hero-copy">
 <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#EF4444;font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:12px;margin-bottom:20px;">King of the Hill</div>
 <h1 style="font-family:'Barlow Condensed',sans-serif;font-size:4.4em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 10px;line-height:0.95;">Monthly<br>Endurance</h1>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#EF4444;margin-bottom:22px;">2 Hours at Spa &middot; Tuesday, July 22nd at 7PM</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#EF4444;margin-bottom:22px;">2 Hours at Spa &middot; Wednesday, July 29th at 7PM</div>
 <p style="font-family:'Barlow',sans-serif;font-size:1.08em;line-height:1.7;color:#b0b0b0;margin:0 0 28px;max-width:520px;">Race solo or pair up with a co-driver and battle it out for two hours at Spa-Francorchamps in the BMW Z4 GT3. Entry is open to all — free for Gold Members, $120 per simulator for everyone else.</p>
 <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
 <a href="https://sim1racing.as.me/endurance-race" style="background:#EF4444;color:white;padding:15px 38px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Register Now</a>
@@ -3994,14 +4238,14 @@ route();
 </div>
 <div id="end-hero-graphic" style="position:relative;">
 <div style="position:absolute;inset:-12px;background:radial-gradient(circle at 50% 40%,rgba(239,68,68,0.35) 0%,transparent 70%);filter:blur(20px);pointer-events:none;"></div>
-<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a487272b6d8242ae625f81e/1783132786554/Inaugural+League+%283%29.jpg" alt="2 Hours at Spa — SIM1 Endurance Race" style="position:relative;width:100%;border-radius:14px;border:1px solid #2a2a2a;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.6);">
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a553d3a9f5b3818bee9b155/1783971130840/Inaugural+League.jpg" alt="2 Hours at Spa — SIM1 Endurance Race" style="position:relative;width:100%;border-radius:14px;border:1px solid #2a2a2a;display:block;box-shadow:0 20px 50px rgba(0,0,0,0.6);">
 </div>
 </div>
 </div>
 
 <div style="background:#0a0a0a;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:28px 40px;">
 <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center;">
-<div><div style="font-size:1.5em;margin-bottom:8px;">📅</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">July 22nd &middot; 7PM</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Tuesday evening</div></div>
+<div><div style="font-size:1.5em;margin-bottom:8px;">📅</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">July 29th &middot; 7PM</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Wednesday evening</div></div>
 <div><div style="font-size:1.5em;margin-bottom:8px;">🏎️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">Solo or Duo</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">1 or 2 drivers per entry</div></div>
 <div><div style="font-size:1.5em;margin-bottom:8px;">⏱️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">2 Hour Race</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">+ 30 min qualifying</div></div>
 <div><div style="font-size:1.5em;margin-bottom:8px;">🏁</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">BMW Z4 GT3</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Spa-Francorchamps</div></div>
@@ -4051,7 +4295,7 @@ route();
 <p style="font-family:'Barlow',sans-serif;font-size:0.95em;color:#b0b0b0;line-height:1.6;margin:0 0 20px;">Register solo or as a duo. Visit <strong style="color:#fff;">sim1racing.com/endurance-races</strong> or click the button below to get started.</p>
 <div style="display:flex;gap:14px;margin-bottom:16px;"><div style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05em;display:flex;align-items:center;justify-content:center;">1</div><div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;line-height:1.5;padding-top:3px;">Click <strong style="color:#fff;">"Register Now"</strong> and complete your booking via our scheduling page.</div></div>
 <div style="display:flex;gap:14px;margin-bottom:16px;"><div style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05em;display:flex;align-items:center;justify-content:center;">2</div><div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;line-height:1.5;padding-top:3px;">Choose <strong style="color:#fff;">solo</strong> or team up with a <strong style="color:#fff;">co-driver</strong>.</div></div>
-<div style="display:flex;gap:14px;margin-bottom:26px;"><div style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05em;display:flex;align-items:center;justify-content:center;">3</div><div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;line-height:1.5;padding-top:3px;">Show up on <strong style="color:#fff;">Tuesday, July 22nd at 7PM</strong> ready to race.</div></div>
+<div style="display:flex;gap:14px;margin-bottom:26px;"><div style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05em;display:flex;align-items:center;justify-content:center;">3</div><div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#ccc;line-height:1.5;padding-top:3px;">Show up on <strong style="color:#fff;">Wednesday, July 29th at 7PM</strong> ready to race.</div></div>
 <a href="https://sim1racing.as.me/endurance-race" style="display:block;text-align:center;background:#EF4444;color:white;padding:15px 32px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Register Now</a>
 </div>
 </div>
@@ -4061,7 +4305,7 @@ route();
 <div style="padding:60px 40px;background:#0a0a0a;position:relative;overflow:hidden;border-top:1px solid #1a1a1a;">
 <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(239,68,68,0.15) 0%,transparent 70%);pointer-events:none;"></div>
 <div style="position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:12px;">Tuesday, July 22nd &middot; 7PM</div>
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:12px;">Wednesday, July 29th &middot; 7PM</div>
 <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:2.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 16px;line-height:1;">Claim Your Grid Spot</h2>
 <p style="font-family:'Barlow',sans-serif;font-size:1.08em;line-height:1.7;color:#b0b0b0;margin:0 0 26px;">Two hours of endurance racing at Spa in the BMW Z4 GT3. Race solo or bring a co-driver. Free for Gold Members — $120 per simulator for everyone else.</p>
 <a href="https://sim1racing.as.me/endurance-race" style="display:inline-block;background:#EF4444;color:white;padding:16px 52px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.2em;font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Register Now</a>
@@ -4084,215 +4328,6 @@ route();
 }
 </style>
 </div><!-- /#sec-endurance -->
-<!-- ════════════════════════════════════════════════════════════════
-  SECTION: WIN A FREE TRACK DAY (SIM1Racing × Burnout Events)
-  Own top <nav> and duplicate :root/shared classes removed — this
-  section reuses the master design system's .hero/.section/.wrap/
-  .btn/.card classes already defined at the top of the page. Only
-  its unique classes are declared here, scoped under #sec-trackday.
-════════════════════════════════════════════════════════════════ -->
-<div id="sec-trackday">
-<a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
-
-<header class="hero" style="padding-top:64px;">
-<div class="hero-glow"></div>
-<div class="hero-inner" style="max-width:1200px;display:grid;grid-template-columns:1.05fr 1fr;gap:54px;align-items:center;text-align:left;">
-<div>
-<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2afecdfe6a136c3d3ca82b/1781202638137/color+wo+bg.png" alt="Burnout Events" style="height:120px;object-fit:contain;display:block;margin-bottom:14px;">
-<h1 style="font-size:4em;">WIN A FREE<br><span class="accent">TRACK DAY</span></h1>
-<p style="text-align:left;">Finish at the top of our sim-racing competition and win a real track day at Lime Rock Park, CT on June 19–20. Two winners, two prizes — first place takes a full two-day pass, second place scores a single-day ticket.</p>
-<div class="hero-cta">
-<a href="https://www.sim1racing.com/daily-rates" target="_blank" rel="noopener" class="btn">BOOK YOUR SESSION ↗</a>
-<a href="#td-how" class="btn btn-outline">HOW IT WORKS</a>
-</div>
-<div class="hero-stats" style="margin-left:0;">
-<div class="hero-stat"><div class="v">3</div><div class="l">Week Competition</div></div>
-<div class="hero-stat"><div class="v">2</div><div class="l">Winners</div></div>
-<div class="hero-stat"><div class="v">$1,400</div><div class="l">Total Prize Value</div></div>
-</div>
-</div>
-<div class="event-graphic-wrap">
-<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2affe90c49360e99fd2f53/1781202921898/Insta+Events+%2831%29.jpg" alt="Burnout Events — Lime Rock Park June 19–20">
-<span class="live-badge">COMPETITION LIVE</span>
-</div>
-</div>
-</header>
-
-<section class="section" id="td-how" style="background:var(--bg2);">
-<div class="wrap">
-<div class="center" style="margin-bottom:44px;">
-<div class="eyebrow">THE FORMAT</div>
-<h2 class="h2">How It Works</h2>
-<p class="lead" style="max-width:680px;margin:14px auto 0;">One track, three weeks to set your best lap. Jump on the SIM1Racing server any time the competition is open, post a clean time, and the top two when it closes win a real track day — for free.</p>
-</div>
-<div class="step-grid">
-<div class="step-card"><div class="bar"></div><div class="num">01</div><div class="step-t">Join the Competition</div><div class="step-d">Come into SIM1, head to the multiplayer section, and join the competition. To compete, purchase any daily rate and you're in — with as many laps as you want for the day. Gold members can drive unlimited laps for a chance at winning.</div></div>
-<div class="step-card"><div class="bar"></div><div class="num">02</div><div class="step-t">Keep Improving</div><div class="step-d">The same track stays open for three weeks. Come back as many times as you want to chase a faster time — only your quickest clean lap counts toward the standings.</div></div>
-<div class="step-card"><div class="bar"></div><div class="num">03</div><div class="step-t">Top Two Win</div><div class="step-d">When the window closes, 1st place takes the two-day weekend pass ($900 value) and 2nd place wins a single-day ticket ($500 value) to Lime Rock Park June 19–20.</div></div>
-</div>
-<div class="note" style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:22px 24px;margin-top:28px;">
-<div class="nt-t" style="font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;">📌 Important — Event Date</div>
-<p style="font-family:var(--body);font-size:0.9em;color:#b0b0b0;line-height:1.7;margin:0;">The track day is <strong style="color:#fff;">June 19–20, 2026</strong> at Lime Rock Park, CT. Winners must be able to attend. The prize is a ticket — all other costs (travel, lodging, optional car rental) are the winner's responsibility. Prizes are non-transferable and have no cash value.</p>
-</div>
-</div>
-</section>
-
-<section class="section" id="td-prizes" style="background:var(--bg2);">
-<div class="wrap">
-<div class="center" style="margin-bottom:40px;">
-<div class="eyebrow">WHAT YOU WIN</div>
-<h2 class="h2">The Prizes</h2>
-<p class="lead" style="max-width:640px;margin:14px auto 0;">Two winners, two real-world track day prizes courtesy of <a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">Burnout Events</a>.</p>
-</div>
-<div class="prize-grid">
-<div class="prize-card gold"><div class="place">🥇 1st Place</div><span class="medal">🏆</span><div class="prize-name">Two-Day Weekend Pass</div><div class="prize-val">$900</div><div class="prize-sub">Full access to both days — June 19 &amp; 20 — at Lime Rock Park. Redeemable at any future Burnout Events track day if you can't make the June date.</div></div>
-<div class="prize-card silver"><div class="place">🥈 2nd Place</div><span class="medal">🎟️</span><div class="prize-name">Single-Day Ticket</div><div class="prize-val">$500</div><div class="prize-sub">One full day on track at Lime Rock Park. Redeemable at any future Burnout Events HPDE if you can't make the June date.</div></div>
-</div>
-</div>
-</section>
-
-<section class="section" id="td-event" style="background:var(--bg);">
-<div class="wrap">
-<div class="center" style="margin-bottom:40px;">
-<div class="eyebrow">THE REAL-WORLD EVENT</div>
-<h2 class="h2">Lime Rock Park<br>Track Day</h2>
-<p class="lead" style="max-width:680px;margin:14px auto 0;">A High Performance Driving Education (HPDE) event run by Burnout Events. All novice drivers are assigned an experienced instructor. You don't need to be a racing driver — this is a learning environment open to everyone.</p>
-</div>
-<div class="details-grid">
-<div class="detail-block">
-<div class="db-t">Event Info</div>
-<div class="info-row"><div class="ico">📅</div><div><div class="ir-l">Date</div><div class="ir-v">June 19–20, 2026</div></div></div>
-<div class="info-row"><div class="ico">📍</div><div><div class="ir-l">Location</div><div class="ir-v">Lime Rock Park, Lakeville, CT</div></div></div>
-<div class="info-row"><div class="ico">🎓</div><div><div class="ir-l">Format</div><div class="ir-v">High Performance Driving Education (HPDE) — novices paired with an experienced in-car instructor</div></div></div>
-<div class="info-row"><div class="ico">🎟️</div><div><div class="ir-l">Ticket Price (public)</div><div class="ir-v">$500 single day · $900 weekend</div></div></div>
-<div class="info-row"><div class="ico">🌐</div><div><div class="ir-l">Organiser</div><div class="ir-v"><a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener">burnoutmotorsport.com ↗</a></div></div></div>
-<div class="info-row"><div class="ico">🔗</div><div><div class="ir-l">Register / Book</div><div class="ir-v"><a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener">msreg.com/burnout-limerock ↗</a></div></div></div>
-</div>
-<div>
-<div class="discount-banner">
-<div class="dc-left">
-<div class="dc-label">Exclusive Discount</div>
-<div class="dc-t">20% Off for<br>SIM1Racing Community</div>
-<div class="dc-s">Enter code <strong style="color:#fff;">SIM1</strong> at checkout on <a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">msreg.com/burnout-limerock</a>. Single-day drops to <strong style="color:#ddd;">$400</strong> · weekend drops to <strong style="color:#ddd;">$360/day</strong>.</div>
-</div>
-</div>
-<div class="detail-block" style="margin-top:16px;">
-<div class="db-t">Track Day Essentials</div>
-<div class="info-row"><div class="ico">🪖</div><div><div class="ir-l">Helmet</div><div class="ir-v">SA-rated helmet required. Rentals available at the venue.</div></div></div>
-<div class="info-row"><div class="ico">🚗</div><div><div class="ir-l">Your Car</div><div class="ir-v">Bring your own road car or rent one — see rental options below.</div></div></div>
-<div class="info-row"><div class="ico">🛡️</div><div><div class="ir-l">Track Insurance</div><div class="ir-v">Strongly recommended. Must be purchased within 24 hrs of going on track.</div></div></div>
-<div class="info-row"><div class="ico">📋</div><div><div class="ir-l">Run Groups</div><div class="ir-v">Novice, intermediate, and advanced groups. All skill levels welcome.</div></div></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="section" id="td-rentals" style="background:var(--bg2);">
-<div class="wrap">
-<div class="center" style="margin-bottom:40px;">
-<div class="eyebrow">DON'T HAVE A TRACK CAR?</div>
-<h2 class="h2">Car Rentals Available</h2>
-<p class="lead" style="max-width:700px;margin:14px auto 0;">Track-prepped rentals are available through <strong style="color:#ddd;">Indian Summer Racing</strong> — a local provider. All rentals include transport to and from the track, tires, fuel, and on-site crew. You still need to register and pay for the track day separately (or use your prize ticket!).</p>
-</div>
-<div class="rental-grid">
-<div class="rental-card featured"><div class="rc-name">2020 Mazda MX-5 Miata</div><div class="rc-spec">Manual · Coilovers · Track pads &amp; tires · Alex's personal car</div><div class="rc-price">$2,000</div><div class="rc-price-l">Includes track day ticket</div></div>
-<div class="rental-card"><div class="rc-name">2009 VW Golf</div><div class="rc-spec">Automatic · Stock</div><div class="rc-price">$1,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
-<div class="rental-card"><div class="rc-name">2009 VW Golf</div><div class="rc-spec">Automatic · Track prep</div><div class="rc-price">$1,250</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
-<div class="rental-card"><div class="rc-name">2001 BMW 330i</div><div class="rc-spec">5-speed manual · Track prep</div><div class="rc-price">$1,500</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
-<div class="rental-card"><div class="rc-name">2013 Mini Cooper</div><div class="rc-spec">Manual · Full race prep · 2 available</div><div class="rc-price">$1,500</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
-<div class="rental-card"><div class="rc-name">2003 Mercedes CLK 500</div><div class="rc-spec">Automatic</div><div class="rc-price">$2,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
-<div class="rental-card"><div class="rc-name">1997 Porsche Boxster</div><div class="rc-spec">5-speed manual · Track prep</div><div class="rc-price">$2,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
-</div>
-<div class="rental-note">
-<p><strong style="color:#ddd;">Rental includes:</strong> Transport to and from the track, tires, fuel, and an on-site crew to maintain the vehicle during the day. Burnout Events earns no commission on rentals — these are independent of the ticket price.</p>
-<p style="margin-top:8px;"><strong style="color:#ddd;">Important:</strong> Each renter must sign a contract prior to the event outlining liability for mechanical or physical damage incurred on track. Track insurance is strongly recommended and must be purchased within 24 hours of going on track.</p>
-</div>
-</div>
-</section>
-
-<section class="cta-section">
-<div class="wrap">
-<div class="eyebrow center">YOUR TICKET TO THE TRACK</div>
-<h2 class="h2 center">WIN IT OR<br><span style="color:var(--red);">BOOK IT YOURSELF</span></h2>
-<p class="lead center">Top the sim-racing standings and your ticket is on us. Or skip the wait — use code <strong style="color:#fff;">SIM1</strong> at checkout for 20% off and register directly for the event.</p>
-<div class="cta-btns">
-<a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener" class="btn">REGISTER FOR THE EVENT ↗</a>
-<a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener" class="btn btn-outline">BURNOUT MOTORSPORT ↗</a>
-</div>
-<div style="margin-top:24px;font-family:var(--cond);font-size:1.2em;font-weight:800;letter-spacing:3px;color:#555;">USE CODE <span style="color:var(--red);">SIM1</span> FOR 20% OFF</div>
-</div>
-</section>
-
-<style>
-#sec-trackday{position:relative;}
-#sec-trackday .event-graphic-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#0a0a0a;}
-#sec-trackday .event-graphic-wrap img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;}
-#sec-trackday .live-badge{position:absolute;top:14px;left:14px;background:var(--red);color:#fff;font-family:var(--cond);font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:10px;animation:tdBlink 1.4s ease-in-out infinite;}
-@keyframes tdBlink{0%,100%{opacity:1}50%{opacity:0.6}}
-#sec-trackday .prize-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-#sec-trackday .prize-card{border-radius:14px;padding:30px 26px;position:relative;overflow:hidden;}
-#sec-trackday .prize-card.gold{background:linear-gradient(150deg,#1a1405,#111 60%);border:1px solid rgba(251,191,36,0.45);}
-#sec-trackday .prize-card.silver{background:linear-gradient(150deg,#0f0f12,#111 60%);border:1px solid rgba(209,213,219,0.3);}
-#sec-trackday .prize-card .place{font-family:var(--cond);font-size:0.8em;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
-#sec-trackday .prize-card.gold .place{color:var(--gold);} #sec-trackday .prize-card.silver .place{color:var(--silver);}
-#sec-trackday .prize-card .medal{font-size:2.4em;margin-bottom:10px;display:block;}
-#sec-trackday .prize-card .prize-name{font-family:var(--cond);font-size:1.7em;font-weight:900;text-transform:uppercase;line-height:1.05;color:#fff;margin-bottom:8px;}
-#sec-trackday .prize-card .prize-val{font-family:var(--cond);font-size:3em;font-weight:900;line-height:1;}
-#sec-trackday .prize-card.gold .prize-val{color:var(--gold);} #sec-trackday .prize-card.silver .prize-val{color:var(--silver);}
-#sec-trackday .prize-card .prize-sub{font-family:var(--body);font-size:0.82em;color:#888;margin-top:6px;line-height:1.5;}
-#sec-trackday .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-#sec-trackday .step-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:26px 24px;position:relative;overflow:hidden;}
-#sec-trackday .step-card .bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);}
-#sec-trackday .step-card .num{font-family:var(--cond);font-size:2.2em;font-weight:900;color:var(--red);line-height:1;margin-bottom:12px;}
-#sec-trackday .step-card .step-t{font-family:var(--cond);font-size:1.1em;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:8px;}
-#sec-trackday .step-card .step-d{font-family:var(--body);font-size:0.88em;color:#888;line-height:1.6;}
-#sec-trackday .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
-#sec-trackday .detail-block{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:28px;}
-#sec-trackday .detail-block .db-t{font-family:var(--cond);font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
-#sec-trackday .info-row{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--border2);align-items:flex-start;}
-#sec-trackday .info-row:last-child{border-bottom:none;}
-#sec-trackday .info-row .ico{font-size:1.15em;flex-shrink:0;margin-top:1px;}
-#sec-trackday .info-row .ir-l{font-family:var(--body);font-size:0.78em;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;}
-#sec-trackday .info-row .ir-v{font-family:var(--body);font-size:0.95em;font-weight:700;color:#ddd;line-height:1.35;}
-#sec-trackday .info-row .ir-v a{color:var(--red);text-decoration:none;}
-#sec-trackday .discount-banner{background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:14px;padding:28px 32px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
-#sec-trackday .discount-banner .dc-label{font-family:var(--cond);font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
-#sec-trackday .discount-banner .dc-t{font-family:var(--cond);font-size:1.6em;font-weight:900;text-transform:uppercase;color:#fff;line-height:1.1;}
-#sec-trackday .discount-banner .dc-s{font-family:var(--body);font-size:0.88em;color:#999;margin-top:6px;line-height:1.55;}
-#sec-trackday .rental-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-#sec-trackday .rental-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
-#sec-trackday .rental-card .rc-name{font-family:var(--cond);font-size:1em;font-weight:800;text-transform:uppercase;color:#fff;line-height:1.1;margin-bottom:6px;}
-#sec-trackday .rental-card .rc-spec{font-family:var(--body);font-size:0.78em;color:#888;line-height:1.4;margin-bottom:10px;}
-#sec-trackday .rental-card .rc-price{font-family:var(--cond);font-size:1.5em;font-weight:900;color:var(--red);}
-#sec-trackday .rental-card .rc-price-l{font-family:var(--body);font-size:0.7em;color:#666;text-transform:uppercase;letter-spacing:0.5px;}
-#sec-trackday .rental-card.featured{border-color:rgba(239,68,68,0.4);background:linear-gradient(150deg,#160606,#111 60%);}
-#sec-trackday .rental-note{background:var(--card3);border:1px solid var(--border2);border-radius:10px;padding:16px 20px;margin-top:14px;}
-#sec-trackday .rental-note p{font-family:var(--body);font-size:0.84em;color:#888;line-height:1.65;margin:0;}
-#sec-trackday .cta-section{background:linear-gradient(135deg,#0d0000,#0a0a0a 50%,#0a0000);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 40px;text-align:center;}
-#sec-trackday .cta-section .h2{font-size:3em;margin-bottom:16px;}
-#sec-trackday .cta-section .lead{max-width:620px;margin:0 auto 32px;}
-#sec-trackday .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-@media(max-width:900px){
-#sec-trackday .hero-inner{grid-template-columns:1fr!important;}
-#sec-trackday .step-grid{grid-template-columns:1fr 1fr!important;}
-#sec-trackday .details-grid{grid-template-columns:1fr!important;}
-#sec-trackday .rental-grid{grid-template-columns:1fr 1fr!important;}
-}
-@media(max-width:600px){
-#sec-trackday .hero{padding:28px 18px 48px!important;}
-#sec-trackday .event-graphic-wrap img{max-height:72vw;object-fit:cover;}
-#sec-trackday .step-grid{grid-template-columns:1fr!important;gap:10px!important;}
-#sec-trackday .prize-grid{grid-template-columns:1fr!important;gap:12px!important;}
-#sec-trackday .rental-grid{grid-template-columns:1fr!important;gap:10px!important;}
-#sec-trackday .discount-banner{flex-direction:column;text-align:center;gap:14px;padding:20px 18px!important;}
-#sec-trackday .cta-btns{flex-direction:column;align-items:stretch;gap:10px;}
-#sec-trackday .cta-btns .btn{text-align:center;padding:14px 18px;}
-#sec-trackday .cta-section .h2{font-size:1.85em!important;}
-#sec-trackday .cta-section{padding:56px 18px!important;}
-}
-</style>
-</div><!-- /#sec-trackday -->
 <!-- ════════════════════════════════════════════════════════════════
   SECTION: CUSTOM LEAGUES (Build Your Own SIM1 League) — a service,
   not a competition; kept last before the footer.
@@ -4559,12 +4594,12 @@ function clTab(tab) {
   <div class="f1">COMPETITIONS</div>
   <div class="f2">SIM1Racing × Spirit Works Garage × Burnout Events</div>
   <div class="footer-links">
-    <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" class="btn btn-sm btn-outline">QUALIFIERS</a>
-    <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" class="btn btn-sm btn-outline">LEAGUES</a>
-    <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" class="btn btn-sm btn-outline">GIVEAWAYS</a>
-    <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" class="btn btn-sm btn-outline">ENDURANCE RACE</a>
-    <a href="#sec-trackday" onclick="goToSection(event,'sec-trackday')" class="btn btn-sm btn-outline">TRACK DAY</a>
     <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" class="btn btn-sm btn-outline">CUSTOM LEAGUES</a>
+    <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" class="btn btn-sm btn-outline">ENDURANCE RACE</a>
+    <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" class="btn btn-sm btn-outline">GIVEAWAYS</a>
+    <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" class="btn btn-sm btn-outline">LEAGUES</a>
+    <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" class="btn btn-sm btn-outline">QUALIFIERS</a>
+    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" class="btn btn-sm btn-outline">VIEW YOUR RESULTS</a>
     <a href="https://www.instagram.com/sim1racing/" target="_blank" rel="noopener" class="btn btn-sm btn-outline">@SIM1RACING ↗</a>
   </div>
 </footer>
@@ -4577,7 +4612,7 @@ function clTab(tab) {
    (after every section has been added to the DOM) since it needs
    to find and toggle all of them on load.
    ════════════════════════════════════════════════════════════════ */
-const SECTION_IDS = ['home','sec-qualifiers','sec-leagues','sec-giveaways','sec-endurance','sec-trackday','sec-customleagues'];
+const SECTION_IDS = ['home','sec-qualifiers','sec-leagues','sec-giveaways','sec-endurance','sec-customleagues','sec-viewresults'];
 
 function showSectionById(id){
   if(!SECTION_IDS.includes(id)) id = 'home';

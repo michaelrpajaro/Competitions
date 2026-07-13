@@ -40,22 +40,14 @@ img{max-width:100%;}
 .nav-links a{font-family:var(--cond);font-weight:800;font-size:0.76em;text-transform:uppercase;letter-spacing:1.2px;color:#888;text-decoration:none;padding:6px 11px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;}
 .nav-links a:hover{color:#fff;background:var(--card2);}
 .nav-links a.cta{background:var(--red);color:#fff;}
-.nav-links a.active-nav,.jumpbar-inner a.active-jump{color:#fff;background:#1a1a1a;border-color:var(--border3);}
+.nav-links a.active-nav{color:#fff;background:#1a1a1a;border-color:var(--border3);}
 
 /* ── SECTION VISIBILITY — only one "view" is shown at a time.
      #view-home and each #sec-* are toggled by goToSection() in the
      footer script; CSS just establishes the default hidden state so
      there's no flash-of-everything before JS runs. ── */
-#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-trackday,#sec-customleagues{display:none;}
-#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-trackday.active-view,#sec-customleagues.active-view{display:block;}
-
-/* ── QUICK-JUMP PILL BAR (sticky, mobile-first horizontal scroll) ── */
-.jumpbar{position:sticky;top:53px;z-index:590;background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border2);}
-.jumpbar-inner{max-width:1300px;margin:0 auto;display:flex;gap:8px;padding:10px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.jumpbar-inner::-webkit-scrollbar{display:none;}
-.jumpbar-inner a{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-size:0.78em;font-weight:800;text-transform:uppercase;letter-spacing:0.6px;color:#ccc;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:8px 15px;text-decoration:none;transition:background .15s,border-color .15s;}
-.jumpbar-inner a:hover{background:#161616;border-color:var(--border3);}
-.jumpbar-inner a.jb-cta{background:var(--red);border-color:var(--red);color:#fff;}
+#view-home,#sec-qualifiers,#sec-leagues,#sec-giveaways,#sec-endurance,#sec-customleagues,#sec-viewresults{display:none;}
+#view-home.active-view,#sec-qualifiers.active-view,#sec-leagues.active-view,#sec-giveaways.active-view,#sec-endurance.active-view,#sec-customleagues.active-view,#sec-viewresults.active-view{display:block;}
 
 /* ── SHARED LAYOUT PRIMITIVES ── */
 .section{padding:80px 40px;}
@@ -124,6 +116,11 @@ img{max-width:100%;}
 .prog-facts b{color:#fff;font-weight:700;}
 .prog-cta{font-family:var(--body);font-size:0.85em;font-weight:700;color:var(--red);margin-top:2px;}
 
+/* ── PHOTO SPOT (placeholder frame for real photography) ── */
+.photo-spot{background:var(--card2);border:1px dashed var(--border3);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;color:#666;font-family:var(--cond);font-size:0.85em;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:20px;min-height:160px;}
+.photo-spot span{max-width:220px;line-height:1.5;}
+.photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+
 /* ── BACK-TO-HOME LINK (top of every section) ── */
 .back-home{display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#888;text-decoration:none;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:9px 16px;margin:18px 0 0 40px;transition:color .15s,background .15s;cursor:pointer;}
 .back-home:hover{color:#fff;background:#161616;}
@@ -145,11 +142,11 @@ img{max-width:100%;}
   .hero{padding:32px 16px 30px;}
   .nav-inner{padding:11px 16px;}
   .nav-links{display:none;}
-  .jumpbar{top:47px;}
   .h2{font-size:1.8em;}
   .hero h1{font-size:2.3em;}
   .hero-stats{grid-template-columns:repeat(3,1fr);gap:8px;}
   .hero-stat .v{font-size:1.15em;}
+  .photo-row{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -161,22 +158,14 @@ img{max-width:100%;}
 <nav class="nav"><div class="nav-inner">
   <a href="#home" class="nav-brand" onclick="goToSection(event,'home')"><span class="dot"></span> COMPETITIONS</a>
   <div class="nav-links">
-    <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-nav="sec-qualifiers">Qualifiers</a>
-    <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-nav="sec-leagues">Leagues</a>
+    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-nav="sec-customleagues" class="cta">Custom Leagues ↗</a>
+    <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-nav="sec-endurance">Endurance Race</a>
     <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" data-nav="sec-giveaways">Giveaways</a>
-    <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-nav="sec-endurance">Endurance</a>
-    <a href="#sec-trackday" onclick="goToSection(event,'sec-trackday')" data-nav="sec-trackday">Track Day</a>
-    <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-nav="sec-customleagues" class="cta">Host a League ↗</a>
+    <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-nav="sec-leagues">Leagues</a>
+    <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-nav="sec-qualifiers">Qualifiers</a>
+    <a href="#sec-viewresults" onclick="goToSection(event,'sec-viewresults')" data-nav="sec-viewresults">View Your Results</a>
   </div>
 </div></nav>
-<div class="jumpbar"><div class="jumpbar-inner">
-  <a href="#sec-qualifiers" onclick="goToSection(event,'sec-qualifiers')" data-jump="sec-qualifiers">🏎️ Qualifiers</a>
-  <a href="#sec-leagues" onclick="goToSection(event,'sec-leagues')" data-jump="sec-leagues">🏆 Leagues</a>
-  <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" data-jump="sec-giveaways">🚗 Giveaways</a>
-  <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-jump="sec-endurance">🕑 Endurance</a>
-  <a href="#sec-trackday" onclick="goToSection(event,'sec-trackday')" data-jump="sec-trackday">🎟️ Track Day</a>
-  <a href="#sec-customleagues" onclick="goToSection(event,'sec-customleagues')" data-jump="sec-customleagues" class="jb-cta">🛠️ Host a League</a>
-</div></div>
 
 <a id="top"></a>
 
@@ -194,7 +183,7 @@ img{max-width:100%;}
   <div class="hero-inner">
     <span class="badge">SIM1RACING</span>
     <h1>EVERY WAY TO<br><span class="accent">COMPETE</span></h1>
-    <p>From a free weekly qualifier to a real car in your driveway — every competitive program SIM1Racing runs. Pick a card below to jump in.</p>
+    <p>SIM1Racing runs competitions on two tracks at once. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, race a one-off endurance event, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="v">6</div><div class="l">Ways to Compete</div></div>
       <div class="hero-stat"><div class="v">Weekly</div><div class="l">New Events Posted</div></div>
@@ -208,62 +197,69 @@ img{max-width:100%;}
     <div class="center" style="margin-bottom:34px;">
       <div class="eyebrow">PICK ONE</div>
       <h2 class="h2">Every Way to Compete</h2>
+      <p class="lead" style="max-width:680px;margin:14px auto 0;">Casual, drop-in racing and season-long commitments, side by side — everything below is free to enter unless noted.</p>
     </div>
     <div class="prog-grid">
-      <button class="prog-card" onclick="goToSection(event,'sec-qualifiers')">
+      <button class="prog-card" onclick="goToSection(event,'sec-customleagues')">
         <div class="prog-body">
-          <div class="prog-eyebrow">ALWAYS OPEN · FREE</div>
-          <div class="prog-title">Qualifiers</div>
-          <div class="prog-sub">Weekly/Monthly Qualifiers, Thursday Sprint Races, and the Monthly Championship — the free ladder to a spot on the SIM1Racing team.</div>
-          <div class="prog-facts"><span><b>3</b> ways to earn an invite</span><span>Runs continuously</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-leagues')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">SEASONS · PAID</div>
-          <div class="prog-title">Leagues</div>
-          <div class="prog-sub">Multi-week championship seasons with their own standings and prize pool — Audi TT Cup, AACC, and whichever season is next up.</div>
-          <div class="prog-facts"><span>Auto-updates as seasons start</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-giveaways')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">REAL-WORLD PRIZE</div>
-          <div class="prog-title">Car Giveaways</div>
-          <div class="prog-sub">Spirit Works Garage × SIM1Racing. Four weeks, top-15 finishers earn entries, one driver wins the car.</div>
-          <div class="prog-facts"><span><b>10,000</b> top entries/week</span></div>
-          <div class="prog-cta">ENTER →</div>
+          <div class="prog-eyebrow">BOOK IT · SERVICE · COMMITMENT</div>
+          <div class="prog-title">Custom Leagues</div>
+          <div class="prog-sub">Not a competition — a service. Pick your car, your tracks, your schedule, and we run the season for you.</div>
+          <div class="prog-facts"><span>From <b>$200</b>/driver</span></div>
+          <div class="prog-cta">VIEW PACKAGES →</div>
         </div>
       </button>
       <button class="prog-card" onclick="goToSection(event,'sec-endurance')">
         <div class="prog-body">
-          <div class="prog-eyebrow">MONTHLY EVENT</div>
+          <div class="prog-eyebrow">MONTHLY EVENT · CASUAL</div>
           <div class="prog-title">Endurance Race</div>
           <div class="prog-sub">2 Hours at Spa in the BMW Z4 GT3 — solo or with a co-driver, free for Gold Members.</div>
           <div class="prog-facts"><span>King of the Hill format</span></div>
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-trackday')">
+      <button class="prog-card" onclick="goToSection(event,'sec-giveaways')">
         <div class="prog-body">
-          <div class="prog-eyebrow">REAL-WORLD PRIZE</div>
-          <div class="prog-title">Win a Free Track Day</div>
-          <div class="prog-sub">SIM1Racing × Burnout Events. Top two finishers win a real HPDE day at Lime Rock Park.</div>
-          <div class="prog-facts"><span><b>$1,400</b> total prize value</span></div>
+          <div class="prog-eyebrow">REAL-WORLD PRIZE · CASUAL</div>
+          <div class="prog-title">Giveaways</div>
+          <div class="prog-sub">Spirit Works Garage × SIM1Racing car giveaway, plus the free Track Day giveaway with Burnout Events — both live in one place.</div>
+          <div class="prog-facts"><span><b>10,000</b> top entries/week</span><span>Car + Track Day</span></div>
           <div class="prog-cta">ENTER →</div>
         </div>
       </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-customleagues')">
+      <button class="prog-card" onclick="goToSection(event,'sec-leagues')">
         <div class="prog-body">
-          <div class="prog-eyebrow">BOOK IT · SERVICE</div>
-          <div class="prog-title">Host Your Own League</div>
-          <div class="prog-sub">Not a competition — a service. Pick your car, your tracks, your schedule, and we run the season for you.</div>
-          <div class="prog-facts"><span>From <b>$200</b>/driver</span></div>
-          <div class="prog-cta">VIEW PACKAGES →</div>
+          <div class="prog-eyebrow">SEASONS · PAID · COMMITMENT</div>
+          <div class="prog-title">Leagues</div>
+          <div class="prog-sub">A new Monthly League every month, plus Audi TT Cup and AACC — multi-week championship seasons with their own standings and prize pool.</div>
+          <div class="prog-facts"><span>Auto-updates as seasons start</span></div>
+          <div class="prog-cta">ENTER →</div>
         </div>
       </button>
+      <button class="prog-card" onclick="goToSection(event,'sec-qualifiers')">
+        <div class="prog-body">
+          <div class="prog-eyebrow">ALWAYS OPEN · FREE · CASUAL</div>
+          <div class="prog-title">Qualifiers</div>
+          <div class="prog-sub">Weekly/Monthly Qualifiers, Thursday Sprint Races, and the Monthly Championship — the free ladder to a spot on the SIM1Racing team.</div>
+          <div class="prog-facts"><span><b>3</b> ways to earn an invite</span><span>Runs continuously</span></div>
+          <div class="prog-cta">ENTER →</div>
+        </div>
+      </button>
+      <button class="prog-card" onclick="goToSection(event,'sec-viewresults')">
+        <div class="prog-body">
+          <div class="prog-eyebrow">YOUR STATS</div>
+          <div class="prog-title">View Your Results</div>
+          <div class="prog-sub">Look up your name to see qualifier results, lap times, badges, and the full event archive.</div>
+          <div class="prog-facts"><span>Search by driver name</span></div>
+          <div class="prog-cta">LOOK UP →</div>
+        </div>
+      </button>
+    </div>
+
+    <div class="photo-row">
+      <div class="photo-spot"><span>📷 Photo — race night at the sim lab</span></div>
+      <div class="photo-spot"><span>📷 Photo — a giveaway or track day winner</span></div>
+      <div class="photo-spot"><span>📷 Photo — the SIM1Racing team in action</span></div>
     </div>
   </div>
 </section>

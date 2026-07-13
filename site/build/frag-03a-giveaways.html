@@ -10,6 +10,15 @@
 ════════════════════════════════════════════════════════════════ -->
 <div id="sec-giveaways">
 <a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
+
+<div style="max-width:1200px;margin:24px auto 0;padding:0 40px;">
+<div style="display:flex;gap:4px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:5px;width:fit-content;">
+<button onclick="gvModeTab('car')" id="gv-mode-tab-car" style="background:var(--red);color:#fff;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Car Giveaway</button>
+<button onclick="gvModeTab('trackday')" id="gv-mode-tab-trackday" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Track Day</button>
+</div>
+</div>
+
+<div id="gv-mode-car">
 <div id="view-landing">
 <header class="hero" style="padding-top:64px;">
 <div class="hero-glow"></div>
@@ -167,6 +176,139 @@
 </div>
 </section>
 </div><!-- /#view-giveaway -->
+</div><!-- /#gv-mode-car -->
+
+<div id="gv-mode-trackday" style="display:none;">
+<header class="hero" style="padding-top:44px;">
+<div class="hero-glow"></div>
+<div class="hero-inner" style="max-width:1200px;display:grid;grid-template-columns:1.05fr 1fr;gap:54px;align-items:center;text-align:left;">
+<div>
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2afecdfe6a136c3d3ca82b/1781202638137/color+wo+bg.png" alt="Burnout Events" style="height:120px;object-fit:contain;display:block;margin-bottom:14px;">
+<h1 style="font-size:4em;">WIN A FREE<br><span class="accent">TRACK DAY</span></h1>
+<p style="text-align:left;">Finish at the top of our sim-racing competition and win a real track day at Lime Rock Park, CT on June 19–20. Two winners, two prizes — first place takes a full two-day pass, second place scores a single-day ticket.</p>
+<div class="hero-cta">
+<a href="https://www.sim1racing.com/daily-rates" target="_blank" rel="noopener" class="btn">BOOK YOUR SESSION ↗</a>
+<a href="#td-how" class="btn btn-outline">HOW IT WORKS</a>
+</div>
+<div class="hero-stats" style="margin-left:0;">
+<div class="hero-stat"><div class="v">3</div><div class="l">Week Competition</div></div>
+<div class="hero-stat"><div class="v">2</div><div class="l">Winners</div></div>
+<div class="hero-stat"><div class="v">$1,400</div><div class="l">Total Prize Value</div></div>
+</div>
+</div>
+<div class="event-graphic-wrap">
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2affe90c49360e99fd2f53/1781202921898/Insta+Events+%2831%29.jpg" alt="Burnout Events — Lime Rock Park June 19–20">
+<span class="live-badge">COMPETITION LIVE</span>
+</div>
+</div>
+</header>
+
+<section class="section" id="td-how" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:44px;">
+<div class="eyebrow">THE FORMAT</div>
+<h2 class="h2">How It Works</h2>
+<p class="lead" style="max-width:680px;margin:14px auto 0;">One track, three weeks to set your best lap. Jump on the SIM1Racing server any time the competition is open, post a clean time, and the top two when it closes win a real track day — for free.</p>
+</div>
+<div class="step-grid">
+<div class="step-card"><div class="bar"></div><div class="num">01</div><div class="step-t">Join the Competition</div><div class="step-d">Come into SIM1, head to the multiplayer section, and join the competition. To compete, purchase any daily rate and you're in — with as many laps as you want for the day. Gold members can drive unlimited laps for a chance at winning.</div></div>
+<div class="step-card"><div class="bar"></div><div class="num">02</div><div class="step-t">Keep Improving</div><div class="step-d">The same track stays open for three weeks. Come back as many times as you want to chase a faster time — only your quickest clean lap counts toward the standings.</div></div>
+<div class="step-card"><div class="bar"></div><div class="num">03</div><div class="step-t">Top Two Win</div><div class="step-d">When the window closes, 1st place takes the two-day weekend pass ($900 value) and 2nd place wins a single-day ticket ($500 value) to Lime Rock Park June 19–20.</div></div>
+</div>
+<div class="note" style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:22px 24px;margin-top:28px;">
+<div class="nt-t" style="font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;">📌 Important — Event Date</div>
+<p style="font-family:var(--body);font-size:0.9em;color:#b0b0b0;line-height:1.7;margin:0;">The track day is <strong style="color:#fff;">June 19–20, 2026</strong> at Lime Rock Park, CT. Winners must be able to attend. The prize is a ticket — all other costs (travel, lodging, optional car rental) are the winner's responsibility. Prizes are non-transferable and have no cash value.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="td-prizes" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow">WHAT YOU WIN</div>
+<h2 class="h2">The Prizes</h2>
+<p class="lead" style="max-width:640px;margin:14px auto 0;">Two winners, two real-world track day prizes courtesy of <a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">Burnout Events</a>.</p>
+</div>
+<div class="prize-grid">
+<div class="prize-card gold"><div class="place">🥇 1st Place</div><span class="medal">🏆</span><div class="prize-name">Two-Day Weekend Pass</div><div class="prize-val">$900</div><div class="prize-sub">Full access to both days — June 19 &amp; 20 — at Lime Rock Park. Redeemable at any future Burnout Events track day if you can't make the June date.</div></div>
+<div class="prize-card silver"><div class="place">🥈 2nd Place</div><span class="medal">🎟️</span><div class="prize-name">Single-Day Ticket</div><div class="prize-val">$500</div><div class="prize-sub">One full day on track at Lime Rock Park. Redeemable at any future Burnout Events HPDE if you can't make the June date.</div></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="td-event" style="background:var(--bg);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow">THE REAL-WORLD EVENT</div>
+<h2 class="h2">Lime Rock Park<br>Track Day</h2>
+<p class="lead" style="max-width:680px;margin:14px auto 0;">A High Performance Driving Education (HPDE) event run by Burnout Events. All novice drivers are assigned an experienced instructor. You don't need to be a racing driver — this is a learning environment open to everyone.</p>
+</div>
+<div class="details-grid">
+<div class="detail-block">
+<div class="db-t">Event Info</div>
+<div class="info-row"><div class="ico">📅</div><div><div class="ir-l">Date</div><div class="ir-v">June 19–20, 2026</div></div></div>
+<div class="info-row"><div class="ico">📍</div><div><div class="ir-l">Location</div><div class="ir-v">Lime Rock Park, Lakeville, CT</div></div></div>
+<div class="info-row"><div class="ico">🎓</div><div><div class="ir-l">Format</div><div class="ir-v">High Performance Driving Education (HPDE) — novices paired with an experienced in-car instructor</div></div></div>
+<div class="info-row"><div class="ico">🎟️</div><div><div class="ir-l">Ticket Price (public)</div><div class="ir-v">$500 single day · $900 weekend</div></div></div>
+<div class="info-row"><div class="ico">🌐</div><div><div class="ir-l">Organiser</div><div class="ir-v"><a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener">burnoutmotorsport.com ↗</a></div></div></div>
+<div class="info-row"><div class="ico">🔗</div><div><div class="ir-l">Register / Book</div><div class="ir-v"><a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener">msreg.com/burnout-limerock ↗</a></div></div></div>
+</div>
+<div>
+<div class="discount-banner">
+<div class="dc-left">
+<div class="dc-label">Exclusive Discount</div>
+<div class="dc-t">20% Off for<br>SIM1Racing Community</div>
+<div class="dc-s">Enter code <strong style="color:#fff;">SIM1</strong> at checkout on <a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">msreg.com/burnout-limerock</a>. Single-day drops to <strong style="color:#ddd;">$400</strong> · weekend drops to <strong style="color:#ddd;">$360/day</strong>.</div>
+</div>
+</div>
+<div class="detail-block" style="margin-top:16px;">
+<div class="db-t">Track Day Essentials</div>
+<div class="info-row"><div class="ico">🪖</div><div><div class="ir-l">Helmet</div><div class="ir-v">SA-rated helmet required. Rentals available at the venue.</div></div></div>
+<div class="info-row"><div class="ico">🚗</div><div><div class="ir-l">Your Car</div><div class="ir-v">Bring your own road car or rent one — see rental options below.</div></div></div>
+<div class="info-row"><div class="ico">🛡️</div><div><div class="ir-l">Track Insurance</div><div class="ir-v">Strongly recommended. Must be purchased within 24 hrs of going on track.</div></div></div>
+<div class="info-row"><div class="ico">📋</div><div><div class="ir-l">Run Groups</div><div class="ir-v">Novice, intermediate, and advanced groups. All skill levels welcome.</div></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="td-rentals" style="background:var(--bg2);">
+<div class="wrap">
+<div class="center" style="margin-bottom:40px;">
+<div class="eyebrow">DON'T HAVE A TRACK CAR?</div>
+<h2 class="h2">Car Rentals Available</h2>
+<p class="lead" style="max-width:700px;margin:14px auto 0;">Track-prepped rentals are available through <strong style="color:#ddd;">Indian Summer Racing</strong> — a local provider. All rentals include transport to and from the track, tires, fuel, and on-site crew. You still need to register and pay for the track day separately (or use your prize ticket!).</p>
+</div>
+<div class="rental-grid">
+<div class="rental-card featured"><div class="rc-name">2020 Mazda MX-5 Miata</div><div class="rc-spec">Manual · Coilovers · Track pads &amp; tires · Alex's personal car</div><div class="rc-price">$2,000</div><div class="rc-price-l">Includes track day ticket</div></div>
+<div class="rental-card"><div class="rc-name">2009 VW Golf</div><div class="rc-spec">Automatic · Stock</div><div class="rc-price">$1,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2009 VW Golf</div><div class="rc-spec">Automatic · Track prep</div><div class="rc-price">$1,250</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2001 BMW 330i</div><div class="rc-spec">5-speed manual · Track prep</div><div class="rc-price">$1,500</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2013 Mini Cooper</div><div class="rc-spec">Manual · Full race prep · 2 available</div><div class="rc-price">$1,500</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">2003 Mercedes CLK 500</div><div class="rc-spec">Automatic</div><div class="rc-price">$2,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+<div class="rental-card"><div class="rc-name">1997 Porsche Boxster</div><div class="rc-spec">5-speed manual · Track prep</div><div class="rc-price">$2,000</div><div class="rc-price-l">Via Indian Summer Racing</div></div>
+</div>
+<div class="rental-note">
+<p><strong style="color:#ddd;">Rental includes:</strong> Transport to and from the track, tires, fuel, and an on-site crew to maintain the vehicle during the day. Burnout Events earns no commission on rentals — these are independent of the ticket price.</p>
+<p style="margin-top:8px;"><strong style="color:#ddd;">Important:</strong> Each renter must sign a contract prior to the event outlining liability for mechanical or physical damage incurred on track. Track insurance is strongly recommended and must be purchased within 24 hours of going on track.</p>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="wrap">
+<div class="eyebrow center">YOUR TICKET TO THE TRACK</div>
+<h2 class="h2 center">WIN IT OR<br><span style="color:var(--red);">BOOK IT YOURSELF</span></h2>
+<p class="lead center">Top the sim-racing standings and your ticket is on us. Or skip the wait — use code <strong style="color:#fff;">SIM1</strong> at checkout for 20% off and register directly for the event.</p>
+<div class="cta-btns">
+<a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener" class="btn">REGISTER FOR THE EVENT ↗</a>
+<a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener" class="btn btn-outline">BURNOUT MOTORSPORT ↗</a>
+</div>
+<div style="margin-top:24px;font-family:var(--cond);font-size:1.2em;font-weight:800;letter-spacing:3px;color:#555;">USE CODE <span style="color:var(--red);">SIM1</span> FOR 20% OFF</div>
+</div>
+</section>
+</div><!-- /#gv-mode-trackday -->
 </div><!-- /#sec-giveaways -->
 
 <style>
@@ -246,4 +388,72 @@
 #sec-giveaways .rpt{display:inline-block;font-family:var(--cond);font-size:0.55em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#888;background:#000;border:1px solid var(--border);border-radius:4px;padding:1px 6px;margin-left:7px;vertical-align:middle;}
 @media(max-width:900px){ #sec-giveaways .hero-inner{grid-template-columns:1fr!important;} #sec-giveaways [style*="grid-template-columns:1fr 1.1fr"]{grid-template-columns:1fr!important;} #sec-giveaways .week-grid{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .ladder{grid-template-columns:repeat(3,1fr)!important;} #sec-giveaways .rules{grid-template-columns:1fr!important;} }
 @media(max-width:600px){ #sec-giveaways .week-grid{grid-template-columns:1fr!important;} #sec-giveaways .ladder{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .standings .wks{display:none!important;} #sec-giveaways .tbl-pad{padding:4px 8px 12px!important;} }
+
+/* ── TRACK DAY MODE (merged sub-view, scoped so it can't affect the Car Giveaway mode) ── */
+#gv-mode-trackday{position:relative;}
+#gv-mode-trackday .event-graphic-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#0a0a0a;}
+#gv-mode-trackday .event-graphic-wrap img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;}
+#gv-mode-trackday .live-badge{position:absolute;top:14px;left:14px;background:var(--red);color:#fff;font-family:var(--cond);font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:10px;animation:tdBlink 1.4s ease-in-out infinite;}
+@keyframes tdBlink{0%,100%{opacity:1}50%{opacity:0.6}}
+#gv-mode-trackday .prize-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+#gv-mode-trackday .prize-card{border-radius:14px;padding:30px 26px;position:relative;overflow:hidden;}
+#gv-mode-trackday .prize-card.gold{background:linear-gradient(150deg,#1a1405,#111 60%);border:1px solid rgba(251,191,36,0.45);}
+#gv-mode-trackday .prize-card.silver{background:linear-gradient(150deg,#0f0f12,#111 60%);border:1px solid rgba(209,213,219,0.3);}
+#gv-mode-trackday .prize-card .place{font-family:var(--cond);font-size:0.8em;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+#gv-mode-trackday .prize-card.gold .place{color:var(--gold);} #gv-mode-trackday .prize-card.silver .place{color:var(--silver);}
+#gv-mode-trackday .prize-card .medal{font-size:2.4em;margin-bottom:10px;display:block;}
+#gv-mode-trackday .prize-card .prize-name{font-family:var(--cond);font-size:1.7em;font-weight:900;text-transform:uppercase;line-height:1.05;color:#fff;margin-bottom:8px;}
+#gv-mode-trackday .prize-card .prize-val{font-family:var(--cond);font-size:3em;font-weight:900;line-height:1;}
+#gv-mode-trackday .prize-card.gold .prize-val{color:var(--gold);} #gv-mode-trackday .prize-card.silver .prize-val{color:var(--silver);}
+#gv-mode-trackday .prize-card .prize-sub{font-family:var(--body);font-size:0.82em;color:#888;margin-top:6px;line-height:1.5;}
+#gv-mode-trackday .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+#gv-mode-trackday .step-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:26px 24px;position:relative;overflow:hidden;}
+#gv-mode-trackday .step-card .bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);}
+#gv-mode-trackday .step-card .num{font-family:var(--cond);font-size:2.2em;font-weight:900;color:var(--red);line-height:1;margin-bottom:12px;}
+#gv-mode-trackday .step-card .step-t{font-family:var(--cond);font-size:1.1em;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:8px;}
+#gv-mode-trackday .step-card .step-d{font-family:var(--body);font-size:0.88em;color:#888;line-height:1.6;}
+#gv-mode-trackday .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+#gv-mode-trackday .detail-block{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:28px;}
+#gv-mode-trackday .detail-block .db-t{font-family:var(--cond);font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+#gv-mode-trackday .info-row{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--border2);align-items:flex-start;}
+#gv-mode-trackday .info-row:last-child{border-bottom:none;}
+#gv-mode-trackday .info-row .ico{font-size:1.15em;flex-shrink:0;margin-top:1px;}
+#gv-mode-trackday .info-row .ir-l{font-family:var(--body);font-size:0.78em;color:#666;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;}
+#gv-mode-trackday .info-row .ir-v{font-family:var(--body);font-size:0.95em;font-weight:700;color:#ddd;line-height:1.35;}
+#gv-mode-trackday .info-row .ir-v a{color:var(--red);text-decoration:none;}
+#gv-mode-trackday .discount-banner{background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:14px;padding:28px 32px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+#gv-mode-trackday .discount-banner .dc-label{font-family:var(--cond);font-size:0.75em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+#gv-mode-trackday .discount-banner .dc-t{font-family:var(--cond);font-size:1.6em;font-weight:900;text-transform:uppercase;color:#fff;line-height:1.1;}
+#gv-mode-trackday .discount-banner .dc-s{font-family:var(--body);font-size:0.88em;color:#999;margin-top:6px;line-height:1.55;}
+#gv-mode-trackday .rental-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+#gv-mode-trackday .rental-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+#gv-mode-trackday .rental-card .rc-name{font-family:var(--cond);font-size:1em;font-weight:800;text-transform:uppercase;color:#fff;line-height:1.1;margin-bottom:6px;}
+#gv-mode-trackday .rental-card .rc-spec{font-family:var(--body);font-size:0.78em;color:#888;line-height:1.4;margin-bottom:10px;}
+#gv-mode-trackday .rental-card .rc-price{font-family:var(--cond);font-size:1.5em;font-weight:900;color:var(--red);}
+#gv-mode-trackday .rental-card .rc-price-l{font-family:var(--body);font-size:0.7em;color:#666;text-transform:uppercase;letter-spacing:0.5px;}
+#gv-mode-trackday .rental-card.featured{border-color:rgba(239,68,68,0.4);background:linear-gradient(150deg,#160606,#111 60%);}
+#gv-mode-trackday .rental-note{background:var(--card3);border:1px solid var(--border2);border-radius:10px;padding:16px 20px;margin-top:14px;}
+#gv-mode-trackday .rental-note p{font-family:var(--body);font-size:0.84em;color:#888;line-height:1.65;margin:0;}
+#gv-mode-trackday .cta-section{background:linear-gradient(135deg,#0d0000,#0a0a0a 50%,#0a0000);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 40px;text-align:center;}
+#gv-mode-trackday .cta-section .h2{font-size:3em;margin-bottom:16px;}
+#gv-mode-trackday .cta-section .lead{max-width:620px;margin:0 auto 32px;}
+#gv-mode-trackday .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+@media(max-width:900px){
+#gv-mode-trackday .hero-inner{grid-template-columns:1fr!important;}
+#gv-mode-trackday .step-grid{grid-template-columns:1fr 1fr!important;}
+#gv-mode-trackday .details-grid{grid-template-columns:1fr!important;}
+#gv-mode-trackday .rental-grid{grid-template-columns:1fr 1fr!important;}
+}
+@media(max-width:600px){
+#gv-mode-trackday .hero{padding:28px 18px 48px!important;}
+#gv-mode-trackday .event-graphic-wrap img{max-height:72vw;object-fit:cover;}
+#gv-mode-trackday .step-grid{grid-template-columns:1fr!important;gap:10px!important;}
+#gv-mode-trackday .prize-grid{grid-template-columns:1fr!important;gap:12px!important;}
+#gv-mode-trackday .rental-grid{grid-template-columns:1fr!important;gap:10px!important;}
+#gv-mode-trackday .discount-banner{flex-direction:column;text-align:center;gap:14px;padding:20px 18px!important;}
+#gv-mode-trackday .cta-btns{flex-direction:column;align-items:stretch;gap:10px;}
+#gv-mode-trackday .cta-btns .btn{text-align:center;padding:14px 18px;}
+#gv-mode-trackday .cta-section .h2{font-size:1.85em!important;}
+#gv-mode-trackday .cta-section{padding:56px 18px!important;}
+}
 </style>

@@ -1,0 +1,106 @@
+<!-- ════════════════════════════════════════════════════════════════
+  SECTION: VIEW YOUR RESULTS — driver lookup, event archive, and top
+  stats. Wrapped in #sec-viewresults so its own mobile CSS (which
+  targets generic div[style*="..."] selectors) cannot affect any
+  other section on this page.
+════════════════════════════════════════════════════════════════ -->
+<div id="sec-viewresults">
+<a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
+<div style="padding:100px 40px 20px;background:#000;text-align:center;position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(239,68,68,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+<div style="position:relative;z-index:1;">
+<div style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:14px;margin-bottom:20px;">Results &amp; History</div>
+<h1 style="font-family:'Barlow Condensed',sans-serif;font-size:3.6em;font-weight:900;text-transform:uppercase;color:white;margin:0 0 18px;line-height:1;">VIEW YOUR RESULTS</h1>
+<p style="font-family:'Barlow',sans-serif;font-size:1.05em;line-height:1.7;color:#b0b0b0;max-width:700px;margin:0 auto;">Look up your qualifier results, browse the full event archive, or check the all-time top stats.</p>
+</div>
+</div>
+
+<div id="race-portal" style="padding:60px 40px 100px;background:#0a0a0a;">
+<div style="max-width:1000px;margin:0 auto;">
+<div style="background:#111;border:1px solid #2a2a2a;border-radius:16px;overflow:hidden;">
+<div style="display:flex;border-bottom:1px solid #2a2a2a;">
+<button onclick="portalTab('lookup')" id="ptab-lookup" class="portal-tab active-ptab" style="flex:1;padding:15px 10px;background:#1a1a1a;border:none;border-bottom:2px solid #EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F50D; Driver Lookup</button>
+<button onclick="portalTab('archive')" id="ptab-archive" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4CB; Event Archive</button>
+<button onclick="portalTab('stats')" id="ptab-stats" class="portal-tab" style="flex:1;padding:15px 10px;background:transparent;border:none;border-bottom:2px solid transparent;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:0.8em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">&#x1F4C8; Top Stats</button>
+</div>
+
+<div id="panel-lookup" style="padding:26px;">
+<div style="display:flex;gap:10px;margin-bottom:20px;">
+<input id="driver-search" type="text" placeholder="Enter driver name..." style="flex:1;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:8px;padding:13px 16px;color:white;font-family:'Barlow',sans-serif;font-size:0.95em;outline:none;" oninput="searchDriver()" onkeydown="if(event.key==='Enter')searchDriver()">
+<button onclick="searchDriver()" style="background:#EF4444;color:white;border:none;border-radius:8px;padding:13px 22px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">SEARCH</button>
+</div>
+<div id="driver-results"></div>
+<div id="lookup-hint" style="text-align:center;padding:24px 0;color:#333;font-family:'Barlow',sans-serif;font-size:0.86em;">Type a name above to search past event results.</div>
+</div>
+
+<div id="panel-archive" style="display:none;">
+<div style="padding:14px 22px;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:12px;">
+<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#555;white-space:nowrap;">&#x1F4CB; VIEW MONTH:</span>
+<select id="archive-month-select"
+onchange="renderArchive(this.value)"
+style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:700;padding:7px 12px;cursor:pointer;outline:none;flex:1;max-width:260px;letter-spacing:0.5px;">
+</select>
+</div>
+<div id="archive-list" style="max-height:520px;overflow-y:auto;"></div>
+</div>
+
+<div id="panel-stats" style="display:none;padding:26px;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;" id="stats-grid"></div>
+</div>
+</div>
+
+<div id="lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:20px;" onclick="closeModal(event)">
+<div style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;" onclick="event.stopPropagation()">
+<div style="padding:20px 26px;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#1a1a1a;z-index:1;">
+<div>
+<div id="modal-badge" style="display:inline-block;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:7px;margin-bottom:6px;"></div>
+<h3 id="modal-title" style="font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:900;text-transform:uppercase;color:white;margin:0;"></h3>
+<div id="modal-meta" style="font-family:'Barlow',sans-serif;font-size:0.75em;color:#666;margin-top:3px;"></div>
+<div id="modal-count" style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:2px;"></div>
+</div>
+<button onclick="document.getElementById('lb-modal').style.display='none'" style="background:#2a2a2a;border:none;color:#888;width:32px;height:32px;border-radius:50%;font-size:1em;cursor:pointer;flex-shrink:0;">&#x2715;</button>
+</div>
+<div style="padding:16px 26px;">
+<table style="width:100%;border-collapse:collapse;">
+<thead><tr style="border-bottom:1px solid #2a2a2a;">
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 0;width:38px;">POS</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:left;padding:7px 10px;">DRIVER</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;display:none;" id="modal-qual-th">QUAL</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">BEST LAP</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;" id="modal-laps-th">LAPS</th>
+<th style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#555;text-align:right;padding:7px 0;">GAP</th>
+</tr></thead>
+<tbody id="modal-tbody"></tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<style>
+#sec-viewresults{position:relative;}
+@keyframes qBlink{0%,100%{opacity:1}50%{opacity:0.3}}
+#sec-viewresults #driver-search:focus{border-color:#EF4444!important;box-shadow:0 0 0 2px rgba(239,68,68,0.15);}
+#sec-viewresults .arch-event-row{display:flex;align-items:center;gap:14px;padding:12px 22px;border-bottom:1px solid #141414;cursor:pointer;transition:background 0.15s;}
+#sec-viewresults .arch-event-row:hover{background:#161616;}
+#sec-viewresults .arch-event-row:last-child{border-bottom:none;}
+#sec-viewresults #archive-list::-webkit-scrollbar{width:4px;}
+#sec-viewresults #archive-list::-webkit-scrollbar-track{background:#111;}
+#sec-viewresults #archive-list::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
+#sec-viewresults .arch-badge-short{display:none;}
+@media(max-width:768px){
+#sec-viewresults div[style*="padding:100px 40px 20px"]{padding:50px 18px 16px!important;}
+#sec-viewresults div[style*="padding:100px 40px 20px"] h1{font-size:2.4em!important;}
+#sec-viewresults div[style*="padding:60px 40px 100px"]{padding:30px 18px 60px!important;}
+#sec-viewresults #stats-grid{grid-template-columns:1fr!important;}
+#sec-viewresults .arch-event-row{padding:10px 14px!important;gap:10px!important;}
+#sec-viewresults .arch-event-row .arch-badge{min-width:34px!important;max-width:34px!important;padding:4px 0!important;font-size:0.7em!important;letter-spacing:1px!important;}
+#sec-viewresults .arch-event-row .arch-badge-full{display:none;}
+#sec-viewresults .arch-event-row .arch-badge-short{display:inline;}
+#sec-viewresults .arch-event-row .arch-title{font-size:0.82em!important;}
+#sec-viewresults .arch-event-row .arch-meta{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:0.62em!important;}
+#sec-viewresults .arch-event-row .arch-cta > span:first-child{display:none;}
+}
+</style>
+</div><!-- /#sec-viewresults -->

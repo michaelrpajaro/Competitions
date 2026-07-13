@@ -361,6 +361,19 @@ window.addEventListener('hashchange', function(){
   if(!location.hash || /^#g\//.test(location.hash)) route();
 });
 
+/* Car Giveaway / Track Day mode toggle — Track Day is merged into this
+   section as a second sub-view rather than its own top-level section. */
+function gvModeTab(mode){
+  const modes = ['car','trackday'];
+  modes.forEach(m => {
+    document.getElementById('gv-mode-' + m).style.display = (m === mode) ? '' : 'none';
+    const btn = document.getElementById('gv-mode-tab-' + m);
+    if(m === mode){ btn.style.background = 'var(--red)'; btn.style.color = '#fff'; }
+    else { btn.style.background = 'transparent'; btn.style.color = '#888'; }
+  });
+  window.scrollTo(0, document.getElementById('sec-giveaways').offsetTop - 60);
+}
+
 /* INIT — giveaways section */
 renderWeekCards();
 renderLadder();
