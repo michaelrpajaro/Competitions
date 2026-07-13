@@ -73,33 +73,12 @@ Season In Progress
 </div>
 </div>
 
-<div style="display:grid;grid-template-columns:1.55fr 1fr;gap:20px;align-items:start;">
-
-<div id="s1-audi-standings" style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
-<div style="background:#111;padding:18px 22px;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Championship Standings</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:700;color:#EF4444;text-transform:uppercase;letter-spacing:1px;">&#x25CF; Week 5 In Progress &middot; Spa</div>
-</div>
-<div style="display:grid;grid-template-columns:42px 1fr 44px 44px 44px 44px 44px 64px;padding:10px 22px;background:#0a0a0a;border-bottom:1px solid #1a1a1a;font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#777;">
-<div>Pos</div><div>Driver</div><div style="text-align:center;">W1</div><div style="text-align:center;">W2</div><div style="text-align:center;">W3</div><div style="text-align:center;">W4</div><div style="text-align:center;">W5</div><div style="text-align:right;">Total</div>
-</div>
-<div id="audi-standings-rows"></div>
-<div style="padding:12px 22px;background:#080808;border-top:1px solid #1a1a1a;font-family:'Barlow',sans-serif;font-size:0.74em;color:#666;line-height:1.55;">
-Weekly columns sum race finishes, fastest-lap bonuses (+1 each race), pole bonus (+1), and any penalties applied that week. <strong style="color:#888;">—</strong> means the driver did not race that week. Ties are separated by most wins, then 2nds, then poles.
-</div>
+<div style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:18px 24px;margin-bottom:20px;text-align:center;">
+<p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#b0b0b0;margin:0;">Full championship standings and race-by-race results now live in <a onclick="goToSection(event,'sec-viewresults')" href="#sec-viewresults" style="color:var(--red);text-decoration:none;font-weight:700;">View Laps/Results →</a></p>
 </div>
 
-<div style="display:flex;flex-direction:column;gap:16px;">
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
-<div style="background:#111;padding:16px 22px;border-bottom:1px solid #1a1a1a;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Race Results</div></div>
-<div style="padding:6px 0;">
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',1)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 1 &middot; Jun 1</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Red Bull Ring GP</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',2)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 2 &middot; Jun 8</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Brands Hatch GP</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',3)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 3 &middot; Jun 15</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Laguna Seca</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',4)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 4 &middot; Jun 22</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Barcelona (Moto)</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;cursor:pointer;" onclick="openResultsModal('audi',5)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 5 &middot; Jun 29 &middot; <span style="color:#f97316;">In Progress</span></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Spa-Francorchamps</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-</div>
-</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+
 <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
 <div style="background:#111;padding:14px 22px;border-bottom:1px solid #1a1a1a;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Prize Pool</div></div>
 <div style="padding:16px 22px;display:flex;flex-direction:column;gap:10px;">
@@ -114,12 +93,11 @@ Weekly columns sum race finishes, fastest-lap bonuses (+1 each race), pole bonus
 <p style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#aaa;margin:0 0 12px;line-height:1.5;">A huge thank-you to <strong style="color:#fff;">Always Clean</strong> for co-sponsoring the SIM1 Audi TT Cup — helping make these prizes possible for our drivers.</p>
 <a href="https://www.alwayscleancars.com/" target="_blank" rel="noopener" style="display:inline-block;background:#22C55E;color:#000;padding:8px 22px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Visit alwayscleancars.com &rarr;</a>
 </div>
-</div>
 
 </div>
 
 <div style="text-align:center;margin-top:24px;">
-<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#777;margin:0;">Standings updated weekly after each race night. Race replays available on <a href="https://www.youtube.com/@SIM1Racing" target="_blank" rel="noopener" style="color:#EF4444;text-decoration:none;border-bottom:1px solid rgba(239,68,68,0.4);">our YouTube channel</a>.</p>
+<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#777;margin:0;">Race replays available on <a href="https://www.youtube.com/@SIM1Racing" target="_blank" rel="noopener" style="color:#EF4444;text-decoration:none;border-bottom:1px solid rgba(239,68,68,0.4);">our YouTube channel</a>.</p>
 </div>
 
 </div>

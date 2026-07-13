@@ -95,6 +95,7 @@ img{max-width:100%;}
 .flow-card .fc-t{font-family:var(--cond);font-size:1.1em;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:8px;}
 .flow-card .fc-d{font-family:var(--body);font-size:0.84em;color:#888;line-height:1.55;}
 .track-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+.track-row-4{grid-template-columns:repeat(4,1fr);}
 .track-card{background:var(--card3);border:1px solid var(--border2);border-radius:12px;padding:20px;text-align:center;}
 .track-card .tk-ico{font-size:1.7em;margin-bottom:8px;}
 .track-card .tk-t{font-family:var(--cond);font-size:0.95em;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:6px;}
@@ -183,7 +184,7 @@ img{max-width:100%;}
   <div class="hero-inner">
     <span class="badge">SIM1RACING</span>
     <h1>EVERY WAY TO<br><span class="accent">COMPETE</span></h1>
-    <p>At SIM1 you can always just come in and drive <b style="color:#fff;">any car on any track</b> — or you can put that pace to the test in one of the competitions below. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, race a one-off endurance event, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
+    <p>Grab a friend and go race together — team up as co-drivers for the Monthly Endurance Race, or come solo and jump into any of the competitions below. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="v">6</div><div class="l">Ways to Compete</div></div>
       <div class="hero-stat"><div class="v">Weekly</div><div class="l">New Events Posted</div></div>
@@ -272,12 +273,12 @@ img{max-width:100%;}
     <div class="center" style="margin-bottom:40px;">
       <div class="eyebrow">THE BIG PICTURE</div>
       <h2 class="h2">How It All Fits Together</h2>
-      <p class="lead" style="max-width:720px;margin:14px auto 0;">There are two tracks running at once — a free ladder anyone can jump into, and a set of separate paid/seasonal or prize-driven programs alongside it.</p>
+      <p class="lead" style="max-width:720px;margin:14px auto 0;">There are two tracks running at once — open competitions anyone can jump into, and a set of separate paid/seasonal or prize-driven programs alongside it.</p>
     </div>
 
     <div class="flow">
       <div class="flow-card">
-        <div class="fc-t">1 · Free Ladder</div>
+        <div class="fc-t">1 · Open Competitions</div>
         <div class="fc-d">Weekly Qualifiers, Monthly Challenges, and Thursday Sprint Races — open to everyone, running continuously. Top finishers earn an invite.</div>
       </div>
       <div class="flow-arrow">→</div>
@@ -294,16 +295,21 @@ img{max-width:100%;}
       </div>
     </div>
 
-    <div class="track-row">
+    <div class="track-row track-row-4">
       <div class="track-card">
         <div class="tk-ico">🏆</div>
         <div class="tk-t">Leagues</div>
-        <div class="tk-d">Paid multi-week seasons with their own standings and prize pools — or book a fully custom season for your own group.</div>
+        <div class="tk-d">A new Monthly League every month — paid multi-week seasons with their own standings and prize pools — or book a fully custom season for your own group.</div>
       </div>
       <div class="track-card">
         <div class="tk-ico">🚗</div>
-        <div class="tk-t">Giveaways &amp; Events</div>
-        <div class="tk-d">Real-world prizes layered on top of racing — a car giveaway, a monthly endurance race, and a free track day.</div>
+        <div class="tk-t">Giveaways</div>
+        <div class="tk-d">Car giveaways, free track days, and more.</div>
+      </div>
+      <div class="track-card">
+        <div class="tk-ico">⏱️</div>
+        <div class="tk-t">Endurance Race</div>
+        <div class="tk-d">Also a month-to-month thing — just like Leagues gets a new season every month, the Endurance Race runs once a month too. Solo or with a co-driver.</div>
       </div>
       <div class="track-card">
         <div class="tk-ico">🏁</div>
@@ -348,7 +354,7 @@ img{max-width:100%;}
 <div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:24px 20px;text-align:center;">
 <div style="font-size:1.8em;margin-bottom:10px;">&#x1F3CE;&#xFE0F;</div>
 <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">Weekly Qualifier</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#888;line-height:1.55;">Post your fastest lap. Runs Monday&#x2013;Sunday. <strong style="color:#ccc;">Top 3 earn a championship invite.</strong></div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#888;line-height:1.55;">Post your fastest lap in this week's Car of the Week. Runs Monday&#x2013;Sunday. <strong style="color:#ccc;">Top 3 earn a championship invite.</strong></div>
 </div>
 <div style="background:#111;border:1px solid #2a2a2a;border-radius:12px;padding:24px 20px;text-align:center;">
 <div style="font-size:1.8em;margin-bottom:10px;">&#x23F1;&#xFE0F;</div>
@@ -360,6 +366,11 @@ img{max-width:100%;}
 <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;text-transform:uppercase;color:#22c55e;margin-bottom:8px;">Thursday Sprint</div>
 <div style="font-family:'Barlow',sans-serif;font-size:0.8em;color:#888;line-height:1.55;">Live race every Thursday 8PM. <strong style="color:#ccc;">1 invite per race &#x2014; goes to the highest podium finisher not already qualified.</strong></div>
 </div>
+</div>
+
+<div style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:20px 24px;margin-top:18px;">
+<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:8px;">🏎️ Car of the Week</div>
+<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#b0b0b0;line-height:1.65;margin:0;">The Weekly Qualifier and the Thursday Sprint Race share the same car and track each week &#x2014; the <strong style="color:#fff;">Car of the Week</strong>. Race it solo, on your own time, in the Weekly Qualifier &#x2014; or show up live Thursday at 8PM and race it wheel-to-wheel against the field in the Sprint. Same combo, your choice of format.</p>
 </div>
 
 <div style="display:flex;align-items:center;justify-content:center;padding:14px 0 12px;">
@@ -424,12 +435,12 @@ img{max-width:100%;}
 <div style="font-family:'Barlow',sans-serif;font-size:0.68em;color:#666;text-transform:uppercase;letter-spacing:0.5px;">Gold Members + SIM1 Team Drivers</div>
 </div>
 </div>
-<p style="font-family:'Barlow',sans-serif;font-size:1em;line-height:1.7;color:#b0b0b0;margin-bottom:24px;">Every Thursday night, the car and track are revealed at 7:55PM. No preparation advantage &#x2014; just raw pace. Race wheel-to-wheel in a pure sprint format. The highest podium finisher who isn't already qualified earns a championship invite &#x2014; one per race.</p>
+<p style="font-family:'Barlow',sans-serif;font-size:1em;line-height:1.7;color:#b0b0b0;margin-bottom:24px;">Every Thursday night, race this week's <strong style="color:#fff;">Car of the Week</strong> &#x2014; the same car and track as the current Weekly Qualifier &#x2014; live and wheel-to-wheel in a pure sprint format. The highest podium finisher who isn't already qualified earns a championship invite &#x2014; one per race.</p>
 <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-transform:uppercase;color:white;margin:0 0 12px;">SCHEDULE:</h3>
 <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
 <div style="display:flex;align-items:center;gap:14px;background:#111;border-radius:8px;padding:11px 16px;border-left:3px solid #22c55e;">
 <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;color:#22c55e;text-transform:uppercase;min-width:58px;">7:55 PM</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#ccc;">Car &amp; track revealed &#x2014; prepare yourselves</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.84em;color:#ccc;">Car of the Week confirmed on-screen &#x2014; same combo as this week's Weekly Qualifier</div>
 </div>
 <div style="display:flex;align-items:center;gap:14px;background:#111;border-radius:8px;padding:11px 16px;border-left:3px solid #22c55e;">
 <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:2px;color:#22c55e;text-transform:uppercase;min-width:58px;">8:00 PM</div>
@@ -2024,21 +2035,17 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 <div style="max-width:1200px;margin:24px auto 0;padding:0 40px;">
   <div style="display:flex;gap:4px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:5px;width:fit-content;">
     <button onclick="lgModeTab('monthly')" id="lg-mode-tab-monthly" style="background:var(--red);color:#fff;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Monthly Leagues</button>
-    <button onclick="lgModeTab('custom')" id="lg-mode-tab-custom" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Host Your Own</button>
+    <div class="lg-host-hover" tabindex="0">
+      <button onclick="lgModeTab('custom')" id="lg-mode-tab-custom" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Host Your Own</button>
+      <div class="lg-host-expand">
+        <div class="lg-host-expand-t">Want Your Own Private Season?</div>
+        <div class="lg-host-expand-d">Pick your car, your tracks, and your schedule — we'll run a custom league just for your group. Click to get started →</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div id="lg-mode-monthly">
-
-<div style="max-width:1100px;margin:28px auto 0;padding:0 40px;">
-  <div style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-    <div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#EF4444;margin-bottom:4px;">Want Your Own Private Season?</div>
-      <div style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#b0b0b0;">Pick your car, your tracks, and your schedule — we'll run a custom league just for your group.</div>
-    </div>
-    <button onclick="lgModeTab('custom')" class="btn btn-sm">Host Your Own League →</button>
-  </div>
-</div>
 
 <!-- FEATURED (UPCOMING) LEAGUE — fully rendered by JS from FEATURED_LEAGUES -->
 <div id="lg-featured"></div>
@@ -2132,33 +2139,12 @@ Season In Progress
 </div>
 </div>
 
-<div style="display:grid;grid-template-columns:1.55fr 1fr;gap:20px;align-items:start;">
-
-<div id="s1-audi-standings" style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
-<div style="background:#111;padding:18px 22px;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Championship Standings</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:700;color:#EF4444;text-transform:uppercase;letter-spacing:1px;">&#x25CF; Week 5 In Progress &middot; Spa</div>
-</div>
-<div style="display:grid;grid-template-columns:42px 1fr 44px 44px 44px 44px 44px 64px;padding:10px 22px;background:#0a0a0a;border-bottom:1px solid #1a1a1a;font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#777;">
-<div>Pos</div><div>Driver</div><div style="text-align:center;">W1</div><div style="text-align:center;">W2</div><div style="text-align:center;">W3</div><div style="text-align:center;">W4</div><div style="text-align:center;">W5</div><div style="text-align:right;">Total</div>
-</div>
-<div id="audi-standings-rows"></div>
-<div style="padding:12px 22px;background:#080808;border-top:1px solid #1a1a1a;font-family:'Barlow',sans-serif;font-size:0.74em;color:#666;line-height:1.55;">
-Weekly columns sum race finishes, fastest-lap bonuses (+1 each race), pole bonus (+1), and any penalties applied that week. <strong style="color:#888;">—</strong> means the driver did not race that week. Ties are separated by most wins, then 2nds, then poles.
-</div>
+<div style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:18px 24px;margin-bottom:20px;text-align:center;">
+<p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#b0b0b0;margin:0;">Full championship standings and race-by-race results now live in <a onclick="goToSection(event,'sec-viewresults')" href="#sec-viewresults" style="color:var(--red);text-decoration:none;font-weight:700;">View Laps/Results →</a></p>
 </div>
 
-<div style="display:flex;flex-direction:column;gap:16px;">
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
-<div style="background:#111;padding:16px 22px;border-bottom:1px solid #1a1a1a;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Race Results</div></div>
-<div style="padding:6px 0;">
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',1)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 1 &middot; Jun 1</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Red Bull Ring GP</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',2)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 2 &middot; Jun 8</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Brands Hatch GP</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',3)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 3 &middot; Jun 15</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Laguna Seca</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('audi',4)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 4 &middot; Jun 22</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Barcelona (Moto)</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;cursor:pointer;" onclick="openResultsModal('audi',5)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 5 &middot; Jun 29 &middot; <span style="color:#f97316;">In Progress</span></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Spa-Francorchamps</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-</div>
-</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+
 <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
 <div style="background:#111;padding:14px 22px;border-bottom:1px solid #1a1a1a;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Prize Pool</div></div>
 <div style="padding:16px 22px;display:flex;flex-direction:column;gap:10px;">
@@ -2173,12 +2159,11 @@ Weekly columns sum race finishes, fastest-lap bonuses (+1 each race), pole bonus
 <p style="font-family:'Barlow',sans-serif;font-size:0.82em;color:#aaa;margin:0 0 12px;line-height:1.5;">A huge thank-you to <strong style="color:#fff;">Always Clean</strong> for co-sponsoring the SIM1 Audi TT Cup — helping make these prizes possible for our drivers.</p>
 <a href="https://www.alwayscleancars.com/" target="_blank" rel="noopener" style="display:inline-block;background:#22C55E;color:#000;padding:8px 22px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;text-decoration:none;text-transform:uppercase;letter-spacing:1px;">Visit alwayscleancars.com &rarr;</a>
 </div>
-</div>
 
 </div>
 
 <div style="text-align:center;margin-top:24px;">
-<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#777;margin:0;">Standings updated weekly after each race night. Race replays available on <a href="https://www.youtube.com/@SIM1Racing" target="_blank" rel="noopener" style="color:#EF4444;text-decoration:none;border-bottom:1px solid rgba(239,68,68,0.4);">our YouTube channel</a>.</p>
+<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#777;margin:0;">Race replays available on <a href="https://www.youtube.com/@SIM1Racing" target="_blank" rel="noopener" style="color:#EF4444;text-decoration:none;border-bottom:1px solid rgba(239,68,68,0.4);">our YouTube channel</a>.</p>
 </div>
 
 </div>
@@ -2254,36 +2239,12 @@ Custom League &middot; In Progress
 </div>
 </div>
 
-<div style="display:grid;grid-template-columns:1.55fr 1fr;gap:20px;align-items:start;">
-
-<div id="s1-aacc-standings" style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
-<div style="background:#111;padding:18px 22px;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Championship Standings</div>
-<div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;">After Week 4 of 5</div>
-</div>
-<div style="display:grid;grid-template-columns:42px 1fr 44px 44px 44px 44px 44px 64px;padding:10px 22px;background:#0a0a0a;border-bottom:1px solid #1a1a1a;font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#777;">
-<div>Pos</div><div>Driver</div><div style="text-align:center;">W1</div><div style="text-align:center;">W2</div><div style="text-align:center;">W3</div><div style="text-align:center;">W4</div><div style="text-align:center;">W5</div><div style="text-align:right;">Total</div>
-</div>
-<div id="aacc-standings-rows"></div>
-<div style="padding:12px 22px;background:#080808;border-top:1px solid #1a1a1a;font-family:'Barlow',sans-serif;font-size:0.74em;color:#666;line-height:1.55;">
-Weekly columns sum race finish, pole bonus (+1), fastest-lap bonus (+1). <strong style="color:#888;">—</strong> means driver did not race that week. One 20-minute race per night.
-</div>
-</div>
-
-<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
-<div style="background:#111;padding:16px 22px;border-bottom:1px solid #1a1a1a;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Race Results</div></div>
-<div style="padding:6px 0;">
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('aacc',1)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 1 &middot; Jun 16</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Brands Hatch Indy</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('aacc',2)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 2 &middot; Jun 23</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Laguna Seca</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('aacc',3)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 3 &middot; Jul 1</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Red Bull Ring National</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;cursor:pointer;" onclick="openResultsModal('aacc',4)" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"><div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk 4 &middot; Jul 7</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">Highlands Short</div></div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">View Results &rsaquo;</div></div>
-</div>
-</div>
-
+<div style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:18px 24px;text-align:center;">
+<p style="font-family:'Barlow',sans-serif;font-size:0.9em;color:#b0b0b0;margin:0;">Full championship standings and race-by-race results now live in <a onclick="goToSection(event,'sec-viewresults')" href="#sec-viewresults" style="color:var(--red);text-decoration:none;font-weight:700;">View Laps/Results →</a></p>
 </div>
 
 <div style="text-align:center;margin-top:24px;">
-<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#777;margin:0;">Private league for the All American Corvette Club. Standings updated weekly after each race night.</p>
+<p style="font-family:'Barlow',sans-serif;font-size:0.88em;color:#777;margin:0;">Private league for the All American Corvette Club.</p>
 </div>
 
 </div>
@@ -2529,14 +2490,12 @@ Weekly columns sum race finish, pole bonus (+1), fastest-lap bonus (+1). <strong
 <style>
 #sec-leagues{position:relative;}
 @keyframes s1pulse{0%,100%{opacity:1}50%{opacity:0.35}}
-#s1-audi-standings > div[style*="display:grid"]{padding-left:0!important;padding-right:0!important;grid-template-columns:48px 1fr 54px 54px 54px 54px 54px 68px!important;}
-#s1-audi-standings > div[style*="display:grid"] > div{padding:13px 14px;border-right:1px solid #1e1e1e;white-space:nowrap;}
-#s1-audi-standings > div[style*="display:grid"] > div:last-child{border-right:none;padding-right:20px;}
-#s1-audi-standings > div[style*="display:grid"] > div:first-child{padding-left:20px;}
-#s1-aacc-standings > div[style*="display:grid"]{padding-left:0!important;padding-right:0!important;grid-template-columns:48px 1fr 56px 56px 56px 56px 56px 72px!important;}
-#s1-aacc-standings > div[style*="display:grid"] > div{padding:13px 12px;border-right:1px solid #1e1e1e;white-space:nowrap;}
-#s1-aacc-standings > div[style*="display:grid"] > div:last-child{border-right:none;padding-right:20px;}
-#s1-aacc-standings > div[style*="display:grid"] > div:first-child{padding-left:20px;}
+#sec-leagues .lg-host-hover{position:relative;outline:none;}
+#sec-leagues .lg-host-expand{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);width:280px;background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.35);border-radius:12px;padding:16px 18px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,transform .18s;z-index:20;text-align:left;}
+#sec-leagues .lg-host-expand:before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);width:12px;height:12px;background:#1a1a1a;border-left:1px solid rgba(239,68,68,0.35);border-top:1px solid rgba(239,68,68,0.35);}
+#sec-leagues .lg-host-hover:hover .lg-host-expand,#sec-leagues .lg-host-hover:focus-within .lg-host-expand{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+#sec-leagues .lg-host-expand-t{font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;}
+#sec-leagues .lg-host-expand-d{font-family:'Barlow',sans-serif;font-size:0.82em;color:#b0b0b0;line-height:1.55;}
 @media(max-width:768px){
 #sec-leagues div[style*="padding:120px 40px 70px"],#sec-leagues div[style*="padding:70px 40px"],#sec-leagues div[style*="padding:60px 40px"],#sec-leagues div[style*="padding:80px 40px"]{padding-left:18px!important;padding-right:18px!important;}
 #sec-leagues div[style*="padding:120px 40px 70px"]{padding-top:36px!important;padding-bottom:36px!important;}
@@ -2544,13 +2503,10 @@ Weekly columns sum race finish, pole bonus (+1), fastest-lap bonus (+1). <strong
 #sec-leagues div[style*="padding:60px 40px"]{padding-top:24px!important;padding-bottom:24px!important;}
 #sec-leagues h1{font-size:2.6em!important;}
 #sec-leagues h2{font-size:1.6em!important;}
-#sec-leagues div[style*="grid-template-columns:1.15fr 0.85fr"],#sec-leagues div[style*="grid-template-columns:1fr 1.3fr"],#sec-leagues div[style*="grid-template-columns:1.55fr 1fr"],#sec-leagues div[style*="grid-template-columns:1.4fr 1fr"],#sec-leagues div[style*="grid-template-columns:0.5fr 1fr"]{grid-template-columns:1fr!important;gap:16px!important;}
+#sec-leagues div[style*="grid-template-columns:1.15fr 0.85fr"],#sec-leagues div[style*="grid-template-columns:1fr 1.3fr"],#sec-leagues div[style*="grid-template-columns:1.55fr 1fr"],#sec-leagues div[style*="grid-template-columns:1.4fr 1fr"],#sec-leagues div[style*="grid-template-columns:0.5fr 1fr"],#sec-leagues div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:16px!important;}
 #sec-leagues div[style*="grid-template-columns:0.5fr 1fr"] > img:first-child{display:none!important;}
 #sec-leagues div[style*="grid-template-columns:repeat(4,1fr)"],#sec-leagues div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;}
 #sec-leagues div[style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:repeat(3,1fr)!important;gap:10px!important;}
-#sec-leagues #s1-audi-standings,#sec-leagues #s1-aacc-standings{overflow-x:auto!important;}
-#sec-leagues #s1-audi-standings > div[style*="display:grid"]{grid-template-columns:36px minmax(80px,1fr) 38px 38px 38px 38px 38px 50px!important;font-size:0.82em!important;}
-#sec-leagues #s1-aacc-standings > div[style*="display:grid"]{grid-template-columns:36px minmax(90px,1fr) 40px 40px 40px 40px 40px 52px!important;font-size:0.78em!important;}
 #sec-leagues #currentLeagueName{font-size:1.3em!important;}
 #sec-leagues div[style*="padding:36px 40px"]{padding:22px 18px!important;flex-direction:column!important;text-align:center;}
 }
@@ -3760,8 +3716,8 @@ function vrModeTab(mode){
 <div style="background:linear-gradient(150deg,#150505,#1a1a1a 60%,#0a0a0a);border:1px solid rgba(239,68,68,0.28);border-radius:16px;padding:40px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:280px;">
 <div style="display:inline-block;background:var(--red);color:#fff;font-family:var(--cond);font-size:0.7em;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;border-radius:12px;margin-bottom:18px;">NEXT UP</div>
 <div style="font-size:3em;margin-bottom:10px;">🚗</div>
-<div style="font-family:var(--body);font-size:1.6em;font-weight:800;color:#fff;margin-bottom:8px;">Car TBA</div>
-<div style="font-family:var(--body);font-size:0.92em;color:#999;line-height:1.55;max-width:280px;">Announcement coming soon. Follow on Instagram to be the first to know.</div>
+<div style="font-family:var(--body);font-size:1.6em;font-weight:800;color:#fff;margin-bottom:8px;">Stay Tuned</div>
+<div style="font-family:var(--body);font-size:0.92em;color:#999;line-height:1.55;max-width:280px;">Stay tuned for the next special giveaway competition. Follow on Instagram to be the first to know.</div>
 </div>
 </div>
 </header>
@@ -3849,6 +3805,8 @@ function vrModeTab(mode){
 </div>
 </header>
 
+<div id="gv-winner-banner"></div>
+
 <section class="section" id="gv-build" style="background:var(--bg2);">
 <div class="wrap">
 <div class="center" style="margin-bottom:40px;">
@@ -3905,10 +3863,10 @@ function vrModeTab(mode){
 <div>
 <img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2afecdfe6a136c3d3ca82b/1781202638137/color+wo+bg.png" alt="Burnout Events" style="height:120px;object-fit:contain;display:block;margin-bottom:14px;">
 <h1 style="font-size:4em;">WIN A FREE<br><span class="accent">TRACK DAY</span></h1>
-<p style="text-align:left;">Finish at the top of our sim-racing competition and win a real track day at Lime Rock Park, CT on June 19–20. Two winners, two prizes — first place takes a full two-day pass, second place scores a single-day ticket.</p>
+<p style="text-align:left;">Our sim-racing competition at Magione is complete — congrats to our top two finishers, who won a real track day at Lime Rock Park, CT. First place took the full two-day pass, second place scored a single-day ticket. Full results below.</p>
 <div class="hero-cta">
-<a href="https://www.sim1racing.com/daily-rates" target="_blank" rel="noopener" class="btn">BOOK YOUR SESSION ↗</a>
-<a href="#td-how" class="btn btn-outline">HOW IT WORKS</a>
+<a href="#td-results" class="btn">VIEW RESULTS</a>
+<a href="https://www.sim1racing.com/daily-rates" target="_blank" rel="noopener" class="btn btn-outline">BOOK YOUR SESSION ↗</a>
 </div>
 <div class="hero-stats" style="margin-left:0;">
 <div class="hero-stat"><div class="v">3</div><div class="l">Week Competition</div></div>
@@ -3918,7 +3876,7 @@ function vrModeTab(mode){
 </div>
 <div class="event-graphic-wrap">
 <img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a2affe90c49360e99fd2f53/1781202921898/Insta+Events+%2831%29.jpg" alt="Burnout Events — Lime Rock Park June 19–20">
-<span class="live-badge">COMPETITION LIVE</span>
+<span class="live-badge" style="animation:none;background:#333;">COMPETITION COMPLETE</span>
 </div>
 </div>
 </header>
@@ -3936,9 +3894,20 @@ function vrModeTab(mode){
 <div class="step-card"><div class="bar"></div><div class="num">03</div><div class="step-t">Top Two Win</div><div class="step-d">When the window closes, 1st place takes the two-day weekend pass ($900 value) and 2nd place wins a single-day ticket ($500 value) to Lime Rock Park June 19–20.</div></div>
 </div>
 <div class="note" style="background:linear-gradient(135deg,#160606,#1a1a1a);border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:22px 24px;margin-top:28px;">
-<div class="nt-t" style="font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;">📌 Important — Event Date</div>
-<p style="font-family:var(--body);font-size:0.9em;color:#b0b0b0;line-height:1.7;margin:0;">The track day is <strong style="color:#fff;">June 19–20, 2026</strong> at Lime Rock Park, CT. Winners must be able to attend. The prize is a ticket — all other costs (travel, lodging, optional car rental) are the winner's responsibility. Prizes are non-transferable and have no cash value.</p>
+<div class="nt-t" style="font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;">📌 The Real-World Track Day</div>
+<p style="font-family:var(--body);font-size:0.9em;color:#b0b0b0;line-height:1.7;margin:0;">The track day was <strong style="color:#fff;">June 19–20, 2026</strong> at Lime Rock Park, CT. The prize was a ticket — all other costs (travel, lodging, optional car rental) were the winners' responsibility. Prizes are non-transferable and have no cash value.</p>
 </div>
+</div>
+</section>
+
+<section class="section" id="td-results" style="background:var(--bg);">
+<div class="wrap">
+<div class="center" style="margin-bottom:36px;">
+<div class="eyebrow">FINAL RESULTS</div>
+<h2 class="h2">Magione — Full Leaderboard</h2>
+<p class="lead" style="max-width:680px;margin:14px auto 0;">Every posted lap from the competition, ranked by best time. Top two are highlighted — they're the ones who won the trip to Lime Rock Park.</p>
+</div>
+<div id="td-results-table"></div>
 </div>
 </section>
 
@@ -4019,8 +3988,8 @@ function vrModeTab(mode){
 <section class="cta-section">
 <div class="wrap">
 <div class="eyebrow center">YOUR TICKET TO THE TRACK</div>
-<h2 class="h2 center">WIN IT OR<br><span style="color:var(--red);">BOOK IT YOURSELF</span></h2>
-<p class="lead center">Top the sim-racing standings and your ticket is on us. Or skip the wait — use code <strong style="color:#fff;">SIM1</strong> at checkout for 20% off and register directly for the event.</p>
+<h2 class="h2 center">MISSED IT? <span style="color:var(--red);">BOOK IT YOURSELF</span></h2>
+<p class="lead center">This competition is complete, but you don't have to wait for the next one — use code <strong style="color:#fff;">SIM1</strong> at checkout for 20% off and register directly for a Burnout Events track day.</p>
 <div class="cta-btns">
 <a href="https://msreg.com/burnout-limerock" target="_blank" rel="noopener" class="btn">REGISTER FOR THE EVENT ↗</a>
 <a href="https://burnoutmotorsport.com/" target="_blank" rel="noopener" class="btn btn-outline">BURNOUT MOTORSPORT ↗</a>
@@ -4219,6 +4188,7 @@ const GIVEAWAYS = [{
   partner: 'Spirit Works Garage × SIM1Racing', period: 'May 7 – June 7, 2026', status: 'completed',
   carPhoto: CAR_PHOTO_URL, buildPhoto:BUILD_PHOTO_URL,
   rulesUrl: 'https://spiritworksgarage.com/pages/official-rules', build: BUILD, weeks: WEEKS,
+  winner: { name:'Matthew Blair', location:'Michigan', note:'His winning entry came from purchasing Spirit Works Garage merch — a separate entry path from the racing leaderboard below. The tracker below still shows every entry earned through racing, week by week.' },
 }];
 let CURRENT_G = null;
 
@@ -4500,6 +4470,21 @@ function renderGiveawayArchive(){
   }).join('');
   document.getElementById('archive-grid').innerHTML = html || `<div class="empty-state"><div class="e1">No giveaways yet</div><div class="e2">The first one will appear here once it wraps.</div></div>`;
 }
+function renderWinnerBanner(g){
+  const el = document.getElementById('gv-winner-banner');
+  if(!el) return;
+  if(!g.winner){ el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="wrap-md" style="padding:0 40px;">
+    <div style="background:linear-gradient(135deg,#1a1405,#1a1a1a);border:1px solid rgba(251,191,36,0.35);border-radius:14px;padding:26px 30px;margin-bottom:0;display:flex;gap:18px;align-items:flex-start;">
+      <div style="font-size:2em;line-height:1;flex-shrink:0;">🏆</div>
+      <div>
+        <div style="font-family:var(--cond);font-size:0.75em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Grand Prize Winner</div>
+        <div style="font-family:var(--cond);font-size:1.3em;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:6px;">${g.winner.name}${g.winner.location ? ' — ' + g.winner.location : ''}</div>
+        <p style="font-family:var(--body);font-size:0.9em;color:#ccc;line-height:1.6;margin:0;">${g.winner.note || ''}</p>
+      </div>
+    </div>
+  </div>`;
+}
 function renderGiveawayHero(g){
   document.getElementById('gv-partner').textContent = g.partner;
   document.getElementById('gv-title').innerHTML = g.subtitle.replace(/(Giveaway)$/i, '<br><span class="accent">$1</span>');
@@ -4522,6 +4507,7 @@ function showGiveaway(g){
   document.getElementById('view-landing').style.display = 'none';
   document.getElementById('view-giveaway').style.display = '';
   renderGiveawayHero(g);
+  renderWinnerBanner(g);
   renderPhotos();
   renderBuild();
   recompute();
@@ -4540,6 +4526,82 @@ window.addEventListener('hashchange', function(){
   if(!location.hash || /^#g\//.test(location.hash)) route();
 });
 
+/* ════════════════════════════════════════════════════════════════
+   TRACK DAY — FINAL RESULTS (Magione)
+   Competition is complete; positions 1-2 are the actual prize winners.
+   ════════════════════════════════════════════════════════════════ */
+const TRACKDAY_RESULTS = {
+  track: 'Magione',
+  winnerPositions: [1,2],
+  rows: [
+    {pos:1, driver:'Jordan Farrell', laps:25, lap:'1:22.500', gap:'+00.000'},
+    {pos:2, driver:'Shayan Behnambakhsh', laps:173, lap:'1:22.818', gap:'+00.318'},
+    {pos:3, driver:'Dj Hamilton', laps:17, lap:'1:22.878', gap:'+00.378'},
+    {pos:4, driver:'Shane Cook', laps:110, lap:'1:22.878', gap:'+00.378'},
+    {pos:5, driver:'Eli Shamis', laps:22, lap:'1:23.438', gap:'+00.938'},
+    {pos:6, driver:'Victor Mendez', laps:38, lap:'1:23.736', gap:'+01.236'},
+    {pos:7, driver:'Justin Torrente', laps:20, lap:'1:24.004', gap:'+01.504'},
+    {pos:8, driver:'Carlos Harvey', laps:26, lap:'1:24.143', gap:'+01.643'},
+    {pos:9, driver:'Chaseton Ennis', laps:39, lap:'1:24.223', gap:'+01.723'},
+    {pos:10, driver:'Jonas Acevedo', laps:7, lap:'1:25.003', gap:'+02.503'},
+    {pos:11, driver:'Noah Salgado', laps:22, lap:'1:25.157', gap:'+02.657'},
+    {pos:12, driver:'Jobee Buenaventura', laps:15, lap:'1:25.504', gap:'+03.004'},
+    {pos:13, driver:'Felix Lin', laps:4, lap:'1:25.661', gap:'+03.161'},
+    {pos:14, driver:'Michael Wehbe', laps:10, lap:'1:26.328', gap:'+03.828'},
+    {pos:15, driver:'Joey Benson', laps:13, lap:'1:26.407', gap:'+03.907'},
+    {pos:16, driver:'Sitay Huber', laps:8, lap:'1:26.802', gap:'+04.302'},
+    {pos:17, driver:'Marcus Montgomery', laps:7, lap:'1:27.348', gap:'+04.848'},
+    {pos:18, driver:'Jose Santiago', laps:3, lap:'1:27.807', gap:'+05.307'},
+    {pos:19, driver:'Aedan Mcpartlan', laps:5, lap:'1:27.873', gap:'+05.373'},
+    {pos:20, driver:'Ethan Wang', laps:5, lap:'1:28.535', gap:'+06.035'},
+    {pos:21, driver:'Frank That', laps:13, lap:'1:28.799', gap:'+06.299'},
+    {pos:22, driver:'Arthur Maciorowski', laps:11, lap:'1:28.980', gap:'+06.480'},
+    {pos:23, driver:'Francisco Maio', laps:4, lap:'1:30.676', gap:'+08.176'},
+    {pos:24, driver:'Elijah Estevez', laps:6, lap:'1:30.879', gap:'+08.379'},
+    {pos:25, driver:'Alex Turanskiy', laps:13, lap:'1:31.322', gap:'+08.822'},
+    {pos:26, driver:'evan werner', laps:13, lap:'1:31.367', gap:'+08.867'},
+    {pos:27, driver:'tommy kivari', laps:11, lap:'1:34.007', gap:'+11.507'},
+    {pos:28, driver:'Mychal Sutton', laps:22, lap:'1:34.886', gap:'+12.386'},
+    {pos:29, driver:'Gio Cortes', laps:5, lap:'1:35.220', gap:'+12.720'},
+    {pos:30, driver:'OZONE JUNKIE', laps:8, lap:'1:35.478', gap:'+12.978'},
+    {pos:31, driver:'Michael Sutton', laps:26, lap:'1:42.102', gap:'+19.602'},
+    {pos:32, driver:'Jacob Schwerzler', laps:null, lap:null, gap:null},
+    {pos:33, driver:'Jack Gowran', laps:null, lap:null, gap:null},
+    {pos:34, driver:'Nicholas Antonopoulos', laps:null, lap:null, gap:null},
+    {pos:35, driver:'Luke Afromsky', laps:null, lap:null, gap:null},
+    {pos:36, driver:'Jonathan Afromsky', laps:null, lap:null, gap:null},
+    {pos:37, driver:'Nicky Taylor', laps:null, lap:null, gap:null},
+    {pos:38, driver:'Max Goyal', laps:null, lap:null, gap:null},
+    {pos:39, driver:'Conor Carignan', laps:null, lap:null, gap:null},
+    {pos:40, driver:'Madison MacNeill', laps:null, lap:null, gap:null},
+    {pos:41, driver:'Ahmed Ghanem', laps:null, lap:null, gap:null},
+    {pos:42, driver:'Noah Granados', laps:null, lap:null, gap:null},
+    {pos:43, driver:'Leova Naer', laps:null, lap:null, gap:null},
+    {pos:44, driver:'Mikhail Naer', laps:null, lap:null, gap:null},
+    {pos:45, driver:'Leonora Naer', laps:null, lap:null, gap:null},
+  ],
+};
+function renderTrackDayResults(){
+  const el = document.getElementById('td-results-table');
+  if(!el) return;
+  const rows = TRACKDAY_RESULTS.rows.map(r => {
+    const isWinner = TRACKDAY_RESULTS.winnerPositions.includes(r.pos);
+    const medal = r.pos===1 ? '🥇' : r.pos===2 ? '🥈' : ('P'+r.pos);
+    const noLap = !r.lap;
+    return `<tr${isWinner?' style="background:rgba(251,191,36,0.08);"':''}>
+      <td class="col-pos"><span class="tier ${r.pos<=3?'top':''}">${medal}</span></td>
+      <td><span class="drv"${isWinner?' style="color:var(--gold);"':''}>${r.driver}</span>${isWinner?` <span class="win-badge" style="background:rgba(251,191,36,0.12);color:var(--gold);border:1px solid rgba(251,191,36,0.4);">WINNER</span>`:''}</td>
+      <td class="col-r lap">${noLap?'<span class="mut" style="font-style:italic;">No valid lap</span>':r.lap}</td>
+      <td class="col-r mut">${r.laps!=null?r.laps:'—'}</td>
+      <td class="col-r mut">${r.gap||''}</td>
+    </tr>`;
+  }).join('');
+  el.innerHTML = `<div class="tbl-scroll"><table>
+    <thead><tr><th class="col-pos">Pos</th><th>Driver</th><th class="col-r">Best Lap</th><th class="col-r">Laps</th><th class="col-r">Gap</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>`;
+}
+
 /* Car Giveaway / Track Day mode toggle — Track Day is merged into this
    section as a second sub-view rather than its own top-level section. */
 function gvModeTab(mode){
@@ -4556,6 +4618,7 @@ function gvModeTab(mode){
 /* INIT — giveaways section */
 renderWeekCards();
 renderLadder();
+renderTrackDayResults();
 route();
 </script>
 <!-- ════════════════════════════════════════════════════════════════
@@ -4588,7 +4651,7 @@ route();
 <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center;">
 <div><div style="font-size:1.5em;margin-bottom:8px;">📅</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">July 29th &middot; 7PM</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Wednesday evening</div></div>
 <div><div style="font-size:1.5em;margin-bottom:8px;">🏎️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">Solo or Duo</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">1 or 2 drivers per entry</div></div>
-<div><div style="font-size:1.5em;margin-bottom:8px;">⏱️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">2 Hour Race</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">+ 30 min qualifying</div></div>
+<div><div style="font-size:1.5em;margin-bottom:8px;">⏱️</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">2 Hour Race</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">+ 20 min qualifying</div></div>
 <div><div style="font-size:1.5em;margin-bottom:8px;">🏁</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;line-height:1.1;">BMW Z4 GT3</div><div style="font-family:'Barlow',sans-serif;font-size:0.76em;color:#777;">Spa-Francorchamps</div></div>
 </div>
 </div>
@@ -4602,7 +4665,7 @@ route();
 </div>
 <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
 <div style="display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid #1a1a1a;"><div style="background:#1a1a1a;padding:20px 22px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:#EF4444;text-transform:uppercase;display:flex;align-items:center;">Pre-Race</div><div style="padding:20px 22px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-transform:uppercase;color:white;">Driver Briefing</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;margin-top:3px;">Rules, sim setup, and driver check-in</div></div></div>
-<div style="display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid #1a1a1a;"><div style="background:#1a1a1a;padding:20px 22px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:#EF4444;text-transform:uppercase;display:flex;align-items:center;">Qualifying</div><div style="padding:20px 22px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-transform:uppercase;color:white;">30 Minutes</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;margin-top:3px;">Sets the starting grid for the race</div></div></div>
+<div style="display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid #1a1a1a;"><div style="background:#1a1a1a;padding:20px 22px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:#EF4444;text-transform:uppercase;display:flex;align-items:center;">Qualifying</div><div style="padding:20px 22px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-transform:uppercase;color:white;">20 Minutes</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;margin-top:3px;">Sets the starting grid for the race</div></div></div>
 <div style="display:grid;grid-template-columns:160px 1fr;border-bottom:1px solid #1a1a1a;"><div style="background:#1a1a1a;padding:20px 22px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:#EF4444;text-transform:uppercase;display:flex;align-items:center;">Race</div><div style="padding:20px 22px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-transform:uppercase;color:white;">2 Hours at Spa-Francorchamps</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;margin-top:3px;">Full endurance race — solo or duo driver swaps</div></div></div>
 <div style="display:grid;grid-template-columns:160px 1fr;"><div style="background:#1a1a1a;padding:20px 22px;font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:#EF4444;text-transform:uppercase;display:flex;align-items:center;">Podium</div><div style="padding:20px 22px;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:800;text-transform:uppercase;color:white;">Podium Ceremony</div><div style="font-family:'Barlow',sans-serif;font-size:0.85em;color:#888;margin-top:3px;">Prizes awarded to the top three finishers</div></div></div>
 </div>
