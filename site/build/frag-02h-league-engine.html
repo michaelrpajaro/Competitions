@@ -156,33 +156,6 @@ function renderStandingsTable(leagueKey, containerId){
 
 mergeComputedWeeks('audi');
 mergeComputedWeeks('aacc');
-renderStandingsTable('audi', 'audi-standings-rows');
-renderStandingsTable('aacc', 'aacc-standings-rows');
-
-/* Any FEATURED_LEAGUES season that has started (or finished) and has a
-   pre-provisioned LEAGUE_STANDINGS entry with actual driver data gets its
-   real standings rendered into its dynamic carousel slide, replacing the
-   "check back after Week 1" placeholder built in buildDynamicLeagueSlide. */
-(function renderDynamicLeagueStandings(){
-  activeFeaturedLeagues().forEach(l => {
-    const cfg = LEAGUE_STANDINGS[l.slug];
-    if(!cfg || !cfg.drivers.length) return; // nothing posted yet — keep placeholder
-    mergeComputedWeeks(l.slug);
-    const holder = document.getElementById('lg-dyn-standings-' + l.slug);
-    if(!holder) return;
-    const cols = `42px 1fr ${'44px '.repeat(cfg.weeksTotal)}64px`;
-    holder.innerHTML = `<div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;">
-      <div style="background:#111;padding:18px 22px;border-bottom:1px solid #1a1a1a;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">Championship Standings</div>
-      </div>
-      <div style="display:grid;grid-template-columns:${cols};padding:10px 22px;background:#0a0a0a;border-bottom:1px solid #1a1a1a;font-family:'Barlow Condensed',sans-serif;font-size:0.68em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#777;">
-        <div>Pos</div><div>Driver</div>${cfg.weeksTotal ? Array.from({length:cfg.weeksTotal},(_,i)=>`<div style="text-align:center;">W${i+1}</div>`).join('') : ''}<div style="text-align:right;">Total</div>
-      </div>
-      <div id="lg-dyn-rows-${l.slug}"></div>
-    </div>`;
-    renderStandingsTable(l.slug, 'lg-dyn-rows-' + l.slug);
-  });
-})();
 
 /* ════════════════════════════════════════════════════════════════
    VIEW LAPS/RESULTS — "League Results" mode
@@ -197,6 +170,16 @@ function leagueDisplayName(key){
   if(key === 'audi') return 'Audi TT Cup';
   if(key === 'aacc') return 'AACC';
   return key;
+}
+/* Audi TT Cup and AACC (All American Corvette Club) are the two
+   currently-running leagues — flagged here so View Laps/Results can
+   call that out now that the Leagues page no longer shows an
+   "Active Leagues" carousel of its own. */
+const VR_ACTIVE_LEAGUES = ['audi','aacc'];
+function activeLeagueBadge(key){
+  return VR_ACTIVE_LEAGUES.includes(key)
+    ? `<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.15);color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-left:8px;vertical-align:middle;"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>Active</span>`
+    : '';
 }
 function vrLeagueWeeksHtml(leagueKey){
   const results = window.S1_RESULTS && window.S1_RESULTS[leagueKey];
@@ -221,7 +204,7 @@ function renderVrLeague(leagueKey){
   document.getElementById('vr-league-content').innerHTML = `
     <div style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:14px;overflow:hidden;margin-bottom:24px;">
       <div style="background:#111;padding:18px 22px;border-bottom:1px solid #1a1a1a;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">${leagueDisplayName(leagueKey)} &middot; Standings</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;text-transform:uppercase;color:white;letter-spacing:1px;">${leagueDisplayName(leagueKey)} &middot; Standings${activeLeagueBadge(leagueKey)}</div>
       </div>
       <div id="${rowsId}"></div>
     </div>
@@ -242,7 +225,7 @@ function initVrLeagueTabs(){
     contentEl.innerHTML = `<div style="padding:40px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.9em;color:#555;">No league results posted yet.</div>`;
     return;
   }
-  tabsEl.innerHTML = keys.map((k,i) => `<button data-league="${k}" onclick="renderVrLeague('${k}')" style="background:${i===0?'var(--red)':'transparent'};color:${i===0?'#fff':'#888'};border:1px solid var(--border);padding:10px 20px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.9em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">${leagueDisplayName(k)}</button>`).join('');
+  tabsEl.innerHTML = keys.map((k,i) => `<button data-league="${k}" onclick="renderVrLeague('${k}')" style="background:${i===0?'var(--red)':'transparent'};color:${i===0?'#fff':'#888'};border:1px solid var(--border);padding:10px 20px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:0.9em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">${leagueDisplayName(k)}${activeLeagueBadge(k)}</button>`).join('');
   renderVrLeague(keys[0]);
 }
 initVrLeagueTabs();

@@ -46,7 +46,11 @@ function initRouter(){
   if(rawHash.startsWith('g/')){ showSectionById('sec-giveaways'); return; }
   showSectionById(SECTION_IDS.includes(rawHash) ? rawHash : 'home');
 }
-window.addEventListener('popstate', () => showSectionById((location.hash||'').replace(/^#/,'') || 'home'));
+window.addEventListener('popstate', () => {
+  const rawHash = (location.hash || '').replace(/^#/, '');
+  if(rawHash.startsWith('g/')){ showSectionById('sec-giveaways'); return; }
+  showSectionById(rawHash || 'home');
+});
 initRouter();
 </script>
 

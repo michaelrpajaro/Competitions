@@ -13,7 +13,7 @@
   <div class="wrap-md center">
     <div class="eyebrow">LEAGUES</div>
     <h2 class="h2">Multi-Week Championship Seasons</h2>
-    <p class="lead" style="max-width:680px;margin:14px auto 0;">Every month brings a brand-new <strong style="color:#ccc;">Monthly League</strong> — a different car and a fresh set of four circuits each time, always four Monday nights, always the same prize format. A new season is always either open for signup or already underway. This section updates itself automatically — the moment a season starts, it moves down into "Active Leagues" and the next one takes its place above.</p>
+    <p class="lead" style="max-width:680px;margin:14px auto 0;">Every month brings a brand-new <strong style="color:#ccc;">Monthly League</strong> — a different car and a fresh set of four circuits each time, always four Monday nights, always the same prize format. Once a season is underway, find its standings and race-by-race results in <a onclick="goToSection(event,'sec-viewresults')" href="#sec-viewresults" style="color:var(--red);text-decoration:none;font-weight:700;">View Laps/Results →</a></p>
   </div>
 </div>
 
@@ -34,18 +34,3 @@
 
 <!-- FEATURED (UPCOMING) LEAGUE — fully rendered by JS from FEATURED_LEAGUES -->
 <div id="lg-featured"></div>
-
-<!-- ════════════════════════════════════════════════════════════
-  ACTIVE LEAGUES CAROUSEL NAV
-════════════════════════════════════════════════════════════ -->
-<div style="padding:50px 40px 20px;background:#000;border-top:1px solid #1a1a1a;">
-  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;">
-    <button id="leaguePrev" onclick="window.switchLeague(-1)" aria-label="Previous league" style="background:#1a1a1a;border:1px solid #2a2a2a;color:white;width:48px;height:48px;border-radius:50%;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;">&#x2039;</button>
-    <div style="flex:1;text-align:center;min-width:0;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#EF4444;margin-bottom:6px;">Active Leagues</div>
-      <div id="currentLeagueName" style="font-family:'Barlow Condensed',sans-serif;font-size:1.8em;font-weight:900;text-transform:uppercase;color:white;line-height:1;">Inaugural League &middot; Audi TT Cup</div>
-      <div id="league-dots" style="margin-top:12px;display:flex;justify-content:center;gap:10px;"></div>
-    </div>
-    <button id="leagueNext" onclick="window.switchLeague(1)" aria-label="Next league" style="background:#1a1a1a;border:1px solid #2a2a2a;color:white;width:48px;height:48px;border-radius:50%;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:1.4em;font-weight:900;line-height:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;">&#x203A;</button>
-  </div>
-</div>

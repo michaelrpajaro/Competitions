@@ -36,7 +36,7 @@ const WEEKS = [
 ];
 
 const GIVEAWAYS = [{
-  slug: 'swg-003-brz', subtitle: 'Subaru BRZ Giveaway', fullName: 'SWG #003 — Supercharged 2013 BRZ Limited',
+  slug: 'swg-003-brz', subtitle: 'Supercharged BRZ Challenge', fullName: 'SWG #003 — Supercharged 2013 BRZ Limited',
   partner: 'Spirit Works Garage × SIM1Racing', period: 'May 7 – June 7, 2026', status: 'completed',
   carPhoto: CAR_PHOTO_URL, buildPhoto:BUILD_PHOTO_URL,
   rulesUrl: 'https://spiritworksgarage.com/pages/official-rules', build: BUILD, weeks: WEEKS,
@@ -339,7 +339,7 @@ function renderWinnerBanner(g){
 }
 function renderGiveawayHero(g){
   document.getElementById('gv-partner').textContent = g.partner;
-  document.getElementById('gv-title').innerHTML = g.subtitle.replace(/(Giveaway)$/i, '<br><span class="accent">$1</span>');
+  document.getElementById('gv-title').innerHTML = g.subtitle.replace(/(Giveaway|Challenge)$/i, '<br><span class="accent">$1</span>');
   document.getElementById('gv-sub').textContent = g.fullName + ' · ' + g.period;
   const rulesEl = document.getElementById('gv-rules');
   if(g.rulesUrl){ rulesEl.href = g.rulesUrl; rulesEl.style.display = ''; } else rulesEl.style.display = 'none';

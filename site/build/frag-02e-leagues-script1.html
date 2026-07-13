@@ -62,10 +62,6 @@ function pickFeaturedLeague() {
   const now = new Date();
   return FEATURED_LEAGUES.find(l => getLeagueStatus(l, now) === 'upcoming') || null;
 }
-function activeFeaturedLeagues() {
-  const now = new Date();
-  return FEATURED_LEAGUES.filter(l => getLeagueStatus(l, now) !== 'upcoming');
-}
 
 function leagueWeekCardHtml(league, wk, statusOverride) {
   const bg = wk.image
