@@ -160,7 +160,7 @@ function renderChampionshipTracker() {
       : `<div class="qd-badge" style="background:${q.badgeColor};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.62em;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex-shrink:0;white-space:nowrap;">${badgeInner}</div>`;
     return `<div class="qd-entry" style="background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:10px;min-width:0;">
       ${badge}
-      <div class="qd-name" style="font-family:'Barlow Condensed',sans-serif;font-size:0.92em;font-weight:800;color:white;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${q.driver}${teamTag}</div>
+      <div class="qd-name" style="font-family:'Barlow Condensed',sans-serif;font-size:0.92em;font-weight:500;color:white;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${q.driver}${teamTag}</div>
     </div>`;
   }
   const allEntries = [...sections[1], ...sections[2], ...sections[3], ...sections[4], ...sections[5], ...sections.monthly];
@@ -305,13 +305,13 @@ function renderTopStats() {
     const top = sorted.slice(0, N);
     const rows = top.map((d, i) => {
       const icons = ['🥇','🥈','🥉'];
-      const posEl = i < 3 ? `<span style="font-size:1.1em;">${icons[i]}</span>` : `<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:900;color:#555;">${i+1}</span>`;
+      const posEl = i < 3 ? `<span style="font-size:1.1em;">${icons[i]}</span>` : `<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:#555;">${i+1}</span>`;
       const isTeam = isSIM1Team(d.name);
       const teamTag = isTeam ? `<span style="background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.5em;font-weight:800;padding:1px 5px;border-radius:3px;margin-left:5px;vertical-align:middle;">SIM1</span>` : '';
       return `<div style="display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid #141414;">
         <div style="width:26px;text-align:center;flex-shrink:0;">${posEl}</div>
-        <div style="flex:1;font-family:'Barlow Condensed',sans-serif;font-size:0.88em;font-weight:800;text-transform:uppercase;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${d.name}${teamTag}</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:900;color:#EF4444;flex-shrink:0;">${valueFn(d)}<span style="font-family:'Barlow',sans-serif;font-size:0.6em;color:#555;margin-left:3px;">${labelFn(d)}</span></div>
+        <div style="flex:1;font-family:'Barlow Condensed',sans-serif;font-size:0.88em;font-weight:500;text-transform:uppercase;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${d.name}${teamTag}</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:500;color:white;flex-shrink:0;">${valueFn(d)}<span style="font-family:'Barlow',sans-serif;font-size:0.6em;color:#555;margin-left:3px;">${labelFn(d)}</span></div>
       </div>`;
     }).join('');
     return `<div style="background:#0d0d0d;border:1px solid #1a1a1a;border-radius:12px;overflow:hidden;">
@@ -368,11 +368,11 @@ function searchDriver() {
         return `<div onclick="openModal(${ev.id})" style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:7px;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#111'" onmouseout="this.style.background='transparent'">
           <div style="background:${getBadgeColor(ev.type)};color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.58em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap;">${ev.label}</div>
           <div style="flex:1;min-width:0;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;color:white;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${evTitle}</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:white;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${evTitle}</div>
             <div style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;margin-top:1px;">${ev.date}</div>
           </div>
           <div style="text-align:right;flex-shrink:0;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:900;color:${posColor};">P${r.pos}</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1em;font-weight:500;color:${posColor};">P${r.pos}</div>
             <div style="font-family:'Barlow',sans-serif;font-size:0.7em;color:#444;">${r.lap}</div>
           </div>
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.66em;color:#EF4444;font-weight:800;">→</div>
@@ -388,11 +388,11 @@ function searchDriver() {
     html += `<div style="background:#0d0d0d;border:1px solid #1a1a1a;border-radius:10px;overflow:hidden;margin-bottom:10px;">
       <div style="padding:16px 18px;border-bottom:1px solid #141414;">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:900;text-transform:uppercase;color:white;">${driverName}</div>${teamBadge}
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:500;text-transform:uppercase;color:white;">${driverName}</div>${teamBadge}
         </div>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
           <div style="background:#111;border:1px solid #1a1a1a;border-radius:7px;padding:6px 12px;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:900;color:white;line-height:1;">${stats.eventCount}</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:500;color:white;line-height:1;">${stats.eventCount}</div>
             <div style="font-family:'Barlow',sans-serif;font-size:0.62em;color:#555;text-transform:uppercase;letter-spacing:1px;">Events</div>
           </div>
           ${mp.length ? `<div style="display:flex;gap:10px;font-family:'Barlow',sans-serif;">${mp.join('')}</div>` : `<span style="font-family:'Barlow',sans-serif;font-size:0.78em;color:#333;">No podiums yet</span>`}
@@ -469,7 +469,7 @@ function renderArchive(period) {
           <div class="arch-title" style="
             font-family: 'Barlow Condensed', sans-serif;
             font-size: 0.9em;
-            font-weight: 800;
+            font-weight: 500;
             text-transform: uppercase;
             color: ${isChamp ? '#d4a017' : 'white'};
             white-space: nowrap;
@@ -533,19 +533,19 @@ function openModal(id) {
       const dimStyle = noLap ? 'opacity:0.35;' : '';
       const isFastest = i === fastestIdx;
       const lapColor = isFastest ? '#a855f7' : '#ccc';
-      const lapCell = noLap ? `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:#333;text-align:right;font-style:italic;">No valid lap</td>` : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${lapColor};text-align:right;font-weight:700;">${r.lap}</td>`;
+      const lapCell = noLap ? `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:#333;text-align:right;font-style:italic;">No valid lap</td>` : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${lapColor};text-align:right;font-weight:400;">${r.lap}</td>`;
       const lapsCell = showLaps ? `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:#666;text-align:right;">${r.laps !== null ? r.laps : '—'}</td>` : '';
-      const gapCell = noLap ? '' : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${r.gap==='LEADER'?'#EF4444':'#555'};text-align:right;font-weight:${r.gap==='LEADER'?'700':'400'};">${r.gap}</td>`;
+      const gapCell = noLap ? '' : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${r.gap==='LEADER'?'#EF4444':'#555'};text-align:right;font-weight:400;">${r.gap}</td>`;
       let qualCell = '';
       if (showQual) {
         const qp = qualByDriver[nameKey(r.driver)];
         const qualColor = qp === 1 ? '#fbbf24' : qp <= 3 ? '#EF4444' : '#666';
         const qualLabel = qp === 1 ? 'POLE' : (qp ? 'P' + qp : '—');
-        qualCell = `<td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:0.82em;color:${qualColor};text-align:right;font-weight:${qp===1?'900':'700'};letter-spacing:0.5px;">${qualLabel}</td>`;
+        qualCell = `<td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:0.82em;color:${qualColor};text-align:right;font-weight:500;letter-spacing:0.5px;">${qualLabel}</td>`;
       }
       return `<tr style="border-bottom:1px solid #141414;${dimStyle}">
-        <td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:${r.pos<=3&&!noLap?'1.05em':'0.9em'};font-weight:900;color:${r.pos<=3&&!noLap?'#EF4444':'#555'};">${pi}</td>
-        <td style="padding:9px 10px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;color:${noLap?'#444':'white'};text-transform:uppercase;">${normalizeName(r.driver)}${badge}</td>
+        <td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:${r.pos<=3&&!noLap?'1.05em':'0.9em'};font-weight:500;color:${r.pos<=3&&!noLap?'#EF4444':'#555'};">${pi}</td>
+        <td style="padding:9px 10px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:${noLap?'#444':'white'};text-transform:uppercase;">${normalizeName(r.driver)}${badge}</td>
         ${qualCell}${lapCell}${lapsCell}${gapCell}
       </tr>`;
     }).join('');

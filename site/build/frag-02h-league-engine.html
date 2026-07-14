@@ -163,10 +163,10 @@ function renderStandingsTable(leagueKey, containerId){
     const weekCells = d.perWeek.map(v => `<div style="text-align:center;font-family:'Barlow',sans-serif;font-size:0.76em;color:${v?'#aaa':'#555'};">${v!=null?v:'—'}</div>`).join('');
     const badges = d.badges.map(leagueBadgeHtml).join('');
     return `<div style="display:grid;grid-template-columns:${cols};align-items:center;gap:3px;padding:9px 10px;${isLast?'':'border-bottom:1px solid #1a1a1a;'}${rowBg(i)}">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:${posColor(i)};">${i+1}</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${abbrevName(d.name)}${badges}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:500;color:${posColor(i)};">${i+1}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${abbrevName(d.name)}${badges}</div>
       ${weekCells}
-      <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;color:white;">${d.total}</div>
+      <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:500;color:white;">${d.total}</div>
     </div>`;
   }).join('');
   container.innerHTML = rows ? header + rows : `<div style="padding:30px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#555;">No results yet.</div>`;
