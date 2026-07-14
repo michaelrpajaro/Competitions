@@ -38,7 +38,28 @@ function goToSection(e, id){
   if(e) e.preventDefault();
   showSectionById(id);
   history.pushState({ section: id }, '', '#' + id);
+  closeMobileNav();
 }
+/* Mobile top nav: on desktop the section links show inline; below 600px
+   they collapse into this dropdown, toggled by the MENU button. */
+function toggleMobileNav(e){
+  if(e) e.preventDefault();
+  const nav = document.querySelector('.nav');
+  const isOpen = nav.classList.toggle('nav-open');
+  const btn = nav.querySelector('.nav-toggle');
+  if(btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+function closeMobileNav(){
+  const nav = document.querySelector('.nav');
+  if(!nav) return;
+  nav.classList.remove('nav-open');
+  const btn = nav.querySelector('.nav-toggle');
+  if(btn) btn.setAttribute('aria-expanded', 'false');
+}
+document.addEventListener('click', (e) => {
+  const nav = document.querySelector('.nav');
+  if(nav && nav.classList.contains('nav-open') && !nav.contains(e.target)) closeMobileNav();
+});
 function initRouter(){
   const rawHash = (location.hash || '').replace(/^#/, '');
   // A link straight into a specific giveaway (#g/<slug>) should land on

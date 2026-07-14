@@ -41,6 +41,9 @@ img{max-width:100%;}
 .nav-links a:hover{color:#fff;background:var(--card2);}
 .nav-links a.cta{background:var(--red);color:#fff;}
 .nav-links a.active-nav{color:#fff;background:#1a1a1a;border-color:var(--border3);}
+.nav-toggle{display:none;background:var(--card2);border:1px solid var(--border3);border-radius:7px;color:#fff;align-items:center;gap:7px;padding:8px 12px;font-family:var(--cond);font-weight:800;font-size:0.72em;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;flex-shrink:0;}
+.nav-toggle .chevron{display:inline-block;transition:transform .2s ease;font-size:0.9em;}
+.nav.nav-open .nav-toggle .chevron{transform:rotate(180deg);}
 
 /* ── SECTION VISIBILITY — only one "view" is shown at a time.
      #view-home and each #sec-* are toggled by goToSection() in the
@@ -150,11 +153,12 @@ img{max-width:100%;}
 @media(max-width:600px){
   .section{padding:36px 16px;}
   .hero{padding:28px 16px 26px;}
-  .nav-inner{padding:10px 14px;gap:10px;}
+  .nav-inner{padding:10px 14px;gap:10px;position:relative;}
   .nav-brand{font-size:0.85em;flex-shrink:0;}
-  .nav-links{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .nav-links::-webkit-scrollbar{display:none;}
-  .nav-links a{font-size:0.68em;padding:6px 9px;}
+  .nav-toggle{display:flex;}
+  .nav-links{display:none;flex-direction:column;flex-wrap:nowrap;gap:2px;position:absolute;top:calc(100% + 10px);left:14px;right:14px;background:#0d0d0d;border:1px solid var(--border3);border-radius:10px;padding:8px;box-shadow:0 12px 30px rgba(0,0,0,0.6);max-height:70vh;overflow-y:auto;}
+  .nav.nav-open .nav-links{display:flex;}
+  .nav-links a{font-size:0.85em;padding:12px 10px;width:100%;text-align:left;border-radius:7px;}
   .h2{font-size:1.6em;}
   .hero h1{font-size:2em;}
   .hero p{font-size:1em;}
@@ -175,6 +179,7 @@ img{max-width:100%;}
 ══════════════════════════════════════════════ -->
 <nav class="nav"><div class="nav-inner">
   <a href="#home" class="nav-brand" onclick="goToSection(event,'home')"><span class="dot"></span> COMPETITIONS</a>
+  <button class="nav-toggle" onclick="toggleMobileNav(event)" aria-label="Open section menu" aria-expanded="false">MENU <span class="chevron">▾</span></button>
   <div class="nav-links">
     <a href="#sec-endurance" onclick="goToSection(event,'sec-endurance')" data-nav="sec-endurance">Endurance Race</a>
     <a href="#sec-giveaways" onclick="goToSection(event,'sec-giveaways')" data-nav="sec-giveaways">Giveaways</a>
