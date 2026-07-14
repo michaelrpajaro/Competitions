@@ -132,7 +132,7 @@ img{max-width:100%;}
 .photo-spot span{max-width:220px;line-height:1.5;}
 .photo-spot img{width:100%;height:100%;object-fit:cover;display:block;}
 .photo-spot.has-photo,.photo-spot:has(img){border:none;padding:0;background:none;}
-.photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+.photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 
 /* ── BACK-TO-HOME LINK (top of every section) ── */
 .back-home{display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-size:0.78em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#888;text-decoration:none;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:9px 16px;margin:18px 0 0 40px;transition:color .15s,background .15s;cursor:pointer;}
@@ -206,7 +206,7 @@ img{max-width:100%;}
   <div class="hero-inner">
     <span class="badge">SIM1RACING</span>
     <h1>EVERY WAY TO<br><span class="accent">COMPETE</span></h1>
-    <p>Grab a friend and go race together — team up as co-drivers for the Monthly Endurance Race, or come solo and jump into any of the competitions below. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Pick a card below to jump in.</p>
+    <p>Grab a friend and go race together — team up as co-drivers for the Monthly Endurance Race, or come solo and jump into any of the competitions. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Use the menu above to jump into any of them.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="v">6</div><div class="l">Ways to Compete</div></div>
       <div class="hero-stat"><div class="v">Weekly</div><div class="l">New Events Posted</div></div>
@@ -217,68 +217,6 @@ img{max-width:100%;}
 
 <section class="section" id="home-cards" style="background:var(--bg2);padding-top:40px;">
   <div class="wrap">
-    <div class="center" style="margin-bottom:34px;">
-      <div class="eyebrow">PICK ONE</div>
-      <h2 class="h2">Every Way to Compete</h2>
-      <p class="lead" style="max-width:680px;margin:14px auto 0;">Casual, drop-in racing and season-long commitments, side by side — everything below is free to enter unless noted.</p>
-    </div>
-    <div class="prog-grid">
-      <button class="prog-card" onclick="goToSection(event,'sec-endurance')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">MONTHLY EVENT · CASUAL</div>
-          <div class="prog-title">Endurance Race</div>
-          <div class="prog-sub">2 Hours at Spa in the BMW Z4 GT3 — solo or with a co-driver, free for Gold Members.</div>
-          <div class="prog-facts"><span>King of the Hill format</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-giveaways')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">REAL-WORLD PRIZE · CASUAL</div>
-          <div class="prog-title">Giveaways</div>
-          <div class="prog-sub">Spirit Works Garage × SIM1Racing car giveaway, plus the free Track Day giveaway with Burnout Events — both live in one place.</div>
-          <div class="prog-facts"><span><b>10,000</b> top entries/week</span><span>Car + Track Day</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-leagues')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">SEASONS · PAID · COMMITMENT</div>
-          <div class="prog-title">Leagues</div>
-          <div class="prog-sub">A new Monthly League every month, plus Audi TT Cup and AACC — or host a fully custom season for your own group.</div>
-          <div class="prog-facts"><span>Auto-updates as seasons start</span><span>+ Host Your Own</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-qualifiers')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">ALWAYS OPEN · FREE · CASUAL</div>
-          <div class="prog-title">Qualifiers</div>
-          <div class="prog-sub">Weekly/Monthly Qualifiers, Thursday Sprint Races, and the Monthly Championship — the free ladder to a spot on the SIM1Racing team.</div>
-          <div class="prog-facts"><span><b>3</b> ways to earn an invite</span><span>Runs continuously</span></div>
-          <div class="prog-cta">ENTER →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-team')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">MEET THE DRIVERS</div>
-          <div class="prog-title">SIM1Racing Team</div>
-          <div class="prog-sub">Our current team drivers, how they earned their spot, and what they race.</div>
-          <div class="prog-facts"><span>4 Team Drivers</span></div>
-          <div class="prog-cta">MEET THE TEAM →</div>
-        </div>
-      </button>
-      <button class="prog-card" onclick="goToSection(event,'sec-viewresults')">
-        <div class="prog-body">
-          <div class="prog-eyebrow">YOUR STATS</div>
-          <div class="prog-title">View Laps/Results</div>
-          <div class="prog-sub">Look up your name to see qualifier results and lap times, or browse standings for any league.</div>
-          <div class="prog-facts"><span>Individual + League Results</span></div>
-          <div class="prog-cta">LOOK UP →</div>
-        </div>
-      </button>
-    </div>
-
     <div class="photo-row">
       <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55761bfc1f715d93208963/1783985691539/Untitled+design.jpg" alt="Race night at the sim lab"></div>
       <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55764a02d6b629a78f2a5b/1783985738249/Untitled+design+%281%29.jpg" alt="A giveaway or track day winner"></div>
