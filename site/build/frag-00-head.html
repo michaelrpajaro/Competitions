@@ -108,17 +108,21 @@ img{max-width:100%;}
 .sec-head{text-align:center;margin-bottom:40px;}
 .sec-head .sh-kicker{font-family:var(--cond);font-size:0.7em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:8px;}
 
-/* ── HOME CARD GRID (clickable entry points to each section) ── */
-.prog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.prog-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-align:left;cursor:pointer;transition:border-color .15s,transform .15s;padding:0;font:inherit;color:inherit;}
-.prog-card:hover{border-color:rgba(239,68,68,0.4);transform:translateY(-2px);}
-.prog-body{padding:26px 26px 24px;display:flex;flex-direction:column;gap:10px;flex:1;}
-.prog-eyebrow{font-family:var(--cond);font-size:0.68em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
-.prog-title{font-family:var(--cond);font-size:1.6em;font-weight:900;text-transform:uppercase;color:#fff;line-height:1.1;}
-.prog-sub{font-family:var(--body);font-size:0.88em;color:#999;line-height:1.6;}
-.prog-facts{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--body);font-size:0.78em;color:#888;padding-top:10px;margin-top:auto;border-top:1px solid var(--border2);}
-.prog-facts b{color:#fff;font-weight:700;}
-.prog-cta{font-family:var(--body);font-size:0.85em;font-weight:700;color:var(--red);margin-top:2px;}
+/* ── HOME SPOTLIGHT (the two things we're actively pushing signups
+     for: the next Endurance Race, and whichever Monthly League is
+     open for signup — the League card is filled in by JS so it never
+     goes stale) ── */
+.spotlight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.spotlight-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
+.spotlight-img{aspect-ratio:16/9;background:#111 center/cover no-repeat;border-bottom:1px solid var(--border);}
+.spotlight-body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.spotlight-eyebrow{font-family:var(--cond);font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+.spotlight-title{font-family:var(--cond);font-size:1.5em;font-weight:900;text-transform:uppercase;color:#fff;line-height:1.1;}
+.spotlight-meta{font-family:var(--cond);font-size:0.85em;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;color:#ccc;}
+.spotlight-sub{font-family:var(--body);font-size:0.88em;color:#999;line-height:1.6;margin:2px 0 6px;}
+.spotlight-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:auto;padding-top:8px;}
+.spotlight-link{font-family:var(--body);font-size:0.85em;font-weight:700;color:#ccc;text-decoration:none;border-bottom:1px solid #444;padding-bottom:1px;}
+.spotlight-link:hover{color:#fff;}
 
 /* ── PHOTO SPOT (placeholder frame for real photography) ──
      Locked to a 4:3 landscape ratio — the easiest ratio to shoot on
@@ -166,9 +170,9 @@ img{max-width:100%;}
   .hero-stat .v{font-size:1.05em;}
   .hero-stat .l{font-size:0.64em;}
   .photo-row{grid-template-columns:1fr;gap:12px;}
-  .prog-grid{grid-template-columns:1fr;gap:14px;}
-  .prog-title{font-size:1.35em;}
-  .prog-body{padding:20px 22px 20px;}
+  .spotlight-grid{grid-template-columns:1fr;gap:14px;}
+  .spotlight-title{font-size:1.3em;}
+  .spotlight-body{padding:20px 22px 22px;}
 }
 </style>
 </head>
@@ -221,6 +225,41 @@ img{max-width:100%;}
       <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55761bfc1f715d93208963/1783985691539/Untitled+design.jpg" alt="Race night at the sim lab"></div>
       <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55764a02d6b629a78f2a5b/1783985738249/Untitled+design+%281%29.jpg" alt="A giveaway or track day winner"></div>
       <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5576602489aa12cc8f636c/1783985760178/Untitled+design+%282%29.jpg" alt="The SIM1Racing team in action"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+  SIGN UP NOW — the two things we're pushing: the next
+  Endurance Race, and whichever Monthly League is open
+  for signup. The League card is filled in by JS further
+  down the page (renderHomeLeagueSpotlight, once
+  FEATURED_LEAGUES/pickFeaturedLeague are defined) so it
+  automatically stays in sync with the Leagues section
+  and never needs manual updating here.
+══════════════════════════════════════════════ -->
+<section class="section" id="home-spotlight" style="background:var(--bg);">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:34px;">
+      <div class="eyebrow">DON'T MISS OUT</div>
+      <h2 class="h2">Sign Up Now</h2>
+      <p class="lead" style="max-width:640px;margin:14px auto 0;">The two things filling up fastest right now.</p>
+    </div>
+    <div class="spotlight-grid">
+      <div class="spotlight-card">
+        <div class="spotlight-img" style="background-image:url('https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a553d3a9f5b3818bee9b155/1783971130840/Inaugural+League.jpg');"></div>
+        <div class="spotlight-body">
+          <div class="spotlight-eyebrow">MONTHLY EVENT</div>
+          <div class="spotlight-title">Endurance Race</div>
+          <div class="spotlight-meta">2 Hours at Spa &middot; BMW Z4 GT3 &middot; Wed, July 29 at 7PM</div>
+          <p class="spotlight-sub">Race solo or pair up with a co-driver. Free for Gold Members, $120 per simulator for everyone else.</p>
+          <div class="spotlight-cta">
+            <a href="https://sim1racing.as.me/endurance-race" class="btn">REGISTER NOW</a>
+            <a onclick="goToSection(event,'sec-endurance')" href="#sec-endurance" class="spotlight-link">Learn more →</a>
+          </div>
+        </div>
+      </div>
+      <div class="spotlight-card" id="home-league-spotlight"></div>
     </div>
   </div>
 </section>
