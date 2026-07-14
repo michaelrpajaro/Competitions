@@ -3671,24 +3671,19 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 <div id="sec-leagues" style="width:100%;position:relative;overflow-x:hidden;">
 <a class="back-home" onclick="goToSection(event,'home')" href="#home">← All Competitions</a>
 
-<div class="section" style="padding-bottom:0;">
-  <div class="wrap-md center">
-    <div class="eyebrow">LEAGUES</div>
-    <h2 class="h2">Multi-Week Championship Seasons</h2>
-    <p class="lead" style="max-width:680px;margin:14px auto 0;">Every month brings a brand-new <strong style="color:#ccc;">Monthly League</strong> — a different car and a fresh set of four circuits each time, always four Monday nights, always the same prize format. Once a season is underway, find its standings and race-by-race results in <a onclick="goToSection(event,'sec-viewresults')" href="#sec-viewresults" style="color:var(--red);text-decoration:none;font-weight:700;">View Laps/Results →</a></p>
-  </div>
-</div>
-
-<div style="max-width:1200px;margin:24px auto 0;padding:0 40px;">
-  <div style="display:flex;gap:4px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:5px;width:fit-content;">
-    <button onclick="lgModeTab('monthly')" id="lg-mode-tab-monthly" style="background:var(--red);color:#fff;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Monthly Leagues</button>
-    <div class="lg-host-hover" tabindex="0">
-      <button onclick="lgModeTab('custom')" id="lg-mode-tab-custom" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Host Your Own</button>
-      <div class="lg-host-expand">
-        <div class="lg-host-expand-t">Want Your Own Private Season?</div>
-        <div class="lg-host-expand-d">Pick your car, your tracks, and your schedule — we'll run a custom league just for your group. Click to get started →</div>
+<div style="max-width:1200px;margin:34px auto 0;padding:0 40px;">
+  <div id="lg-toggle-row" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="display:flex;gap:4px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:5px;width:fit-content;">
+      <button onclick="lgModeTab('monthly')" id="lg-mode-tab-monthly" style="background:var(--red);color:#fff;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Monthly Leagues</button>
+      <div class="lg-host-hover" tabindex="0">
+        <button onclick="lgModeTab('custom')" id="lg-mode-tab-custom" style="background:transparent;color:#888;border:none;padding:10px 26px;border-radius:7px;font-family:var(--cond);font-size:0.98em;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Host Your Own</button>
+        <div class="lg-host-expand">
+          <div class="lg-host-expand-t">Want Your Own Private Season?</div>
+          <div class="lg-host-expand-d">Pick your car, your tracks, and your schedule — we'll run a custom league just for your group. Click to get started →</div>
+        </div>
       </div>
     </div>
+    <a onclick="goToSection(event,'sec-viewresults');vrModeTab('league');" href="#sec-viewresults" style="font-family:var(--cond);font-size:0.85em;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--red);text-decoration:none;white-space:nowrap;">View League Standings →</a>
   </div>
 </div>
 
@@ -3962,6 +3957,14 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 @media(max-width:600px){
 #resultsModal{padding:0!important;align-items:flex-start!important;}
 #resultsModal > div{max-width:100%!important;margin:0!important;min-height:100dvh;border-radius:0!important;border-left:none!important;border-right:none!important;}
+#sec-leagues div[style*="padding:50px 40px"],#sec-leagues div[style*="padding:70px 40px"],#sec-leagues div[style*="padding:60px 40px"]{padding-top:20px!important;padding-bottom:20px!important;padding-left:14px!important;padding-right:14px!important;}
+#sec-leagues div[style*="padding:26px 20px"],#sec-leagues div[style*="padding:26px 24px"],#sec-leagues div[style*="padding:26px"],#sec-leagues div[style*="padding:28px"],#sec-leagues div[style*="padding:24px"],#sec-leagues div[style*="padding:22px 24px"]{padding:14px!important;}
+#sec-leagues div[style*="font-size:2.2em;margin-bottom:8px"],#sec-leagues div[style*="font-size:2.4em"]{font-size:1.6em!important;}
+#sec-leagues div[style*="font-size:2.2em;font-weight:900;color:white"]{font-size:1.5em!important;}
+#sec-leagues div[style*="padding:22px 24px;margin-bottom:26px"]{padding:16px!important;}
+#sec-leagues div[style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:repeat(5,1fr)!important;gap:5px!important;}
+#sec-leagues div[style*="grid-template-columns:repeat(5,1fr)"] div[style*="padding:11px 5px"]{padding:6px 2px!important;}
+#sec-leagues div[style*="grid-template-columns:repeat(5,1fr)"] div[style*="font-size:1.5em"]{font-size:1.1em!important;}
 }
 
 /* ── HOST YOUR OWN (merged Custom Leagues) mobile overrides ── */
@@ -4819,7 +4822,19 @@ function mergeComputedWeeks(leagueKey){
 }
 
 function leagueBadgeHtml(b){
-  return `<span title="${b.tooltip}" style="display:inline-block;background:${b.bg};color:${b.color};font-size:0.62em;font-weight:${b.weight||800};letter-spacing:1px;padding:2px ${b.pad||6}px;border-radius:4px;margin-left:6px;vertical-align:middle;">${b.label}</span>`;
+  return `<span title="${b.tooltip}" style="display:inline-block;background:${b.bg};color:${b.color};font-size:0.58em;font-weight:${b.weight||800};letter-spacing:0.5px;padding:1px 4px;border-radius:4px;margin-left:4px;vertical-align:middle;">${b.label}</span>`;
+}
+/* Standings need to read as "First L." on one line at any screen width
+   (mobile especially) rather than wrapping a full name across two —
+   e.g. "Stuart Stolarz Jr." becomes "Stuart S." (suffixes like Jr/Sr/
+   II-IV are skipped so the initial comes from the real surname). */
+function abbrevName(name){
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if(parts.length < 2) return name;
+  const suffixRe = /^(jr\.?|sr\.?|ii|iii|iv|v)$/i;
+  let lastIdx = parts.length - 1;
+  if(suffixRe.test(parts[lastIdx]) && parts.length > 2) lastIdx--;
+  return parts[0] + ' ' + parts[lastIdx][0].toUpperCase() + '.';
 }
 function renderStandingsTable(leagueKey, containerId){
   const cfg = LEAGUE_STANDINGS[leagueKey];
@@ -4827,23 +4842,29 @@ function renderStandingsTable(leagueKey, containerId){
   if(!cfg || !container) return;
   const list = cfg.drivers.map(d => ({ ...d, total: d.perWeek.reduce((s,v)=>s+(v||0),0) }))
     .sort((a,b) => b.total - a.total);
-  const cols = `42px 1fr ${'44px '.repeat(cfg.weeksTotal)}64px`;
+  const cols = `20px minmax(0,1fr) repeat(${cfg.weeksTotal},22px) 36px`;
   const posColor = i => i===0?'#ffce4a':i===1?'#e2e6ea':i===2?'#e0954d':'#999';
   const rowBg = i => i===0?'background:linear-gradient(90deg,rgba(122,95,18,0.18),transparent 80%);'
                     : i===1?'background:linear-gradient(90deg,rgba(180,185,190,0.14),transparent 80%);'
                     : i===2?'background:linear-gradient(90deg,rgba(94,58,28,0.22),transparent 80%);' : '';
+  const header = `<div style="display:grid;grid-template-columns:${cols};align-items:center;gap:3px;padding:8px 10px;border-bottom:1px solid #222;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#555;">#</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#555;">Driver</div>
+    ${Array.from({length:cfg.weeksTotal}, (_,w) => `<div style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:0.58em;font-weight:800;text-transform:uppercase;color:#555;">W${w+1}</div>`).join('')}
+    <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#555;">Pts</div>
+  </div>`;
   const rows = list.map((d,i) => {
     const isLast = i === list.length-1;
-    const weekCells = d.perWeek.map(v => `<div style="text-align:center;font-family:'Barlow',sans-serif;font-size:0.9em;color:${v?'#aaa':'#666'};">${v!=null?v:'—'}</div>`).join('');
-    const badges = d.badges.map(leagueBadgeHtml).join(' ');
-    return `<div style="display:grid;grid-template-columns:${cols};align-items:center;padding:13px 22px;${isLast?'':'border-bottom:1px solid #1a1a1a;'}${rowBg(i)}">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:900;color:${posColor(i)};">${i+1}</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;color:white;">${d.name}${badges?' '+badges:''}</div>
+    const weekCells = d.perWeek.map(v => `<div style="text-align:center;font-family:'Barlow',sans-serif;font-size:0.76em;color:${v?'#aaa':'#555'};">${v!=null?v:'—'}</div>`).join('');
+    const badges = d.badges.map(leagueBadgeHtml).join('');
+    return `<div style="display:grid;grid-template-columns:${cols};align-items:center;gap:3px;padding:9px 10px;${isLast?'':'border-bottom:1px solid #1a1a1a;'}${rowBg(i)}">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:${posColor(i)};">${i+1}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${abbrevName(d.name)}${badges}</div>
       ${weekCells}
-      <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:900;color:white;">${d.total}</div>
+      <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;color:white;">${d.total}</div>
     </div>`;
   }).join('');
-  container.innerHTML = rows || `<div style="padding:30px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#555;">No results yet.</div>`;
+  container.innerHTML = rows ? header + rows : `<div style="padding:30px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#555;">No results yet.</div>`;
 }
 
 mergeComputedWeeks('audi');
@@ -4863,12 +4884,12 @@ function leagueDisplayName(key){
   if(key === 'aacc') return 'AACC';
   return key;
 }
-/* AACC (All American Corvette Club) is the one currently-running
-   league — flagged here so View Laps/Results can call that out now
-   that the Leagues page no longer shows an "Active Leagues" carousel
-   of its own. Audi TT Cup's season has concluded, so it's no longer
-   in this list. */
-const VR_ACTIVE_LEAGUES = ['aacc'];
+/* AACC (All American Corvette Club) and the Lotus GTC SIM1 League are
+   the two currently-running leagues — flagged here so View Laps/Results
+   can call that out now that the Leagues page no longer shows an
+   "Active Leagues" carousel of its own. Audi TT Cup's season has
+   concluded, so it's no longer in this list. */
+const VR_ACTIVE_LEAGUES = ['aacc','lotus-gtc'];
 function activeLeagueBadge(key){
   return VR_ACTIVE_LEAGUES.includes(key)
     ? `<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.15);color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-left:8px;vertical-align:middle;"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>Active</span>`
@@ -4909,7 +4930,7 @@ function renderVrLeague(leagueKey){
 }
 function initVrLeagueTabs(){
   Object.keys(LEAGUE_STANDINGS).forEach(mergeComputedWeeks);
-  const keys = Object.keys(LEAGUE_STANDINGS).filter(k => LEAGUE_STANDINGS[k].drivers.length > 0);
+  const keys = Object.keys(LEAGUE_STANDINGS).filter(k => LEAGUE_STANDINGS[k].drivers.length > 0 || VR_ACTIVE_LEAGUES.includes(k));
   const tabsEl = document.getElementById('vr-league-tabs');
   const contentEl = document.getElementById('vr-league-content');
   if(!tabsEl || !contentEl) return; // View Laps/Results section not on this build

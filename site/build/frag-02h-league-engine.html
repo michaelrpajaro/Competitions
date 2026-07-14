@@ -127,7 +127,19 @@ function mergeComputedWeeks(leagueKey){
 }
 
 function leagueBadgeHtml(b){
-  return `<span title="${b.tooltip}" style="display:inline-block;background:${b.bg};color:${b.color};font-size:0.62em;font-weight:${b.weight||800};letter-spacing:1px;padding:2px ${b.pad||6}px;border-radius:4px;margin-left:6px;vertical-align:middle;">${b.label}</span>`;
+  return `<span title="${b.tooltip}" style="display:inline-block;background:${b.bg};color:${b.color};font-size:0.58em;font-weight:${b.weight||800};letter-spacing:0.5px;padding:1px 4px;border-radius:4px;margin-left:4px;vertical-align:middle;">${b.label}</span>`;
+}
+/* Standings need to read as "First L." on one line at any screen width
+   (mobile especially) rather than wrapping a full name across two —
+   e.g. "Stuart Stolarz Jr." becomes "Stuart S." (suffixes like Jr/Sr/
+   II-IV are skipped so the initial comes from the real surname). */
+function abbrevName(name){
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if(parts.length < 2) return name;
+  const suffixRe = /^(jr\.?|sr\.?|ii|iii|iv|v)$/i;
+  let lastIdx = parts.length - 1;
+  if(suffixRe.test(parts[lastIdx]) && parts.length > 2) lastIdx--;
+  return parts[0] + ' ' + parts[lastIdx][0].toUpperCase() + '.';
 }
 function renderStandingsTable(leagueKey, containerId){
   const cfg = LEAGUE_STANDINGS[leagueKey];
@@ -135,23 +147,29 @@ function renderStandingsTable(leagueKey, containerId){
   if(!cfg || !container) return;
   const list = cfg.drivers.map(d => ({ ...d, total: d.perWeek.reduce((s,v)=>s+(v||0),0) }))
     .sort((a,b) => b.total - a.total);
-  const cols = `42px 1fr ${'44px '.repeat(cfg.weeksTotal)}64px`;
+  const cols = `20px minmax(0,1fr) repeat(${cfg.weeksTotal},22px) 36px`;
   const posColor = i => i===0?'#ffce4a':i===1?'#e2e6ea':i===2?'#e0954d':'#999';
   const rowBg = i => i===0?'background:linear-gradient(90deg,rgba(122,95,18,0.18),transparent 80%);'
                     : i===1?'background:linear-gradient(90deg,rgba(180,185,190,0.14),transparent 80%);'
                     : i===2?'background:linear-gradient(90deg,rgba(94,58,28,0.22),transparent 80%);' : '';
+  const header = `<div style="display:grid;grid-template-columns:${cols};align-items:center;gap:3px;padding:8px 10px;border-bottom:1px solid #222;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#555;">#</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#555;">Driver</div>
+    ${Array.from({length:cfg.weeksTotal}, (_,w) => `<div style="text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:0.58em;font-weight:800;text-transform:uppercase;color:#555;">W${w+1}</div>`).join('')}
+    <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#555;">Pts</div>
+  </div>`;
   const rows = list.map((d,i) => {
     const isLast = i === list.length-1;
-    const weekCells = d.perWeek.map(v => `<div style="text-align:center;font-family:'Barlow',sans-serif;font-size:0.9em;color:${v?'#aaa':'#666'};">${v!=null?v:'—'}</div>`).join('');
-    const badges = d.badges.map(leagueBadgeHtml).join(' ');
-    return `<div style="display:grid;grid-template-columns:${cols};align-items:center;padding:13px 22px;${isLast?'':'border-bottom:1px solid #1a1a1a;'}${rowBg(i)}">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.3em;font-weight:900;color:${posColor(i)};">${i+1}</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:800;color:white;">${d.name}${badges?' '+badges:''}</div>
+    const weekCells = d.perWeek.map(v => `<div style="text-align:center;font-family:'Barlow',sans-serif;font-size:0.76em;color:${v?'#aaa':'#555'};">${v!=null?v:'—'}</div>`).join('');
+    const badges = d.badges.map(leagueBadgeHtml).join('');
+    return `<div style="display:grid;grid-template-columns:${cols};align-items:center;gap:3px;padding:9px 10px;${isLast?'':'border-bottom:1px solid #1a1a1a;'}${rowBg(i)}">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1em;font-weight:900;color:${posColor(i)};">${i+1}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${abbrevName(d.name)}${badges}</div>
       ${weekCells}
-      <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:1.5em;font-weight:900;color:white;">${d.total}</div>
+      <div style="text-align:right;font-family:'Barlow Condensed',sans-serif;font-size:1.05em;font-weight:900;color:white;">${d.total}</div>
     </div>`;
   }).join('');
-  container.innerHTML = rows || `<div style="padding:30px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#555;">No results yet.</div>`;
+  container.innerHTML = rows ? header + rows : `<div style="padding:30px;text-align:center;font-family:'Barlow',sans-serif;font-size:0.85em;color:#555;">No results yet.</div>`;
 }
 
 mergeComputedWeeks('audi');
@@ -171,12 +189,12 @@ function leagueDisplayName(key){
   if(key === 'aacc') return 'AACC';
   return key;
 }
-/* AACC (All American Corvette Club) is the one currently-running
-   league — flagged here so View Laps/Results can call that out now
-   that the Leagues page no longer shows an "Active Leagues" carousel
-   of its own. Audi TT Cup's season has concluded, so it's no longer
-   in this list. */
-const VR_ACTIVE_LEAGUES = ['aacc'];
+/* AACC (All American Corvette Club) and the Lotus GTC SIM1 League are
+   the two currently-running leagues — flagged here so View Laps/Results
+   can call that out now that the Leagues page no longer shows an
+   "Active Leagues" carousel of its own. Audi TT Cup's season has
+   concluded, so it's no longer in this list. */
+const VR_ACTIVE_LEAGUES = ['aacc','lotus-gtc'];
 function activeLeagueBadge(key){
   return VR_ACTIVE_LEAGUES.includes(key)
     ? `<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.15);color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-left:8px;vertical-align:middle;"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>Active</span>`
@@ -217,7 +235,7 @@ function renderVrLeague(leagueKey){
 }
 function initVrLeagueTabs(){
   Object.keys(LEAGUE_STANDINGS).forEach(mergeComputedWeeks);
-  const keys = Object.keys(LEAGUE_STANDINGS).filter(k => LEAGUE_STANDINGS[k].drivers.length > 0);
+  const keys = Object.keys(LEAGUE_STANDINGS).filter(k => LEAGUE_STANDINGS[k].drivers.length > 0 || VR_ACTIVE_LEAGUES.includes(k));
   const tabsEl = document.getElementById('vr-league-tabs');
   const contentEl = document.getElementById('vr-league-content');
   if(!tabsEl || !contentEl) return; // View Laps/Results section not on this build
