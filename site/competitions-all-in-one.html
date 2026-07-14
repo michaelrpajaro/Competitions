@@ -37,7 +37,7 @@ img{max-width:100%;}
 .nav-brand{font-family:var(--cond);font-weight:900;font-size:1.1em;text-transform:uppercase;letter-spacing:1px;color:#fff;display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;}
 .nav-brand .dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);}
 .nav-links{display:flex;gap:6px;flex-wrap:wrap;}
-.nav-links a{font-family:var(--cond);font-weight:800;font-size:0.76em;text-transform:uppercase;letter-spacing:1.2px;color:#888;text-decoration:none;padding:6px 11px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;}
+.nav-links a{font-family:var(--cond);font-weight:800;font-size:0.76em;text-transform:uppercase;letter-spacing:1.2px;color:#888;text-decoration:none;padding:6px 11px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;flex-shrink:0;}
 .nav-links a:hover{color:#fff;background:var(--card2);}
 .nav-links a.cta{background:var(--red);color:#fff;}
 .nav-links a.active-nav{color:#fff;background:#1a1a1a;border-color:var(--border3);}
@@ -128,7 +128,7 @@ img{max-width:100%;}
 .photo-spot{aspect-ratio:4/3;background:var(--card2);border:1px dashed var(--border3);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;color:#666;font-family:var(--cond);font-size:0.85em;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:20px;overflow:hidden;}
 .photo-spot span{max-width:220px;line-height:1.5;}
 .photo-spot img{width:100%;height:100%;object-fit:cover;display:block;}
-.photo-spot.has-photo{border:none;padding:0;background:none;}
+.photo-spot.has-photo,.photo-spot:has(img){border:none;padding:0;background:none;}
 .photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
 
 /* ── BACK-TO-HOME LINK (top of every section) ── */
@@ -148,15 +148,23 @@ img{max-width:100%;}
   .track-row{grid-template-columns:1fr;}
 }
 @media(max-width:600px){
-  .section{padding:44px 16px;}
-  .hero{padding:32px 16px 30px;}
-  .nav-inner{padding:11px 16px;}
-  .nav-links{display:none;}
-  .h2{font-size:1.8em;}
-  .hero h1{font-size:2.3em;}
+  .section{padding:36px 16px;}
+  .hero{padding:28px 16px 26px;}
+  .nav-inner{padding:10px 14px;gap:10px;}
+  .nav-brand{font-size:0.85em;flex-shrink:0;}
+  .nav-links{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .nav-links::-webkit-scrollbar{display:none;}
+  .nav-links a{font-size:0.68em;padding:6px 9px;}
+  .h2{font-size:1.6em;}
+  .hero h1{font-size:2em;}
+  .hero p{font-size:1em;}
   .hero-stats{grid-template-columns:repeat(3,1fr);gap:8px;}
-  .hero-stat .v{font-size:1.15em;}
-  .photo-row{grid-template-columns:1fr;}
+  .hero-stat .v{font-size:1.05em;}
+  .hero-stat .l{font-size:0.64em;}
+  .photo-row{grid-template-columns:1fr;gap:12px;}
+  .prog-grid{grid-template-columns:1fr;gap:14px;}
+  .prog-title{font-size:1.35em;}
+  .prog-body{padding:20px 22px 20px;}
 }
 </style>
 </head>
@@ -3636,6 +3644,11 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 #sec-viewresults div[style*="padding:100px 40px 20px"] h1{font-size:2.4em!important;}
 #sec-viewresults div[style*="padding:60px 40px 100px"]{padding:30px 18px 60px!important;}
 #sec-viewresults #stats-grid{grid-template-columns:1fr!important;}
+#sec-viewresults .portal-tab{min-width:0!important;padding:12px 4px!important;font-size:0.66em!important;letter-spacing:0.3px!important;}
+#sec-viewresults #panel-lookup{padding:18px!important;}
+#sec-viewresults #panel-lookup > div[style*="display:flex;gap:10px"]{gap:8px!important;}
+#sec-viewresults #driver-search{min-width:0!important;padding:12px 10px!important;font-size:0.88em!important;}
+#sec-viewresults #panel-lookup button[onclick="searchDriver()"]{min-width:0!important;flex-shrink:0!important;padding:12px 14px!important;font-size:0.78em!important;}
 #sec-viewresults #vr-league-tabs button{padding:9px 16px!important;font-size:0.85em!important;}
 #sec-viewresults .arch-event-row{padding:10px 14px!important;gap:10px!important;}
 #sec-viewresults .arch-event-row .arch-badge{min-width:34px!important;max-width:34px!important;padding:4px 0!important;font-size:0.7em!important;letter-spacing:1px!important;}
@@ -3937,6 +3950,8 @@ style="background:#0d0d0d;border:1px solid #2a2a2a;border-radius:7px;color:white
 #sec-leagues div[style*="padding:60px 40px"]{padding-top:24px!important;padding-bottom:24px!important;}
 #sec-leagues h1{font-size:2.6em!important;}
 #sec-leagues h2{font-size:1.6em!important;}
+#sec-leagues h3{font-size:1.9em!important;}
+#sec-leagues h4{font-size:1.4em!important;}
 #sec-leagues div[style*="grid-template-columns:1.15fr 0.85fr"],#sec-leagues div[style*="grid-template-columns:1fr 1.3fr"],#sec-leagues div[style*="grid-template-columns:1.55fr 1fr"],#sec-leagues div[style*="grid-template-columns:1.4fr 1fr"],#sec-leagues div[style*="grid-template-columns:0.5fr 1fr"],#sec-leagues div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:16px!important;}
 #sec-leagues div[style*="grid-template-columns:0.5fr 1fr"] > img:first-child{display:none!important;}
 #sec-leagues div[style*="grid-template-columns:repeat(4,1fr)"],#sec-leagues div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important;}
@@ -4848,11 +4863,12 @@ function leagueDisplayName(key){
   if(key === 'aacc') return 'AACC';
   return key;
 }
-/* Audi TT Cup and AACC (All American Corvette Club) are the two
-   currently-running leagues — flagged here so View Laps/Results can
-   call that out now that the Leagues page no longer shows an
-   "Active Leagues" carousel of its own. */
-const VR_ACTIVE_LEAGUES = ['audi','aacc'];
+/* AACC (All American Corvette Club) is the one currently-running
+   league — flagged here so View Laps/Results can call that out now
+   that the Leagues page no longer shows an "Active Leagues" carousel
+   of its own. Audi TT Cup's season has concluded, so it's no longer
+   in this list. */
+const VR_ACTIVE_LEAGUES = ['aacc'];
 function activeLeagueBadge(key){
   return VR_ACTIVE_LEAGUES.includes(key)
     ? `<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.15);color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-left:8px;vertical-align:middle;"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>Active</span>`
@@ -5321,7 +5337,7 @@ function vrModeTab(mode){
 #sec-giveaways .arch-cta{font-family:var(--body);font-size:0.84em;font-weight:700;color:var(--red);margin-top:auto;padding-top:12px;letter-spacing:0.3px;}
 #sec-giveaways .rpt{display:inline-block;font-family:var(--cond);font-size:0.55em;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#888;background:#000;border:1px solid var(--border);border-radius:4px;padding:1px 6px;margin-left:7px;vertical-align:middle;}
 @media(max-width:900px){ #sec-giveaways .hero-inner{grid-template-columns:1fr!important;} #sec-giveaways [style*="grid-template-columns:1fr 1.1fr"]{grid-template-columns:1fr!important;} #sec-giveaways .week-grid{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .ladder{grid-template-columns:repeat(3,1fr)!important;} #sec-giveaways .rules{grid-template-columns:1fr!important;} }
-@media(max-width:600px){ #sec-giveaways .week-grid{grid-template-columns:1fr!important;} #sec-giveaways .ladder{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .standings .wks{display:none!important;} #sec-giveaways .tbl-pad{padding:4px 8px 12px!important;} }
+@media(max-width:600px){ #sec-giveaways .week-grid{grid-template-columns:1fr!important;} #sec-giveaways .ladder{grid-template-columns:repeat(2,1fr)!important;} #sec-giveaways .standings .wks{display:none!important;} #sec-giveaways .tbl-pad{padding:4px 8px 12px!important;} #sec-giveaways h1{font-size:2em!important;} }
 
 /* ── TRACK DAY MODE (merged sub-view, scoped so it can't affect the Car Giveaway mode) ── */
 #gv-mode-trackday{position:relative;}
