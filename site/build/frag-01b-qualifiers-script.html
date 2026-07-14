@@ -61,6 +61,27 @@ const MONTHLY_EVENT_NAME = __activeMonthly.name;
 const MONTHLY_CAR = __activeMonthly.car;
 const MONTHLY_TRACK = __activeMonthly.track;
 const SPRINT_IMAGE_URL = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/69f4c1b64362a00309517d2e/1777648054733/photo_5161281553185836080_y.jpg";
+
+/* Homepage "Sign Up Now" spotlight card for the Thursday Sprint —
+   shares the same Car of the Week as the Weekly Qualifier above, so
+   it rotates automatically right along with it. */
+function renderHomeSprintSpotlight(){
+  const el = document.getElementById('home-sprint-spotlight');
+  if(!el) return;
+  const imgStyle = SPRINT_IMAGE_URL ? `background-image:url('${SPRINT_IMAGE_URL}');` : `background:linear-gradient(150deg,#031a0a,#0a1a1a 60%,#0a0a0a);`;
+  el.innerHTML = `
+    <div class="spotlight-img" style="${imgStyle}"></div>
+    <div class="spotlight-body">
+      <div class="spotlight-eyebrow" style="color:#22c55e;">EVERY THURSDAY</div>
+      <div class="spotlight-title">Thursday Sprint Race</div>
+      <div class="spotlight-meta">${WEEKLY_CAR} &middot; ${WEEKLY_TRACK} &middot; 8:00 PM</div>
+      <p class="spotlight-sub">This week's Car of the Week, live and wheel-to-wheel. $60 entry — free for Gold Members &amp; SIM1 Team drivers.</p>
+      <div class="spotlight-cta">
+        <a onclick="goToSection(event,'sec-qualifiers')" href="#sec-qualifiers" class="btn" style="background:#22c55e;">VIEW SPRINT RACE</a>
+      </div>
+    </div>`;
+}
+renderHomeSprintSpotlight();
 const LAST_RACE_YOUTUBE = "https://www.youtube.com/playlist?list=PLzDnHFj7PgvzveDJDXxCviv31kL5cr59a";
 const LAST_RACE_TITLE = "Thursday Sprint Recap";
 

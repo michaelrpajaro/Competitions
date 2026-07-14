@@ -108,13 +108,16 @@ img{max-width:100%;}
 .sec-head{text-align:center;margin-bottom:40px;}
 .sec-head .sh-kicker{font-family:var(--cond);font-size:0.7em;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:8px;}
 
-/* ── HOME SPOTLIGHT (the two things we're actively pushing signups
-     for: the next Endurance Race, and whichever Monthly League is
-     open for signup — the League card is filled in by JS so it never
-     goes stale) ── */
-.spotlight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+/* ── HOME SPOTLIGHT (the three things we're actively pushing signups
+     for: the upcoming Thursday Sprint Race, whichever Monthly League
+     is open for signup, and the next Endurance Race — the Sprint and
+     League cards are filled in by JS off the same data that already
+     drives their own sections, so they never go stale). All three
+     graphics are locked to 4:5, matching the site's other event
+     graphics (qualifier cards, sprint graphic, team photos). ── */
+.spotlight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .spotlight-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
-.spotlight-img{aspect-ratio:16/9;background:#111 center/cover no-repeat;border-bottom:1px solid var(--border);}
+.spotlight-img{aspect-ratio:4/5;background:#111 center/cover no-repeat;border-bottom:1px solid var(--border);}
 .spotlight-body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:8px;flex:1;}
 .spotlight-eyebrow{font-family:var(--cond);font-size:0.7em;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
 .spotlight-title{font-family:var(--cond);font-size:1.5em;font-weight:900;text-transform:uppercase;color:#fff;line-height:1.1;}
@@ -153,6 +156,7 @@ img{max-width:100%;}
   .flow{grid-template-columns:1fr;}
   .flow-arrow{transform:rotate(90deg);padding:2px 0;}
   .track-row{grid-template-columns:1fr;}
+  .spotlight-grid{grid-template-columns:1fr;}
 }
 @media(max-width:600px){
   .section{padding:36px 16px;}
@@ -230,22 +234,25 @@ img{max-width:100%;}
 </section>
 
 <!-- ══════════════════════════════════════════════
-  SIGN UP NOW — the two things we're pushing: the next
-  Endurance Race, and whichever Monthly League is open
-  for signup. The League card is filled in by JS further
-  down the page (renderHomeLeagueSpotlight, once
-  FEATURED_LEAGUES/pickFeaturedLeague are defined) so it
-  automatically stays in sync with the Leagues section
-  and never needs manual updating here.
+  SIGN UP NOW — the three things we're always pushing:
+  the upcoming Thursday Sprint Race, whichever Monthly
+  League is open for signup, and the next Endurance Race.
+  The Sprint and League cards are filled in by JS further
+  down the page (renderHomeSprintSpotlight in frag-01b,
+  renderHomeLeagueSpotlight in frag-02f) off the same data
+  that already drives their own sections, so they never
+  need manual updating here.
 ══════════════════════════════════════════════ -->
 <section class="section" id="home-spotlight" style="background:var(--bg);">
   <div class="wrap">
     <div class="center" style="margin-bottom:34px;">
       <div class="eyebrow">DON'T MISS OUT</div>
       <h2 class="h2">Sign Up Now</h2>
-      <p class="lead" style="max-width:640px;margin:14px auto 0;">The two things filling up fastest right now.</p>
+      <p class="lead" style="max-width:640px;margin:14px auto 0;">The Sprint Race, the current League, and the next Endurance Race — always on deck.</p>
     </div>
     <div class="spotlight-grid">
+      <div class="spotlight-card" id="home-sprint-spotlight"></div>
+      <div class="spotlight-card" id="home-league-spotlight"></div>
       <div class="spotlight-card">
         <div class="spotlight-img" style="background-image:url('https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a553d3a9f5b3818bee9b155/1783971130840/Inaugural+League.jpg');"></div>
         <div class="spotlight-body">
@@ -259,7 +266,6 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
-      <div class="spotlight-card" id="home-league-spotlight"></div>
     </div>
   </div>
 </section>
