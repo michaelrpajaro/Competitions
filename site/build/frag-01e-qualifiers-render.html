@@ -529,8 +529,9 @@ function openModal(id) {
       const noLap = r.lap === '—';
       const isTeam = isSIM1Team(r.driver);
       const badge = isTeam ? `<span style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.5em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:1px 5px;border-radius:4px;margin-left:5px;vertical-align:middle;">SIM1</span>` : '';
+      const voucherBadge = r.voucher ? `<span style="display:inline-block;background:rgba(34,197,94,0.15);color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-size:0.52em;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-left:6px;vertical-align:middle;white-space:nowrap;">🎟️ ${r.voucher}</span>` : '';
       const pi = r.pos===1?'🥇':r.pos===2?'🥈':r.pos===3?'🥉':r.pos;
-      const dimStyle = noLap ? 'opacity:0.35;' : '';
+      const dimStyle = noLap ? 'opacity:0.35;' : (r.voucher ? 'background:rgba(34,197,94,0.06);' : '');
       const isFastest = i === fastestIdx;
       const lapColor = isFastest ? '#a855f7' : '#ccc';
       const lapCell = noLap ? `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:#333;text-align:right;font-style:italic;">No valid lap</td>` : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${lapColor};text-align:right;font-weight:400;">${r.lap}</td>`;
@@ -545,7 +546,7 @@ function openModal(id) {
       }
       return `<tr style="border-bottom:1px solid #141414;${dimStyle}">
         <td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:${r.pos<=3&&!noLap?'1.05em':'0.9em'};font-weight:500;color:${r.pos<=3&&!noLap?'#EF4444':'#555'};">${pi}</td>
-        <td style="padding:9px 10px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:${noLap?'#444':'white'};text-transform:uppercase;">${normalizeName(r.driver)}${badge}</td>
+        <td style="padding:9px 10px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:${noLap?'#444':'white'};text-transform:uppercase;">${normalizeName(r.driver)}${badge}${voucherBadge}</td>
         ${qualCell}${lapCell}${lapsCell}${gapCell}
       </tr>`;
     }).join('');

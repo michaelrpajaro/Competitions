@@ -2966,6 +2966,32 @@ const archiveData = [
             {pos:27, driver:'Andres Bello',             lap:'—',        laps:null, gap:'—'},
         ]
     },
+    {
+        id:49, type:'special', label:'Special Event', icon:'⭐', period:'2026-07',
+        name:"Prime NYC 7's Day Post Celebration — Silverstone National", date:'Jul 11, 2026',
+        car:'RX-7 (Tuned)', track:'Silverstone National',
+        note:'Special one-day event — does not count toward championship qualification. New-customer voucher prizes: 1st $60, 2nd $45, 3rd $25 — awarded to the top 3 finishers who are new customers (a returning customer finishing ahead still keeps their finishing position/stats, they just don\'t take a voucher slot).',
+        pending:false, results:[
+            {pos:1,  driver:'Shane Cook',                 lap:'1:02.902', laps:41, gap:'LEADER'},
+            {pos:2,  driver:'Dj Hamilton',                 lap:'1:04.077', laps:9,  gap:'+01.175'},
+            {pos:3,  driver:'Karl Francois',               lap:'1:05.057', laps:30, gap:'+02.155', voucher:'$60 — New Customer (1st)'},
+            {pos:4,  driver:'Elias Melendez Jr.',          lap:'1:05.461', laps:11, gap:'+02.559'},
+            {pos:5,  driver:'Isaiah Dennison',             lap:'1:06.574', laps:19, gap:'+03.672', voucher:'$45 — New Customer (2nd)'},
+            {pos:6,  driver:'Connor Magic',                lap:'1:07.458', laps:43, gap:'+04.556', voucher:'$25 — New Customer (3rd)'},
+            {pos:7,  driver:'OZONE JUNKIE',                lap:'1:07.721', laps:71, gap:'+04.819'},
+            {pos:8,  driver:'Gage Hayford',                lap:'1:08.046', laps:14, gap:'+05.144'},
+            {pos:9,  driver:'Gio Cortes',                  lap:'1:09.455', laps:25, gap:'+06.553'},
+            {pos:10, driver:'Takayuki Wakabayashi',        lap:'1:10.261', laps:11, gap:'+07.359'},
+            {pos:11, driver:'Delano Williams',             lap:'1:17.023', laps:7,  gap:'+14.121'},
+            {pos:12, driver:'Aquile Henry',                lap:'1:22.051', laps:10, gap:'+19.149'},
+            {pos:13, driver:'Steven Eng',                  lap:'1:32.449', laps:14, gap:'+29.547'},
+            {pos:14, driver:'Kyle',                        lap:'1:41.077', laps:8,  gap:'+38.175'},
+            {pos:15, driver:'Sal Mahmood',                 lap:'—',        laps:null, gap:'—'},
+            {pos:16, driver:'Jonathan Valcourt',           lap:'—',        laps:null, gap:'—'},
+            {pos:17, driver:'Omari Bernard',               lap:'—',        laps:null, gap:'—'},
+            {pos:18, driver:'Harry Sherman',               lap:'—',        laps:null, gap:'—'},
+        ]
+    },
 ];
 function getFirstSundayOfMonth(year, month1) {
   const d = new Date(year, month1 - 1, 1);
@@ -3498,8 +3524,9 @@ function openModal(id) {
       const noLap = r.lap === '—';
       const isTeam = isSIM1Team(r.driver);
       const badge = isTeam ? `<span style="display:inline-block;background:#EF4444;color:white;font-family:'Barlow Condensed',sans-serif;font-size:0.5em;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:1px 5px;border-radius:4px;margin-left:5px;vertical-align:middle;">SIM1</span>` : '';
+      const voucherBadge = r.voucher ? `<span style="display:inline-block;background:rgba(34,197,94,0.15);color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-size:0.52em;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-left:6px;vertical-align:middle;white-space:nowrap;">🎟️ ${r.voucher}</span>` : '';
       const pi = r.pos===1?'🥇':r.pos===2?'🥈':r.pos===3?'🥉':r.pos;
-      const dimStyle = noLap ? 'opacity:0.35;' : '';
+      const dimStyle = noLap ? 'opacity:0.35;' : (r.voucher ? 'background:rgba(34,197,94,0.06);' : '');
       const isFastest = i === fastestIdx;
       const lapColor = isFastest ? '#a855f7' : '#ccc';
       const lapCell = noLap ? `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:#333;text-align:right;font-style:italic;">No valid lap</td>` : `<td style="padding:9px 0;font-family:'Barlow',sans-serif;font-size:0.82em;color:${lapColor};text-align:right;font-weight:400;">${r.lap}</td>`;
@@ -3514,7 +3541,7 @@ function openModal(id) {
       }
       return `<tr style="border-bottom:1px solid #141414;${dimStyle}">
         <td style="padding:9px 0;font-family:'Barlow Condensed',sans-serif;font-size:${r.pos<=3&&!noLap?'1.05em':'0.9em'};font-weight:500;color:${r.pos<=3&&!noLap?'#EF4444':'#555'};">${pi}</td>
-        <td style="padding:9px 10px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:${noLap?'#444':'white'};text-transform:uppercase;">${normalizeName(r.driver)}${badge}</td>
+        <td style="padding:9px 10px;font-family:'Barlow Condensed',sans-serif;font-size:0.85em;font-weight:500;color:${noLap?'#444':'white'};text-transform:uppercase;">${normalizeName(r.driver)}${badge}${voucherBadge}</td>
         ${qualCell}${lapCell}${lapsCell}${gapCell}
       </tr>`;
     }).join('');
