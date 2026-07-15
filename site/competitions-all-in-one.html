@@ -215,35 +215,21 @@ img{max-width:100%;}
     <span class="badge">SIM1RACING</span>
     <h1>EVERY WAY TO<br><span class="accent">COMPETE</span></h1>
     <p>Grab a friend and go race together — team up as co-drivers for the Monthly Endurance Race, or come solo and jump into any of the competitions. Some are <b style="color:#fff;">casual, drop-in options</b> — enter a free qualifier tonight, chase a real-world prize, and walk away. Others are a <b style="color:#fff;">longer commitment</b> — a season-long league, a shot at joining the SIM1Racing team, or a custom season built around your own group. Use the menu above to jump into any of them.</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="v">6</div><div class="l">Ways to Compete</div></div>
-      <div class="hero-stat"><div class="v">Weekly</div><div class="l">New Events Posted</div></div>
-      <div class="hero-stat"><div class="v">Free →</div><div class="l">Entry, Prizes &amp; Team Tryouts</div></div>
-    </div>
   </div>
 </header>
-
-<section class="section" id="home-cards" style="background:var(--bg2);padding-top:40px;">
-  <div class="wrap">
-    <div class="photo-row">
-      <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55761bfc1f715d93208963/1783985691539/Untitled+design.jpg" alt="Race night at the sim lab"></div>
-      <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55764a02d6b629a78f2a5b/1783985738249/Untitled+design+%281%29.jpg" alt="A giveaway or track day winner"></div>
-      <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5576602489aa12cc8f636c/1783985760178/Untitled+design+%282%29.jpg" alt="The SIM1Racing team in action"></div>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════════════════════
   SIGN UP NOW — the three things we're always pushing:
   the upcoming Thursday Sprint Race, whichever Monthly
   League is open for signup, and the next Endurance Race.
-  The Sprint and League cards are filled in by JS further
-  down the page (renderHomeSprintSpotlight in frag-01b,
-  renderHomeLeagueSpotlight in frag-02f) off the same data
-  that already drives their own sections, so they never
-  need manual updating here.
+  Placed right under the hero so it's visible immediately
+  on load. The Sprint and League cards are filled in by JS
+  further down the page (renderHomeSprintSpotlight in
+  frag-01b, renderHomeLeagueSpotlight in frag-02f) off the
+  same data that already drives their own sections, so
+  they never need manual updating here.
 ══════════════════════════════════════════════ -->
-<section class="section" id="home-spotlight" style="background:var(--bg);">
+<section class="section" id="home-spotlight" style="background:var(--bg2);">
   <div class="wrap">
     <div class="center" style="margin-bottom:34px;">
       <div class="eyebrow">DON'T MISS OUT</div>
@@ -266,6 +252,16 @@ img{max-width:100%;}
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="home-cards" style="background:var(--bg);padding-top:40px;">
+  <div class="wrap">
+    <div class="photo-row">
+      <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55761bfc1f715d93208963/1783985691539/Untitled+design.jpg" alt="Race night at the sim lab"></div>
+      <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a55764a02d6b629a78f2a5b/1783985738249/Untitled+design+%281%29.jpg" alt="A giveaway or track day winner"></div>
+      <div class="photo-spot has-photo"><img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5576602489aa12cc8f636c/1783985760178/Untitled+design+%282%29.jpg" alt="The SIM1Racing team in action"></div>
     </div>
   </div>
 </section>
@@ -437,7 +433,7 @@ img{max-width:100%;}
 </div>
 <div style="background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:16px;text-align:center;">
 <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6em;font-weight:900;color:#22c55e;line-height:1;margin-bottom:4px;">FREE</div>
-<div style="font-family:'Barlow',sans-serif;font-size:0.68em;color:#666;text-transform:uppercase;letter-spacing:0.5px;">Gold Members + SIM1 Team Drivers</div>
+<div style="font-family:'Barlow',sans-serif;font-size:0.68em;color:#666;text-transform:uppercase;letter-spacing:0.5px;">Gold Members</div>
 </div>
 </div>
 <p style="font-family:'Barlow',sans-serif;font-size:1em;line-height:1.7;color:#b0b0b0;margin-bottom:24px;">Every Thursday night, race this week's <strong style="color:#fff;">Car of the Week</strong> &#x2014; the same car and track as the current Weekly Qualifier &#x2014; live and wheel-to-wheel in a pure sprint format. The highest podium finisher who isn't already qualified earns a championship invite &#x2014; one per race.</p>
@@ -643,7 +639,7 @@ function renderHomeSprintSpotlight(){
       <div class="spotlight-eyebrow" style="color:#22c55e;">EVERY THURSDAY</div>
       <div class="spotlight-title">Thursday Sprint Race</div>
       <div class="spotlight-meta">${WEEKLY_CAR} &middot; ${WEEKLY_TRACK} &middot; 8:00 PM</div>
-      <p class="spotlight-sub">This week's Car of the Week, live and wheel-to-wheel. $60 entry — free for Gold Members &amp; SIM1 Team drivers.</p>
+      <p class="spotlight-sub">This week's Car of the Week, live and wheel-to-wheel. $60 entry — free for Gold Members.</p>
       <div class="spotlight-cta">
         <a onclick="goToSection(event,'sec-qualifiers')" href="#sec-qualifiers" class="btn" style="background:#22c55e;">VIEW SPRINT RACE</a>
       </div>
