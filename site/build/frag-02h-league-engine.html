@@ -196,12 +196,13 @@ function leagueDisplayName(key){
   if(key === 'aacc') return 'AACC';
   return key;
 }
-/* AACC (All American Corvette Club) and the Lotus GTC SIM1 League are
-   the two currently-running leagues — flagged here so View Laps/Results
-   can call that out now that the Leagues page no longer shows an
-   "Active Leagues" carousel of its own. Audi TT Cup's season has
-   concluded, so it's no longer in this list. */
-const VR_ACTIVE_LEAGUES = ['aacc','lotus-gtc'];
+/* The Lotus GTC SIM1 League is the one currently-running league —
+   flagged here so View Laps/Results can call that out now that the
+   Leagues page no longer shows an "Active Leagues" carousel of its
+   own. Audi TT Cup and AACC have both concluded their seasons, so
+   neither is in this list (AACC's Week 5/finale results just haven't
+   been uploaded yet — that doesn't make the season still "active"). */
+const VR_ACTIVE_LEAGUES = ['lotus-gtc'];
 function activeLeagueBadge(key){
   return VR_ACTIVE_LEAGUES.includes(key)
     ? `<span style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.15);color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-size:0.6em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-left:8px;vertical-align:middle;"><span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;"></span>Active</span>`
