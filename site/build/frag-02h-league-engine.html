@@ -60,15 +60,15 @@ const LEAGUE_STANDINGS = {
     weeksTotal: 5,
     lockedWeeks: 4, // week 5 (finale) hasn't been raced yet — will compute automatically once added
     drivers: [
-      { name:'Clifford Loncar', perWeek:[7,12,14,14,null], badges:[] },
-      { name:'Matthew Tavormina', perWeek:[16,16,8,null,null], badges:[
+      { name:'Clifford Loncar', perWeek:[7,12,14,10,null], badges:[] },
+      { name:'Matthew Tavormina', perWeek:[16,16,8,14,null], badges:[
         {label:'POLE ×3', tooltip:'Pole W1, W2 & W3', bg:'rgba(255,206,74,0.15)', color:'#ffce4a'},
       ]},
-      { name:'Tyler Yaccarino', perWeek:[12,6,10,11,null], badges:[] },
-      { name:'Louis Rivieccio', perWeek:[6,5,12,12,null], badges:[] },
+      { name:'Tyler Yaccarino', perWeek:[12,6,10,12,null], badges:[] },
+      { name:'Louis Rivieccio', perWeek:[6,5,12,6,null], badges:[] },
       { name:'Michael Colucci', perWeek:[5,7,7,7,null], badges:[] },
       { name:'Manuel Rodriguez', perWeek:[10,10,null,null,null], badges:[] },
-      { name:'Sergio Sciortino', perWeek:[4,4,null,null,null], badges:[] },
+      { name:'Sergio Sciortino', perWeek:[4,4,null,5,null], badges:[] },
       { name:'Rick Gostissa', perWeek:[3,null,null,null,null], badges:[] },
     ],
   },
@@ -79,7 +79,12 @@ const LEAGUE_STANDINGS = {
   'lotus-gtc': { weeksTotal: 4, lockedWeeks: 0, drivers: [] },
 };
 
-function computeWeekPoints(weekData){
+/* Some weeks award double points as a makeup for a cancelled week
+   elsewhere in the same season — keyed by league slug, then week
+   number. Lotus GTC's Week 2 was cancelled, so Week 3 pays 2x. */
+const POINTS_MULTIPLIER = { 'lotus-gtc': { 3: 2 } };
+
+function computeWeekPoints(weekData, leagueKey, weekNum){
   const pts = {}; const names = {};
   function addPts(driverRaw, p){
     if(!driverRaw) return;
@@ -103,6 +108,8 @@ function computeWeekPoints(weekData){
   if(weekData.quali && weekData.quali.rows && weekData.quali.rows.length){
     addPts(weekData.quali.rows[0][1], 1);
   }
+  const mult = (POINTS_MULTIPLIER[leagueKey] && POINTS_MULTIPLIER[leagueKey][weekNum]) || 1;
+  if(mult !== 1){ Object.keys(pts).forEach(k => { pts[k] *= mult; }); }
   return { pts, names };
 }
 
@@ -113,8 +120,8 @@ function mergeComputedWeeks(leagueKey){
   if(!results) return;
   for(let w = cfg.lockedWeeks + 1; w <= cfg.weeksTotal; w++){
     const wd = results[w];
-    if(!wd || !wd.race1) continue; // no real results posted for this week yet
-    const { pts, names } = computeWeekPoints(wd);
+    if(!wd || !wd.race1) continue; // no real results posted for this week yet (or it was cancelled)
+    const { pts, names } = computeWeekPoints(wd, leagueKey, w);
     Object.keys(pts).forEach(k => {
       let driver = cfg.drivers.find(d => nameKey(d.name) === k);
       if(!driver){
@@ -202,13 +209,25 @@ function activeLeagueBadge(key){
 }
 function vrLeagueWeeksHtml(leagueKey){
   const results = window.S1_RESULTS && window.S1_RESULTS[leagueKey];
-  if(!results) return '';
-  return Object.keys(results).map(Number).sort((a,b)=>a-b).map(w => {
-    const wd = results[w];
-    const hasResults = !!(wd.practice || wd.quali || wd.race1 || wd.race2);
-    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;cursor:pointer;" onclick="openResultsModal('${leagueKey}',${w})" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'">
-      <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk ${w}${wd.date ? ' &middot; ' + wd.date : ''}</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">${wd.track || 'TBA'}</div></div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:#EF4444;white-space:nowrap;">${hasResults ? 'View Results &rsaquo;' : 'Pending'}</div>
+  const featured = FEATURED_LEAGUES.find(l => l.slug === leagueKey);
+  let weekList;
+  if(VR_ACTIVE_LEAGUES.includes(leagueKey) && featured){
+    // Active leagues always show the full season schedule — every
+    // week's track — even before results are typed in for it, instead
+    // of only showing weeks that already have data.
+    weekList = featured.weeks.map(w => ({ n: w.n, track: w.track, dateLabel: w.dateLabel, wd: results && results[w.n] }));
+  } else {
+    if(!results) return '';
+    weekList = Object.keys(results).map(Number).sort((a,b)=>a-b).map(n => ({ n, track: results[n].track, dateLabel: results[n].date, wd: results[n] }));
+  }
+  return weekList.map(({ n, track, dateLabel, wd }) => {
+    const cancelled = !!(wd && wd.cancelled);
+    const hasResults = !!(wd && (wd.practice || wd.quali || wd.race1 || wd.race2));
+    const clickable = hasResults && !cancelled;
+    const statusLabel = cancelled ? 'Cancelled' : (hasResults ? 'View Results &rsaquo;' : 'Pending');
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px;border-bottom:1px solid #161616;${clickable ? 'cursor:pointer;' : 'opacity:0.55;'}"${clickable ? ` onclick="openResultsModal('${leagueKey}',${n})" onmouseover="this.style.background='#151515'" onmouseout="this.style.background='transparent'"` : ''}>
+      <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65em;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#EF4444;margin-bottom:2px;">Wk ${n}${dateLabel ? ' &middot; ' + dateLabel : ''}</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95em;font-weight:800;color:white;">${track || 'TBA'}</div></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72em;font-weight:700;color:${cancelled ? '#666' : '#EF4444'};white-space:nowrap;">${statusLabel}</div>
     </div>`;
   }).join('');
 }
@@ -235,7 +254,9 @@ function renderVrLeague(leagueKey){
 }
 function initVrLeagueTabs(){
   Object.keys(LEAGUE_STANDINGS).forEach(mergeComputedWeeks);
-  const keys = Object.keys(LEAGUE_STANDINGS).filter(k => LEAGUE_STANDINGS[k].drivers.length > 0 || VR_ACTIVE_LEAGUES.includes(k));
+  const keys = Object.keys(LEAGUE_STANDINGS)
+    .filter(k => LEAGUE_STANDINGS[k].drivers.length > 0 || VR_ACTIVE_LEAGUES.includes(k))
+    .sort((a,b) => (VR_ACTIVE_LEAGUES.includes(b)?1:0) - (VR_ACTIVE_LEAGUES.includes(a)?1:0));
   const tabsEl = document.getElementById('vr-league-tabs');
   const contentEl = document.getElementById('vr-league-content');
   if(!tabsEl || !contentEl) return; // View Laps/Results section not on this build
