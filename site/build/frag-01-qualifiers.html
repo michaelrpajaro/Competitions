@@ -211,6 +211,14 @@
 <style>
 #sec-qualifiers{position:relative;}
 #sec-qualifiers .qd-badge-short{display:none;}
+/* Unscoped on purpose — these render both here and inside
+   #sec-viewresults' driver-lookup event history, and are opened via
+   a single delegated click listener (see the qualifiers section's
+   own script, near openModal/closeModal) rather than inline onclick
+   attributes. */
+.qd-badge-clickable:hover{filter:brightness(1.25);transform:scale(1.04);}
+.qd-badge-clickable:active{transform:scale(0.97);}
+.qd-open-row:hover{background:#111;}
 @media(max-width:768px){
 #sec-qualifiers div[style*="padding:130px 40px 90px"]{padding:60px 18px 40px!important;}
 #sec-qualifiers div[style*="padding:130px 40px 90px"] h1{font-size:2.8em!important;}
