@@ -419,7 +419,7 @@ img{max-width:100%;}
 <div style="display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:start;">
 <div>
 <div id="sprint-graphic" style="aspect-ratio:4/5;border-radius:14px;overflow:hidden;position:relative;border:1px solid #2a2a2a;">
-<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a56d15f0463e935e50de19b/1784074598072/July+13+%281%29.jpg" alt="Thursday Sprint Race" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;position:absolute;inset:0;">
+<img src="https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5e4d530024dd31562cf0e1/1784565075563/July+20+%283%29.jpg" alt="Thursday Sprint Race" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;position:absolute;inset:0;">
 </div>
 </div>
 <div>
@@ -581,7 +581,7 @@ img{max-width:100%;}
    "graphic coming soon" placeholder until a real image URL is supplied. */
 const WEEKLY_SCHEDULE = [
   { start:'2026-07-12T23:00:00-04:00', name:'Lamborghini Aventador SV — Red Bull Ring GP', car:'Lamborghini Aventador SV', track:'Red Bull Ring GP', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a559910392add26bb680127/1783994641022/July+13.jpg' },
-  { start:'2026-07-19T23:00:00-04:00', name:'KTM X-Bow R — Brands Hatch GP', car:'KTM X-Bow R', track:'Brands Hatch GP', image:null },
+  { start:'2026-07-19T23:00:00-04:00', name:'KTM X-Bow R — Brands Hatch GP', car:'KTM X-Bow R', track:'Brands Hatch GP', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5e4d2dd5b35141dcfda3b9/1784565037337/July+20+%282%29.jpg' },
   { start:'2026-07-26T23:00:00-04:00', name:'Audi TT RS (VLN) — Zandvoort', car:'Audi TT RS (VLN)', track:'Zandvoort', image:null },
   { start:'2026-08-02T23:00:00-04:00', name:'Pagani Zonda R — Monza', car:'Pagani Zonda R', track:'Monza', image:null },
   { start:'2026-08-09T23:00:00-04:00', name:'BMW M2 Racing — Vallelunga Classic', car:'BMW M2 Racing', track:'Vallelunga Classic', image:null },
@@ -624,7 +624,7 @@ const MONTHLY_IMAGE_URL = __activeMonthly.image;
 const MONTHLY_EVENT_NAME = __activeMonthly.name;
 const MONTHLY_CAR = __activeMonthly.car;
 const MONTHLY_TRACK = __activeMonthly.track;
-const SPRINT_IMAGE_URL = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a56d15f0463e935e50de19b/1784074598072/July+13+%281%29.jpg";
+const SPRINT_IMAGE_URL = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5e4d530024dd31562cf0e1/1784565075563/July+20+%283%29.jpg";
 
 /* Homepage "Sign Up Now" spotlight card for the Thursday Sprint —
    shares the same Car of the Week as the Weekly Qualifier above, so
@@ -2995,6 +2995,30 @@ const archiveData = [
             {pos:16, driver:'Jonathan Valcourt',           lap:'—',        laps:null, gap:'—'},
             {pos:17, driver:'Omari Bernard',               lap:'—',        laps:null, gap:'—'},
             {pos:18, driver:'Harry Sherman',               lap:'—',        laps:null, gap:'—'},
+        ]
+    },
+    {
+        id:50, type:'weekly', label:'Weekly Qualifier', icon:'\u{1F3CE}️', period:'2026-07',
+        name:'Week 3 — Red Bull Ring GP', date:'Jul 13–19, 2026',
+        car:'Lamborghini Aventador SV', track:'Red Bull Ring GP',
+        pending:false, results:[
+            {pos:1,  driver:'Victor Mendez',              lap:'1:36.915', laps:24,  gap:'LEADER'},
+            {pos:2,  driver:'Shane Cook',                 lap:'1:37.649', laps:44,  gap:'+00.734'},
+            {pos:3,  driver:'Todd Rushing',               lap:'1:37.791', laps:25,  gap:'+00.876'},
+            {pos:4,  driver:'Eli Shamis',                 lap:'1:37.875', laps:34,  gap:'+00.960'},
+            {pos:5,  driver:'Michael Pajaro',             lap:'1:38.234', laps:8,   gap:'+01.319'},
+            {pos:6,  driver:'Acacio Magalhaes',           lap:'1:38.612', laps:33,  gap:'+01.697'},
+            {pos:7,  driver:'Chaseton Ennis',             lap:'1:39.090', laps:39,  gap:'+02.175'},
+            {pos:8,  driver:'Max Delacruz',               lap:'1:39.773', laps:26,  gap:'+02.858'},
+            {pos:9,  driver:'Aedan Mcpartlan',            lap:'1:39.987', laps:13,  gap:'+03.072'},
+            {pos:10, driver:'Felix Lin',                  lap:'1:40.346', laps:9,   gap:'+03.431'},
+            {pos:11, driver:'Andrew Salotti',             lap:'1:41.238', laps:23,  gap:'+04.323'},
+            {pos:12, driver:'OZONE JUNKIE',               lap:'1:41.265', laps:347, gap:'+04.350'},
+            {pos:13, driver:'Sitay Huber',                lap:'1:42.427', laps:8,   gap:'+05.512'},
+            {pos:14, driver:'Andres Bello',               lap:'1:47.880', laps:13,  gap:'+10.965'},
+            {pos:15, driver:'Peter Szarka',               lap:'—',        laps:null, gap:'—'},
+            {pos:16, driver:'Marcello Mitreski',          lap:'—',        laps:null, gap:'—'},
+            {pos:17, driver:'Paulina Bialy',               lap:'—',        laps:null, gap:'—'},
         ]
     },
 ];
