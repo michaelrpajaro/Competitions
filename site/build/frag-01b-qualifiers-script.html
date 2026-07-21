@@ -9,35 +9,39 @@
    ════════════════════════════════════════════════════════════════ */
 
 /* Weekly Qualifier == that week's "Car of the Week", shared with the
-   Thursday Sprint Race. Rotates automatically every Sunday at 11:00 PM
-   Eastern (encoded below as explicit -04:00/-05:00 ISO timestamps so the
-   switchover lands on the same real-world instant for every visitor,
-   regardless of their own timezone) — see pickActiveSchedule() below.
-   Add new weeks to the end of this list; image:null shows a graceful
-   "graphic coming soon" placeholder until a real image URL is supplied. */
+   Thursday Sprint Race — each entry carries BOTH graphics (image for the
+   qualifier, sprintImage for the Thursday Sprint) so they rotate together
+   automatically. Switches over every Monday at 11:00 AM Eastern (encoded
+   below as explicit -04:00/-05:00 ISO timestamps so the switchover lands
+   on the same real-world instant for every visitor, regardless of their
+   own timezone) — see pickActiveSchedule() below. Add new weeks to the
+   end of this list; image/sprintImage:null shows a graceful "graphic
+   coming soon" placeholder until a real image URL is supplied. */
 const WEEKLY_SCHEDULE = [
-  { start:'2026-07-12T23:00:00-04:00', name:'Lamborghini Aventador SV — Red Bull Ring GP', car:'Lamborghini Aventador SV', track:'Red Bull Ring GP', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a559910392add26bb680127/1783994641022/July+13.jpg' },
-  { start:'2026-07-19T23:00:00-04:00', name:'KTM X-Bow R — Brands Hatch GP', car:'KTM X-Bow R', track:'Brands Hatch GP', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5e4d2dd5b35141dcfda3b9/1784565037337/July+20+%282%29.jpg' },
-  { start:'2026-07-26T23:00:00-04:00', name:'Audi TT RS (VLN) — Zandvoort', car:'Audi TT RS (VLN)', track:'Zandvoort', image:null },
-  { start:'2026-08-02T23:00:00-04:00', name:'Pagani Zonda R — Monza', car:'Pagani Zonda R', track:'Monza', image:null },
-  { start:'2026-08-09T23:00:00-04:00', name:'BMW M2 Racing — Vallelunga Classic', car:'BMW M2 Racing', track:'Vallelunga Classic', image:null },
-  { start:'2026-08-16T23:00:00-04:00', name:"Porsche 919 '16 — Silverstone International", car:"Porsche 919 '16", track:'Silverstone International', image:null },
-  { start:'2026-08-23T23:00:00-04:00', name:'Porsche 911 R — Laguna Seca', car:'Porsche 911 R', track:'Laguna Seca', image:null },
-  { start:'2026-08-30T23:00:00-04:00', name:'BMW Z4 GT3 — Spa', car:'BMW Z4 GT3', track:'Spa', image:null },
-  { start:'2026-09-06T23:00:00-04:00', name:'McLaren F1 GTR — Mugello', car:'McLaren F1 GTR', track:'Mugello', image:null },
-  { start:'2026-09-13T23:00:00-04:00', name:'Lamborghini Gallardo SL — Brands Hatch Indy', car:'Lamborghini Gallardo SL', track:'Brands Hatch Indy', image:null },
-  { start:'2026-09-20T23:00:00-04:00', name:'Mazda MX-5 Cup — Silverstone National', car:'Mazda MX-5 Cup', track:'Silverstone National', image:null },
-  { start:'2026-09-27T23:00:00-04:00', name:'Praga R1 — Barcelona GP', car:'Praga R1', track:'Barcelona GP', image:null },
-  { start:'2026-10-04T23:00:00-04:00', name:'Nissan Skyline GT-R R34 — Red Bull Ring National', car:'Nissan Skyline GT-R R34', track:'Red Bull Ring National', image:null },
-  { start:'2026-10-11T23:00:00-04:00', name:'Lotus 72D — Monza 1966 Road', car:'Lotus 72D', track:'Monza 1966 Road', image:null },
-  { start:'2026-10-18T23:00:00-04:00', name:'Chevrolet Corvette C7.R GT3 — Laguna Seca', car:'Chevrolet Corvette C7.R GT3', track:'Laguna Seca', image:null },
-  { start:'2026-10-25T23:00:00-04:00', name:'Mercedes SLS AMG GT3 — Nürburgring Sprint', car:'Mercedes SLS AMG GT3', track:'Nürburgring Sprint', image:null },
+  { start:'2026-07-12T23:00:00-04:00', name:'Lamborghini Aventador SV — Red Bull Ring GP', car:'Lamborghini Aventador SV', track:'Red Bull Ring GP', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a559910392add26bb680127/1783994641022/July+13.jpg', sprintImage:null },
+  { start:'2026-07-19T23:00:00-04:00', name:'KTM X-Bow R — Brands Hatch GP', car:'KTM X-Bow R', track:'Brands Hatch GP', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5e4d2dd5b35141dcfda3b9/1784565037337/July+20+%282%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5e4d530024dd31562cf0e1/1784565075563/July+20+%283%29.jpg' },
+  { start:'2026-07-27T11:00:00-04:00', name:'Audi TT RS (VLN) — Zandvoort', car:'Audi TT RS (VLN)', track:'Zandvoort', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebf0b58e0962aa3f5b64c/1784594187817/July+27.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebef0d81c9b0a49a109ea/1784594161135/July+20+%284%29.jpg' },
+  { start:'2026-08-03T11:00:00-04:00', name:'Pagani Zonda R — Monza', car:'Pagani Zonda R', track:'Monza', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebf344fa3187ce0f7a68e/1784594229028/Insta+Events+%286%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebf21f4d11c3249515a3c/1784594209507/July+20+%285%29.jpg' },
+  { start:'2026-08-10T11:00:00-04:00', name:'BMW M2 Racing — Vallelunga Classic', car:'BMW M2 Racing', track:'Vallelunga Classic', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebf73d1c5e94efab69757/1784594291843/Insta+Events+%287%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebf45d5f8cb18770f708f/1784594245380/July+20+%286%29.jpg' },
+  { start:'2026-08-17T11:00:00-04:00', name:"Porsche 919 '16 — Silverstone International", car:"Porsche 919 '16", track:'Silverstone International', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebfb5426c534a9efe90bb/1784594358046/Insta+Events+%288%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebf9adc211c07463223a6/1784594330417/July+20+%287%29.jpg' },
+  { start:'2026-08-24T11:00:00-04:00', name:'Porsche 911 R — Laguna Seca', car:'Porsche 911 R', track:'Laguna Seca', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebfdebd99cf5aa74a047e/1784594398411/Insta+Events+%289%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebfc9d81c9b0a49a14311/1784594377811/July+20+%288%29.jpg' },
+  { start:'2026-08-31T11:00:00-04:00', name:'BMW Z4 GT3 — Spa', car:'BMW Z4 GT3', track:'Spa', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ec00535f6071739be632d/1784594437865/Insta+Events+%2810%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ebff00b1913448075b1f3/1784594416641/July+20+%289%29.jpg' },
+  { start:'2026-09-07T11:00:00-04:00', name:'McLaren P1 GTR — Mugello', car:'McLaren P1 GTR', track:'Mugello', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ec0390f544f660406fa12/1784594489826/Insta+Events+%2811%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ec0263ecff974f09bd51b/1784594470422/July+20+%2810%29.jpg' },
+  { start:'2026-09-14T11:00:00-04:00', name:'Lamborghini Gallardo SL — Brands Hatch Indy', car:'Lamborghini Gallardo SL', track:'Brands Hatch Indy', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ec05b0b1913448075bcfb/1784594523910/Insta+Events+%2812%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ec04a172dbe7bdfbfe0ee/1784594506377/July+20+%2811%29.jpg' },
+  { start:'2026-09-21T11:00:00-04:00', name:'Mazda MX-5 Cup — Silverstone National', car:'Mazda MX-5 Cup', track:'Silverstone National', image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ec5b76f51c65e725d42cc/1784595895636/Insta+Events+%2814%29.jpg', sprintImage:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5ec4150c87265b435c402a/1784595477864/July+20+%2812%29.jpg' },
+  { start:'2026-09-28T11:00:00-04:00', name:'Praga R1 — Barcelona GP', car:'Praga R1', track:'Barcelona GP', image:null, sprintImage:null },
+  { start:'2026-10-05T11:00:00-04:00', name:'Nissan Skyline GT-R R34 — Red Bull Ring National', car:'Nissan Skyline GT-R R34', track:'Red Bull Ring National', image:null, sprintImage:null },
+  { start:'2026-10-12T11:00:00-04:00', name:'Lotus 72D — Monza 1966 Road', car:'Lotus 72D', track:'Monza 1966 Road', image:null, sprintImage:null },
+  { start:'2026-10-19T11:00:00-04:00', name:'Chevrolet Corvette C7.R GT3 — Laguna Seca', car:'Chevrolet Corvette C7.R GT3', track:'Laguna Seca', image:null, sprintImage:null },
+  { start:'2026-10-26T11:00:00-04:00', name:'Mercedes SLS AMG GT3 — Nürburgring Sprint', car:'Mercedes SLS AMG GT3', track:'Nürburgring Sprint', image:null, sprintImage:null },
 ];
 
+/* Switches over on the 1st of each month at 11:00 AM Eastern (same
+   real-world-instant approach as WEEKLY_SCHEDULE above). */
 const MONTHLY_SCHEDULE = [
-  { start:'2026-06-01', name:'June Time Attack — Brands Hatch GP', car:'Nissan GTR GT3', track:'Brands Hatch GP',
+  { start:'2026-06-01T11:00:00-04:00', name:'June Time Attack — Brands Hatch GP', car:'Nissan GTR GT3', track:'Brands Hatch GP',
     image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a1f8dd7dad95e446b78e326/1780452823772/Insta+Events+%2824%29.jpg' },
-  { start:'2026-07-01', name:'July Time Attack — Monza GP', car:'McLaren P1 GTR', track:'Monza GP',
+  { start:'2026-07-01T11:00:00-04:00', name:'July Time Attack — Monza GP', car:'McLaren P1 GTR', track:'Monza GP',
     image:'https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a486484cb800060fa56a668/1783129220833/Insta+Events+%288%29.jpg' },
 ];
 
@@ -60,7 +64,7 @@ const MONTHLY_IMAGE_URL = __activeMonthly.image;
 const MONTHLY_EVENT_NAME = __activeMonthly.name;
 const MONTHLY_CAR = __activeMonthly.car;
 const MONTHLY_TRACK = __activeMonthly.track;
-const SPRINT_IMAGE_URL = "https://static1.squarespace.com/static/675f613ae652273e9723cfd3/t/6a5e4d530024dd31562cf0e1/1784565075563/July+20+%283%29.jpg";
+const SPRINT_IMAGE_URL = __activeWeekly.sprintImage;
 
 /* Homepage "Sign Up Now" spotlight card for the Thursday Sprint —
    shares the same Car of the Week as the Weekly Qualifier above, so
