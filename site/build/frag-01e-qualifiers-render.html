@@ -50,7 +50,11 @@ function parseEventEndDate(ev) {
   return new Date(year, monthIdx, +dayStr);
 }
 function buildQualifiedList(period) {
-  const events = archiveData.filter(e => e.period === period && e.type !== 'championship' && e.type !== 'special');
+  // Special events normally don't count toward championship qualification
+  // (see the note on each one) — but an event can opt in by setting
+  // qualifies:true, e.g. to grant invites to the event's top finishers
+  // as a one-off bonus alongside its own separate (new-customer) prizes.
+  const events = archiveData.filter(e => e.period === period && e.type !== 'championship' && (e.type !== 'special' || e.qualifies));
   const qualified = [];
   const qualifiedKeys = new Set();
   function tryAdd(driver, source, sourceBadge, badgeColor, eventId, pos) {
@@ -62,10 +66,11 @@ function buildQualifiedList(period) {
     return true;
   }
   function processEvent(ev) {
-    const color = ev.type === 'sprint' ? '#166634' : ev.type === 'weekly' ? '#EF4444' : '#1d4ed8';
+    const color = ev.type === 'sprint' ? '#166634' : ev.type === 'weekly' ? '#EF4444' : ev.type === 'special' ? '#f59e0b' : '#1d4ed8';
     function getBadge(pos) {
       if (ev.type === 'sprint') { const spMatch = ev.name.match(/Sprint Race\s*#(\d+)/i); const spNum = spMatch ? spMatch[1] : '?'; return `SPRINT ${spNum} · P${pos}`; }
       if (ev.type === 'monthly') return `MONTHLY · P${pos}`;
+      if (ev.type === 'special') return `SPECIAL · P${pos}`;
       const wkMatch = ev.name.match(/Week\s*(\d+)/i); const wkNum = wkMatch ? wkMatch[1] : '?';
       return `WEEK ${wkNum} · P${pos}`;
     }
