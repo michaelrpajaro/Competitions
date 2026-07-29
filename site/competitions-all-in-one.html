@@ -4784,6 +4784,14 @@ window.S1_RESULTS = {
         ['4','Michael Colucci','Mazda MX5 Cup'],
         ['5','Louis Rivieccio','Mazda MX5 Cup'],
         ['6','Sergio Sciortino','Mazda MX5 Cup'] ] },
+      race2: null },
+    5: { track: 'Magione', week: 5, date: 'Tuesday, Jul 14',
+      race1: { label: 'Race', headers: ['Pos','Driver','Car','Laps','Time','Gap'], rows: [
+        ['1','Clifford Loncar','Mazda MX5 Cup','14','20:43.126','+0:00.000'],
+        ['2','Matthew Tavormina','Mazda MX5 Cup','14','20:45.164','+0:02.038'],
+        ['3','Tyler Yaccarino','Mazda MX5 Cup','14','20:56.683','+0:13.557'],
+        ['4','Louis Rivieccio','Mazda MX5 Cup','14','20:57.207','+0:14.081'],
+        ['5','Sergio Sciortino','Mazda MX5 Cup','14','21:28.151','+0:45.025'] ] },
       race2: null }
   },
   'lotus-gtc': {
@@ -5005,7 +5013,7 @@ const LEAGUE_STANDINGS = {
   },
   aacc: {
     weeksTotal: 5,
-    lockedWeeks: 4, // week 5 (finale) hasn't been raced yet — will compute automatically once added
+    lockedWeeks: 4, // week 5 (finale) computes automatically from S1_RESULTS.aacc[5]
     drivers: [
       { name:'Clifford Loncar', perWeek:[7,12,14,10,null], badges:[] },
       { name:'Matthew Tavormina', perWeek:[16,16,8,14,null], badges:[
