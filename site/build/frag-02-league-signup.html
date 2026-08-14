@@ -1,0 +1,49 @@
+<!-- ══════════════════════════════════════════════
+  LEAGUE INTEREST SIGNUP
+  No league running right now — this replaces the old Leagues
+  section entirely for the time being. Submitting opens the
+  visitor's email client with their name/number/email pre-filled
+  into a message addressed to info@sim1racing.com (no backend
+  needed). Swap SF_LEAGUE_SIGNUP_EMAIL below if that inbox changes.
+══════════════════════════════════════════════ -->
+<section class="sf-signup" id="league-signup">
+  <div class="sf-signup-wrap">
+    <div class="sf-eyebrow" style="color:#a78bfa;">LEAGUES ARE ON PAUSE</div>
+    <h2 class="sf-h2">Be First to Know About the Next League</h2>
+    <p class="sf-p" style="margin-top:14px;">We're between seasons right now — no league running at the moment. Drop your name, number, and email below and we'll reach out the moment the next one opens up.</p>
+
+    <form class="sf-form" id="sf-league-form">
+      <div class="sf-field">
+        <label for="sf-lg-name">Name</label>
+        <input type="text" id="sf-lg-name" name="name" required placeholder="Your full name">
+      </div>
+      <div class="sf-field">
+        <label for="sf-lg-phone">Phone Number</label>
+        <input type="tel" id="sf-lg-phone" name="phone" required placeholder="(555) 555-5555">
+      </div>
+      <div class="sf-field">
+        <label for="sf-lg-email">Email</label>
+        <input type="email" id="sf-lg-email" name="email" required placeholder="you@email.com">
+      </div>
+      <button type="submit" class="btn" style="margin-top:6px;">NOTIFY ME</button>
+      <div class="sf-form-note">Opens your email app with your info filled in — just hit send.</div>
+    </form>
+  </div>
+</section>
+
+<script>
+const SF_LEAGUE_SIGNUP_EMAIL = 'info@sim1racing.com';
+(function(){
+  const form = document.getElementById('sf-league-form');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('sf-lg-name').value.trim();
+    const phone = document.getElementById('sf-lg-phone').value.trim();
+    const email = document.getElementById('sf-lg-email').value.trim();
+    const subject = encodeURIComponent('League Interest — Notify Me');
+    const body = encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email);
+    window.location.href = 'mailto:' + SF_LEAGUE_SIGNUP_EMAIL + '?subject=' + subject + '&body=' + body;
+  });
+})();
+</script>
